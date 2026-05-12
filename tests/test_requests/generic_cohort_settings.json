@@ -1,0 +1,135 @@
+{
+    "useCaseId": "condition-based-record",
+    "count": 2,
+    "seed": 122142142142134,
+    "eventPeriod": {
+        "start": "2024-01-01",
+        "end": "2025-12-31",
+        "until": "2026-12-31"
+    },
+    "userResponses": [
+        {
+            "ruleId": "patient-names",
+            "value": false
+        },
+        {
+            "ruleId": "patient-age-at-event-date",
+            "value": {
+                "min": 18,
+                "max": 65
+            }
+        },
+        {
+            "ruleId": "patient-sex",
+            "value": {
+                "values": [
+                    { "value": "Male", "weight": 0.4},
+                    { "value": "Female", "weight": 0.5},
+                    { "value": "Unknown", "weight": 0.1}
+                ]
+            }
+        },
+        {
+            "ruleId": "patient-location",
+            "value": {
+                "state": "GA",
+                "city": "Atlanta"
+            }
+        },
+        {
+            "ruleId": "condition-code",
+            "value": {
+                "system": "http://snomed.info/sct",
+                "code": "56717001",
+                "display": "Tuberculosis"
+            }
+        },
+        {
+            "ruleId": "condition-abatement",
+            "value": {
+                "start": 90,
+                "end": 180
+            }
+        }
+    ],
+    "medications": [
+        {
+            "codeableConcept": {
+                "display": "isoniazid",
+                "code": "6038",
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm"
+            },
+            "dosage": "300 mg"
+        },
+        {
+            "codeableConcept": {
+                "display": "rifampin",
+                "code": "9384",
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm"
+            }
+        }
+    ],
+    "eventSets": [
+        {
+            "name": "Procedures",
+            "timing": {
+                "offset": "5",
+                "repeat": true,
+                "repeatTiming": "28"
+            },
+            "entry": [
+                {
+                    "type": "procedure",
+                    "codeableConcept": {
+                        "system": "http://snomed.info/sct",
+                        "code": "399208008",
+                        "display": "Plain chest X-ray"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Lab Tests",
+            "includeDiagnosticReport": true,
+            "diagnosticReportConcept": {
+                "system": "http://loinc.org",
+                "display": "Test DR",
+                "code": "1234-5"
+            },
+            "timing": {
+                "offset": "7",
+                "repeat": true,
+                "repeatTiming": "14"
+            },
+            "entry": [
+                {
+                    "type": "labResult",
+                    "codeableConcept": {
+                        "display": "Potassium [Moles/volume] in Blood",
+                        "code": "6298-4",
+                        "system": "http://loinc.org"
+                    },
+                    "value": {
+                        "min": 3.6,
+                        "max": 5.2,
+                        "unit": "mmol/L"
+                    }
+                },
+                {
+                    "type": "labResult",
+                    "codeableConcept": {
+                        "display": "exampleStringValue",
+                        "code": "1234-5",
+                        "system": "http://loinc.org"
+                    },
+                    "value": {
+                        "values": [
+                            {"value": "positive", "weight": 0.5},
+                            {"value": "negative", "weight": 0.5}
+                        ]
+                        }
+                }
+            ]
+        }
+    ]
+}

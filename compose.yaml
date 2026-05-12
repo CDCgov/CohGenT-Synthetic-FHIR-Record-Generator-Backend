@@ -1,0 +1,71 @@
+networks:
+  cohgent-network:
+    driver: bridge
+
+services:
+  cohgent-ui:
+    build:
+      context: ./ui
+      dockerfile: ./Dockerfile.local
+      args:
+        BASE_HREF: /
+    container_name: cohgent-ui
+    ports:
+      - "80:80"
+    volumes:
+      - ./local.ui-config.json:/usr/share/nginx/html/assets/config/config.json:ro
+    restart: unless-stopped
+
+  cohgent-api:
+    build:
+      context: ./
+      dockerfile: Dockerfile.local
+    container_name: cohgent-api
+    ports:
+      - "8500:8000"
+    volumes:
+      - ./local.env:/app/.env:ro
+    restart: unless-stopped
+    depends_on:
+      cohgent-db:
+        condition: service_healthy
+    networks:
+      - cohgent-network
+  
+  cohgent-db:
+    image: postgres:18-alpine
+    container_name: cohgent-db
+    environment:
+      POSTGRES_USER: cohgent
+      POSTGRES_PASSWORD: testpassword
+      POSTGRES_DB: cohgent
+    ports:
+      - "5454:5432"  # Exposed for loading DB From host env
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cohgent -d cohgent"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - cohgent-network
+
+  # omop-db:
+  #   image: postgres:18-alpine
+  #   container_name: omop-db
+  #   environment:
+  #     POSTGRES_USER: cohgent
+  #     POSTGRES_PASSWORD: testpassword
+  #     POSTGRES_DB: omop
+  #   ports:
+  #     - "5455:5432"  # Exposed for loading DB From host env
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U cohgent -d cohgent"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 10s
+  #   restart: unless-stopped
+  #   networks:
+  #     - cohgent-network

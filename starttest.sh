@@ -1,0 +1,1 @@
+pytest --cov=api --cov-report html

@@ -1,0 +1,48 @@
+# FASTAPI Builder Stage
+FROM python:3.13 AS fastapi-builder
+
+WORKDIR /app
+
+# Explicitly install libpq and build dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    libpq5 \
+    libpq-dev \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create and activate virtual environment
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+COPY requirements.txt requirements.txt
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install -r requirements.txt --no-cache-dir --use-pep517
+
+# Verify psycopg can import
+RUN python -c "import psycopg; from psycopg import pq; print('✓ psycopg loaded successfully')"
+
+# Operational stage
+FROM python:3.13-slim
+
+WORKDIR /app
+
+# Explicitly install libpq runtime library (CRITICAL for runtime)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    libpq5 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Get the virtual environment from builder stage
+COPY --from=fastapi-builder /opt/venv /opt/venv
+
+ENV PATH="/opt/venv/bin:$PATH"
+ENV PYTHONUNBUFFERED=1
+
+EXPOSE 8000
+
+COPY ./api ./api
+COPY ./data ./data
+COPY .env .env
+
+CMD ["hypercorn", "api.main:app", "--bind", "0.0.0.0:8000", "--access-logfile", "-", "--access-logformat", "%(h)s %(l)s \"%(r)s\" %(s)s Origin:\"%({origin}i)s\" X-Forwarded-For:\"%({x-forwarded-for}i)s\""]

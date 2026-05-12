@@ -1,0 +1,42 @@
+{
+    "abstract": true,
+    "entityId": "USCoreDiagnosticReportRadiology",
+    "resourceType": "DiagnosticReport",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note",
+    "referencePath": "subject",
+    "fields": [
+        {
+            "path": "DiagnosticReport.status",
+            "type": "code",
+            "userConfigured": false,
+            "value": "final"
+        },
+        {
+            "path": "DiagnosticReport.category.[0]",
+            "type": "CodeableConcept",
+            "userConfigured": false,
+            "value": {
+                "system": "http://loinc.org",
+                "code": "LP29684-5",
+                "display": "Radiology"
+            }
+        },
+        {
+            "path": "DiagnosticReport.code",
+            "type": "CodeableConcept",
+            "userConfigured": true
+        },
+        {
+            "path": "DiagnosticReport.effectiveDateTime",
+            "type": "dateTime",
+            "userConfigured": false,
+            "value": "$current"
+        },
+        {
+            "path": "DiagnosticReport.issued",
+            "type": "instant",
+            "userConfigured": false,
+            "value": "$current"
+        }
+    ]
+}

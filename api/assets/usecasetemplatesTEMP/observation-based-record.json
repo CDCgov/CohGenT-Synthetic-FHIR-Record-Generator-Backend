@@ -1,0 +1,236 @@
+{
+    "useCaseId": "observation-based-record",
+    "title": "Observation Based Record",
+    "description": "Observation based use cases center around a specific observation, such as a lab result. Attempts to match most common public health workflows.",
+    "generationRules": {
+        "eventDate": "PrimaryObservation/Observation.effectiveDateTime"
+    },
+    "formRules": [
+        {
+            "stepOrder": 1,
+            "type": "custom",
+            "title": "Patient Demographics",
+            "description": "",
+            "options": [
+                {
+                    "ruleId": "patient-names",
+                    "label": "Mask Patient Names",
+                    "description": "Set whether or not patient names should be masked.",
+                    "tooltip": "Masking de-identifies a patient's name to simulate common public health data. If not selected, synthetic names will be randomly generated for each patient. If selected, all patient names will be replaced with the FHIR Data Absent Reason extension set to a value of \"masked\".",
+                    "tags": ["default"],
+                    "control": "checkbox",
+                    "defaultState": false,
+                    "notes": ""
+                },
+                {
+                    "ruleId": "patient-age-at-event-date",
+                    "label": "Age at Diagnosis",
+                    "description": "Set the range for a patient's potential age at the time of diagnosis of the primary condition (configured in the Condition step).",
+                    "tooltip": "Patients' birthdates are calculated based on age at time of event date.",
+                    "tags": ["default"],
+                    "control": "range",
+                    "negativesAllowed": false,
+                    "decimalSpacesAllowed": 0,
+                    "defaultValues": [
+                        18,
+                        65
+                    ],
+                    "minMax": [
+                        0,
+                        100
+                    ],
+                    "notes": ""
+                },
+                {
+                    "ruleId": "patient-sex",
+                    "label": "Sex Distribution",
+                    "description": "Set the distribution of values for sex for patients in your cohort.",
+                    "tooltip": "When generating the FHIR output, the same value will be used for both the FHIR Patient gender fields and the U.S. Core 6.1.0 Sex extension to meet FHIR conformance. Note: Patient names are generated based on sex.",
+                    "tags": ["default"],
+                    "control": "weighting",
+                    "defaultValues": [
+                        ["Male", 0.5],
+                        ["Female", 0.5],
+                        ["Unknown", 0]
+                    ],
+                    "notes": ""
+                },
+                {
+                    "ruleId": "patient-location",
+                    "label": "Geographic Location",
+                    "description": "Set a general area for patient's residence at the time of diagnosis. ",
+                    "tooltip": "Narrower fields (e.g., city) are optional. Leave empty to allow for a fully randomized synthetic address within the United States. Street level addresses are always randomly generated.",
+                    "tags": ["optional"],
+                    "control": "location",
+                    "notes": ""       
+                },
+                {
+                    "ruleId": "patient-deceased",
+                    "label": "Deceased Distribution",
+                    "description": "Set the distribution of values for living versus deceased patients in your cohort.",
+                    "tooltip": "When generating the FHIR output, only a boolean (true/false) value will be given, not a full date of death.",
+                    "tags": ["default"],
+                    "control": "weighting",
+                    "defaultValues": [
+                        ["Living", 0.95],
+                        ["Deceased", 0.05]
+                    ],
+                    "notes": ""
+                },
+                {
+                    "ruleId": "patient-race",
+                    "label": "Race Category Distribution",
+                    "description": "Set the distribution of values for patient race.",
+                    "tooltip": "Race is based on the 1997 revision of the OMB Race and Ethnicity categories. Multi-select (multi-racial identity) is not currently supported in data generation.",
+                    "tags": ["default"],
+                    "control": "weighting",
+                    "defaultValues": [
+                        ["American Indian or Native Alaskan", 0.02],
+                        ["Asian", 0.08],
+                        ["Black or African American", 0.15],
+                        ["Native Hawaiian or Other Pacific Islander", 0.03],
+                        ["White", 0.64],
+                        ["Other Race", 0.08],
+                        ["Unknown", 0.00]
+                    ],
+                    "notes": "Does not currently support more than one race value selection. Default distribution is 2020 U.S. distribution with noise due to non-represented multi-racial identities."
+                },
+                {
+                    "ruleId": "patient-ethnicity",
+                    "label": "Ethnicity Category Distribution",
+                    "description": "Set the distribution of values for patient ethnicity.",
+                    "tooltip": "Ethnicity is based on the 1997 revision of the OMB Race and Ethnicity categories.",
+                    "tags": ["default"],
+                    "control": "weighting",
+                    "defaultValues": [
+                        ["Hispanic or Latino", 0.20],
+                        ["Not Hispanic or Latino", 0.80],
+                        ["Unknown", 0.00]
+                    ],
+                    "notes": ""
+                }
+            ]
+        },
+        {
+            "stepOrder": 2,
+            "type": "custom",
+            "title": "Diagnostic Lab",
+            "description": "Configure the primary observation (dev note: support for multiple in progress) shared by the patients in the cohort. This would typically be the initial lab test.",
+            "options": [
+                {
+                    "ruleId": "observation-code",
+                    "label": "Observation Code",
+                    "description": "Set the primary observatin, e.g. lab result, as represented per a medical terminology system (e.g., LOINC or SNOMED CT).",
+                    "tooltip": "The code and display as it appears for the concept in a given code system/terminology standard.",
+                    "tags": ["required"],
+                    "control": "concept",
+                    "notes": ""
+                }
+            ]
+        },
+        {
+            "stepOrder": 3,
+            "type": "medication",
+            "title": "",
+            "description": ""
+        },
+        {
+            "stepOrder": 4,
+            "type": "additional-data-time-series",
+            "title": "Additional Clinical Events/Entities",
+            "description": "Configure any additional clinical data (Lab Tests/Observations and Procedures) you would like to include for each patient in your cohort. Each set will be grouped by 'Event Set' which allows for control of relative timing and frequency/repetition over the length of the cohort. Similar data may be grouped together so that timing settings can be configured simultaneously. Create additional Event Sets for events that occur at different timings or intervals. For example, a set of lab tests being performed weekly in one event set, while a procedure that is performed every six months is in a second Event Set."
+        }
+    ],
+    "entities": [
+        {
+            "abstract": true,
+            "entityId": "BasePatient",
+            "resourceType": "Patient",
+            "fields": [
+                {
+                    "path": "Patient.identifier",
+                    "type": "Identifier",
+                    "userConfigured": false,
+                    "value": "$uuid"
+                },
+                {
+                    "path": "Patient.address.[0]",
+                    "type": "Address",
+                    "userConfigured": true,
+                    "userSettingRuleId": "patient-location",
+                    "value": "$patientAddress"
+                }
+            ]
+        },
+        {
+            "abstract": false,
+            "entityId": "PrimaryPatient",
+            "baseEntity": "BasePatient",
+            "resourceType": "Patient",
+            "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient",
+            "fields": [
+                {
+                    "path": "Patient.name.[0]",
+                    "type": "HumanName",
+                    "userConfigured": true,
+                    "userSettingRuleId": "patient-names",
+                    "value": "$patientName"
+                },
+                {
+                    "path": "Patient.birthDate",
+                    "type": "date",
+                    "userConfigured": true,
+                    "userSettingRuleId": "patient-age-at-event-date",
+                    "value": "$ageAtEventDate"
+                },
+                {
+                    "path": "Patient.gender",
+                    "type": "code",
+                    "userConfigured": true,
+                    "userSettingRuleId": "patient-sex",
+                    "value": "$patientSex"
+                }
+            ]
+        },
+        {
+            "abstract": false,
+            "entityId": "PrimaryObservation",
+            "resourceType": "Observation",
+            "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab",
+            "referencePath": "subject",
+            "fields": [
+                {
+                    "path": "Observation.code",
+                    "type": "CodeableConcept",
+                    "userConfigured": true,
+                    "userSettingRuleId": "observation-code"
+                },
+                {
+                    "path": "Observation.effectiveDateTime",
+                    "type": "dateTime",
+                    "userConfigured": false,
+                    "value": "$eventDate"
+                }
+            ]
+        }
+    ],
+    "commonEntities": {
+        "additionalEntities": [
+            {
+                "entityId": "labResult",
+                "type": "observation",
+                "buttonLabel": "Lab Result",
+                "entityFile": "USCoreObservationLab",
+                "defaultSystem": "LOINC"
+            },
+            {
+                "entityId": "procedure",
+                "type": "procedure",
+                "buttonLabel": "Procedure",
+                "entityFile": "",
+                "defaultSystem": "CPT"
+            }
+        ],
+        "medication": "USCoreMedicationRequest"
+    }
+}

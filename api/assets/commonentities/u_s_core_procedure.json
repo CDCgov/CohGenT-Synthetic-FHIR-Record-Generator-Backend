@@ -1,0 +1,26 @@
+{
+    "abstract": true,
+    "entityId": "USCoreProcedure",
+    "resourceType": "Procedure",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure",
+    "referencePath": "subject",
+    "fields": [
+        {
+            "path": "Procedure.status",
+            "type": "code",
+            "userConfigured": false,
+            "value": "unknown"
+        },
+        {
+            "path": "Procedure.code",
+            "type": "CodeableConcept",
+            "userConfigured": true
+        },
+        {
+            "path": "Procedure.performedDateTime",
+            "type": "dateTime",
+            "userConfigured": false,
+            "value": "$current"
+        }
+    ]
+}

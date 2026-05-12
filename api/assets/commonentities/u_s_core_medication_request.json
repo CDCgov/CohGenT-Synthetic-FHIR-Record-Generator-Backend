@@ -1,0 +1,31 @@
+{
+    "abstract": true,
+    "entityId": "USCoreMedicationRequest",
+    "resourceType": "MedicationRequest",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest",
+    "referencePath": "subject",
+    "fields": [
+        {
+            "path": "MedicationRequest.status",
+            "type": "code",
+            "userConfigured": false,
+            "value": "active"
+        },
+        {
+            "path": "MedicationRequest.intent",
+            "type": "code",
+            "userConfigured": false,
+            "value": "plan"
+        },
+        {
+            "path": "MedicationRequest.medicationCodeableConcept",
+            "type": "CodeableConcept",
+            "userConfigured": true
+        },
+        {
+            "path": "MedicationRequest.dosageInstruction.[0].text",
+            "type": "string",
+            "userConfigured": true
+        }
+    ]
+}
