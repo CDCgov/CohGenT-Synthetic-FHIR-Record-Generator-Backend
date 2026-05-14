@@ -1,5 +1,10 @@
 # Changelog
 
+## [Unreleased] - 
+### Added
+* Enhanced terminology search with preset availability indicators. Search results now include a `hasPresets` field showing which concepts have predefined value ranges available. Implemented with in-memory caching that automatically updates when presets are added or removed.
+
+
 
 ## [1.0.0] - 2026-05-08 - Release 1
 ### Added

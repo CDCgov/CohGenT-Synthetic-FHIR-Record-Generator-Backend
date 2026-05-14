@@ -7,14 +7,16 @@ class ConceptResult(NoNullCamelModel):
     name: str
     code: str
     system: str
+    has_presets: bool = False
 
     @classmethod
-    def from_concept_table(cls, concept: Concept):
+    def from_concept_table(cls, concept: Concept, has_presets: bool = False):
         """Create from ORM Concept object."""
         return cls(
             name=concept.concept_name,
             code=concept.concept_code,
-            system=reverse_lookup_system(concept.vocabulary_id)
+            system=reverse_lookup_system(concept.vocabulary_id),
+            has_presets=has_presets
         )
     
 class TerminologySearchResults(NoNullCamelModel):

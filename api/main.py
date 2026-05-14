@@ -12,6 +12,7 @@ from typing import List
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import StreamingResponse
 from loguru import logger
+from api.features.presets.observation_values import get_preset_cache
 from api.models.FHIR.bundle import Bundle
 from api.models.FHIR.fhirresource import FHIRResource
 from api.models.responses.generation_summary import PatientContainer
@@ -72,8 +73,11 @@ async def lifespan(app: FastAPI):
         if settings.force_reseed:
             logger.warning("FORCE_RESEED enabled - will clear and reload data")
         
-        seed_all(db_client.get_session(), force_reseed=settings.force_reseed)
+        db_session = db_client.get_session()
+        seed_all(db_session, force_reseed=settings.force_reseed)
         logger.info("Seed data loaded successfully")
+        cache = get_preset_cache(db_session)
+        logger.info(f"Preset cache initialized with {len(cache)} codes.")
     except FileNotFoundError as e:
         logger.error(f"Lab value preset seed data file not found: {e}")
     except Exception as e:
