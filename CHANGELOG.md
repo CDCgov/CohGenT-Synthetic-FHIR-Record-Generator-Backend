@@ -1,13 +1,15 @@
 # Changelog
 
-## [1.0.2] - 2026-05-20 - Minor Feature Addition
+## [1.0.2] -  - Minor Feature Addition and Fixes
 Note: Version aligned with UI release.
 ### Added
 * Enhanced terminology search with preset availability indicators. Search results now include a `hasPresets` field showing which concepts have predefined value ranges available. Implemented with in-memory caching that automatically updates when presets are added or removed.
+* Update samples endpoint now added. `PUT /samples/{id}` with a body of the settings. Note: This can overwrite any existing sample so should be used with caution. There are currently no safeguards in place.
 ### Fixed
 * Sample settings now return properly as JSON rather than a string that must be parsed.
 ### Changed
 * Several points of error handling, including logging and reporting to clients, have been improved. More to follow.
+* All database tables swapped to using more modern mapped columns in SQL Alchemy.
 
 ## [1.0.0] - 2026-05-08 - Release 1
 ### Added
