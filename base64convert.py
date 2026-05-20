@@ -1,3 +1,7 @@
+'''
+Debug util for testing encoded binary returns
+'''
+
 import base64
 
 # Base64 encoded string

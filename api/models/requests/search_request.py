@@ -12,3 +12,4 @@ class SearchConceptsRequest(NoNullCamelModel):
     sort_order: Literal["asc", "desc"] = Field("asc", description="Sort order")
     page: int = Field(1, ge=1, description="Page number (starts at 1)")
     count: int = Field(20, ge=1, le=50, description="Results per page")
+    check_for_presets: Optional[bool] = Field(False, description="Check if preset values are available for returned codes (labs only)")

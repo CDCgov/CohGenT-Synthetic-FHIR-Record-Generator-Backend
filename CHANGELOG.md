@@ -4,6 +4,10 @@
 Note: Version aligned with UI release.
 ### Added
 * Enhanced terminology search with preset availability indicators. Search results now include a `hasPresets` field showing which concepts have predefined value ranges available. Implemented with in-memory caching that automatically updates when presets are added or removed.
+### Fixed
+* Sample settings now return properly as JSON rather than a string that must be parsed.
+### Changed
+* Several points of error handling, including logging and reporting to clients, have been improved. More to follow.
 
 ## [1.0.0] - 2026-05-08 - Release 1
 ### Added

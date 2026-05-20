@@ -79,8 +79,7 @@ def create_value_preset(post_body: CreateValuePreset, db: Session):
         )
     try:
         preset_value = ValuePreset(**post_body.model_dump(exclude_none=True))
-        print(post_body)
-        print(preset_value)
+
         db.add(preset_value)
         db.commit()
         db.refresh(preset_value)

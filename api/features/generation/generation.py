@@ -524,5 +524,4 @@ def build_entity(entity: Entity, entities: list[Entity]) -> Entity:
         entity.fields.extend(base_entity_fields) # type: ignore
         return entity
     else:
-        # print(f"NO BASE ENTITY FOR {entity.entity_id}")
         return entity

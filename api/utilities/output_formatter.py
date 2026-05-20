@@ -120,7 +120,6 @@ def package_contents_as_ndjson(record_list: list[list[FHIRResource]], cohort_set
 
     zip_base64 = base64.b64encode(zip_buffer.getvalue()).decode('utf-8')
     generation_parameters = parse_generation_parameters(cohort_settings)
-    print(patient_containers)
     return GenerationSummaryBinary.model_validate({
             "timeStamp": datetime.now(),
             "generationParameters": generation_parameters,
