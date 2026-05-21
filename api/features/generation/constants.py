@@ -7,10 +7,12 @@ class SpecialTypeFunctions(str, Enum):
     UUID = "$uuid"
     EVENT_DATE = "$eventDate"
     CONDITION_CLINICAL_STATUS = "$conditionClinicalStatus"
+    PATIENT_CONTACT_POINT = "$patientContactPoint"
 
 # Type Enums
 class FhirType(str, Enum):
     IDENTIFIER = "Identifier"
+    CONTACT_POINT = "ContactPoint"
 
 identifier_system: str = "urn:cohgent:identifier"
 

@@ -15,7 +15,7 @@ def search_concepts(
     sort_order: Literal["asc", "desc"] = "asc",
     page: int = 1,
     count: int = 100,
-    check_for_presets: bool = True,
+    check_for_presets: bool = False,
     main_db: Optional[Session] = None
 
     ):

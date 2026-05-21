@@ -36,6 +36,26 @@ def generate_header_entries(entities: list[Entity]) -> list[HeaderEntry]:
                 )
                 header_entries.append(header_entry_value)
                 header_entries.append(header_entry_system)
+            elif field.type == "ContactPoint":
+                # NOTE: Telecom assumes a chance of only email and/or phone.
+                for i in range(2):
+                    header_entry_telecom_value = HeaderEntry(
+                        entity.entity_id,
+                        f"{entity.entity_id}/{field.path}[{i}]/Value",
+                        f"{field.path}.[{i}].value",
+                        "string",
+                        None)
+                    header_entry_telecom_system = HeaderEntry(
+                        entity.entity_id,
+                        f"{entity.entity_id}/{field.path}[{i}]/System",
+                        f"{field.path}.[{i}].system",
+                        "string",
+                        None
+                    )
+                    header_entries.append(header_entry_telecom_value)
+                    header_entries.append(header_entry_telecom_system)
+
+
             else:
                 header_entry = HeaderEntry(
                     entity.entity_id,

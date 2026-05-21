@@ -1,3 +1,7 @@
+from typing import Any
+
+from api.features.generation.generators.email import generate_email
+from api.features.generation.generators.names import generate_name
 from api.models.field import Field
 from loguru import logger
 from fhir_sheets.core.model.cohort_data_entity import CohortData, PatientEntry
@@ -119,7 +123,7 @@ def start_generation(configuration: CohortSettings, iteration_limit: int = 50):
         '''
         patient_row_as_dict: dict[tuple[str, str], str] = {}
         patient_event_date = generate_event_datetime(configuration.event_period.start, configuration.event_period.end)
-        patient_meta: PatientMeta = PatientMeta(patient_event_date, None)
+        patient_meta: PatientMeta = PatientMeta(patient_event_date, None, None) # Name/Gender set later based on distribution.
 
         '''
         Set the common end boundary for generation. "Generate until" date is required to be after "end" date if present.
@@ -142,7 +146,7 @@ def start_generation(configuration: CohortSettings, iteration_limit: int = 50):
             '''
             if entity.resource_type == "Patient":
                 # TODO: Add handling to skip if not in record. require?
-                assert(entity.fields is not None)
+                assert(entity.fields is not None)                
 
                 # Initalize distributions for sex, race, and ethnicity.
                 # TODO: Needs additional error handling and variety.
@@ -171,6 +175,9 @@ def start_generation(configuration: CohortSettings, iteration_limit: int = 50):
                         if patient_dist_field == "Patient.gender": # TODO: Is there a better way to reference this than hardcoded?
                             patient_meta.update_sex(dist_field_value.lower())
                 
+                # Set Patient Name based on Sex/Gender.
+                patient_meta.update_name(generate_name(patient_meta.sex))
+
 
                 # Set Patient Age/BirthDate based on Event Date.
                 patient_age_field = next((field for field in entity.fields if field.path == "Patient.birthDate"), None)
@@ -185,7 +192,8 @@ def start_generation(configuration: CohortSettings, iteration_limit: int = 50):
             for field in entity.fields or []:
                 if field.path not in special_fields:
                     field_setting: Setting | None = None
-                    value: str # TODO: stronger typing needed?
+
+                    generated_value = None
 
                     '''
                     Find field settings, starting with searching for a user defined setting then falling back to the default setting.
@@ -198,24 +206,24 @@ def start_generation(configuration: CohortSettings, iteration_limit: int = 50):
                             # If no default setting found, well... this ain't gonna work.
                             raise ValueError(f"Default field setting for {field.path} missing.")
                         else:                            
-                            value = handle_by_type(field, patient_meta, field_setting)
+                            generated_value = handle_by_type(field, patient_meta, field_setting)
 
                             # If field is declared by the use case as the end date, see if it is
                             # earlier than the cohort wide "generate until" date. Ensuring that the field
                             # in question is a date is a validation requirement for the Use Case, so the type
                             # can be implied here.
-                            if use_case.generation_rules is not None and value is not None:
+                            if use_case.generation_rules is not None and generated_value is not None:
                                 if f"{entity.entity_id}/{field.path}" == use_case.generation_rules.end_date:
-                                    if isinstance(value, datetime):
-                                        patient_meta.generate_until_date = min(patient_meta.generate_until_date, value.date())
+                                    if isinstance(generated_value, datetime):
+                                        patient_meta.generate_until_date = min(patient_meta.generate_until_date, generated_value.date())
                                     else:
                                         raise HTTPException(status_code=500, detail=f"Error generating. End date {use_case.generation_rules.end_date} does not point to a valid datetime.")
                     else:
                         # Special Type Functions.
                         if field.value == SpecialTypeFunctions.UUID.value:
-                            value = generate_uuid_identifier()
+                            generated_value = generate_uuid_identifier()
                         elif field.value == SpecialTypeFunctions.EVENT_DATE.value:
-                            value = str(patient_event_date)
+                            generated_value = str(patient_event_date)
                         elif field.value == SpecialTypeFunctions.CONDITION_CLINICAL_STATUS.value:
                             # determine if abatement setting exists and is not 0.
                             # set value
@@ -226,30 +234,36 @@ def start_generation(configuration: CohortSettings, iteration_limit: int = 50):
                                 # This assumes that the setting is ValueTimeRangeAsDays, this should be refactored if other types are allowed.
                                 if abatement_setting.value.start == 0 and abatement_setting.value.end == 0:
                                     # If there is no abatement range configured at all, assume status is active.
-                                    value = ConditionClinicalStatusValues.ACTIVE.value
+                                    generated_value = ConditionClinicalStatusValues.ACTIVE.value
                                 else:
                                     # Otherwise, if there is some value it means abatement has or will be generated so set to resolved.
-                                    value = ConditionClinicalStatusValues.RESOLVED.value
+                                    generated_value = ConditionClinicalStatusValues.RESOLVED.value
 
                             else:
                                 # If no abatement field was found in the entity, just assume active.
-                                value = ConditionClinicalStatusValues.ACTIVE.value
+                                generated_value = ConditionClinicalStatusValues.ACTIVE.value
+                        elif field.value == SpecialTypeFunctions.PATIENT_CONTACT_POINT.value:
+                            generated_value = [
+                                # TODO: HIGH PRIORITY!! "Masked" should be moved to a general setting to cover these values
+                                {"system": "email", "value": generate_email(patient_meta.name)},
+                                {"system": "phone", "value": fake.basic_phone_number()}
+                            ]
                         else:
-                            value = handle_by_type(field, patient_meta, field_setting)
+                            generated_value = handle_by_type(field, patient_meta, field_setting)
 
-         
-                    # TODO Setup better "special function" handling.
-                    # which fields should be prioritized?
-                    # 
-                    # Gender -> Name for example
 
-                    # elif field.value == "$patientName":
-                    #     value = generate_name(False, patient_gender)
                     if field.type == FhirType.IDENTIFIER.value:
-                        patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}/Value"] = value
+                        patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}/Value"] = generated_value
                         patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}/System"] = identifier_system
+                    elif field.type == FhirType.CONTACT_POINT:
+                        if isinstance(generated_value, list):
+                            for i, v in enumerate(generated_value):
+                                patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}[{i}]/Value"] = v["value"]
+                                patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}[{i}]/System"] = v["system"]
+                        else:
+                            logger.warning(f"Issue setting ContactPoint. Skipping.")
                     else:
-                        patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}"] = value
+                        patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}"] = generated_value
         '''
         Handle Repeatable Entities
         '''

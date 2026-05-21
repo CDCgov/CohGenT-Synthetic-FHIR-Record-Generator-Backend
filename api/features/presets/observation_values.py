@@ -5,6 +5,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from api.models.requests.value_preset_requests import CreateValuePreset, DeleteValuePreset
 from fastapi import HTTPException, status
 from typing import Set, Tuple
+from loguru import logger
 
 '''
 Preset Cache
@@ -42,9 +43,7 @@ def invalidate_preset_cache():
 
 def has_value_presets(code: str, system: str, db: Session) -> bool:
     """Check if value presets exist for a given code and system combination.
-    
-    Uses cached data for O(1) lookup performance.
-    
+        
     Args:
         code: The concept code
         system: The FHIR system URI
@@ -69,13 +68,7 @@ def create_value_preset(post_body: CreateValuePreset, db: Session):
     if existing:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
-            detail={
-                "error": "Conflict",
-                "message": f"Value preset with that name for that code and system already exists",
-                "code": post_body.code,
-                "system": post_body.system,
-                "presetName": post_body.preset_name
-            }
+            detail=f"Value preset with name {post_body.preset_name} already exists for code {post_body.code} and system {post_body.system}"
         )
     try:
         preset_value = ValuePreset(**post_body.model_dump(exclude_none=True))
@@ -102,11 +95,12 @@ def create_value_preset(post_body: CreateValuePreset, db: Session):
         
         return created_preset
 
-    except SQLAlchemyError as e:
+    except SQLAlchemyError:
         db.rollback()
+        logger.exception(f"Error creating preset value: {post_body}")
         raise HTTPException(
             status_code=500,
-            detail=f"Database error occurred: {str(e)}"
+            detail=f"Database error occurred. Please try again or contact administrators."
     )
 
 def delete_value_preset(post_body: DeleteValuePreset, db: Session) -> bool:

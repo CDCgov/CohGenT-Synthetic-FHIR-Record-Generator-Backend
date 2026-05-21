@@ -33,7 +33,7 @@ if static value is not none
 '''
 
 #TODO The parameters are out of order compared to the individual handlers, needs refactoring.
-def handle_by_type(field: Field, patient_meta: PatientMeta, field_setting: Optional[Setting]):
+def handle_by_type(field: Field, patient_meta: PatientMeta, field_setting: Optional[Setting]) -> str | bool | datetime.datetime | None:
     if field.user_configured and field_setting is None:
         raise ValueError("Field setting required for all user configurable values.")
     if field.user_configured:
@@ -105,10 +105,12 @@ def Identifier(field_setting: Setting, patient_meta: PatientMeta, static_value: 
     raise NotImplementedError("Identifier type handler not implemented. Randomized identifiers should be handled through the $uuid special value for now.")
 
 # Note: This handles whether or not names should be masked. There is never a reason to process the HumanName type itself, nor static values.
-def HumanName(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueX, **kwargs):
+def HumanName(field_setting: Setting, meta: PatientMeta, static_value: ValueX, **kwargs):
     if is_bool(field_setting.value):
-        name = generate_name(field_setting.value, patient_meta.sex)
-        return name
+        if field_setting.value:
+            return "$masked"
+        else:
+            return meta.name
     else:
         raise ValueError(f"Expected bool for type HumanName to determine data masking - {field_setting}.")
 

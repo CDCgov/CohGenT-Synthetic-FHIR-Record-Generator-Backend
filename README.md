@@ -416,6 +416,7 @@ Special values can be used for some fields, set as a reserved string. These dire
 * $eventDate - Set a datetime field to match the generated event date for a patient (the central date in a patient's record to which all other dates are relative)
 * $current - Set a datetime field as the current datetime being iterated through in cases where repetition is occuring. For example, when there are repeat lab tests in an event set that generate weekly, specifying $current will appropriately fill in the blank with the date of the current iteration relative to the event date. This should only be use for entities which can repeat.
 * $conditionClinicalStatus - Set either "active" or "resolved" for a Condition resource dynamically by whether an abatement date setting exists. This simply checks if there is a default or user provided setting with a path starting with "Condition.abatementDate" in the entity, and then evaluates if it will produce a date (start and end date of the relative time range are not 0, which for that type indicates a "do not generate" empty state). Note that this should only be used with Condition.clinicalStatus. There is no validation enforcing this however. In future versions this would ideally be changed to a more generic rule handling.
+* $patientContactPoint - Sets both email and phone systems with values.
 
 Some other special values ($) are present but do not have special functions attached to them, and are only to meet validation requirements for certain user configured fields. These should be disregarded.
 

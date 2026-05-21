@@ -15,7 +15,7 @@
             "path": "MedicationRequest.intent",
             "type": "code",
             "userConfigured": false,
-            "value": "plan"
+            "value": "order"
         },
         {
             "path": "MedicationRequest.medicationCodeableConcept",

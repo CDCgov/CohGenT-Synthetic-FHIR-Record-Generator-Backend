@@ -147,7 +147,7 @@
                 {
                     "ruleId": "condition-abatement",
                     "label": "Condition Duration",
-                    "description": "Set the expected duration of the primary condition or leave empty if condition is expected to remain active.",
+                    "description": "Set the expected duration of the primary condition or leave empty if condition is expected to remain active throughout the clinical data period (established in the initial Cohort Scenario selection step).",
                     "tooltip": "Condition duration is defined by the time between condition onset and condition abatement (when a condition is no longer active).",
                     "tags": ["optional"],
                     "control": "relative-time-range",
@@ -243,6 +243,12 @@
                     "userConfigured": true,
                     "userSettingRuleId": "patient-ethnicity",
                     "value": "$patientEthnicity"
+                },
+                {
+                    "path": "Patient.telecom",
+                    "type": "ContactPoint",
+                    "userConfigured": false,
+                    "value": "$patientContactPoint"
                 }
             ]
         },

@@ -25,10 +25,11 @@ def _search_concepts_logic(
         sort_order: Literal["asc", "desc"],
         page: int,
         count: int,
+        check_for_presets: bool,
         omop_db: Session,
         main_db: Session
     ):
-    results, total_count = concepts.search_concepts(omop_db, term, system, sort_by, sort_order, page, count, main_db=main_db)
+    results, total_count = concepts.search_concepts(omop_db, term, system, sort_by, sort_order, page, count, check_for_presets, main_db=main_db)
     return TerminologySearchResults(
             term = term,
             system = system,
@@ -49,10 +50,13 @@ def search_concepts(
         sort_order: Literal["asc", "desc"] = Query("asc", description="Sort order"),
         page: int = Query(1, ge=1, description="Page number (starts at 1)"),
         count: int = Query(20, ge=1, le=50, description="Results per page"),
+        # TODO: When UI implements situational queries for preset check, this can be set to False (same as post model)
+        check_for_presets: bool = Query(True, description="Check if preset values exist for code/system (lab only)"),
         omop_db: Session = Depends(get_omop_db),
         main_db: Session = Depends(get_main_db)
     ):
-    return _search_concepts_logic(term, system, sort_by, sort_order, page, count, omop_db, main_db)
+    return _search_concepts_logic(
+        term, system, sort_by, sort_order, page, count, check_for_presets, omop_db, main_db)
 
 
 
@@ -69,6 +73,7 @@ def search_concepts_post(
         request.sort_order,
         request.page,
         request.count,
+        request.check_for_presets,
         omop_db,
         main_db
     )

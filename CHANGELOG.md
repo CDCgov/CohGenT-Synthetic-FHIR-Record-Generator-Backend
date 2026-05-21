@@ -5,11 +5,15 @@ Note: Version aligned with UI release.
 ### Added
 * Enhanced terminology search with preset availability indicators. Search results now include a `hasPresets` field showing which concepts have predefined value ranges available. Implemented with in-memory caching that automatically updates when presets are added or removed.
 * Update samples endpoint now added. `PUT /samples/{id}` with a body of the settings. Note: This can overwrite any existing sample so should be used with caution. There are currently no safeguards in place.
+* Patient telecom (ContactPoint[] type) is now supported. Generates both email and phone number for each patient. IMPORTANT: For this release, masking values is not handled. A future version will shift "masking" to all major PII instead of just name. Additional control will also be added for chance to occur for each telecom contact point to support more variety in data. Assumes special value of $patientContactPoint.
 ### Fixed
 * Sample settings now return properly as JSON rather than a string that must be parsed.
+* Several points of inconsistent error handling fixed.
 ### Changed
 * Several points of error handling, including logging and reporting to clients, have been improved. More to follow.
 * All database tables swapped to using more modern mapped columns in SQL Alchemy.
+* To support realistic emails, patient names are now generated as part of initial setup for patient meta information, and then when the human name is processed it will pull from the patient_meta.name field or set the value for FHIR sheets as "masked" depending on settings. This will eventually be further modified to support processing of name for practitioners/etc.
+* MedicationRequest.intent changed to "order" (was "plan").
 
 ## [1.0.0] - 2026-05-08 - Release 1
 ### Added
