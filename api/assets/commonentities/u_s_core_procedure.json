@@ -9,7 +9,7 @@
             "path": "Procedure.status",
             "type": "code",
             "userConfigured": false,
-            "value": "unknown"
+            "value": "completed"
         },
         {
             "path": "Procedure.code",
