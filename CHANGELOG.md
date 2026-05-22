@@ -9,6 +9,7 @@ Note: Version aligned with UI release.
 ### Fixed
 * Sample settings now return properly as JSON rather than a string that must be parsed.
 * Several points of inconsistent error handling fixed.
+* 
 ### Changed
 * Several points of error handling, including logging and reporting to clients, have been improved. More to follow.
 * All database tables swapped to using more modern mapped columns in SQL Alchemy.
