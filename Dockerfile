@@ -43,6 +43,6 @@ EXPOSE 8000
 
 COPY ./api ./api
 COPY ./data ./data
-COPY .env .env
+# COPY .env .env
 
 CMD ["hypercorn", "api.main:app", "--bind", "0.0.0.0:8000", "--access-logfile", "-", "--access-logformat", "%(h)s %(l)s \"%(r)s\" %(s)s Origin:\"%({origin}i)s\" X-Forwarded-For:\"%({x-forwarded-for}i)s\""]
