@@ -142,7 +142,7 @@ To assign onset dates to a clinical event, or to specify an abatement date, adju
 
 # New Cohort Configuration Workflow: Condition-Based Record Cohort Scenario
 
-The Condition Based Cohort Scenario serves as a blueprint for generating longitudinal patient records. CohGenT creates a sequence of clinical events over a defined time period, allowing public health researchers to simulate disease progression and other data from EHR systems for testing scenarios.
+In the Condition Based Cohort Scenario, CohGenT creates a sequence of clinical events over a defined time period, to simulate disease progression and other data from EHR systems for testing scenarios.
 
 ## Summary of Steps: Condition-based Record Scenario
 
@@ -158,30 +158,30 @@ The Condition Based Cohort Scenario serves as a blueprint for generating longitu
 All patient Demographics have preset default settings to mimic US census and OMB distributions. To make changes, select "Customize Patient Demographics". The Demographics Summary will automatically update based on any changes made. Once you are satisfied with patient demographics as shown in the Demographics Summary, select "Next" or navigate to the next step in the left-hand navigation pane.
 
 - **Mask Patient Names**
+  - **Description:** Option to mask patient names within the synthetic cohort. If masked, patients will be listed as "masked" in place of synthetic names.
   - **Type:** Checkbox
   - **FHIRPath:** Patient.name
-  - **Description:** Option to mask patient names within the synthetic cohort. If masked, patients will be listed as "masked" in place of synthetic names.
   - **Required:** No
   - **Default Behavior:** Names NOT Masked
 
 - **Age At Diagnosis**
+  - **Description:** The age of the patient at the time of the primary diagnosis.
   - **Type:** Range
   - **FHIRPath:** Patient.Name
-  - **Description:** The age of the patient at the time of the primary condition.
   - **Required:** Yes, has defaults
   - **Default Behavior:** 18-65
 
 - **Sex Distribution**
+  - **Description:** Distribution of gender within the cohort
   - **Type:** Distribution
   - **FHIRPath:** Patient.gender
-  - **Description:** Distribution of gender within the cohort
   - **Required:** Yes, has defaults
   - **Default Behavior:** Male: 50%, Female: 50%, Unknown: 0%
 
 - **Geographic Location**
+  - **Description:** State, City, Line (Street), Zip Code, and Country of the patient's home address
   - **Type:** Location
   - **FHIRPath:** Patient.address
-  - **Description:** State, City, Line (Street), Zip Code, and Country of the patient's home address
   - **Required:** No
   - **Default Behavior:**
     - State - If none provided, randomized
@@ -191,27 +191,27 @@ All patient Demographics have preset default settings to mimic US census and OMB
     - Country - Always US (No option for user to enter Country)
 
 - **Living/Deceased Distribution**
+  - **Description:** Distribution of living/dead patients within the cohort
   - **Type:** Distribution
   - **FHIRPath:** Patient.deceased
-  - **Description:** Distribution of living/dead patients within the cohort
   - **Required:** Yes, has defaults
   - **Default Behavior:** Living: 100%, Deceased: 0%
 
 - **Race Category Distribution**
+  - **Description**: Distribution of US Core Race Categories within the cohort
   - **Type:** Distribution
   - **FHIRPath:** Patient.extension[USCoreRace]
-  - **Description**: Distribution of US Core Race Categories within the cohort
   - **Required:** Yes, has defaults
   - **Default Behavior:** American Indian or Alaskan Native: 2%, Asian: 8%, Black or African American: 15%, Native Hawaiian or Other Pacific Islander: 3%, White: 64%, Other Race: 8%, Unknown: 0%
 
 - **Ethnicity Category Distribution**
+  - **Description:** Distribution of US Core Ethnicity Categories within the cohort
   - **Type:** Distribution
   - **FHIRPath:** Patient.extension[USCoreEthnicity]
-  - **Description:** Distribution of US Core Ethnicity Categories within the cohort
   - **Required:** Yes, has defaults
   - **Default Behavior:** Hispanic or Latino: 20%, Not Hispanic or Latino, 80%, Unknown: 0%
 
-### Primary Condition (Required)
+### Primary Condition
 
 Configuration of the primary condition shared by the patients in the cohort. This is the condition being reporting/surveilled.
 
@@ -222,19 +222,19 @@ Click "Search for Concept" to open the **Concept Finder** and enter in your cond
 Click "Select Quick Condition" to open the **Quick Condition Selector** (with common presets) to select codes for COVID-19, Tuberculosis, RSV, Influenza, and Syphilis.
 
 - **Primary Condition Concept**
+  - **Description:** A medical concept that defines the primary event condition. _Note: The Concept's System, Code, and Display make up the Concept._
   - **Type**: Concept
   - **FHIRPath:** Condition.code
-  - **Description:** A medical concept that defines the primary event condition. _Note: The Concept's System, Code, and Display make up the Concept._
   - **Required:** Yes
 
 - **Condition Duration:**
+  - **Description:** The expected duration of the primary condition.
   - **Type:** Date Offset
   - **FHIRPath:** Condition.onset, Condition.abatement
-  - **Description:** The expected duration of the primary condition.
   - **Required:** No
   - **Example:** A time frame of "Onset Plus 1 Month to 3 Months" ensures that all conditions will last within 1 to 3 months of the condition's onset.
 
-### Clinical Data (Optional)
+### Clinical Data 
 
 Add a Clinical Data Set to add Lab Results, Procedures, etc. for each patient in the cohort. Additional clinical data sets can be created for sets with different timing.
 
@@ -249,98 +249,98 @@ Assign Clinical Data Set Settings to establish the timing of the data relative t
 **Clinical Data Set Settings**
 
 - **Timing**
+  - **Description:** The time frame in which this event sets takes place with relation to the primary condition event.
   - **Type**: Date Offset with Repetition
   - **FHIRPath:** Observation.date, Procedure.date
-  - **Description:** The time frame in which this event sets takes place with relation to the primary condition event.
   - **Required:** No
   - **Example:** A time frame of "Onset Plus 1 Week Repeat every 3 Months" will ensure the information within this event occurs 1 week after the primary condition event, then 3 months after until the Cohort End date.
 
 - **Create Clinical Data Set as a Lab Panel?**
-  - **Type:** Checkbox
   - **Description:** Select this to create this clinical data set as a lab panel. All members of the clinical data set should be members of the specified panel. If selected, provide a concept for the panel.
+  - **Type:** Checkbox
   - **Required**: No
 
-#### Add Lab/Observation (Optional)
+#### Add Lab/Observation 
 
 Assign a lab result to the current event set.
 
 - **Lab/Observation Result Code**
+  - **Description:** A medical concept that defines the laboratory observation.
   - **Type:** Concept
   - **FHIRPath:** Observation.code
-  - **Description:** A medical concept that defines the laboratory observation.
   - **Required:** No
 
 - **Result: Quantity**
+  - **Description:** The range of values for the lab result. Individual patients' lab results will span randomly across the set range.
   - **Type:** Range
   - **FHIRPath:** Observation.valueQuantity
-  - **Description:** The range of values for the lab result. Individual patients' lab results will span randomly across the set range.
   - **Required:** No
 
 - **Result: String**
-  - **Type:** String
-  - **FHIRPath:** Observation.valueString
   - **Description:** The character value for the lab result. Add multiple values to have patients' lab results randomly assigned to the different values you entered.
+  -  **Type:** String
+  - **FHIRPath:** Observation.valueString
   - **Example:** Low, Medium, and High value strings
   - **Required:** No
 
-#### Add Procedure (Optional)
+#### Add Procedure
 
 - **Procedure Result Code**
+  - **Description:** A medical concept that defines the laboratory observation.
   - **Type:** Concept
   - **FHIRPath:** Observation.code
-  - **Description:** A medical concept that defines the laboratory observation.
   - **Required:** No
 
 - **Result: Quantity**
+  - **Description:** The range of values for the lab result. Individual patients' lab results will span randomly across the set range.
   - **Type:** Range
   - **FHIRPath:** Observation.valueQuantity
-  - **Description:** The range of values for the lab result. Individual patients' lab results will span randomly across the set range.
   - **Required:** No
 
 - **Result: String**
+   - **Description:** The character value for the lab result. Add multiple values to have patients' lab results randomly assigned to the different values you entered.
   - **Type:** String
   - **FHIRPath:** Observation.valueString
-  - **Description:** The character value for the lab result. Add multiple values to have patients' lab results randomly assigned to the different values you entered.
   - **Example:** Low, Medium, and High value strings
   - **Required:** No
 
-#### Add Radiology Report (Optional)
+#### Add Radiology Report
 
 - **Lab/Observation Result Code**
+  - **Description:** A medical concept that defines the laboratory observation
   - **Type:** Concept
   - **FHIRPath:** Observation.code
-  - **Description:** A medical concept that defines the laboratory observation.
   - **Required:** No
 
 - **Result: Quantity**
+  - **Description:** The range of values for the lab result. Individual patients' lab results will span randomly across the set range.
   - **Type:** Range
   - **FHIRPath:** Observation.valueQuantity
-  - **Description:** The range of values for the lab result. Individual patients' lab results will span randomly across the set range.
   - **Required:** No
 
 - **Result: String**
+  - **Description:** The character value for the lab result. Add multiple values to have patients' lab results randomly assigned to the different values you entered.
   - **Type:** String
   - **FHIRPath:** Observation.valueString
-  - **Description:** The character value for the lab result. Add multiple values to have patients' lab results randomly assigned to the different values you entered.
   - **Example:** Low, Medium, and High value strings
   - **Required:** No
 
-### Medications (Optional)
+### Medications
 
 Configure the list of medications for the cohort of patients.
-
+<mark> note: this is going to change slightly in the next release</mark> 
 Use the Concept Finder to search for the medication or enter the Concept manually by selecting the appropriate System and entering either the code or display.
 
 - **Medication**
+  - **Description**: A medical concept that defines the medication. _Note: The Concept's System, Code, and Display make up the Concept._
   - **Type:** Concept
   - **FHIRPath:** MedicationStatement.code
-  - **Description**: A medical concept that defines the medication. _Note: The Concept's System, Code, and Display make up the Concept._
   - **Required:** No
 
 - **Dosage Instructions**
+  - **Description:** Details on how medication should be taken.
   - **Type:** Text
   - **FHIRPath:** MedicationStatement.dosage
-  - **Description:** Details on how medication should be taken.
   - **Required:** No
 
 # FAQs
