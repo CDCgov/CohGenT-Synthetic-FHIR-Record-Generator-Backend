@@ -46,6 +46,7 @@ As a synthetic data generator, CohGenT randomly generates data based on user par
 - Frequency and timing of events (Observations/Procedures/Diagnostic Reports)
 - Observation Values
 - Medications <mark>(1.1)</mark>
+
 **Variation in the synthetic data will not occur in the following:**
 - The presence of a Resource (e.g., whether or not a medication exists)
 - Singular concepts - the code for a specific observation (e.g., a particular lab test, a condition, etc.)
