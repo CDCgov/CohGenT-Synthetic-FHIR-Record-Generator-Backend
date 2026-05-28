@@ -1,5 +1,5 @@
 # FASTAPI Builder Stage
-FROM python:3.13 AS fastapi-builder
+FROM imagehub.cdc.gov:7000/python:3.13 AS fastapi-builder
 
 WORKDIR /app
 
@@ -23,7 +23,7 @@ RUN python3 -m pip install -r requirements.txt --no-cache-dir --use-pep517
 RUN python -c "import psycopg; from psycopg import pq; print('✓ psycopg loaded successfully')"
 
 # Operational stage
-FROM python:3.13-slim
+FROM imagehub.cdc.gov:7000/python:3.13-slim
 
 WORKDIR /app
 
