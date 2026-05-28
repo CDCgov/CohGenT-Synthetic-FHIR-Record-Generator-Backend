@@ -1,10 +1,21 @@
 # CohGenT User Guide (DRAFT)
 
+<mark>new/edited content for CDC's review is highlighted</mark>
+
 # Introduction
 
-CohGenT (the Cohort Generation Tool), is a software application for FHIR developers, public health maintainers, and data analysts to assist in creating and managing synthetic cohort data. Within CohGenT, "cohorts" are defined groups of synthetic patients following specific exposures or characteristics that influence the development of health outcomes. CohGent reduces the barrier-to-entry to testing applications with FHIR, providing common scenarios and a simple-to-use interface for anybody to create synthetic patient data.
+CohGenT (the Cohort Generation Tool), is a software application <mark>designed for data analysts and FHIR developers in the realm of public health and epidemiology</mark> to assist in creating and managing synthetic cohort data. Within CohGenT, "cohorts" are defined groups of synthetic patients following specific exposures or characteristics that influence the development of health outcomes. CohGent reduces the barrier-to-entry to testing applications with FHIR, providing common scenarios and a simple-to-use interface for those who need to create synthetic patient data.
 
 CohGenT generates synthetic data for testing data exchange including testing interoperability workflows. Generated data adheres to configurable FHIR profiles, including US Core, and exports can be validated to ensure they meet required FHIR specifications.
+Key features of the tool include:
+•	A user-friendly interface for designing synthetic cohort FHIR data based on common federal guidelines.
+•	Integrated tooling to generate FHIR JSON bundles ready for testing environments.
+•	A cohort file that users can share for reuse.
+A flexible, configurable framework that supports a wide range of cohort scenarios for various use cases.
+
+**General User Workflow**
+Start by selecting a cohort scenario, entering a name, and setting the primary event period, or the timing of the event. Then configure the cohort through a series of pages, such as demographics, condition, clinical data, and medications. After completing the setup, review the cohort and confirm the settings before finalizing and generating the synthetic patient data files.
+
 
 **Resources and Profiles Supported (FHIR R4, US Core 6.1.0)**
 
@@ -26,29 +37,24 @@ CohGenT generates synthetic data for testing data exchange including testing int
 - A cohort file that users can share for reuse.
 - Configurable and flexible scenario model allowing for development and incorporation of many different cohort scenarios for various use cases.
 
-As a synthetic data generator, CohGenT randomly generates data based on user parameters set. **Variation in the synthetic data will occur in:**
-
-- Demographics
-- Event Dates and Periods (provides framing for all other dates)
-- Condition Dates (onset and abatement, defined by the patient's "episode")
-- Frequency and timing of clinical data set items (Observations/Procedures/Diagnostic Reports)
-- Observation Values
-- Frequency of Medications
-
+## Expected Cohort Variation
+As a synthetic data generator, CohGenT randomly generates data based on user parameters set.
+**Variation in the synthetic data will occur in:**
+•	Demographics
+•	Dates and Time Periods of the cohort (provides framing for all other dates)
+•	Condition Duration
+•	Frequency and timing of events (Observations/Procedures/Diagnostic Reports)
+•	Observation Values
+•	Medications <mark>(1.1)</mark>
 **Variation in the synthetic data will not occur in the following:**
-
-- The presence of a Resource (e.g., whether or not a medication exists)
-- Singular concepts - the code for a specific observation (e.g., a particular lab test, a condition, etc.)
+•	The presence of a Resource (e.g., whether or not a medication exists)
+•	Singular concepts - the code for a specific observation (e.g., a particular lab test, a condition, etc.)
 
 ### Other Considerations
 
-- Optimal screen size:
-- Minimum supported resolution 1366 x 768.
-
-## High-Level Workflow
- **Note:** Add image 
+- The optimal screen size for using CohGenT is between 1366 x 768 and 1980 x 1080. 
  
-## Home Page & Primary User Actions
+## Primary User Actions
 
 The CohGenT home page provides a concise description of the tool and contains three primary user actions:
 
@@ -56,33 +62,33 @@ The CohGenT home page provides a concise description of the tool and contains th
 2. **Load Cohort Configuration** - load a previously saved JSON or NDJSON file and generate a new set of synthetic data based on those parameters. Optionally edit the pre-existing cohort configuration from the uploaded file.
 3. **View Samples** – load previously-created cohort data that can be modified or re-generated.
 
-The site header contains the CohGenT logo, name, and tagline on the left. Clicking these will take you back to the home page from any page.
+The site header contains the CohGenT logo, name, and tagline, and "Home" button on the left. Clicking any of these will take you back to the home page from any page.
 
-On the right side of the site header, you can also return to home by selecting the "Home" button. Here there's also a link to "Documentation" (technical documentation and this user guide). The version number of CohGenT is on the far-right side of the site header.
+On the right side of the site header, the dropdown menu has links to "Documentation" (technical documentation and this user guide), the public GitHub repository, and buttons for contacting CohGent developers or reporting a bug or issue. The version number of CohGenT is on the far-right side of the site header.
 
 ## New Cohort Configuration
 
-### Set Cohort Scenario and Timing
+### Set Cohort Scenario and Initial Settings
 
-If "New Cohort Configuration" is selected, the next step is the "Cohort Scenario" page, where you will select the cohort scenario of interest. Cohort Scenarios are developed in basis with the common use cases of public health, and within adherence to targeted FHIR Implementation Guides.
+Select "New Cohort Configuration" to go to the "Cohort Scenario" page. Then choose the cohort scenario you want to use. Cohort scenarios support common public health use cases and align with targeted FHIR Implementation Guides. 
 
-Within this step, you will also set the following basic parameters for the new cohort:
+Within this step, set the following basic parameters for the new cohort:
 
 - **Cohort Name**
-  - **Type:** String
   - **Description:** The name of the cohort being created
+  - **Type:** Free text
   - **Required:** Yes
   - **Example**: "Syphilis Patients Aged 16-25"
 
 - **Cohort Timing:**
-  - **Primary Event Period**
+  - **Primary Clinical Data Period**
+    - **Description:** The start and end dates for which the given scenario's primary event of interest (such as a primary condition) must occur.
     - **Type:** Date (MM/DD/YYYY)
-    - **Description:** The start and end dates for which the given scenario's primary event must occur.
     - **Required:** Yes
     - **Example:** Setting the range of 01/01/2025 - 12/31/2025 ensures the primary event only occurs within the year 2025.
   - **Extend Data Until**
-    - **Type:** Date (MM/DD/YYYY)
     - **Description:** if there is a date for which data should continue beyond the event period end date specified in the previous step.
+    - **Type:** Date (MM/DD/YYYY)
     - **Required:** No
     - **Example:** Setting a date of 06/31/2026 will follow the patient resources with periodic follow up labs and procedures until 06/31/2026.
 
@@ -98,19 +104,18 @@ Review all of the cohort data on the Review Cohort page. If edits need to be mad
 
 ### Cohort File Generation
 
-The final step in generating a cohort is to confirm the cohort patient count and generate the cohort file. The maximum number of patients in v0.2.2 is 50.
+The final step in generating a cohort is to confirm the cohort patient count and generate the cohort file. The maximum number of patients in v1.0 is 50.
 
 Here, you can also optionally adjust advanced options, which include:
 
 - **Setting the random seed** – the seed is an arbitrary value used to create reproducible results with randomized data. A random seed is automatically assigned, but an alternate seed can be entered or regenerated. The seed will be automatically saved within the cohort file. If you want to generate different patient data with the same cohort settings, enter or regenerate a different random seed before generating the cohort again.
-- **Setting the output file type** – choose between a JSON or NDJSON file output. Selecting FHIR JSON Bundle will generate a set of FHIR transaction Bundles by patient in the JSON format, compressed into a zip file. Selecting Bulk Data NDJSON will generate a set of New-line Delimited JSON files in the BULK FHIR format, divided by resource type, compressed into a zip file.
+- **Setting the output file type** – <mark>more info and instructions are being added here</mark>  choose between a JSON or NDJSON file output. Selecting FHIR JSON Bundle will generate a set of FHIR transaction Bundles by patient in the JSON format, compressed into a zip file. Selecting Bulk Data NDJSON will generate a set of New-line Delimited JSON files in the BULK FHIR format, divided by resource type, compressed into a zip file. 
 
 Click "Generate Cohort", to trigger an automatic download of a zip file. These bundles are pre-formatted and ready to be uploaded directly to a FHIR server via a RESTful or web client.
 
 # Common Data Entry Types
 
-Across different cohort scenarios, there are common components used within the tool.
-
+Many cohort scenarios use the same data entry fields within the tool.
 ## Distribution Slider
 
 Use the slider to balance the values visually or manually input percentages for precise control. The values will automatically synchronize.
