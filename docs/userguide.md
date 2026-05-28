@@ -8,10 +8,10 @@ CohGenT (the Cohort Generation Tool), is a software application <mark>designed f
 
 CohGenT generates synthetic data for testing data exchange including testing interoperability workflows. Generated data adheres to configurable FHIR profiles, including US Core, and exports can be validated to ensure they meet required FHIR specifications.
 Key features of the tool include:
-•	A user-friendly interface for designing synthetic cohort FHIR data based on common federal guidelines.
-•	Integrated tooling to generate FHIR JSON bundles ready for testing environments.
-•	A cohort file that users can share for reuse.
-A flexible, configurable framework that supports a wide range of cohort scenarios for various use cases.
+- A user-friendly interface for designing synthetic cohort FHIR data based on common federal guidelines.
+- Integrated tooling to generate FHIR JSON bundles ready for testing environments.
+- A cohort file that users can share for reuse.
+- A flexible, configurable framework that supports a wide range of cohort scenarios for various use cases.
 
 **General User Workflow**
 Start by selecting a cohort scenario, entering a name, and setting the primary event period, or the timing of the event. Then configure the cohort through a series of pages, such as demographics, condition, clinical data, and medications. After completing the setup, review the cohort and confirm the settings before finalizing and generating the synthetic patient data files.
@@ -40,15 +40,15 @@ Start by selecting a cohort scenario, entering a name, and setting the primary e
 ## Expected Cohort Variation
 As a synthetic data generator, CohGenT randomly generates data based on user parameters set.
 **Variation in the synthetic data will occur in:**
-•	Demographics
-•	Dates and Time Periods of the cohort (provides framing for all other dates)
-•	Condition Duration
-•	Frequency and timing of events (Observations/Procedures/Diagnostic Reports)
-•	Observation Values
-•	Medications <mark>(1.1)</mark>
+- Demographics
+- Dates and Time Periods of the cohort (provides framing for all other dates)
+- Condition Duration
+- Frequency and timing of events (Observations/Procedures/Diagnostic Reports)
+- Observation Values
+- Medications <mark>(1.1)</mark>
 **Variation in the synthetic data will not occur in the following:**
-•	The presence of a Resource (e.g., whether or not a medication exists)
-•	Singular concepts - the code for a specific observation (e.g., a particular lab test, a condition, etc.)
+- The presence of a Resource (e.g., whether or not a medication exists)
+- Singular concepts - the code for a specific observation (e.g., a particular lab test, a condition, etc.)
 
 ### Other Considerations
 
