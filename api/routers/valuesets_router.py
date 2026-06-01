@@ -9,6 +9,15 @@ from sqlalchemy.orm import Session
 from api.database.db_sample_tables import SampleSettings
 from api.models.no_null_camel_model import NoNullCamelModel
 
+'''
+Valuesets Router
+
+Provides endpoints for accessing standard medical terminology or related valuesets (e.g., UCUM measurements or census values).
+Valuesets are curated lists of codes used for supporting the CohGenT UI.
+
+(Maintenace Note: The "terminology search" feature and it's database are considered to be entirely self contained, is considered
+optional and not always present nor fully loaded even if present. Valuesets are more structural and must always be available.)
+'''
 router = APIRouter()
 
 class SimpleConcept(NoNullCamelModel):
@@ -32,7 +41,12 @@ class SimpleConceptListResponse(NoNullCamelModel):
 
 @router.get("/valuesets/tribal-affiliation", response_class=PrettyJSONResponse)
 def get_tribal_affiliations(db: Session = Depends(get_main_db)) -> SimpleConceptListResponse:
-    """Fetch all US Tribal Affiliations."""
+    """
+    Fetch all US Tribal Affiliations.
+
+    Returns the complete HL7 v3 TribalEntityUS valueset containing tribal entity codes for federally recognized tribes.
+
+    """
     try:
         results = db.query(TribalAffiliation).order_by(TribalAffiliation.display).all()
         concepts = [SimpleConcept.from_tribal_affiliation(r) for r in results]

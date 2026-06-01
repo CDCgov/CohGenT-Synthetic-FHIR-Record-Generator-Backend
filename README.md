@@ -212,7 +212,11 @@ The CohGenT API requires a SQL database for some core functionality and expects 
 
 ##### Setting up the Main Application Database
 
-For the main application database, the CohGenT API will build the appropriate tables on startup and no additional configuration is required. It will also seed the preset value table with the list of common lab tests found [here](./data/lab_value_presets.csv). This list is only loaded if the table is empty. To rebuild the database table, launch the backend API with the FORCE_RESEED flag set to True, though be aware **this is a destructive action** and will clean the entire table, including for presets added by users through the API. Before forcing a reseed, it is recommended to back up the tables.
+For the main application database, the CohGenT API will build all required tables on startup and no additional configuration is required. It will also seed the tables as needed. For example, for the "value presets" table, it will seed with the list of common lab tests found [here](./data/lab_value_presets.csv). All seed data is only loaded if the related tables are empty. To rebuild the database tables, launch the backend API with the FORCE_RESEED flag set to True, though be aware **this is a destructive action** and will clean the entire table, including for presets added by users through the API. Before forcing a reseed, it is recommended to back up any changes to tables.
+
+Seeded includes:
+* Lab valuepresets.
+* US federally recognized tribal affiliations.
 
 The internal CohGenT Database provides the backbone for the application features, predominantly the Lab Value Presets and the settings samples in this version. This database is required for the application to function in order to maintain alignment with the UI expectations.
 

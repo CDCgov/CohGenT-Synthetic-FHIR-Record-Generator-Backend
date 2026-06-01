@@ -1,5 +1,14 @@
 # Changelog
 
+## [Unreleased]
+### Added
+* Valueset Feature
+  * Valueset feature added. This feature is used to serve special valuesets to the UI that are expected to be relatively static and are not standard in OMOP CDM databases. For example, UCUM measurements. Valuesets are loaded into the database on startup as part of seed data. For this release, each valueset is considered "unique" and has its own endpoint. Eventually valuesets will be (or should be) migrated to a reusable pattern.
+  * U.S. Federal Tribal Affiliation valueset added.
+### Changed
+* "Force Reseed" option now also applies to valuesets (and will apply to all other seeded data as well).
+
+
 ## [1.0.2] -  - Minor Feature Addition and Fixes
 Note: Version aligned with UI release.
 ### Added
