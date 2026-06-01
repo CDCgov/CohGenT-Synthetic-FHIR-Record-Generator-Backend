@@ -2,7 +2,7 @@ from fastapi_camelcase import CamelModel
 from typing import TypeGuard, Optional
 from decimal import Decimal
 
-from pydantic import model_validator
+from pydantic import Field, model_validator
 
 '''
 FHIR Aligned Types
@@ -95,3 +95,10 @@ def is_value_weights(value: object) -> TypeGuard[ValueWeights]:
 
 def is_value_weight(value: object) -> TypeGuard[ValueWeight]:
     return isinstance(value, ValueWeight)
+
+class ValuePrevalence(CamelModel):
+    prevalence: Decimal = Field(ge=0, le=1)
+
+class ValueTribalAffiliation(ValuePrevalence):
+    prevalence: Decimal = Field(ge=0, le=1)
+    affiliation: Optional[str] = Field(None)

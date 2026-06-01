@@ -2,9 +2,11 @@
 
 # api/seeds.py
 import csv
+import pandas as pd
 from pathlib import Path
 from sqlalchemy.orm import Session
 from api.database.db_preset_tables import ValuePreset, ValueTypeEnum
+from api.database.db_other_tables import TribalAffiliation
 from loguru import logger
 
 
@@ -153,11 +155,66 @@ def seed_lab_value_presets(db: Session, force_reseed: bool = False):
         logger.warning("No valid presets to seed")
         return 0
 
+def seed_tribal_affiliations(db: Session, force_reseed: bool = False):
+    """Seed tribal affiliations from CSV using pandas"""
+    
+    # Check if data already exists
+    existing_count = db.query(TribalAffiliation).count()
+    if existing_count > 0 and not force_reseed:
+        logger.info(f"tribal_affiliation table already has {existing_count} records, skipping seed...")
+        return existing_count
+    
+    # Clear existing data if forcing reseed
+    if force_reseed and existing_count > 0:
+        logger.warning(f"Force reseed enabled - deleting {existing_count} existing tribal affiliation records")
+        db.query(TribalAffiliation).delete()
+        db.commit()
+    
+    # Load CSV with pandas
+    csv_path = Path(__file__).parent.parent.parent / "data" / "tribal_affiliations.csv"
+    
+    if not csv_path.exists():
+        logger.error(f"CSV file not found: {csv_path}")
+        raise FileNotFoundError(f"Required seed data file missing: tribal_affiliations.csv")
+    
+    try:
+        # skipinitialspace=True handles spaces after commas in CSV
+        df = pd.read_csv(csv_path, skipinitialspace=True)
+        
+        # Strip whitespace from string columns (map replaces deprecated applymap)
+        df = df.map(lambda x: x.strip() if isinstance(x, str) else x)
+        
+        # Convert to list of dicts for bulk insert
+        records = df.to_dict('records')
+        
+        if not records:
+            logger.warning("No data found in tribal_affiliations.csv")
+            return 0
+        
+        # Bulk insert using SQLAlchemy
+        db.bulk_insert_mappings(TribalAffiliation, records)
+        db.commit()
+        
+        logger.info(f"✓ Successfully seeded {len(records)} tribal affiliations")
+        return len(records)
+        
+    except Exception as e:
+        db.rollback()
+        logger.error(f"Error seeding tribal affiliations: {e}")
+        raise
+
 def seed_all(db: Session, force_reseed: bool = False):
     """Run all seed functions"""
     try:
-        count = seed_lab_value_presets(db, force_reseed=force_reseed)
-        logger.info(f"Seeding complete: {count} records loaded")
+        seed_lab_value_presets(db, force_reseed=force_reseed)
     except Exception as e:
-        logger.error(f"Seeding failed: {e}")
-        raise
+        logger.error(f"Lab value presets seeding failed: {e}")
+        # Continue with other seeds even if one fails
+    
+    try:
+        seed_tribal_affiliations(db, force_reseed=force_reseed)
+    except Exception as e:
+        logger.error(f"Tribal affiliations seeding failed: {e}")
+        # Continue even if this fails
+    
+    logger.info("All seeding operations complete")
