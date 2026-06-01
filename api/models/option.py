@@ -1,7 +1,7 @@
 from fastapi_camelcase import CamelModel
 from typing import Optional
 from pydantic import model_validator
-from api.models.value_types import ValueWeights, ValueTimeRangeAsDays
+from api.models.value_types import ValuePrevalence, ValueWeights, ValueTimeRangeAsDays
 
 class Option(CamelModel):
     rule_id: str
@@ -15,7 +15,7 @@ class Option(CamelModel):
     default_state: Optional[bool] = None
 
     # range
-    default_values: Optional[ValueWeights | ValueTimeRangeAsDays | list[int]] = None
+    default_values: Optional[ValueWeights | ValueTimeRangeAsDays | ValuePrevalence | list[int]] = None
     decimal_spaces_allowed: Optional[bool] = None
     min_max: Optional[tuple[int|float, int|float]] = None
 

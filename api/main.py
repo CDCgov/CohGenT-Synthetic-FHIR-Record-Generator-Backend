@@ -28,8 +28,8 @@ from api.models.responses.jsonresponse import PrettyJSONResponse
 from api.utilities.settings import get_settings
 from api.models.responses.basic_response_models import InfoResponse, UseCaseCollectionResponse
 from api.database.database_client import DatabaseClient
-from api.database import db_preset_tables, db_sample_tables  # type: ignore - IMPORT IS REQUIRED TO BUILD TABLES
-from api.routers import presets_router, terminology_router, samples_router
+from api.database import db_preset_tables, db_sample_tables, db_other_tables  # type: ignore - IMPORT IS REQUIRED TO BUILD TABLES
+from api.routers import presets_router, terminology_router, samples_router, valuesets_router
 from api.models.cohort_settings import OutputFormat
 
 from fhir_sheets.core.config.FhirSheetsConfiguration import FhirSheetsConfiguration # type: ignore
@@ -109,6 +109,7 @@ if settings.root_path:
 # Add secondary routers
 app.include_router(presets_router.router)
 app.include_router(samples_router.router)
+app.include_router(valuesets_router.router)
 if omop_client is not None:
     app.include_router(terminology_router.router)
 
