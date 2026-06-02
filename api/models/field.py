@@ -1,19 +1,25 @@
 from fastapi_camelcase import CamelModel
-from pydantic import model_validator
+from pydantic import model_validator, Field as PyField
 from typing import Optional
 from api.models.value_types import ValueCoding
 
+
 class BooleanMap(CamelModel):
-    value: str
-    map_to: bool
+    value: str = PyField(...)
+    map_to: bool = PyField(...)
+
+class ExtensionDetails(CamelModel):
+    value_type: str = PyField(...)
+    extension_uri: str = PyField(...)
 
 class Field(CamelModel):
-    path: str
-    type: str
-    user_configured: bool
-    user_setting_rule_id: Optional[str] = None
-    value: Optional[str | ValueCoding] = None
-    boolean_map: Optional[list[BooleanMap]] = None
+    path: str = PyField(...)
+    type: str = PyField(...)
+    user_configured: bool = PyField(...)
+    user_setting_rule_id: Optional[str] = PyField(None)
+    value: Optional[str | ValueCoding] = PyField(None)
+    boolean_map: Optional[list[BooleanMap]] = PyField(None)
+    extension_details: Optional[ExtensionDetails] = PyField(None)
 
     @model_validator(mode='after')
     def check_value_exists(self) -> 'Field':

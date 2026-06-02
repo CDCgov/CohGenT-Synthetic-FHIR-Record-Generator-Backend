@@ -2,7 +2,7 @@ from fhir_sheets.core.model.cohort_data_entity import HeaderEntry
 from fhir_sheets.core.model.resource_definition_entity import ResourceDefinition
 from fhir_sheets.core.model.resource_link_entity import ResourceLink
 from api.models.entity import Entity
-
+from api.features.generation.constants import FhirType
 '''
 FHIR Sheets Input Builders
 '''
@@ -17,10 +17,14 @@ def generate_header_entries(entities: list[Entity]) -> list[HeaderEntry]:
     Process Entities into FHIR Sheets Header Entries
     '''
     header_entries: list[HeaderEntry] = []
+
+    # FHIR Sheets uses an index for extensions to differentiate them, so must be tracked.
+    extension_index = 0
+
     for entity in entities:
         for field in entity.fields or []:
             # TODO: Add special handler for identifier.
-            if field.type == "Identifier":
+            if field.type == FhirType.IDENTIFIER.value:
                 header_entry_value = HeaderEntry(
                     entity.entity_id,
                     f"{entity.entity_id}/{field.path}/Value",
@@ -36,7 +40,7 @@ def generate_header_entries(entities: list[Entity]) -> list[HeaderEntry]:
                 )
                 header_entries.append(header_entry_value)
                 header_entries.append(header_entry_system)
-            elif field.type == "ContactPoint":
+            elif field.type == FhirType.CONTACT_POINT.value:
                 # NOTE: Telecom assumes a chance of only email and/or phone.
                 for i in range(2):
                     header_entry_telecom_value = HeaderEntry(
@@ -54,8 +58,23 @@ def generate_header_entries(entities: list[Entity]) -> list[HeaderEntry]:
                     )
                     header_entries.append(header_entry_telecom_value)
                     header_entries.append(header_entry_telecom_system)
-
-
+            elif field.type == FhirType.EXTENSION.value:
+                extension_uri_header_entry = HeaderEntry(
+                    entity.entity_id,
+                    f"{entity.entity_id}/{field.path}/Uri",
+                    f"{entity.resource_type}.extension.[{extension_index}].url",
+                    "string",
+                    None)
+                extension_value_header_entry = HeaderEntry(
+                    entity.entity_id,
+                    f"{entity.entity_id}/{field.path}/Value",
+                    f"{entity.resource_type}.extension.[{extension_index}].value{field.extension_details.value_type.capitalize()}",
+                    field.extension_details.value_type,
+                    None
+                )
+                header_entries.append(extension_uri_header_entry)
+                header_entries.append(extension_value_header_entry)
+                extension_index = extension_index + 1
             else:
                 header_entry = HeaderEntry(
                     entity.entity_id,

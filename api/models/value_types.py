@@ -101,4 +101,4 @@ class ValuePrevalence(CamelModel):
 
 class ValueTribalAffiliation(ValuePrevalence):
     prevalence: Decimal = Field(ge=0, le=1)
-    affiliation: Optional[str] = Field(None)
+    affiliation_code: Optional[str] = Field(None)

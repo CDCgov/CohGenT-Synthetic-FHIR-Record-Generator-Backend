@@ -13,6 +13,7 @@ class SpecialTypeFunctions(str, Enum):
 class FhirType(str, Enum):
     IDENTIFIER = "Identifier"
     CONTACT_POINT = "ContactPoint"
+    EXTENSION = "Extension"
 
 identifier_system: str = "urn:cohgent:identifier"
 

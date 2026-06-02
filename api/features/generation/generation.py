@@ -190,6 +190,9 @@ def start_generation(configuration: CohortSettings, iteration_limit: int = 50):
                             patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/Patient.birthDate"] = str(patient_birth_date)
 
             for field in entity.fields or []:
+                # Tracks extension index to match to headers. Will always increment whenever an Extension is seen, even if the Patient lacks that extension.
+                extension_index = 0
+
                 if field.path not in special_fields:
                     field_setting: Setting | None = None
 
@@ -204,7 +207,14 @@ def start_generation(configuration: CohortSettings, iteration_limit: int = 50):
                         # TODO: This is likely redundant now but leaving to avoid breaking conditional/refactoring
                         if field_setting is None:
                             # If no default setting found, well... this ain't gonna work.
-                            raise ValueError(f"Default field setting for {field.path} missing.")
+                            raise ValueError(f"Both user and default field setting for {field.path} missing.")
+                        elif field.type == FhirType.EXTENSION.value:
+                            # Catch extensions to handle them differently.
+                            print("EXTENSION FOUND")
+                        
+                            # TODO: Implement other extension handling.
+
+                            extension_index = extension_index + 1
                         else:                            
                             generated_value = handle_by_type(field, patient_meta, field_setting)
 
@@ -262,6 +272,7 @@ def start_generation(configuration: CohortSettings, iteration_limit: int = 50):
                                 patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}[{i}]/System"] = v["system"]
                         else:
                             logger.warning(f"Issue setting ContactPoint. Skipping.")
+
                     else:
                         patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}"] = generated_value
         '''

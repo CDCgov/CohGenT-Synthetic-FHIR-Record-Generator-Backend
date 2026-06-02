@@ -127,6 +127,17 @@
                             {"value": "Unknown", "weight": 0.00 }
                         ]
                     }
+                },
+                {
+                    "ruleId": "patient-tribal-affiliation",
+                    "label": "Tribal Affiliation",
+                    "description": "Set the prevalence of patients with a tribal affiliation. You can choose to randomize a tribal affiliation or specify a single affiliation.",
+                    "tooltip": "Tribal affiliations in this list are those considered federally recognized.",
+                    "tags": ["default"],
+                    "control": "tribal-affiliation",
+                    "defaultValues": {
+                        "prevalence": 0.05
+                    }
                 }
             ]
         },
@@ -249,6 +260,17 @@
                     "type": "ContactPoint",
                     "userConfigured": false,
                     "value": "$patientContactPoint"
+                },
+                {
+                    "path": "Patient.extension",
+                    "type": "Extension",
+                    "userConfigured": true,
+                    "userSettingRuleId": "patient-tribal-affiliation",
+                    "extensionDetails": {
+                        "valueType": "CodeableConcept",
+                        "extensionUri": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-tribal-affiliation",
+                        "valueSet": "tribal-affiliation"
+                    }
                 }
             ]
         },
