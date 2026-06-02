@@ -242,6 +242,17 @@
                     ]
                 },
                 {
+                    "path": "Patient.extension",
+                    "type": "Extension",
+                    "userConfigured": true,
+                    "userSettingRuleId": "patient-tribal-affiliation",
+                    "extensionDetails": {
+                        "valueType": "CodeableConcept",
+                        "extensionUri": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-tribal-affiliation",
+                        "specialHandler": "tribal-affiliation"
+                    }
+                },
+                {
                     "path": "Patient.extension[Race].ombCategory.value",
                     "type": "code",
                     "userConfigured": true,
@@ -260,17 +271,6 @@
                     "type": "ContactPoint",
                     "userConfigured": false,
                     "value": "$patientContactPoint"
-                },
-                {
-                    "path": "Patient.extension",
-                    "type": "Extension",
-                    "userConfigured": true,
-                    "userSettingRuleId": "patient-tribal-affiliation",
-                    "extensionDetails": {
-                        "valueType": "CodeableConcept",
-                        "extensionUri": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-tribal-affiliation",
-                        "valueSet": "tribal-affiliation"
-                    }
                 }
             ]
         },

@@ -9,9 +9,10 @@ __version__ = "1.0.2"
 import io
 import csv
 from typing import List
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import StreamingResponse
 from loguru import logger
+from sqlalchemy.orm import Session
 from api.features.presets.observation_values import get_preset_cache
 from api.models.FHIR.bundle import Bundle
 from api.models.FHIR.fhirresource import FHIRResource
@@ -27,7 +28,7 @@ from api.models.cohort_settings import CohortSettings
 from api.models.responses.jsonresponse import PrettyJSONResponse
 from api.utilities.settings import get_settings
 from api.models.responses.basic_response_models import InfoResponse, UseCaseCollectionResponse
-from api.database.database_client import DatabaseClient
+from api.database.database_client import DatabaseClient, get_main_db
 from api.database import db_preset_tables, db_sample_tables, db_other_tables  # type: ignore - IMPORT IS REQUIRED TO BUILD TABLES
 from api.routers import presets_router, terminology_router, samples_router, valuesets_router
 from api.models.cohort_settings import OutputFormat
@@ -174,9 +175,9 @@ async def get_use_case_guidance():
 Generate FHIR Output
 """
 @app.post("/generate", response_class=PrettyJSONResponse)
-async def generate_fhir(cohort_settings: CohortSettings, raw: bool = False):
+async def generate_fhir(cohort_settings: CohortSettings, raw: bool = False, main_db: Session = Depends(get_main_db)):
     # Execute Generation using settings and build the FHIR Sheets Inputs.
-    resource_definitions, resource_links, cohort = start_generation(cohort_settings, settings.iteration_limit)
+    resource_definitions, resource_links, cohort = start_generation(cohort_settings, main_db, settings.iteration_limit)
 
     # Setup FHIR SHeets configuration.
     fhir_sheets_config = FhirSheetsConfiguration({"random_seed": cohort_settings.seed})

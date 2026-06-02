@@ -25,14 +25,7 @@ class SimpleConcept(NoNullCamelModel):
     code: Optional[str] = Field(None)
     display: Optional[str] = Field(None)
     
-    @classmethod
-    def from_tribal_affiliation(cls, affiliation: TribalAffiliation):
-        """Create from TribalAffiliation database model"""
-        return cls(
-            system="http://terminology.hl7.org/CodeSystem/v3-TribalEntityUS",  # https://terminology.hl7.org/5.0.0/CodeSystem-v3-TribalEntityUS.html
-            code=affiliation.code,
-            display=affiliation.display
-        )
+    model_config = {"from_attributes": True} 
 
 class SimpleConceptListResponse(NoNullCamelModel):
     total: int
@@ -49,7 +42,7 @@ def get_tribal_affiliations(db: Session = Depends(get_main_db)) -> SimpleConcept
     """
     try:
         results = db.query(TribalAffiliation).order_by(TribalAffiliation.display).all()
-        concepts = [SimpleConcept.from_tribal_affiliation(r) for r in results]
+        concepts = [SimpleConcept.model_validate(aff) for aff in results]
         return SimpleConceptListResponse(total= len(concepts), results=concepts)
     except Exception as e:
         logger.error(f"Error fetching tribal affiliations: {e}")

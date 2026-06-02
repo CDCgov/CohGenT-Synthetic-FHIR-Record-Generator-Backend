@@ -99,6 +99,12 @@ def is_value_weight(value: object) -> TypeGuard[ValueWeight]:
 class ValuePrevalence(CamelModel):
     prevalence: Decimal = Field(ge=0, le=1)
 
+def is_value_prevalence(value: object) -> TypeGuard[ValuePrevalence]:
+    return isinstance(value, ValuePrevalence)
+
 class ValueTribalAffiliation(ValuePrevalence):
     prevalence: Decimal = Field(ge=0, le=1)
     affiliation_code: Optional[str] = Field(None)
+
+def is_value_tribal_affiliation(value: object) -> TypeGuard[ValueTribalAffiliation]:
+    return isinstance(value, ValueTribalAffiliation)

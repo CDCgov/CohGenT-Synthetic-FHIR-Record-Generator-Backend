@@ -19,7 +19,7 @@ def generate_header_entries(entities: list[Entity]) -> list[HeaderEntry]:
     header_entries: list[HeaderEntry] = []
 
     # FHIR Sheets uses an index for extensions to differentiate them, so must be tracked.
-    extension_index = 0
+    extension_index = 2 # TODO: CHANGE ONCE FHIR SHEETS BUG WITH EXTENSIONS RESOLVED -- CHANGE BOTH LOCATIONS
 
     for entity in entities:
         for field in entity.fields or []:
@@ -61,13 +61,13 @@ def generate_header_entries(entities: list[Entity]) -> list[HeaderEntry]:
             elif field.type == FhirType.EXTENSION.value:
                 extension_uri_header_entry = HeaderEntry(
                     entity.entity_id,
-                    f"{entity.entity_id}/{field.path}/Uri",
+                    f"{entity.entity_id}/{field.path}.[{extension_index}]/Uri",
                     f"{entity.resource_type}.extension.[{extension_index}].url",
                     "string",
                     None)
                 extension_value_header_entry = HeaderEntry(
                     entity.entity_id,
-                    f"{entity.entity_id}/{field.path}/Value",
+                    f"{entity.entity_id}/{field.path}.[{extension_index}]/Value",
                     f"{entity.resource_type}.extension.[{extension_index}].value{field.extension_details.value_type.capitalize()}",
                     field.extension_details.value_type,
                     None

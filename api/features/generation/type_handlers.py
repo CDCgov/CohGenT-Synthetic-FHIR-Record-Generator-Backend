@@ -6,7 +6,7 @@ from api.features.generation.generators.names import generate_name
 from api.features.generation.generators.dates import append_days
 from api.features.generation.generators.addresses import generate_address
 from api.features.generation.generators.numbers import generate_number_from_range
-from api.utilities.weighted_values import select_from_weighted_list
+from api.features.generation.weighted_values import select_from_weighted_list
 from typing import Optional, TypeGuard
 import datetime # NOTE: Importing individual objects from datetime module breaks date type checking.
 from api.models.value_types import ValueCoding
@@ -33,13 +33,13 @@ if static value is not none
 '''
 
 #TODO The parameters are out of order compared to the individual handlers, needs refactoring.
-def handle_by_type(field: Field, patient_meta: PatientMeta, field_setting: Optional[Setting]) -> str | bool | datetime.datetime | None:
+def handle_by_type(fhir_type: str, field: Field, patient_meta: PatientMeta, field_setting: Optional[Setting]) -> str | bool | datetime.datetime | None:
     if field.user_configured and field_setting is None:
         raise ValueError("Field setting required for all user configurable values.")
     if field.user_configured:
-        value = globals()[field.type](field_setting, patient_meta, None, boolean_maps = field.boolean_map)
+        value = globals()[fhir_type](field_setting, patient_meta, None, boolean_maps = field.boolean_map)
     else:
-        value = globals()[field.type](field_setting, patient_meta, field.value, boolean_map = field.boolean_map)
+        value = globals()[fhir_type](field_setting, patient_meta, field.value, boolean_map = field.boolean_map)
     return value
 
 def boolean(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueX, boolean_maps: list[BooleanMap] | None, **kwargs) -> bool:

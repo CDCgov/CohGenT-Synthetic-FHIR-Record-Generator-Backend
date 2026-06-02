@@ -5,6 +5,10 @@
 * Valueset Feature
   * Valueset feature added. This feature is used to serve special valuesets to the UI that are expected to be relatively static and are not standard in OMOP CDM databases. For example, UCUM measurements. Valuesets are loaded into the database on startup as part of seed data. For this release, each valueset is considered "unique" and has its own endpoint. Eventually valuesets will be (or should be) migrated to a reusable pattern.
   * U.S. Federal Tribal Affiliation valueset added.
+* Added support for arbitrary extensions in use case/scenarios.
+  * New field type, "Extension" (case sensitive).
+  * "Extension" has an additional `extensionDetails` field which is required if type is Extension. The `extensionDetails` field defines both the extension's value\[x\] type as well as the extension's FHIR URI.
+  * NOTE: Arbitrary sub extensions not currently supported.
 ### Changed
 * "Force Reseed" option now also applies to valuesets (and will apply to all other seeded data as well).
 

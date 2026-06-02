@@ -1,20 +1,24 @@
 from typing import Any
 
+from sqlalchemy.orm import Session
+
 from api.features.generation.generators.email import generate_email
 from api.features.generation.generators.names import generate_name
 from api.models.field import Field
 from loguru import logger
 from fhir_sheets.core.model.cohort_data_entity import CohortData, PatientEntry
 from api.models.cohort_settings import CohortSettings, Setting
+from api.models.option import ControlType
 from api.models.use_case import AdditionalEntity, UseCase, FormRule
 from api.models.entity import Entity
 from api.models.patient_meta import PatientMeta
-from api.models.value_types import is_value_range, is_value_time_range_as_days
-from api.utilities.fhir_sheets_interfaces import generate_all
+from api.models.value_types import is_value_range, is_value_time_range_as_days, is_value_tribal_affiliation, is_value_prevalence
+from api.features.generation.fhir_sheets_interfaces import generate_all
 from api.utilities.file_reader import get_use_case_by_id, read_common_entity
-from api.utilities.type_handlers import handle_by_type, process_choice_of_data_type_value, fhir_type_match_check
-from api.utilities.weighted_values import distribute_weighted_values
+from api.features.generation.type_handlers import handle_by_type, process_choice_of_data_type_value, fhir_type_match_check
+from api.features.generation.weighted_values import distribute_weighted_values
 from api.features.generation.constants import FhirType, SpecialTypeFunctions, identifier_system, ConditionClinicalStatusValues
+from api.features.generation.special_extension_handlers import SpecialExtensions, generate_tribal_affiliation
 from faker import Faker
 import random
 import time
@@ -44,7 +48,7 @@ type Distributions = dict[str, list[str]]
 class LoadedCommonEntityKeys(Enum):
     DIAGNOSTIC_REPORT = "DiagnosticReport"
 
-def start_generation(configuration: CohortSettings, iteration_limit: int = 50):
+def start_generation(configuration: CohortSettings, main_db: Session, iteration_limit: int = 50):
     start = time.time() # Start run timer
     session_id = f"{datetime.fromtimestamp(start)} - {generate_uuid_identifier()}"
     
@@ -191,7 +195,7 @@ def start_generation(configuration: CohortSettings, iteration_limit: int = 50):
 
             for field in entity.fields or []:
                 # Tracks extension index to match to headers. Will always increment whenever an Extension is seen, even if the Patient lacks that extension.
-                extension_index = 0
+                extension_index = 2 # TODO: CHANGE ONCE FHIR SHEETS BUG WITH EXTENSIONS RESOLVED -- CHANGE BOTH LOCATIONS
 
                 if field.path not in special_fields:
                     field_setting: Setting | None = None
@@ -200,7 +204,6 @@ def start_generation(configuration: CohortSettings, iteration_limit: int = 50):
 
                     '''
                     Find field settings, starting with searching for a user defined setting then falling back to the default setting.
-                    # TODO: Move this to a single function.
                     '''
                     if field.user_configured:
                         field_setting = find_setting(field, configuration.user_responses, default_settings)
@@ -210,13 +213,16 @@ def start_generation(configuration: CohortSettings, iteration_limit: int = 50):
                             raise ValueError(f"Both user and default field setting for {field.path} missing.")
                         elif field.type == FhirType.EXTENSION.value:
                             # Catch extensions to handle them differently.
-                            print("EXTENSION FOUND")
-                        
-                            # TODO: Implement other extension handling.
-
-                            extension_index = extension_index + 1
+                            if field.extension_details is None:
+                                pass
+                                # TODO: Implement error handling
+                            else:
+                                if field.extension_details.special_handler in SpecialExtensions:
+                                    generated_value = generate_tribal_affiliation(field_setting, main_db)
+                                else:
+                                    generated_value = handle_by_type(field.extension_details.value_type, field, patient_meta, field_setting)
                         else:                            
-                            generated_value = handle_by_type(field, patient_meta, field_setting)
+                            generated_value = handle_by_type(field.type, field, patient_meta, field_setting)
 
                             # If field is declared by the use case as the end date, see if it is
                             # earlier than the cohort wide "generate until" date. Ensuring that the field
@@ -259,20 +265,23 @@ def start_generation(configuration: CohortSettings, iteration_limit: int = 50):
                                 {"system": "phone", "value": fake.basic_phone_number()}
                             ]
                         else:
-                            generated_value = handle_by_type(field, patient_meta, field_setting)
+                            generated_value = handle_by_type(field.type, field, patient_meta, field_setting)
 
 
                     if field.type == FhirType.IDENTIFIER.value:
                         patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}/Value"] = generated_value
                         patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}/System"] = identifier_system
-                    elif field.type == FhirType.CONTACT_POINT:
+                    elif field.type == FhirType.CONTACT_POINT.value:
                         if isinstance(generated_value, list):
                             for i, v in enumerate(generated_value):
                                 patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}[{i}]/Value"] = v["value"]
                                 patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}[{i}]/System"] = v["system"]
                         else:
                             logger.warning(f"Issue setting ContactPoint. Skipping.")
-
+                    elif field.type == FhirType.EXTENSION.value:
+                        patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}.[{extension_index}]/Value"] = generated_value
+                        patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}.[{extension_index}]/Uri"] = field.extension_details.extension_uri
+                        extension_index = extension_index + 1
                     else:
                         patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}"] = generated_value
         '''
@@ -438,8 +447,6 @@ def start_generation(configuration: CohortSettings, iteration_limit: int = 50):
     patients: list[PatientEntry] = [PatientEntry(patient_as_dict) for patient_as_dict in patients_as_dicts]
     cohort = CohortData(headers, patients)
 
-
-    
     with logger.contextualize(run_id=session_id):
         if settings.enable_run_logs:
             logger.info(f"Outputting FHIR Sheets Inputs...")
@@ -450,18 +457,6 @@ def start_generation(configuration: CohortSettings, iteration_limit: int = 50):
     
     
     return resource_definitions, resource_links, cohort
-    # bundle_list: list[Bundle] = []
-
-    # try:
-    #     for i in range(configuration.count):
-    #         bundle_dict = create_transaction_bundle(resource_definitions, resource_links, cohort, i, fhir_sheets_config)
-    #         bundle = Bundle.model_validate(bundle_dict)
-    #         bundle_list.append(bundle)
-    # except Exception:
-    #     raise HTTPException(status_code=500, detail="Something went wrong executing FHIR generation library.")
-
-
-    # return bundle_list
 
 def initialize_patient_distributions(key: str, count: int, field_setting: Setting, distributions: Distributions) -> Distributions:
     distributions[key] = []
@@ -486,6 +481,12 @@ def _find_setting(field: Field, settings: list[Setting]) -> Setting | None:
     setting = next((setting for setting in settings if setting.rule_id == field.user_setting_rule_id), None)
     return setting
 
+def parse_extension(field: Field, patient_meta: PatientMeta, setting: Setting):
+    if field.extension_details:
+        handle_by_type()
+    else:
+        pass # Error handling for missing extension details.
+
 
 '''
 Use Case Handlers
@@ -500,21 +501,21 @@ def parse_default_settings(form_rules: list[FormRule]) -> list[Setting]:
                     "rule_id": option.rule_id,
                     "value": None
                 }
-                if option.control == "checkbox":
+                if option.control == ControlType.CHECKBOX:
                     setting["value"] = option.default_state
-                elif option.control == 'range':
+                elif option.control == ControlType.RANGE:
                     setting["value"] = {
                         "min": option.default_values[0] if option.default_values is not None else 0,
                         "max": option.default_values[1] if option.default_values is not None else 0
                     }
-                elif option.control == 'weighting':
+                elif option.control == ControlType.WEIGHTING:
                     setting["value"] = option.default_values
-                elif option.control == 'location':
+                elif option.control == ControlType.LOCATION:
                     setting["value"] = {
                         "state": None,
                         "city": None
                     }
-                elif option.control == 'relative-time-range':
+                elif option.control == ControlType.RELATIVE_TIME_RANGE:
                     if is_value_time_range_as_days(option.default_values):
                         setting["value"] = option.default_values
                     else:
@@ -522,6 +523,22 @@ def parse_default_settings(form_rules: list[FormRule]) -> list[Setting]:
                             "start": 0,
                             "end": 0
                         }
+                elif option.control == ControlType.TRIBAL_AFFILIATION:
+                    if is_value_tribal_affiliation(option.default_values):
+                        setting["value"] = option.default_values
+                    elif is_value_prevalence(option.default_values):
+                        setting["value"] = option.default_values
+                    else:
+                        pass
+                elif option.control in ControlType:
+                    # All other valid control types passed. Some do not allow default values.
+                    pass
+                else:
+                    raise HTTPException(
+                        status_code=500,
+                        detail=f"Unrecognized control type '{option.control}' for rule '{option.rule_id}'. "
+                    )
+                
                 setting = Setting.model_validate(setting)
                 default_settings.append(setting)
     return default_settings
