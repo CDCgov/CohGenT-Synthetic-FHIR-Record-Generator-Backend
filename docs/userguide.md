@@ -110,9 +110,41 @@ The final step in generating a cohort is to confirm the cohort patient count and
 Here, you can also optionally adjust advanced options, which include:
 
 - **Setting the random seed** – the seed is an arbitrary value used to create reproducible results with randomized data. A random seed is automatically assigned, but an alternate seed can be entered or regenerated. The seed will be automatically saved within the cohort file. If you want to generate different patient data with the same cohort settings, enter or regenerate a different random seed before generating the cohort again.
-- **Setting the output file type** – <mark>more info and instructions are being added here</mark>  choose between a JSON or NDJSON file output. Selecting FHIR JSON Bundle will generate a set of FHIR transaction Bundles by patient in the JSON format, compressed into a zip file. Selecting Bulk Data NDJSON will generate a set of New-line Delimited JSON files in the BULK FHIR format, divided by resource type, compressed into a zip file. 
+- **Setting the output file type** – choose between FHIR JSON or FHIR NDJSON file output formats based on your testing needs:
 
-Click "Generate Cohort", to trigger an automatic download of a zip file. These bundles are pre-formatted and ready to be uploaded directly to a FHIR server via a RESTful or web client.
+#### FHIR JSON Bundle Format
+Selecting **FHIR JSON Bundle** will generate a set of FHIR transaction Bundles organized by patient in the standard JSON format, compressed into a zip file. Each patient's complete medical record (including Patient, Condition, Observations, Procedures, etc.) is contained in a single, self-contained JSON Bundle file.
+
+**Characteristics:**
+- Human-readable, hierarchical structure
+- Each file contains one complete patient Bundle
+- Standard JSON format with proper indentation
+- Ideal for individual record review and validation
+
+#### Bulk Data FHIR NDJSON Format
+Selecting **Bulk Data NDJSON** will generate a set of Newline Delimited JSON (NDJSON) files following the BULK FHIR format, organized by resource type and compressed into a zip file. Each line in an NDJSON file represents a single, complete FHIR resource as a compact JSON object.
+
+**Characteristics:**
+- Streamable, line-oriented format
+- Resources grouped by type (e.g., all Patients in one file, all Conditions in another)
+- Each line is a valid, compact JSON object (no indentation)
+- Optimized for bulk data operations and high-volume processing
+
+#### Format Comparison
+
+| **Aspect** | **FHIR JSON Bundle** | **Bulk Data FHIR NDJSON** |
+|---|---|---|
+| **Organization** | By patient (one Bundle per patient) | By resource type (all resources of same type together) |
+| **File Structure** | Standard JSON with indentation | Newline-delimited, compact JSON |
+| **Best For** | Individual patient review, testing single patient workflows, FHIR server transaction uploads | Bulk data import/export, analytics, high-volume testing, streaming data processing |
+| **Readability** | High - formatted and hierarchical | Lower - compact, one resource per line |
+| **File Size** | Larger (due to formatting) | Smaller (compact format) |
+| **Use Cases** | Testing patient-centric workflows, manual review, RESTful API testing | Bulk FHIR API testing, data warehouse loading, large-scale analytics |
+| **FHIR Specification** | FHIR Bundle resource | FHIR Bulk Data Access specification |
+
+**When to Use Each Format:**
+- Choose **FHIR JSON Bundle** when you need to test individual patient workflows, manually review patient records, or upload data to FHIR servers using transaction Bundles.
+- Choose **Bulk Data FHIR NDJSON** when you need to test bulk data operations, perform analytics across many patients, or work with systems that support the FHIR Bulk Data Access API.
 
 # Common Data Entry Types
 
