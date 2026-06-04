@@ -279,8 +279,18 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                         else:
                             logger.warning(f"Issue setting ContactPoint. Skipping.")
                     elif field.type == FhirType.EXTENSION.value:
-                        patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}.[{extension_index}]/Value"] = generated_value
-                        patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}.[{extension_index}]/Uri"] = field.extension_details.extension_uri
+                        if field.extension_details.value_type == "Complex":
+                            # TODO: Support complex extension types in the entity model. For now this only actually supports Tribal Affiliation.
+                            # Value object needs to be refactored to allow complexity, but for now sets directly to the sub extension value repeatedly.
+                            # Eventually this can be made to work universally with the better generated_value handler.
+                            patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}.[{extension_index}]/Uri"] = field.extension_details.extension_uri
+                            if field.extension_details.special_handler == SpecialExtensions.TRIBAL_AFFILIATION:
+                                for sub_ext in field.extension_details.sub_extensions or []:
+                                    patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}.[{extension_index}].extension.[0]/Uri"] = sub_ext.extension_uri
+                                    patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}.[{extension_index}].extension.[0]/Value"] = generated_value
+                        else:
+                            patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}.[{extension_index}]/Value"] = generated_value
+                            patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}.[{extension_index}]/Uri"] = field.extension_details.extension_uri
                         extension_index = extension_index + 1
                     else:
                         patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}"] = generated_value

@@ -247,8 +247,14 @@
                     "userConfigured": true,
                     "userSettingRuleId": "patient-tribal-affiliation",
                     "extensionDetails": {
-                        "valueType": "CodeableConcept",
+                        "valueType": "Complex",
                         "extensionUri": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-tribal-affiliation",
+                        "subExtensions": [
+                            {
+                                "valueType": "CodeableConcept",
+                                "extensionUri": "tribalAffiliation"
+                            }
+                        ],
                         "specialHandler": "tribal-affiliation"
                     }
                 },

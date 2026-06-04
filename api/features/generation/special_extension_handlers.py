@@ -8,12 +8,10 @@ from sqlalchemy import func
 from sqlalchemy.orm import Session
 from api.models.cohort_settings import Setting
 from api.models.value_types import is_value_prevalence, is_value_tribal_affiliation
-from api.database.database_client import get_main_db
 from api.database.db_other_tables import TribalAffiliation
 
 class SpecialExtensions(str, Enum):
     TRIBAL_AFFILIATION = "tribal-affiliation"
-    STRING = "string"
 
 def generate_tribal_affiliation(setting: Setting, main_db: Session):
     # Tribal Affiliation is a two tiered handler.

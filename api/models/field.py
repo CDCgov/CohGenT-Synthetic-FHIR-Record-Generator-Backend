@@ -1,6 +1,6 @@
 from fastapi_camelcase import CamelModel
 from pydantic import model_validator, Field as PyField
-from typing import Optional
+from typing import List, Optional
 from api.models.value_types import ValueCoding
 from api.features.generation.special_extension_handlers import SpecialExtensions
 
@@ -11,7 +11,12 @@ class BooleanMap(CamelModel):
 class ExtensionDetails(CamelModel):
     value_type: str = PyField(...)
     extension_uri: str = PyField(...)
+    sub_extensions: Optional[List['ExtensionDetails']] = None
     special_handler: Optional[SpecialExtensions] = PyField(None)
+
+    # TODO: If value_type is complex, must have sub extensions.
+
+ExtensionDetails.model_rebuild()
 
 class Field(CamelModel):
     path: str = PyField(...)

@@ -8,7 +8,7 @@
 * Added support for arbitrary extensions in use case/scenarios.
   * New field type, "Extension" (case sensitive).
   * "Extension" has an additional `extensionDetails` field which is required if type is Extension. The `extensionDetails` field defines both the extension's value\[x\] type as well as the extension's FHIR URI.
-  * NOTE: Arbitrary sub extensions not currently supported.
+  * NOTE: Arbitrary sub extensions not currently supported. Framework for FHIR Sheets headers is in place, but generation values need more complexity to support in full. Only Tribal Affiliation is currently supported, and only the affiliation not enrollment. This needs to be expanded upon in future versions as the need for arbitrary complex extension handle arises.
 ### Changed
 * "Force Reseed" option now also applies to valuesets (and will apply to all other seeded data as well).
 
