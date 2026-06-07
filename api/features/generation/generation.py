@@ -349,7 +349,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                                 if field.value is not None and field.value == "$current":
                                     value = str(current_date)
                                 else:
-                                    value = handle_by_type(field, patient_meta, None)
+                                    value = handle_by_type(field.type, field, patient_meta, None)
                             else:
                                 if field.path == "DiagnosticReport.code":
                                     value = f"{event_set.diagnostic_report_concept.system}^{event_set.diagnostic_report_concept.code}^{event_set.diagnostic_report_concept.display}"
@@ -381,7 +381,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                                         if field.value is not None and field.value == "$current":
                                             value = str(current_date)
                                         else:
-                                            value = handle_by_type(field, patient_meta, None)
+                                            value = handle_by_type(field.type, field, patient_meta, None)
                                     else:
                                         # TODO: make generic/move to handler, supporting all codeable concepts.
                                         # Currently only supports fields with "code" field label for now in alighment with support ofr Observation and Procedure.
@@ -418,27 +418,28 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
     Handle Medications
     TODO: Collapse into event set handling
     '''
-    if use_case.common_entities and use_case.common_entities.medication and configuration.medications:
+    if use_case.common_entities and use_case.common_entities.medication and configuration.medication_sets:
         medication_base_entity = read_common_entity(use_case.common_entities.medication)
         if medication_base_entity:
             medication_entities: list[Entity] = []
-            for count, medication in enumerate(configuration.medications):
-                medication_entity = copy(medication_base_entity)
-                medication_entity.entity_id = f"{medication_entity.entity_id}_{count}"
-                medication_entities.append(medication_entity)
-                for field in medication_entity.fields or []:
-                    key: tuple[str, str] = (medication_entity.entity_id), f"{medication_entity.entity_id}/{field.path}"
-                    value: str | None = None
-                    if not field.user_configured:
-                        value = field.value if type(field. value) is str else ""
-                    else:
-                        if field.path == "MedicationRequest.medicationCodeableConcept":
-                            value = f"{medication.codeable_concept.system}^{medication.codeable_concept.code}^{medication.codeable_concept.display}"
-                        elif field.path == "MedicationRequest.dosageInstruction.[0].text":
-                            value = medication.dosage
-                    for patient in patients_as_dicts:
-                        if value is not None:
-                            patient[key] = value
+            for set_count, medication_set in enumerate(configuration.medication_sets):
+                for med_count, medication in enumerate(medication_set.medications):
+                    medication_entity = copy(medication_base_entity)
+                    medication_entity.entity_id = f"{medication_entity.entity_id}_{set_count}_{med_count}"
+                    medication_entities.append(medication_entity)
+                    for field in medication_entity.fields or []:
+                        key: tuple[str, str] = (medication_entity.entity_id), f"{medication_entity.entity_id}/{field.path}"
+                        value: str | None = None
+                        if not field.user_configured:
+                            value = field.value if type(field. value) is str else ""
+                        else:
+                            if field.path == "MedicationRequest.medicationCodeableConcept":
+                                value = f"{medication.codeable_concept.system}^{medication.codeable_concept.code}^{medication.codeable_concept.display}"
+                            elif field.path == "MedicationRequest.dosageInstruction.[0].text":
+                                value = medication.dosage
+                        for patient in patients_as_dicts:
+                            if value is not None:
+                                patient[key] = value
             entities.extend(medication_entities)
         else:
             raise FileNotFoundError(f"ERROR - Could not read common medication entity: {use_case.common_entities.medication}")

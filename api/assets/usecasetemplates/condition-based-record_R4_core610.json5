@@ -132,7 +132,7 @@
                     "ruleId": "patient-tribal-affiliation",
                     "label": "Tribal Affiliation",
                     "description": "Set the prevalence of patients with a tribal affiliation. You can choose to randomize a tribal affiliation or specify a single affiliation.",
-                    "tooltip": "Tribal affiliations in this list are those considered federally recognized.",
+                    "tooltip": "Possible tribal affiliations are from the entire list of federally recognized tribal affiliations.",
                     "tags": ["default"],
                     "control": "tribal-affiliation",
                     "defaultValues": {
