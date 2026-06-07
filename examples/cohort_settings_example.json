@@ -1,0 +1,231 @@
+{
+    "useCaseId": "condition-based-record",
+    "count": 1,
+    "userResponses": [
+        {
+            "ruleId": "patient-names",
+            "value": false
+        },
+        {
+            "ruleId": "patient-tribal-affiliation",
+            "value": {
+                "prevalence": 0.5,
+                "affiliationCode": "170"
+            }
+        },
+        {
+            "ruleId": "patient-age-at-event-date",
+            "value": {
+                "min": 18,
+                "max": 65
+            }
+        },
+        {
+            "ruleId": "patient-sex",
+            "value": {
+                "values": [
+                    {
+                        "value": "Male",
+                        "weight": 0.5
+                    },
+                    {
+                        "value": "Female",
+                        "weight": 0.5
+                    },
+                    {
+                        "value": "Unknown",
+                        "weight": 0
+                    }
+                ]
+            }
+        },
+        {
+            "ruleId": "patient-deceased",
+            "value": {
+                "values": [
+                    {
+                        "value": "Living",
+                        "weight": 1
+                    },
+                    {
+                        "value": "Deceased",
+                        "weight": 0
+                    }
+                ]
+            }
+        },
+        {
+            "ruleId": "patient-race",
+            "value": {
+                "values": [
+                    {
+                        "value": "American Indian or Native Alaskan",
+                        "weight": 0.02
+                    },
+                    {
+                        "value": "Asian",
+                        "weight": 0.08
+                    },
+                    {
+                        "value": "Black or African American",
+                        "weight": 0.15
+                    },
+                    {
+                        "value": "Native Hawaiian or Other Pacific Islander",
+                        "weight": 0.03
+                    },
+                    {
+                        "value": "White",
+                        "weight": 0.64
+                    },
+                    {
+                        "value": "Other Race",
+                        "weight": 0.08
+                    },
+                    {
+                        "value": "Unknown",
+                        "weight": 0
+                    }
+                ]
+            }
+        },
+        {
+            "ruleId": "patient-ethnicity",
+            "value": {
+                "values": [
+                    {
+                        "value": "Hispanic or Latino",
+                        "weight": 0.2
+                    },
+                    {
+                        "value": "Not Hispanic or Latino",
+                        "weight": 0.8
+                    },
+                    {
+                        "value": "Unknown",
+                        "weight": 0
+                    }
+                ]
+            }
+        },
+        {
+            "ruleId": "condition-code",
+            "value": {
+                "code": null,
+                "display": "Syphilis (disorder)"
+            }
+        },
+        {
+            "ruleId": "condition-abatement",
+            "value": {
+                "start": 0,
+                "end": 0
+            }
+        }
+    ],
+    "seed": 3613513832,
+    "eventPeriod": {
+        "start": "2026-03-01",
+        "end": "2026-03-23",
+        "until": null
+    },
+    "medicationSets": [
+        {
+            "weight": 0.5,
+            "medications": [
+                {
+                    "codeableConcept": {
+                        "display": "isoniazid",
+                        "code": "6038",
+                        "system": "http://www.nlm.nih.gov/research/umls/rxnorm"
+                    },
+                    "dosage": "300 mg"
+                },
+                {
+                    "codeableConcept": {
+                        "display": "rifampin",
+                        "code": "9384",
+                        "system": "http://www.nlm.nih.gov/research/umls/rxnorm"
+                    }
+                }
+            ]
+        }
+    ],
+    "eventSets": [
+        {
+            "name": "Procedures",
+            "timing": {
+                "offset": "5",
+                "repeat": true,
+                "repeatTiming": "28"
+            },
+            "entry": [
+                {
+                    "type": "procedure",
+                    "codeableConcept": {
+                        "system": "http://snomed.info/sct",
+                        "code": "399208008",
+                        "display": "Plain chest X-ray"
+                    }
+                },
+                {
+                    "type": "radiology",
+                    "codeableConcept": {
+                        "system": "http://snomed.info/sct",
+                        "code": "399208008",
+                        "display": "Plain chest X-ray"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Lab Tests",
+            "includeDiagnosticReport": true,
+            "diagnosticReportConcept": {
+                "system": "http://loinc.org",
+                "display": "Comprehensive metabolic 2000 panel - Serum or Plasma",
+                "code": "24323-8"
+            },
+            "timing": {
+                "offset": "7",
+                "repeat": true,
+                "repeatTiming": "14"
+            },
+            "entry": [
+                {
+                    "type": "labResult",
+                    "codeableConcept": {
+                        "display": "Potassium [Moles/volume] in Blood",
+                        "code": "6298-4",
+                        "system": "http://loinc.org"
+                    },
+                    "value": {
+                        "min": 3.6,
+                        "max": 5.2,
+                        "unit": "mmol/L"
+                    }
+                },
+                {
+                    "type": "labResult",
+                    "codeableConcept": {
+                        "display": "SARS-CoV-2 (COVID-19) RNA [Presence] in Respiratory system specimen by NAA with probe detection",
+                        "code": "94500-6",
+                        "system": "http://loinc.org"
+                    },
+                    "value": {
+                        "values": [
+                            {
+                                "value": "detected",
+                                "weight": 0.5
+                            },
+                            {
+                                "value": "not detected",
+                                "weight": 0.5
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

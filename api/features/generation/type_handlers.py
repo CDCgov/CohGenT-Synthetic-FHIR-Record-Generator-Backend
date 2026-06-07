@@ -2,7 +2,7 @@ from enum import Enum
 from api.models.cohort_settings import Setting, ValueX
 from api.models.field import BooleanMap, Field
 from api.models.patient_meta import PatientMeta
-from api.features.generation.generators.names import generate_name
+from api.features.generation.constants import SpecialValues
 from api.features.generation.generators.dates import append_days
 from api.features.generation.generators.addresses import generate_address
 from api.features.generation.generators.numbers import generate_number_from_range
@@ -108,7 +108,7 @@ def Identifier(field_setting: Setting, patient_meta: PatientMeta, static_value: 
 def HumanName(field_setting: Setting, meta: PatientMeta, static_value: ValueX, **kwargs):
     if is_bool(field_setting.value):
         if field_setting.value:
-            return "$masked"
+            return SpecialValues.MASKED
         else:
             return meta.name
     else:

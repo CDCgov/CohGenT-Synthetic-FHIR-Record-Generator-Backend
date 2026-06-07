@@ -17,7 +17,7 @@ from api.features.generation.fhir_sheets_interfaces import generate_all
 from api.utilities.file_reader import get_use_case_by_id, read_common_entity
 from api.features.generation.type_handlers import handle_by_type, process_choice_of_data_type_value, fhir_type_match_check
 from api.features.generation.weighted_values import distribute_weighted_values
-from api.features.generation.constants import FhirType, SpecialTypeFunctions, identifier_system, ConditionClinicalStatusValues
+import api.features.generation.constants as C
 from api.features.generation.special_extension_handlers import SpecialExtensions, generate_tribal_affiliation
 from faker import Faker
 import random
@@ -34,13 +34,6 @@ from enum import Enum
 
 fake = Faker()
 settings = get_settings()
-
-# Special Field Configuration
-patient_dist_fields = [
-                    "Patient.gender",
-                    "Patient.extension[Race].ombCategory.value",
-                    "Patient.extension[Ethnicity].ombCategory.value"]
-special_fields = [*patient_dist_fields, "Patient.birthDate"] # Special Fields is a superset of Patient Dist Fields
 
 # Alias for Distributions.
 type Distributions = dict[str, list[str]]
@@ -96,7 +89,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
 
     # Pre-loop Initializers
     patients_as_dicts: list[dict[tuple[str,str], str]] = []
-    distributions: Distributions = {}
+    distributions: Distributions = setup_patient_distributions(entities, configuration, default_settings)
 
     # Cache common entities before loops.
     # TODO: Add error handling on this.
@@ -148,35 +141,16 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
             Handler for patient demographic distributions when first encountered.
             # TODO: Handle this more succinctly out of main flow.
             '''
-            if entity.resource_type == "Patient":
+            if entity.resource_type == C.FhirResourceTypes.PATIENT.value:
                 # TODO: Add handling to skip if not in record. require?
                 assert(entity.fields is not None)                
-
-                # Initalize distributions for sex, race, and ethnicity.
-                # TODO: Needs additional error handling and variety.
                 
-                for patient_dist_field in patient_dist_fields:                    
-                    # 1. Get the field from the entity that matches the current one of the patient distribution fields.
-                    dist_field = next((field for field in entity.fields if field.path == patient_dist_field), None)
-
-                    # 2. If it has not been seen previously (so, this is patient #1), do initialize distributions
-                    #    This could probably move to a pre-processing step.
-                    if patient_dist_field not in distributions and dist_field is not None:
-                        # TODO: Rewrite this ugly garbage. Needs to check for user setting, fall back to default setting,
-                        # and ensure default setting exists.
-                        dist_field_setting: Setting | None = find_setting(dist_field, configuration.user_responses, default_settings)
-                        if dist_field_setting is not None:
-                            distributions = initialize_patient_distributions(patient_dist_field, configuration.count, dist_field_setting, distributions)
-                        else:
-                            raise HTTPException(status_code=500, detail=f"Could not find default setting for {patient_dist_field} distribution.")
-                    
-                    # 3. For the specific patient, take a value from the distributed values without replacement. If it's gender, set it in the meta
-                    #    for later usage (e.g., name).
+                for patient_dist_field in C.PATIENT_DIST_FIELDS_SET:                    
+                    # Grab a value from the distributions.
                     if patient_dist_field in distributions:
-                        # TODO: This does not handle the case of no field. Needs testing.
                         dist_field_value = distributions[patient_dist_field].pop()
                         patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{patient_dist_field}"] = dist_field_value.lower()
-                        if patient_dist_field == "Patient.gender": # TODO: Is there a better way to reference this than hardcoded?
+                        if patient_dist_field == C.PatientDistributionFields.GENDER.value:
                             patient_meta.update_sex(dist_field_value.lower())
                 
                 # Set Patient Name based on Sex/Gender.
@@ -184,7 +158,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
 
 
                 # Set Patient Age/BirthDate based on Event Date.
-                patient_age_field = next((field for field in entity.fields if field.path == "Patient.birthDate"), None)
+                patient_age_field = next((field for field in entity.fields if field.path == C.SpecialFields.BIRTH_DATE.value), None)
                 if patient_age_field is not None: 
                     patient_age_field_setting: Setting | None = find_setting(patient_age_field, configuration.user_responses, default_settings)
                     if patient_age_field_setting is not None:
@@ -197,7 +171,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                 # Tracks extension index to match to headers. Will always increment whenever an Extension is seen, even if the Patient lacks that extension.
                 extension_index = 2 # TODO: CHANGE ONCE FHIR SHEETS BUG WITH EXTENSIONS RESOLVED -- CHANGE BOTH LOCATIONS
 
-                if field.path not in special_fields:
+                if field.path not in C.SPECIAL_FIELDS_SET:
                     field_setting: Setting | None = None
 
                     generated_value = None
@@ -211,7 +185,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                         if field_setting is None:
                             # If no default setting found, well... this ain't gonna work.
                             raise ValueError(f"Both user and default field setting for {field.path} missing.")
-                        elif field.type == FhirType.EXTENSION.value:
+                        elif field.type == C.FhirType.EXTENSION.value:
                             # Catch extensions to handle them differently.
                             if field.extension_details is None:
                                 pass
@@ -236,11 +210,11 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                                         raise HTTPException(status_code=500, detail=f"Error generating. End date {use_case.generation_rules.end_date} does not point to a valid datetime.")
                     else:
                         # Special Type Functions.
-                        if field.value == SpecialTypeFunctions.UUID.value:
+                        if field.value == C.SpecialTypeFunctions.UUID.value:
                             generated_value = generate_uuid_identifier()
-                        elif field.value == SpecialTypeFunctions.EVENT_DATE.value:
+                        elif field.value == C.SpecialTypeFunctions.EVENT_DATE.value:
                             generated_value = str(patient_event_date)
-                        elif field.value == SpecialTypeFunctions.CONDITION_CLINICAL_STATUS.value:
+                        elif field.value == C.SpecialTypeFunctions.CONDITION_CLINICAL_STATUS.value:
                             # determine if abatement setting exists and is not 0.
                             # set value
                             abatement_field = next((afield for afield in entity.fields if afield.path.startswith("Condition.abatement")), None)
@@ -250,15 +224,15 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                                 # This assumes that the setting is ValueTimeRangeAsDays, this should be refactored if other types are allowed.
                                 if abatement_setting.value.start == 0 and abatement_setting.value.end == 0:
                                     # If there is no abatement range configured at all, assume status is active.
-                                    generated_value = ConditionClinicalStatusValues.ACTIVE.value
+                                    generated_value = C.ConditionClinicalStatusValues.ACTIVE.value
                                 else:
                                     # Otherwise, if there is some value it means abatement has or will be generated so set to resolved.
-                                    generated_value = ConditionClinicalStatusValues.RESOLVED.value
+                                    generated_value = C.ConditionClinicalStatusValues.RESOLVED.value
 
                             else:
                                 # If no abatement field was found in the entity, just assume active.
-                                generated_value = ConditionClinicalStatusValues.ACTIVE.value
-                        elif field.value == SpecialTypeFunctions.PATIENT_CONTACT_POINT.value:
+                                generated_value = C.ConditionClinicalStatusValues.ACTIVE.value
+                        elif field.value == C.SpecialTypeFunctions.PATIENT_CONTACT_POINT.value:
                             generated_value = [
                                 # TODO: HIGH PRIORITY!! "Masked" should be moved to a general setting to cover these values
                                 {"system": "email", "value": generate_email(patient_meta.name)},
@@ -268,17 +242,17 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                             generated_value = handle_by_type(field.type, field, patient_meta, field_setting)
 
 
-                    if field.type == FhirType.IDENTIFIER.value:
+                    if field.type == C.FhirType.IDENTIFIER.value:
                         patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}/Value"] = generated_value
-                        patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}/System"] = identifier_system
-                    elif field.type == FhirType.CONTACT_POINT.value:
+                        patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}/System"] = C.identifier_system
+                    elif field.type == C.FhirType.CONTACT_POINT.value:
                         if isinstance(generated_value, list):
                             for i, v in enumerate(generated_value):
                                 patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}[{i}]/Value"] = v["value"]
                                 patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}[{i}]/System"] = v["system"]
                         else:
                             logger.warning(f"Issue setting ContactPoint. Skipping.")
-                    elif field.type == FhirType.EXTENSION.value:
+                    elif field.type == C.FhirType.EXTENSION.value:
                         if field.extension_details.value_type == "Complex":
                             # TODO: Support complex extension types in the entity model. For now this only actually supports Tribal Affiliation.
                             # Value object needs to be refactored to allow complexity, but for now sets directly to the sub extension value repeatedly.
@@ -297,7 +271,6 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
         '''
         Handle Repeatable Entities
         '''
-        # TODO Swap medication to event set handling.
         if configuration.event_sets:
             for event_set_count, event_set in enumerate(configuration.event_sets):
                 
@@ -346,7 +319,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                             key: tuple[str, str] = (cloned_dr_entity.entity_id), f"{cloned_dr_entity.entity_id}/{field.path}"
                             value: str = ""
                             if not field.user_configured:
-                                if field.value is not None and field.value == "$current":
+                                if field.value is not None and field.value == C.SpecialValues.CURRENT.value:
                                     value = str(current_date)
                                 else:
                                     value = handle_by_type(field.type, field, patient_meta, None)
@@ -378,7 +351,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                                     key: tuple[str, str] = (cloned_entity.entity_id), f"{cloned_entity.entity_id}/{field.path}"
                                     value: str = "" # Default
                                     if not field.user_configured:
-                                        if field.value is not None and field.value == "$current":
+                                        if field.value is not None and field.value == C.SpecialValues.CURRENT.value:
                                             value = str(current_date)
                                         else:
                                             value = handle_by_type(field.type, field, patient_meta, None)
@@ -416,7 +389,6 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
 
     '''
     Handle Medications
-    TODO: Collapse into event set handling
     '''
     if use_case.common_entities and use_case.common_entities.medication and configuration.medication_sets:
         medication_base_entity = read_common_entity(use_case.common_entities.medication)
@@ -469,10 +441,41 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
     
     return resource_definitions, resource_links, cohort
 
-def initialize_patient_distributions(key: str, count: int, field_setting: Setting, distributions: Distributions) -> Distributions:
-    distributions[key] = []
-    dist_list = distribute_weighted_values(count, field_setting.value)
-    distributions[key] = dist_list
+'''
+Distributions and Settings
+'''
+def setup_patient_distributions(entities: list[Entity], configuration: CohortSettings, default_settings: list[Setting]) -> Distributions:
+    """
+    Pre-calculate patient demographic distributions (e.g., gender, race, and ethnicity).
+    Only creates distributions for fields that exist in the patient entity.
+    
+    Args:
+        entities: List of all entities from the use case
+        configuration: Cohort configuration with user responses
+        default_settings: Default settings from use case
+        
+    Returns:
+        Dictionary mapping field paths to lists of pre-distributed values
+    """
+    patient_entity = next((e for e in entities if e.resource_type == C.FhirResourceTypes.PATIENT.value), None)
+    distributions: Distributions = {}
+    if patient_entity is None or patient_entity.fields is None:
+        return distributions
+
+    for patient_dist_field in C.PATIENT_DIST_FIELDS_SET:                    
+        # 1. Get the field from the entity that matches the current one of the patient distribution fields.
+        if patient_entity.fields:
+            dist_field = next((field for field in patient_entity.fields if field.path == patient_dist_field), None)
+
+            # 2. If it has not been seen previously (so, this is patient #1), do initialize distributions
+            #    This could probably move to a pre-processing step.
+
+            dist_field_setting: Setting | None = find_setting(dist_field, configuration.user_responses, default_settings)
+            if dist_field_setting is not None:
+                dist_list = distribute_weighted_values(configuration.count, dist_field_setting.value)
+                distributions[patient_dist_field] = dist_list
+            else:
+                raise HTTPException(status_code=500, detail=f"Could not find default setting for {patient_dist_field} distribution.")
     return distributions
 
 def find_setting(field: Field, user_settings: list[Setting] | None, default_settings: list[Setting]) -> Setting | None:
@@ -497,6 +500,25 @@ def parse_extension(field: Field, patient_meta: PatientMeta, setting: Setting):
         handle_by_type()
     else:
         pass # Error handling for missing extension details.
+
+'''
+Patient Data Generator
+'''
+def generate_patient_row(
+    entities: list[Entity],
+    distributions: Distributions,
+    configuration: CohortSettings,
+    default_settings: list[Setting],
+    common_entities_map: dict,
+    entity_file_cache: dict,
+    loaded_common_entities: dict
+) -> tuple[dict, list[Entity], list[tuple[str, str, str]]]:
+    """
+    Generate a single patient's data row.
+    Returns: (patient_row_dict, dynamic_entities, dynamic_resource_links)
+    Lines 121-413
+    """
+    pass
 
 
 '''
