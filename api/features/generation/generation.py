@@ -7,7 +7,7 @@ from api.features.generation.generators.names import generate_name
 from api.models.field import Field
 from loguru import logger
 from fhir_sheets.core.model.cohort_data_entity import CohortData, PatientEntry
-from api.models.cohort_settings import CohortSettings, Setting
+from api.models.cohort_settings import CohortSettings, MedicationSet, Setting
 from api.models.option import ControlType
 from api.models.use_case import AdditionalEntity, UseCase, FormRule
 from api.models.entity import Entity
@@ -16,7 +16,7 @@ from api.models.value_types import is_value_range, is_value_time_range_as_days, 
 from api.features.generation.fhir_sheets_interfaces import generate_all
 from api.utilities.file_reader import get_use_case_by_id, read_common_entity
 from api.features.generation.type_handlers import handle_by_type, process_choice_of_data_type_value, fhir_type_match_check
-from api.features.generation.weighted_values import distribute_weighted_values
+from api.features.generation.weighted_values import distribute_weighted_values, select_medication_set
 import api.features.generation.constants as C
 from api.features.generation.special_extension_handlers import SpecialExtensions, generate_tribal_affiliation
 from faker import Faker
@@ -111,7 +111,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
     '''
     Handle static entities and patient initialization.
     '''
-    for _ in range(configuration.count):
+    for patient_count in range(configuration.count):
         '''
         Initialize Patient Row and Major Dependent Variables
         patient_row = The row of data for the patient. (Equivalent to spreadsheet row.)
@@ -384,37 +384,21 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                     else:
                         current_date += timedelta(days=increment)
 
+        if use_case.common_entities and use_case.common_entities.medication and configuration.medication_sets:
+            medication_base_entity = read_common_entity(use_case.common_entities.medication)
+            if medication_base_entity:
+                patient_medications, medication_fields = process_patient_medications(
+                    medication_base_entity,
+                    configuration.medication_sets,
+                    patient_count
+                )
+                dynamic_entities.extend(patient_medications)
+                patient_row_as_dict.update(medication_fields)
+
+
+
         patients_as_dicts.append(patient_row_as_dict)
     entities.extend(dynamic_entities)
-
-    '''
-    Handle Medications
-    '''
-    if use_case.common_entities and use_case.common_entities.medication and configuration.medication_sets:
-        medication_base_entity = read_common_entity(use_case.common_entities.medication)
-        if medication_base_entity:
-            medication_entities: list[Entity] = []
-            for set_count, medication_set in enumerate(configuration.medication_sets):
-                for med_count, medication in enumerate(medication_set.medications):
-                    medication_entity = copy(medication_base_entity)
-                    medication_entity.entity_id = f"{medication_entity.entity_id}_{set_count}_{med_count}"
-                    medication_entities.append(medication_entity)
-                    for field in medication_entity.fields or []:
-                        key: tuple[str, str] = (medication_entity.entity_id), f"{medication_entity.entity_id}/{field.path}"
-                        value: str | None = None
-                        if not field.user_configured:
-                            value = field.value if type(field. value) is str else ""
-                        else:
-                            if field.path == "MedicationRequest.medicationCodeableConcept":
-                                value = f"{medication.codeable_concept.system}^{medication.codeable_concept.code}^{medication.codeable_concept.display}"
-                            elif field.path == "MedicationRequest.dosageInstruction.[0].text":
-                                value = medication.dosage
-                        for patient in patients_as_dicts:
-                            if value is not None:
-                                patient[key] = value
-            entities.extend(medication_entities)
-        else:
-            raise FileNotFoundError(f"ERROR - Could not read common medication entity: {use_case.common_entities.medication}")
 
     end = time.time()
     with logger.contextualize(run_id=session_id):
@@ -437,7 +421,6 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
             log_resource_links(session_id, resource_links)
             logger.info(headers)
             logger.info(patients)
-    
     
     return resource_definitions, resource_links, cohort
 
@@ -519,6 +502,60 @@ def generate_patient_row(
     Lines 121-413
     """
     pass
+
+
+
+'''
+Medication Generator
+'''
+def process_patient_medications(
+    medication_base_entity: Entity,
+    medication_sets: list[MedicationSet],
+    patient_index: int
+) -> tuple[list[Entity], dict[tuple[str, str], str]]:
+    """
+    Select and process medications for a single patient.
+    
+    Args:
+        medication_base_entity: Base entity template for medications
+        medication_sets: Available medication sets to choose from
+        patient_index: Patient index for unique entity IDs
+        
+    Returns:
+        Tuple of (medication entities, patient field values dict)
+    """
+    medication_entities: list[Entity] = []
+    patient_fields: dict[tuple[str, str], str] = {}
+    
+    # Select a medication set for this patient
+    selected_set = select_medication_set(medication_sets)
+    
+    # Process each medication in the selected set
+    for med_count, medication in enumerate(selected_set.medications):
+        medication_entity = copy(medication_base_entity)
+        medication_entity.entity_id = f"{medication_entity.entity_id}_{patient_index}_{med_count}"
+        medication_entities.append(medication_entity)
+        
+        for field in medication_entity.fields or []:
+            key: tuple[str, str] = (
+                medication_entity.entity_id,
+                f"{medication_entity.entity_id}/{field.path}"
+            )
+            value: str | None = None
+            
+            if not field.user_configured:
+                value = field.value if isinstance(field.value, str) else ""
+            else:
+                if field.path == "MedicationRequest.medicationCodeableConcept":
+                    value = f"{medication.codeable_concept.system}^{medication.codeable_concept.code}^{medication.codeable_concept.display}"
+                elif field.path == "MedicationRequest.dosageInstruction.[0].text":
+                    value = medication.dosage
+            
+            if value is not None:
+                patient_fields[key] = value
+    
+    return medication_entities, patient_fields
+
 
 
 '''

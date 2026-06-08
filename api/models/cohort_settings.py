@@ -18,7 +18,7 @@ class Medication(CamelModel):
 
 class MedicationSet(CamelModel):
     medications: List[Medication] = []
-    weight: Decimal
+    weight: int | float
 
 class EventPeriod(CamelModel):
     start: date

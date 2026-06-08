@@ -1,6 +1,6 @@
 {
     "useCaseId": "condition-based-record",
-    "count": 1,
+    "count": 50,
     "userResponses": [
         {
             "ruleId": "patient-names",
@@ -140,7 +140,12 @@
                         "system": "http://www.nlm.nih.gov/research/umls/rxnorm"
                     },
                     "dosage": "300 mg"
-                },
+                }
+            ]
+        },
+        {
+            "weight": 0.5,
+            "medications": [
                 {
                     "codeableConcept": {
                         "display": "rifampin",

@@ -85,7 +85,7 @@ It does the same thing but just always assume the day conversion has already hap
 
 class ValueWeight(CamelModel):
     value: str
-    weight: int | float | Decimal
+    weight: int | float
 
 class ValueWeights(CamelModel):
     values: list[ValueWeight]
