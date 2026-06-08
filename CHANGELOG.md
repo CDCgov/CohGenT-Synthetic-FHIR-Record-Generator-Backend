@@ -9,6 +9,7 @@
   * New field type, "Extension" (case sensitive).
   * "Extension" has an additional `extensionDetails` field which is required if type is Extension. The `extensionDetails` field defines both the extension's value\[x\] type as well as the extension's FHIR URI.
   * NOTE: Arbitrary sub extensions not currently supported. Framework for FHIR Sheets headers is in place, but generation values need more complexity to support in full. Only Tribal Affiliation is currently supported, and only the affiliation not enrollment. This needs to be expanded upon in future versions as the need for arbitrary complex extension handle arises.
+* Medication Sets added (this replaces old medication handling). Medications are now configured in sets, with each set having a given weight. A patient has one of the sets randomly selected for them. Note: This is the simple version allowing some configuration for those who want more variety in medications. It does not currently support timing or any other advanced features. Medication Sets are always an "or" relationship.
 ### Changed
 * "Force Reseed" option now also applies to valuesets (and will apply to all other seeded data as well).
 
