@@ -1,0 +1,775 @@
+{
+    "resourceType": "Bundle",
+    "id": "34e8f09e-bcad-4d08-82fe-2f88643c1774",
+    "meta": {
+        "security": [
+            {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+                "code": "HTEST",
+                "display": "test health data"
+            }
+        ]
+    },
+    "type": "transaction",
+    "entry": [
+        {
+            "fullUrl": "urn:uuid:28dfad54-a89f-41e4-bf0e-b26c092a806d",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "28dfad54-a89f-41e4-bf0e-b26c092a806d",
+                "meta": {
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+                    ],
+                    "security": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+                            "code": "HTEST",
+                            "display": "test health data"
+                        }
+                    ]
+                },
+                "gender": "male",
+                "extension": [
+                    {
+                        "extension": [
+                            {
+                                "url": "ombCategory",
+                                "valueCoding": {
+                                    "system": "urn:oid:2.16.840.1.113883.6.238",
+                                    "code": "2186-5",
+                                    "display": "Not Hispanic or Latino"
+                                }
+                            },
+                            {
+                                "url": "text",
+                                "valueString": "Not Hispanic or Latino"
+                            }
+                        ],
+                        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
+                    },
+                    {
+                        "extension": [
+                            {
+                                "url": "ombCategory",
+                                "valueCoding": {
+                                    "system": "urn:oid:2.16.840.1.113883.6.238",
+                                    "code": "2054-5",
+                                    "display": "Black or African American"
+                                }
+                            },
+                            {
+                                "url": "text",
+                                "valueString": "black or african american"
+                            }
+                        ],
+                        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-tribal-affiliation",
+                        "extension": [
+                            {
+                                "url": "tribalAffiliation",
+                                "valueCodeableConcept": {
+                                    "coding": [
+                                        {
+                                            "system": "http://terminology.hl7.org/CodeSystem/v3-TribalEntityUS",
+                                            "code": "170",
+                                            "display": "Navajo Nation, Arizona, New Mexico, & Utah"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "birthDate": "1973-03-10",
+                "name": [
+                    {
+                        "family": "Chan",
+                        "given": [
+                            "Brian"
+                        ]
+                    }
+                ],
+                "deceasedBoolean": false,
+                "telecom": [
+                    {
+                        "value": "brian.chan@example.com",
+                        "system": "email"
+                    },
+                    {
+                        "value": "7483762532",
+                        "system": "phone"
+                    }
+                ],
+                "identifier": [
+                    {
+                        "value": "55ff2632-212e-5a0b-363c-286858409f52",
+                        "system": "urn:cohgent:identifier:patient"
+                    }
+                ],
+                "address": [
+                    {
+                        "line": [
+                            "0031 Hodge Shoal"
+                        ],
+                        "city": "West Anna",
+                        "postalCode": "06371",
+                        "state": "CT",
+                        "country": "US"
+                    }
+                ]
+            },
+            "request": {
+                "method": "PUT",
+                "url": "Patient/28dfad54-a89f-41e4-bf0e-b26c092a806d"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:d7bead59-70bd-4231-82c4-71868b959217",
+            "resource": {
+                "resourceType": "Encounter",
+                "id": "d7bead59-70bd-4231-82c4-71868b959217",
+                "meta": {
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter"
+                    ],
+                    "security": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+                            "code": "HTEST",
+                            "display": "test health data"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "value": "6776ba0f-2dd3-4c12-114e-5ef981e29416",
+                        "system": "urn:cohgent:identifier:encounter"
+                    }
+                ],
+                "status": "finished",
+                "class": {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                    "code": "AMB",
+                    "display": "ambulatory"
+                },
+                "type": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "308335008",
+                                "display": "Patient encounter procedure (procedure)"
+                            }
+                        ]
+                    }
+                ],
+                "period": {
+                    "start": "2026-03-10T00:00:00Z",
+                    "end": "2026-03-10T00:00:00Z"
+                },
+                "subject": {
+                    "reference": "Patient/28dfad54-a89f-41e4-bf0e-b26c092a806d"
+                },
+                "reasonReference": [
+                    {
+                        "reference": "Condition/94ebc2ff-f554-49b4-8060-db07310b8d1a"
+                    }
+                ],
+                "serviceProvider": {
+                    "reference": "Organization/444336e4-fc29-412a-bf38-b85ea606adb5"
+                },
+                "participant": {
+                    "reference": "Practitioner/83075dce-bc98-4211-833c-15c14c6012fb"
+                }
+            },
+            "request": {
+                "method": "PUT",
+                "url": "Encounter/d7bead59-70bd-4231-82c4-71868b959217"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:94ebc2ff-f554-49b4-8060-db07310b8d1a",
+            "resource": {
+                "resourceType": "Condition",
+                "id": "94ebc2ff-f554-49b4-8060-db07310b8d1a",
+                "meta": {
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis"
+                    ],
+                    "security": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+                            "code": "HTEST",
+                            "display": "test health data"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "value": "0e1f6aef-0b68-6f9e-be97-26b7c021f5a9",
+                        "system": "urn:cohgent:identifier:condition"
+                    }
+                ],
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                            "code": "active",
+                            "display": "Active"
+                        }
+                    ]
+                },
+                "verificationStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+                            "code": "confirmed",
+                            "display": "Confirmed"
+                        }
+                    ]
+                },
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                                "code": "encounter-diagnosis",
+                                "display": "Encounter Diagnosis"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "56717001",
+                            "display": "Tuberculosis"
+                        }
+                    ]
+                },
+                "onsetDateTime": "2026-03-10T00:00:00Z",
+                "subject": {
+                    "reference": "Patient/28dfad54-a89f-41e4-bf0e-b26c092a806d"
+                }
+            },
+            "request": {
+                "method": "PUT",
+                "url": "Condition/94ebc2ff-f554-49b4-8060-db07310b8d1a"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:6b8f2d97-0ddd-4db2-853a-63dc835c7e6e",
+            "resource": {
+                "resourceType": "Procedure",
+                "id": "6b8f2d97-0ddd-4db2-853a-63dc835c7e6e",
+                "meta": {
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure"
+                    ],
+                    "security": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+                            "code": "HTEST",
+                            "display": "test health data"
+                        }
+                    ]
+                },
+                "status": "completed",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "399208008",
+                            "display": "Plain chest X-ray"
+                        }
+                    ]
+                },
+                "performedDateTime": "2026-03-15T00:00:00Z",
+                "subject": {
+                    "reference": "Patient/28dfad54-a89f-41e4-bf0e-b26c092a806d"
+                },
+                "performer": {
+                    "reference": "Practitioner/83075dce-bc98-4211-833c-15c14c6012fb"
+                }
+            },
+            "request": {
+                "method": "PUT",
+                "url": "Procedure/6b8f2d97-0ddd-4db2-853a-63dc835c7e6e"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:1fdd50b3-2505-41dd-aa66-f5c7bedd328a",
+            "resource": {
+                "resourceType": "DiagnosticReport",
+                "id": "1fdd50b3-2505-41dd-aa66-f5c7bedd328a",
+                "meta": {
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note"
+                    ],
+                    "security": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+                            "code": "HTEST",
+                            "display": "test health data"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://loinc.org",
+                                "code": "LP29684-5",
+                                "display": "Radiology"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "399208008",
+                            "display": "Plain chest X-ray"
+                        }
+                    ]
+                },
+                "effectiveDateTime": "2026-03-15T00:00:00Z",
+                "issued": "2026-03-15T00:00:00Z",
+                "subject": {
+                    "reference": "Patient/28dfad54-a89f-41e4-bf0e-b26c092a806d"
+                }
+            },
+            "request": {
+                "method": "PUT",
+                "url": "DiagnosticReport/1fdd50b3-2505-41dd-aa66-f5c7bedd328a"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:94a78f88-461b-4a24-8a01-703c33f4bd16",
+            "resource": {
+                "resourceType": "DiagnosticReport",
+                "id": "94a78f88-461b-4a24-8a01-703c33f4bd16",
+                "meta": {
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab"
+                    ],
+                    "security": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+                            "code": "HTEST",
+                            "display": "test health data"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                                "code": "LAB",
+                                "display": "Laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "24323-8",
+                            "display": "Comprehensive metabolic 2000 panel - Serum or Plasma"
+                        }
+                    ]
+                },
+                "effectiveDateTime": "2026-03-17T00:00:00Z",
+                "issued": "2026-03-17T00:00:00Z",
+                "subject": {
+                    "reference": "Patient/28dfad54-a89f-41e4-bf0e-b26c092a806d"
+                },
+                "result": [
+                    {
+                        "reference": "Observation/36d64cbd-b722-499c-b717-0c68bbec75b2"
+                    },
+                    {
+                        "reference": "Observation/900748aa-d795-42fc-8ed4-acd8c4f5b186"
+                    }
+                ]
+            },
+            "request": {
+                "method": "PUT",
+                "url": "DiagnosticReport/94a78f88-461b-4a24-8a01-703c33f4bd16"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:36d64cbd-b722-499c-b717-0c68bbec75b2",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "36d64cbd-b722-499c-b717-0c68bbec75b2",
+                "meta": {
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab"
+                    ],
+                    "security": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+                            "code": "HTEST",
+                            "display": "test health data"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory",
+                                "display": "Laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "6298-4",
+                            "display": "Potassium [Moles/volume] in Blood"
+                        }
+                    ]
+                },
+                "valueQuantity": {
+                    "value": 3.916745444908327,
+                    "unit": "mmol/L",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "mmol/L"
+                },
+                "effectiveDateTime": "2026-03-17T00:00:00Z",
+                "subject": {
+                    "reference": "Patient/28dfad54-a89f-41e4-bf0e-b26c092a806d"
+                },
+                "performer": {
+                    "reference": "PractitionerRole/6871cf5f-5275-41e8-acff-d10323c0dc74"
+                }
+            },
+            "request": {
+                "method": "PUT",
+                "url": "Observation/36d64cbd-b722-499c-b717-0c68bbec75b2"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:6871cf5f-5275-41e8-acff-d10323c0dc74",
+            "resource": {
+                "resourceType": "PractitionerRole",
+                "id": "6871cf5f-5275-41e8-acff-d10323c0dc74",
+                "meta": {
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole"
+                    ],
+                    "security": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+                            "code": "HTEST",
+                            "display": "test health data"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "system": "urn:cohgent:identifier:practitionerrole",
+                        "value": "ROLE-LAB-001"
+                    }
+                ],
+                "active": true,
+                "code": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "159001000000105",
+                                "display": "Medical Laboratory Scientist"
+                            }
+                        ]
+                    }
+                ],
+                "specialty": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "261904005",
+                                "display": "Clinical laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "555-0101"
+                    },
+                    {
+                        "system": "email",
+                        "value": "james.martinez@citylab.example"
+                    }
+                ],
+                "practitioner": {
+                    "reference": "Practitioner/83075dce-bc98-4211-833c-15c14c6012fb"
+                },
+                "organization": {
+                    "reference": "Organization/444336e4-fc29-412a-bf38-b85ea606adb5"
+                }
+            },
+            "request": {
+                "method": "PUT",
+                "url": "PractitionerRole/6871cf5f-5275-41e8-acff-d10323c0dc74"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:83075dce-bc98-4211-833c-15c14c6012fb",
+            "resource": {
+                "resourceType": "Practitioner",
+                "id": "83075dce-bc98-4211-833c-15c14c6012fb",
+                "meta": {
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"
+                    ],
+                    "security": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+                            "code": "HTEST",
+                            "display": "test health data"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "system": "http://hl7.org/fhir/sid/us-npi",
+                        "value": "1691847523"
+                    }
+                ],
+                "name": [
+                    {
+                        "family": "Martinez",
+                        "given": [
+                            "James"
+                        ],
+                        "suffix": [
+                            "MT(ASCP)"
+                        ]
+                    }
+                ],
+                "gender": "male",
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "555-0101"
+                    },
+                    {
+                        "system": "email",
+                        "value": "james.martinez@citylab.example"
+                    }
+                ],
+                "address": [
+                    {
+                        "line": [
+                            "456 Medical Plaza Suite 200"
+                        ],
+                        "city": "Anytown",
+                        "postalCode": "12345",
+                        "state": "IL",
+                        "country": "US"
+                    }
+                ],
+                "qualification": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "159001000000105",
+                                    "display": "Medical Laboratory Scientist"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "PUT",
+                "url": "Practitioner/83075dce-bc98-4211-833c-15c14c6012fb"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:444336e4-fc29-412a-bf38-b85ea606adb5",
+            "resource": {
+                "resourceType": "Organization",
+                "id": "444336e4-fc29-412a-bf38-b85ea606adb5",
+                "meta": {
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"
+                    ],
+                    "security": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+                            "code": "HTEST",
+                            "display": "test health data"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "system": "urn:cohgent:identifier:organization",
+                        "value": "ORG-CITYLAB-001"
+                    }
+                ],
+                "active": true,
+                "type": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+                                "code": "dept",
+                                "display": "Hospital Department"
+                            }
+                        ]
+                    }
+                ],
+                "name": "City Medical Laboratory",
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "555-0300"
+                    },
+                    {
+                        "system": "fax",
+                        "value": "555-0301"
+                    },
+                    {
+                        "system": "email",
+                        "value": "lab@citylab.example"
+                    }
+                ],
+                "address": [
+                    {
+                        "line": [
+                            "456 Medical Plaza Suite 200"
+                        ],
+                        "city": "Anytown",
+                        "postalCode": "12345",
+                        "state": "IL",
+                        "country": "US"
+                    }
+                ]
+            },
+            "request": {
+                "method": "PUT",
+                "url": "Organization/444336e4-fc29-412a-bf38-b85ea606adb5"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:900748aa-d795-42fc-8ed4-acd8c4f5b186",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "900748aa-d795-42fc-8ed4-acd8c4f5b186",
+                "meta": {
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab"
+                    ],
+                    "security": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+                            "code": "HTEST",
+                            "display": "test health data"
+                        }
+                    ]
+                },
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory",
+                                "display": "Laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "94500-6",
+                            "display": "SARS-CoV-2 (COVID-19) RNA [Presence] in Respiratory system specimen by NAA with probe detection"
+                        }
+                    ]
+                },
+                "valueString": "detected",
+                "effectiveDateTime": "2026-03-17T00:00:00Z",
+                "subject": {
+                    "reference": "Patient/28dfad54-a89f-41e4-bf0e-b26c092a806d"
+                },
+                "performer": {
+                    "reference": "PractitionerRole/6871cf5f-5275-41e8-acff-d10323c0dc74"
+                }
+            },
+            "request": {
+                "method": "PUT",
+                "url": "Observation/900748aa-d795-42fc-8ed4-acd8c4f5b186"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:80c6c356-227c-4759-bee3-182c0de2af51",
+            "resource": {
+                "resourceType": "MedicationRequest",
+                "id": "80c6c356-227c-4759-bee3-182c0de2af51",
+                "meta": {
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest"
+                    ],
+                    "security": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+                            "code": "HTEST",
+                            "display": "test health data"
+                        }
+                    ]
+                },
+                "status": "active",
+                "intent": "order",
+                "medicationCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "1111",
+                            "display": "someothermed"
+                        }
+                    ]
+                },
+                "dosageInstruction": [
+                    {
+                        "text": "300 mg"
+                    }
+                ],
+                "subject": {
+                    "reference": "Patient/28dfad54-a89f-41e4-bf0e-b26c092a806d"
+                },
+                "requester": {
+                    "reference": "Practitioner/83075dce-bc98-4211-833c-15c14c6012fb"
+                }
+            },
+            "request": {
+                "method": "PUT",
+                "url": "MedicationRequest/80c6c356-227c-4759-bee3-182c0de2af51"
+            }
+        }
+    ]
+}
