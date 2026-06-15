@@ -122,8 +122,8 @@ def generate_resource_links(entities: list[Entity], dynamic_links: list[tuple[st
         if entity.reference_path:
             link = ResourceLink(entity.entity_id, entity.reference_path, subject_entity_name)
             resource_links.append(link)
-        if entity.other_references:
-            for reference in entity.other_references:
+        if entity.static_references:
+            for reference in entity.static_references:
                 link = ResourceLink(entity.entity_id, reference.reference_path, reference.target_entity)
                 resource_links.append(link)
     

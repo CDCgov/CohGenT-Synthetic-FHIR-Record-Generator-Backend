@@ -1,0 +1,131 @@
+// US Core Practitioner - Medical Laboratory Technician
+// Modify values below as needed, then request full FHIR Sheets entity build
+
+// ========================================
+// IDENTIFIERS
+// ========================================
+// NPI Identifier Value: 1691847523
+// NPI Identifier System: http://hl7.org/fhir/sid/us-npi
+// Note: Type 1 NPI (individual provider) verified non-existent in NPPES registry as of 2026-06-10
+
+// ========================================
+// NAME
+// ========================================
+// Family Name: Martinez
+// Given Name(s): James
+// Prefix: (leave empty if none)
+// Suffix: MT(ASCP)
+
+// ========================================
+// CONTACT INFORMATION
+// ========================================
+// Phone: 555-0101
+// Email: james.martinez@citylab.example
+
+// ========================================
+// ADDRESS
+// ========================================
+// Street Line 1: 456 Medical Plaza
+// Street Line 2: Suite 200
+// City: Anytown
+// State: IL
+// Postal Code: 12345
+// Country: US
+
+// ========================================
+// DEMOGRAPHICS
+// ========================================
+// Gender: male
+
+// ========================================
+// QUALIFICATIONS
+// ========================================
+// Qualification Code: 159001000000105
+// Qualification System: http://snomed.info/sct
+// Qualification Display: Medical Laboratory Scientist
+// Issuer: American Society for Clinical Pathology
+
+{
+    "abstract": false,
+    "entityId": "USCorePractitioner002",
+    "resourceType": "Practitioner",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner",
+    "fields": [
+        {
+            "path": "Practitioner.identifier.[0].system",
+            "type": "string",
+            "userConfigured": false,
+            "value": "http://hl7.org/fhir/sid/us-npi"
+        },
+        {
+            "path": "Practitioner.identifier.[0].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "1691847523"            
+        },
+        {
+            "path": "Practitioner.name.[0].family",
+            "type": "string",
+            "userConfigured": false,
+            "value": "Martinez"
+        },
+        {
+            "path": "Practitioner.name.[0].given.[0]",
+            "type": "string",
+            "userConfigured": false,
+            "value": "James"
+        },
+        {
+            "path": "Practitioner.name.[0].suffix.[0]",
+            "type": "string",
+            "userConfigured": false,
+            "value": "MT(ASCP)"
+        },
+        {
+            "path": "Practitioner.gender",
+            "type": "code",
+            "userConfigured": false,
+            "value": "male"            
+        },
+        {
+            "path": "Practitioner.telecom.[0].system",
+            "type": "code",
+            "userConfigured": false,
+            "value": "phone"
+        },
+        {
+            "path": "Practitioner.telecom.[0].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "555-0101"
+        },
+        {
+            "path": "Practitioner.telecom.[1].system",
+            "type": "code",
+            "userConfigured": false,
+            "value": "email"
+        },
+        {
+            "path": "Practitioner.telecom.[1].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "james.martinez@citylab.example"
+        },
+        {
+            "path": "Practitioner.address.[0]",
+            "type": "Address",
+            "userConfigured": false,
+            "value": "456 Medical Plaza Suite 200^Anytown^^12345^IL^US"
+        },
+        {
+            "path": "Practitioner.qualification.[0].code",
+            "type": "CodeableConcept",
+            "userConfigured": false,
+            "value": { 
+                "system": "http://snomed.info/sct",
+                "code": "159285000",
+                "display": "Medical laboratory technician"
+            }
+        }
+    ]
+}

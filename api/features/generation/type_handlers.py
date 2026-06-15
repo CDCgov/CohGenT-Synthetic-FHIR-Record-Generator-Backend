@@ -60,6 +60,9 @@ def boolean(field_setting: Setting, patient_meta: PatientMeta, static_value: Val
     else:
         raise TypeError(f"Static value type is not none and does not match the expected FHIR type of boolean.")
 
+def is_bool(value: object) -> TypeGuard[bool]:
+    return isinstance(value, bool)
+
 def date(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueX, **kwargs): # -> date:
     raise NotImplementedError("date type handler not implemented. Patient birth date handled specially.")
 
@@ -87,7 +90,7 @@ def instant(field_setting: Setting, patient_meta: PatientMeta, static_value: Val
 def string(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueX, **kwargs) -> str:
     if isinstance(static_value, str):
         return static_value
-    return "ERROR - MAY NOT IMPLEMENTED"
+    return "ERROR - MAY NOT BE IMPLEMENTED"
 
 def code(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueX, **kwargs) ->  Code:
     return string(field_setting, patient_meta, static_value)
@@ -96,21 +99,30 @@ def Address(field_setting: Setting, patient_meta: PatientMeta, static_value: Val
     # line^city^county^postalcode^state^country
     if is_value_location(field_setting.value):
         address_string = generate_address(field_setting.value.city, field_setting.value.state)
-
         return address_string
+    elif isinstance(field_setting.value, str) and field_setting.value.count("^") == 5:
+        # if a string and looks like a valid complete address, just use it directly.
+        return field_setting.value
+        
     else:
         raise TypeError(f"{type(field_setting.value)} not (yet?) supported by Address when generating {field_setting.rule_id}.")
 
 def Identifier(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueX, **kwargs):
     raise NotImplementedError("Identifier type handler not implemented. Randomized identifiers should be handled through the $uuid special value for now.")
 
-# Note: This handles whether or not names should be masked. There is never a reason to process the HumanName type itself, nor static values.
+
 def HumanName(field_setting: Setting, meta: PatientMeta, static_value: ValueX, **kwargs):
+    '''
+    Processes generation behavior for the FHIR HumanName type. For patient generation where names are always randomized, the expected value is a bool to
+    indicate whether or not masking should occur. For static, non-user configured data, this will accept any string which is bounced back as the value.
+    '''
     if is_bool(field_setting.value):
         if field_setting.value:
             return SpecialValues.MASKED
         else:
             return meta.name
+    elif isinstance(field_setting.value, str):
+        return field_setting.value
     else:
         raise ValueError(f"Expected bool for type HumanName to determine data masking - {field_setting}.")
 
@@ -120,22 +132,17 @@ def CodeableConcept(field_setting: Setting, patient_meta: PatientMeta, static_va
 
 def Coding(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueCoding, **kwargs):
     if is_value_coding(static_value):
-        system = static_value.system if static_value.system is not None else ''
-        code = static_value.code if static_value.code is not None else ''
-        display = static_value.display if static_value.display is not None else ''
-        return f"{static_value.system}^{static_value.code}^{static_value.display}"
+        return value_coding_to_string(static_value)
     elif is_value_coding(field_setting.value):
-        system = field_setting.value.system if field_setting.value.system is not None else ''
-        code = field_setting.value.code if field_setting.value.code is not None else ''
-        display = field_setting.value.display if field_setting.value.display is not None else ''
-        return f"{system}^{code}^{display}"
+        return value_coding_to_string(field_setting.value)
     else:
         raise TypeError(f"Expected ValueCodeableConcept for type Codeable Concept - {field_setting}")
 
-
-
-def is_bool(value: object) -> TypeGuard[bool]:
-    return isinstance(value, bool)
+def value_coding_to_string(value: ValueCoding) -> str:
+    '''
+    Convert a ValueCoding object to a FHIR Sheets carat delimited string.
+    '''
+    return f"{value.system or ''}^{value.code or ''}^{value.display or ''}"
 
 def Quantity(field_setting: Setting, patient_meta: PatientMeta, static_value: dict, **kwargs):
     raise NotImplementedError("Quantity type handler not implemented. Quantity is only supported through the choice of data type handler for observations for now.")

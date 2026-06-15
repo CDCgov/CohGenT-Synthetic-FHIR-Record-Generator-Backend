@@ -11,12 +11,17 @@ class FormRule(CamelModel):
     description: str
     options: Optional[list[Option]] = None
 
+class DynamicReferencePointer(CamelModel):
+    link_identifier: str
+    target_entity_identifier: str
+
 class AdditionalEntity(CamelModel):
     entity_id: str
     type: str
     button_label: str
     entity_file: str
     default_system: Optional[str] = None
+    dynamic_references: Optional[list[DynamicReferencePointer]] = None
 
 class CommonEntities(CamelModel):
     additional_entities: Optional[list[AdditionalEntity]] = None

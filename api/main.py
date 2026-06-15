@@ -30,7 +30,7 @@ from api.utilities.settings import get_settings
 from api.models.responses.basic_response_models import InfoResponse, UseCaseCollectionResponse
 from api.database.database_client import DatabaseClient, get_main_db
 from api.database import db_preset_tables, db_sample_tables, db_other_tables  # type: ignore - IMPORT IS REQUIRED TO BUILD TABLES
-from api.routers import presets_router, terminology_router, samples_router, valuesets_router
+from api.routers import presets_router, terminology_router, samples_router, valuesets_router, providers_router
 from api.models.cohort_settings import OutputFormat
 
 from fhir_sheets.core.config.FhirSheetsConfiguration import FhirSheetsConfiguration # type: ignore
@@ -79,6 +79,10 @@ async def lifespan(app: FastAPI):
         logger.info("Seed data loaded successfully")
         cache = get_preset_cache(db_session)
         logger.info(f"Preset cache initialized with {len(cache)} codes.")
+
+        from api.database.seed_provider_entities import seed_provider_entities
+        seed_provider_entities(db_session, force_reseed=settings.force_reseed)
+    
     except FileNotFoundError as e:
         logger.error(f"Lab value preset seed data file not found: {e}")
     except Exception as e:
@@ -111,6 +115,7 @@ if settings.root_path:
 app.include_router(presets_router.router)
 app.include_router(samples_router.router)
 app.include_router(valuesets_router.router)
+app.include_router(providers_router.router)
 if omop_client is not None:
     app.include_router(terminology_router.router)
 
@@ -190,7 +195,8 @@ async def generate_fhir(cohort_settings: CohortSettings, raw: bool = False, main
                 bundle_dict = create_transaction_bundle(resource_definitions, resource_links, cohort, i, fhir_sheets_config) # pyright: ignore[reportUnknownVariableType]
                 bundle = Bundle.model_validate(bundle_dict)
                 bundle_list.append(bundle)
-        except Exception:
+        except Exception as e: 
+            logger.exception(e)
             raise HTTPException(status_code=500, detail="Something went wrong executing FHIR generation library.")
         if raw:
             return package_contents_as_json(bundle_list, cohort_settings)

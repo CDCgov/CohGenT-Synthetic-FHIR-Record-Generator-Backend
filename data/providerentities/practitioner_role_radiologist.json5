@@ -1,0 +1,126 @@
+// US Core PractitionerRole - Radiologist at Regional Imaging Center
+// Modify values below as needed, then request full FHIR Sheets entity build
+
+// ========================================
+// IDENTIFIERS
+// ========================================
+// Identifier Value: ROLE-RAD-001
+// Identifier System: urn:cohgent:identifier:practitionerrole
+
+// ========================================
+// ACTIVE STATUS
+// ========================================
+// Active: true
+
+// ========================================
+// PRACTITIONER REFERENCE
+// ========================================
+// Practitioner ID: (will be linked via otherReferences)
+// Practitioner NPI: 1539174682
+
+// ========================================
+// ORGANIZATION REFERENCE
+// ========================================
+// Organization ID: (will be linked via otherReferences)
+// Organization Identifier: ORG-IMAGING-001
+
+// ========================================
+// CODE (ROLE)
+// ========================================
+// Role Code: 66862007
+// Role System: http://snomed.info/sct
+// Role Display: Radiologist
+
+// ========================================
+// SPECIALTY
+// ========================================
+// Specialty Code: 394914008
+// Specialty System: http://snomed.info/sct
+// Specialty Display: Radiology - specialty
+
+// ========================================
+// TELECOM
+// ========================================
+// Phone: 555-0102
+// Email: alex.johnson@regionalimaging.example
+
+{
+    "abstract": false,
+    "entityId": "USCorePractitionerRole003",
+    "resourceType": "PractitionerRole",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole",
+    "staticReferences": [
+        {
+            "referencePath": "practitioner",
+            "targetEntity": "USCorePractitioner003"
+        },
+        {
+            "referencePath": "organization",
+            "targetEntity": "USCoreOrganization003"
+        }
+    ],
+    "fields": [
+        {
+            "path": "PractitionerRole.identifier.[0].system",
+            "type": "string",
+            "userConfigured": false,
+            "value": "urn:cohgent:identifier:practitionerrole"
+        },
+        {
+            "path": "PractitionerRole.identifier.[0].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "ROLE-RAD-001"
+        },
+        {
+            "path": "PractitionerRole.active",
+            "type": "boolean",
+            "userConfigured": false,
+            "value": true
+        },
+        {
+            "path": "PractitionerRole.code.[0]",
+            "type": "CodeableConcept",
+            "userConfigured": false,
+            "value": {
+                "system": "http://snomed.info/sct",
+                "code": "66862007",
+                "display": "Radiologist"
+            }
+        },
+        {
+            "path": "PractitionerRole.specialty.[0]",
+            "type": "CodeableConcept",
+            "userConfigured": false,
+            "value": {
+                "system": "http://snomed.info/sct",
+                "code": "394914008",
+                "display": "Radiology - specialty"
+            }
+        },
+        {
+            "path": "PractitionerRole.telecom.[0].system",
+            "type": "code",
+            "userConfigured": false,
+            "value": "phone"
+        },
+        {
+            "path": "PractitionerRole.telecom.[0].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "555-0102"
+        },
+        {
+            "path": "PractitionerRole.telecom.[1].system",
+            "type": "code",
+            "userConfigured": false,
+            "value": "email"
+        },
+        {
+            "path": "PractitionerRole.telecom.[1].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "alex.johnson@regionalimaging.example"
+        }
+    ]
+}

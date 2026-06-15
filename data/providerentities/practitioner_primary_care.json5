@@ -1,0 +1,126 @@
+// US Core Practitioner - General Practitioner
+// Modify values below as needed, then request full FHIR Sheets entity build
+
+// ========================================
+// IDENTIFIERS
+// ========================================
+// NPI Identifier Value: 1847362915
+// NPI Identifier System: http://hl7.org/fhir/sid/us-npi
+// Note: Type 1 NPI (individual provider) verified non-existent in NPPES registry as of 2026-06-10
+
+// ========================================
+// NAME
+// ========================================
+// Family Name: Smith
+// Given Name(s): Jane
+// Prefix: Dr.
+// Suffix: (leave empty if none)
+
+// ========================================
+// CONTACT INFORMATION
+// ========================================
+// Phone: 555-0100
+// Email: jane.smith@metrohealth.example
+
+
+
+// ========================================
+// DEMOGRAPHICS
+// ========================================
+// Gender: female
+
+
+
+
+
+{
+    "abstract": false,
+    "entityId": "USCorePractitioner001",
+    "resourceType": "Practitioner",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner",
+    "fields": [
+
+        {
+            "path": "Practitioner.identifier.[0].system",
+            "type": "string",
+            "userConfigured": false,
+            "value": "http://hl7.org/fhir/sid/us-npi"
+        },
+        {
+            "path": "Practitioner.identifier.[0].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "1847362915"            
+        },
+        {
+            "path": "Practitioner.name.[0]",
+            "type": "HumanName",
+            "userConfigured": false,
+            "value": "Jane Smith"
+        },
+        {
+            "path": "Practitioner.gender",
+            "type": "code",
+            "userConfigured": false,
+            "value": "female"            
+        },
+        {
+            "path": "Practitioner.telecom.[0].system",
+            "type": "code",
+            "userConfigured": false,
+            "value": "phone"
+        },
+        {
+            "path": "Practitioner.telecom.[0].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "555-555-0100"
+        },
+        {
+            "path": "Practitioner.telecom.[1].system",
+            "type": "code",
+            "userConfigured": false,
+            "value": "email"
+        },
+        {
+            "path": "Practitioner.telecom.[1].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "jane.smith@example.com"
+        },
+// ========================================
+// ADDRESS
+// ========================================
+// # line^city^county^postalcode^state^country
+// 123 Main Street^Anytown^12345^IL^US
+// Street Line 1: 123 Main Street
+// Street Line 2: (leave empty if none)
+// City: Anytown
+// State: IL
+// Postal Code: 12345
+// Country: US
+        {
+            "path": "Practitioner.address.[0]",
+            "type": "Address",
+            "userConfigured": false,
+            "value": "123 Main Street^Anytown^^12345^IL^US"
+        },
+// ========================================
+// QUALIFICATIONS
+// ========================================
+// Qualification Code: MD
+// Qualification System: http://terminology.hl7.org/CodeSystem/v2-0360
+// Qualification Display: Doctor of Medicine
+// Issuer: American Board of Medical Specialties
+        {
+            "path": "Practitioner.qualification.[0].code",
+            "type": "CodeableConcept",
+            "userConfigured": false,
+            "value": { 
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0360",
+                "code": "MD",
+                "display": "Doctor of Medicine"
+            }
+        }
+    ]
+}

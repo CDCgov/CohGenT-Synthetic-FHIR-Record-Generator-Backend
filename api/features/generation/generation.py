@@ -12,10 +12,10 @@ from api.models.option import ControlType
 from api.models.use_case import AdditionalEntity, UseCase, FormRule
 from api.models.entity import Entity
 from api.models.patient_meta import PatientMeta
-from api.models.value_types import is_value_range, is_value_time_range_as_days, is_value_tribal_affiliation, is_value_prevalence
+from api.models.value_types import is_value_coding, is_value_range, is_value_time_range_as_days, is_value_tribal_affiliation, is_value_prevalence
 from api.features.generation.fhir_sheets_interfaces import generate_all
 from api.utilities.file_reader import get_use_case_by_id, read_common_entity
-from api.features.generation.type_handlers import handle_by_type, process_choice_of_data_type_value, fhir_type_match_check
+from api.features.generation.type_handlers import handle_by_type, process_choice_of_data_type_value, fhir_type_match_check, value_coding_to_string
 from api.features.generation.weighted_values import distribute_weighted_values, select_medication_set
 import api.features.generation.constants as C
 from api.features.generation.special_extension_handlers import SpecialExtensions, generate_tribal_affiliation
@@ -24,6 +24,7 @@ import random
 import time
 from datetime import datetime, timedelta
 from copy import copy
+from api.features.generation.provider_cache import ProviderCache
 from api.features.generation.generators.uuids import generate_uuid_identifier
 from api.features.generation.generators.dates import generate_event_datetime, generate_age_at_event_date, calculate_birth_date
 from fastapi import HTTPException
@@ -44,6 +45,8 @@ class LoadedCommonEntityKeys(Enum):
 def start_generation(configuration: CohortSettings, main_db: Session, iteration_limit: int = 50):
     start = time.time() # Start run timer
     session_id = f"{datetime.fromtimestamp(start)} - {generate_uuid_identifier()}"
+
+    entity_cache = ProviderCache(main_db)
     
     if settings.enable_run_logs:
         log_handler_id = create_run_logger(session_id)
@@ -244,7 +247,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
 
                     if field.type == C.FhirType.IDENTIFIER.value:
                         patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}/Value"] = generated_value
-                        patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}/System"] = C.identifier_system
+                        patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}/System"] = C.identifier_system + ":" + entity.resource_type.lower()
                     elif field.type == C.FhirType.CONTACT_POINT.value:
                         if isinstance(generated_value, list):
                             for i, v in enumerate(generated_value):
@@ -269,7 +272,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                     else:
                         patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}"] = generated_value
         '''
-        Handle Repeatable Entities
+        Handle Additional Clinical Data (Event Sets)
         '''
         if configuration.event_sets:
             for event_set_count, event_set in enumerate(configuration.event_sets):
@@ -315,6 +318,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                         current_dr_entity_id = cloned_dr_entity.entity_id
                         dynamic_entities.append(cloned_dr_entity)
                         assert(event_set.diagnostic_report_concept)
+
                         for field in cloned_dr_entity.fields or []:
                             key: tuple[str, str] = (cloned_dr_entity.entity_id), f"{cloned_dr_entity.entity_id}/{field.path}"
                             value: str = ""
@@ -329,6 +333,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                             patient_row_as_dict[key] = value
 
                     for entry_count, entry in enumerate(event_set.entry):
+
                         # match to a common entity
                         common_entity = common_entities_map.get(entry.type)
 
@@ -368,6 +373,28 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                                                 include_field = False # Toggle this is there is not a type match to avoid overwrites from Nones.
                                     if include_field:
                                         patient_row_as_dict[key] = value
+                                
+                                # Handle dynamic linked entities (e.g., Practitioners/Practitioner Roles) setup in the use case
+                                if cloned_entity.dynamic_references and common_entity.dynamic_references:
+                                    for dynamic_reference in cloned_entity.dynamic_references or []:
+                                        linked_target = next((link_dr for link_dr in common_entity.dynamic_references if link_dr.link_identifier == dynamic_reference.link_identifier), None)
+                                        if linked_target:
+                                            linked_entity_model = entity_cache.get_provider_entity(linked_target.target_entity_identifier)
+                                            dynamic_entities.append(linked_entity_model)
+                                            dynamic_resource_links.append((cloned_entity.entity_id, dynamic_reference.reference_path, linked_entity_model.entity_id))
+                                            
+                                            patient_row_as_dict.update(create_static_entity_patient_rows(linked_entity_model))
+
+                                            # Handled any linked static references (e.g., PractitionerRole -> Organization and Practitioner)
+                                            # NOTE: These must be fully self contained entities without any user configuration, the same as the initial dynamic entity.
+                                            for static_reference in linked_entity_model.static_references or []:
+                                                static_reference_entity = entity_cache.get_provider_entity(static_reference.target_entity)
+                                                dynamic_entities.append(static_reference_entity)
+                                                dynamic_resource_links.append((linked_entity_model.entity_id, static_reference.reference_path, static_reference_entity.entity_id))
+                                                patient_row_as_dict.update(create_static_entity_patient_rows(static_reference_entity))
+
+                                        else:
+                                            logger.warning(f"Could not load entity with identifier: {dynamic_reference.link_identifier}. Skipped.")
 
                         else:
                             raise HTTPException(status_code=422, detail=f"Issue parsing common entity. Unable to find entity file for type {entry.type}. Ensure use case/scenario refers to an existing file name and that the file name is parsable.")
@@ -425,6 +452,26 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
     return resource_definitions, resource_links, cohort
 
 '''
+
+'''
+def create_static_entity_patient_rows(entity: Entity) -> dict[tuple[str, str], str]:
+    new_patient_rows = {}
+    # Handle dynamic entity's main fields
+    for field in entity.fields or []:
+        val = field.value
+        if is_value_coding(field.value):
+            val = field.value
+            # Handle ValueCoding objects
+            if is_value_coding(val):
+                # Convert to caret-delimited string
+                val = value_coding_to_string(val)
+        new_patient_rows[(entity.entity_id), f"{entity.entity_id}/{field.path}"] = val
+    
+    return new_patient_rows
+    
+
+
+'''
 Distributions and Settings
 '''
 def setup_patient_distributions(entities: list[Entity], configuration: CohortSettings, default_settings: list[Setting]) -> Distributions:
@@ -477,12 +524,6 @@ def find_setting(field: Field, user_settings: list[Setting] | None, default_sett
 def _find_setting(field: Field, settings: list[Setting]) -> Setting | None:
     setting = next((setting for setting in settings if setting.rule_id == field.user_setting_rule_id), None)
     return setting
-
-def parse_extension(field: Field, patient_meta: PatientMeta, setting: Setting):
-    if field.extension_details:
-        handle_by_type()
-    else:
-        pass # Error handling for missing extension details.
 
 '''
 Patient Data Generator

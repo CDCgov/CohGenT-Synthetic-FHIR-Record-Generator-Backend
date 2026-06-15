@@ -4,6 +4,12 @@
     "resourceType": "Procedure",
     "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure",
     "referencePath": "subject",
+    "dynamicReferences": [
+        {
+            "referencePath": "performer.[0].actor",
+            "linkIdentifier": "performer"
+        }
+    ],
     "fields": [
         {
             "path": "Procedure.status",

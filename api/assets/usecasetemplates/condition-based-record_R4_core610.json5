@@ -286,7 +286,7 @@
             "resourceType": "Encounter",
             "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter", // U.S. Core Encounter 6.1.0
             "referencePath": "subject",
-            "otherReferences": [
+            "staticReferences": [
                 {
                     "referencePath": "reasonReference",
                     "targetEntity": "PrimaryCondition"
@@ -406,7 +406,13 @@
                 "type": "observation",
                 "buttonLabel": "Lab Result",
                 "entityFile": "USCoreObservationLab",
-                "defaultSystem": "LOINC"
+                "defaultSystem": "LOINC",
+                "dynamicReferences": [
+                    {
+                        "targetEntityIdentifier": "USCorePractitionerRole002",
+                        "linkIdentifier": "performer"
+                    }
+                ]
             },
             {
                 "entityId": "procedure",

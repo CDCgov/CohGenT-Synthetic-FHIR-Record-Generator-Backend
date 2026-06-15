@@ -10,7 +10,7 @@
 
 ## Description
 
-The CohGenT (Cohort Generator Tool) API is the backend data generation component for the broader CohGenT application stack. CohGenT uses simplified user input to generate FHIR records based on a designed "use case" or "scenario". A scenario is a set of entity definitions aligned to FHIR Resources (but which are not FHIR Resources themselves) which dictate how data is generated to "fill in the blank" for the FHIR Sheets library (a Python library which parses tabular data into FHIR Resource objects). The CohGenT API does not produce FHIR Resources itself, it only creates the data fed into FHIR Sheets.
+The CohGenT (Cohort Generator Tool) API is the backend data generation component for the broader CohGenT application stack. CohGenT uses simplified user input to generate FHIR records based on a designed "use case scenario". A scenario is a set of entity definitions aligned to FHIR Resources (but which are not FHIR Resources themselves) which dictate how data is generated to "fill in the blank" for the FHIR Sheets library (a Python library which parses tabular data into FHIR Resource objects). The CohGenT API does not produce FHIR Resources itself, it only creates the data fed into FHIR Sheets.
 
 Data is generated as a "cohort" of synthetic patients. The data that is generated is directed by a set of user provided cohort settings and the specified "scenario" entity models.
 
@@ -387,12 +387,45 @@ To summarize, if you are deploying at a non-domain root path, fyou **must** matc
 
 This section of the documentation discusses a number of core design aspects for the CohGenT backend service intended for open source contributors and codebase maintainers.
 
+### Definitions Used
+
+- Use Case Scenario - Use case scenarios are as JSON/JSON5 file that contains the information needed to generate a patient cohort. They include models defining the entities which are built into FHIR Resources, instructions on what common models (which exist outside of the use case scenario file) can be used, and instructions for the user interface on how to build a form to configure parameters for the cohort. Use case scenarios are the backbone of all generation.
+- Cohort Settings/User Responses - Cohort Settings are end user provided information, typically provided as a submission through the form rendered in the user interface, based on a use case scenario file. This includes settings for specific fields like patient demographic distributions, what additional data should be added, and meta settings such as patient count to generate. (Note that the use case scenario itself should include defaults for any use configured options, which both informs the user interface's default state as well as provides a fallback if missing from the cohort settings)
+- Entity - An entity is an object modelings the fields that will be generated into a FHIR Resource, as well as meta data (labels, resourceType, etc.) Each use case scenario should include all core and unique entities related to it. Entities setup within the use case scenario directly are considered singletons and are only generated one time per patient in the cohort. This includes the patient resource itself. What consitutes an entity to be included depends entirely on the use case scenario. For example, the basic "condition based record" scenario includes the Patient, a Condition, and an Encounter as central to the record. These are non-reusable and tailored to the needs of that specific use case scenario.
+- "Common" Entity - Common entities are entities that exist in isolation as their own file, and may be reused across any number of use case scenarios. For example, basic lab results. Common entities can be configured to generate repeatedly. In the context of the "condition based record", this would be repeat labs, medications, and other data that is more dynamic than the core use case scenario entities. While the divide isn't explicitly a matter of generating one or many resources, this is likely often the case. Which common entities should be used are configured in the use case scenario file under the `commonEntities` model.
+
+NOTE: Not all use case scenarios require common entities. Certain, complex snapshot records, such as a death certificate, may be made up entirely of entities inside the main use case scenario, as needs such as lab monitoring do not exist.
+
+### Use Case Scenarios
+
+TODO
+- Core configuration params.
+
+#### Entities
+
+TODO
+- Entity Model
+
+#### Form Rules
+
+TODO
+- Form Model
+- Types of "steps"
+- Types of "controls"
+- Connecting a form rule to an entity field
+
+#### Common Entities
+
+TODO
+- Configuring common entities
+- Dynamic Links
+
 ### General Application Workflow
 
 TODO
 
 ### Type Support
-FHIR Type support is limited in the current version of the application, based around what was defined for the existing scenarios. Typing is a complex alignment between the user input, the generation requirements, and the expected FHIR Sheets formatting. For example, the internal typing provides for a "ValueCoding" type in Pydantic which handles a combination of system, code, and display strings and is allowed input to generate either the FHIR Coding or CodeableConcept types. When building or modifying a scenario, failure to align allowed input types to the FHIR type will cause an error in processing.
+FHIR Type support is limited in the current version of the application, based around what was defined for the existing scenario(s). Typing is a complex alignment between the user input, the generation requirements, and the expected FHIR Sheets formatting. For example, the internal typing provides for a "ValueCoding" type in Pydantic which handles a combination of system, code, and display strings and is allowed input to generate either the FHIR Coding or CodeableConcept types. When building or modifying a scenario, failure to align allowed input types to the FHIR type will cause an error in processing.
 
 Currently the following combinations are supported:
 | CohGenT Input Type | FHIR Output Type | Notes
@@ -406,7 +439,7 @@ ValueCoding | Coding
 ValueAddress | Address | Only supports setting State and City. Country is always US. Other elements are always randomized.
 ValueRangeWithUnits | Quantity | Observations only.
 
-Note that "HumanName" is a special field and considered always randomly generated. For more information, see the special values listed further down.
+Note that "HumanName" is a special field and considered always randomly generated. For more information, see the special values listed further down. (For preset static names, use FHIR Sheets style indexing. This is mostly only applicable to static provider resources.)
 
 Static fields may be defined in the entity definitions for fixed values in FHIR profiles mostly, but also for non-user facing concerns such as Observation statuses. The supported types are:
 * ValueCoding -> Coding
@@ -431,12 +464,18 @@ The Generation Module is an internal component which provides the actual data ge
 While most fields are intended to be handled dynamically, there are a few important exceptions. Foremost among these are the primary event date for a given patient, the patient's name, the patient's gender (`Patient.gender`), and the demographic distributions for all patients. Primary event date is used to set the baseline date for all of the patient's records. Gender is used as a depedency to generate names.
 
 ### Resource References
-For every resource which has a main subject/patient reference, this is defined specifically in the entity model by the `referencePath` field. For most resources, this is simply `subject` (the resource type is not required as with other FHIR Paths). Additional references to other entities may be defined in the `otherReferences` field, which list of objects including `referencePath` and `target` (the entity the reference should be to).
+For every resource which has a main subject/patient reference, this is defined specifically in the entity model by the `referencePath` field. For most resources, this is simply `subject` (the resource type is not required as with other FHIR Paths).
+
+Additional references to other entities may be defined in the `staticReferences` or the `dynamicReferences` fields. Static References are direct references defined within a single use case scenario. Dynamic references are defined within common entities that exist outside the use case scenario, such as lab or radiology entity templates, which allow more customization.
+
+>**NOTE:** Dynamic References set in the main use case scenario entities will not be parsed. Those entities should be built into the use case scenario directly. Dynamic References are only parsed for common entities used in clinical data sets, as these exist outside of the use case.
+
+The Static References is a listof objects including `referencePath` and `target` (the entity the reference should be to).
 
 For example, in the Condition Based Record scenario, the PrimaryEncounter entity (U.S. Core Encounter profile) includes a `reasonReference` to the PrimaryCondtion (U.S. Core Encounter Diagnosis Condition profile) as shown in addition to it's primary subject/patient reference:
 ```
             "referencePath": "subject",
-            "otherReferences": [
+            "staticReferences": [
                 {
                     "referencePath": "reasonReference",
                     "targetEntity": "PrimaryCondition"
@@ -446,7 +485,91 @@ For example, in the Condition Based Record scenario, the PrimaryEncounter entity
 
 Note that entities defined this way are generally non-repeating, and so further configuration of references is not required.
 
-For iterative generation, such as repeating lab observations, in Event Sets there is special handling when the containing DiagnosticReport is enabled (for Lab Panels, specifically the U.S. Core DiagnosticReport Lab Results profile). In this case, the references to the contained member resources are generated automatically. (TODO ADD MORE INFO ON VENT SETS)
+The DynamicReferences field is only (currently) used in secondary entity templates, which can be referenced in any number of use case scenarios for additional entity generation. For example, lab result observations. Here the field includes the path to use for the reference as with static references, but instead of actually pointing to a specific entity has a `linkIdentifier`. The `linkIdentifier` can then be referenced in the Additional Entities section of the use case.
+
+An example of the field in the lab observation:
+```
+    "dynamicReferences": [
+        {
+            "referencePath": "performer",
+            "linkIdentifier": "performer"
+        }
+    ],
+```
+(Note that the matching `referencePath` and `linkIdentifier` for "performer" is incidental.)
+
+This can then be references from the use case like so:
+```
+            {
+                "entityId": "labResult",
+                "type": "observation",
+                "buttonLabel": "Lab Result",
+                "entityFile": "USCoreObservationLab",
+                "defaultSystem": "LOINC",
+                "dynamicReferences": [
+                    {
+                        "targetEntityId": "LabPractitioner001",
+                        "linkIdentifier": "performer"
+                    }
+                ]
+            },
+```
+
+This allows a use case to customize which Practitioner related entities are used to match various use case requirements while still leveraging the same entity definition.
+
+For iterative generation, such as repeating lab observations, in Event Sets there is special handling when a containing DiagnosticReport is enabled (for Lab Panels, specifically the U.S. Core DiagnosticReport Lab Results profile). In this case, the references to the contained member resources are generated automatically.
+
+>**NOTE:** If an entity identifier cannot be found in the database, the system skips and continues to generate the rest of the record.
+
+#### Provider Entity Reference Chaining Explored
+
+TODO (Rewrite an dclarify)
+
+When dynamic references point to provider entities (Practitioner, PractitionerRole, Organization), the system automatically handles reference chaining to include all related resources.
+
+How it works:
+
+When a dynamic reference targets a provider entity, the system:
+
+Loads the specified provider entity from the provider cache
+Checks if the entity has staticReferences defined
+Automatically loads and includes any referenced entities
+Creates the appropriate resource links between all entities
+Example: PractitionerRole Reference Chain
+
+PractitionerRole entities typically reference both a Practitioner and an Organization. When you reference a PractitionerRole, all three resources are automatically included:
+
+
+// In the provider entity (practitioner_role_lab.json5)
+{
+    "entityId": "USCorePractitionerRole002",
+    "resourceType": "PractitionerRole",
+    "staticReferences": [
+        {
+            "referencePath": "practitioner",
+            "targetEntity": "USCorePractitioner002"
+        },
+        {
+            "referencePath": "organization",
+            "targetEntity": "USCoreOrganization002"
+        }
+    ]
+}
+
+// In the use case dynamic reference
+{
+    "targetEntityId": "USCorePractitionerRole002",
+    "linkIdentifier": "performer"
+}
+Result: The system automatically includes:
+
+USCorePractitionerRole002 (Lab Technician Role)
+USCorePractitioner002 (Lab Technician)
+USCoreOrganization002 (Laboratory)
+This creates the complete provider context chain without requiring separate references for each entity.
+
+Best Practice: Use PractitionerRole for clinical references (performer, participant, etc.) rather than direct Practitioner references, as it provides richer context including the practitioner's role and organization.
+
 
 ## Lab Value Presets
 

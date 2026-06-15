@@ -1,0 +1,467 @@
+
+from . import conversion
+import copy
+from abc import ABC, abstractmethod
+from typing import Any
+
+# Define an abstract base class
+class AbstractStructureHandler(ABC):
+    
+    @abstractmethod
+    def assign_value(self, json_path, resource_definition, dataType, final_struct, key, value) -> Any:
+        """Assign a value to the final structure.
+
+        Subclasses may return the modified ``final_struct`` (or a different
+        structure) or ``None``.  The return type is deliberately generic to
+        accommodate the ``PatientRaceExtensionValueHandler`` implementation
+        which now returns an empty ``dict`` when no match is found.
+        """
+        pass
+    
+def utilFindExtensionWithURL(extension_block, url):
+  for extension in extension_block:
+    if "url" in extension and extension['url'] == url:
+      return extension
+  return None
+    
+def findComponentWithCoding(components, code):
+  return next((component for component in components if any(coding['code'] == code for coding in component['code']['coding'])), None)
+    
+class PatientRaceExtensionValueHandler(AbstractStructureHandler):
+    omb_categories = {
+      "american indian or alaska native" : {
+        "url" : "ombCategory",
+        "valueCoding" : {
+          "system" : "urn:oid:2.16.840.1.113883.6.238",
+          "code" : "1002-5",
+          "display" : "American Indian or Alaska Native"
+          }
+      },
+      "asian" : {
+        "url" : "ombCategory",
+        "valueCoding" : {
+          "system" : "urn:oid:2.16.840.1.113883.6.238",
+          "code" : "2028-9",
+          "display" : "Asian"
+          }
+      },
+      "black or african american" : {
+        "url" : "ombCategory",
+        "valueCoding" : {
+          "system" : "urn:oid:2.16.840.1.113883.6.238",
+          "code" : "2054-5",
+          "display" : "Black or African American"
+          }
+      },
+      "native hawaiian or other pacific islander" : {
+        "url" : "ombCategory",
+        "valueCoding" : {
+          "system" : "urn:oid:2.16.840.1.113883.6.238",
+          "code" : "2054-5",
+          "display" : "Native Hawaiian or Other Pacific Islander"
+          }  
+      },
+      "white" : {
+        "url" : "ombCategory",
+        "valueCoding" : {
+          "system" : "urn:oid:2.16.840.1.113883.6.238",
+          "code" : "2106-3",
+          "display" : "White"
+        }
+      },
+      "asked but unknown" : {
+        "url" : "ombCategory",
+        "valueCoding" : {
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+          "code" : "ASKU",
+          "display" : "Asked but Unknown"
+          }
+      },
+      "unknown" : {
+        "url" : "ombCategory",
+        "valueCoding" : {
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+          "code" : "UNK",
+          "display" : "Unknown"
+          }
+      }
+    }
+    
+    initial_race_json = {
+      "extension" : [
+        {
+          "$ombCategory"
+        },
+        {
+          "url" : "text",
+          "valueString" : "$text"
+        }
+      ],
+      "url" : "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+    }
+    #Create an ombcategory and detailed section of race extension
+    def assign_value(self, json_path, resource_definition, dataType, final_struct, key, value):
+        """Assign a race extension value.
+
+        If the provided ``value`` matches one of the known ``omb_categories`` the
+        appropriate extension structure is added/updated and ``final_struct`` is
+        returned.  When there is **no** match, the function now returns an empty
+        dictionary (``{}``) as requested, effectively discarding any partially
+        built race extension.
+        """
+        original_final_struct = copy.deepcopy(final_struct)  # Keep a copy of the original structure
+        # Retrieve the race extension if it exists; make it if it does not.
+        if 'extension' not in final_struct:
+            final_struct['extension'] = []
+        race_block = utilFindExtensionWithURL(final_struct['extension'], 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race')
+        if race_block is None:
+            race_block = copy.deepcopy(self.initial_race_json)
+            final_struct['extension'].append(race_block)
+
+        matched = False
+        for race_key, race_structure in self.omb_categories.items():
+            if value.strip().lower() == race_key:
+                matched = True
+                # Replace $ombCategory in the extension list
+                for i, item in enumerate(race_block["extension"]):
+                    if isinstance(item, set) and "$ombCategory" in item:
+                        # Replace the set with the new structure
+                        race_block["extension"][i] = copy.deepcopy(race_structure)
+                    elif isinstance(item, dict) and item.get("valueString") == "$text":
+                        item['valueString'] = race_key
+                return final_struct
+        # No match found – return an empty structure as per the new requirement
+        if not matched:
+            final_struct.clear()  # Clear any changes made to final_struct
+            final_struct.update(original_final_struct) # Revert to the original structure to discard any partial changes
+            return {}
+
+class PatientEthnicityExtensionValueHandler(AbstractStructureHandler):
+    omb_categories = {
+      "Hispanic or Latino" : {
+        "url" : "ombCategory",
+        "valueCoding" : {
+          "system" : "urn:oid:2.16.840.1.113883.6.238",
+          "code" : "2135-2",
+          "display" : "Hispanic or Latino"
+          }
+      },
+      "Not Hispanic or Latino" : {
+        "url" : "ombCategory",
+        "valueCoding" : {
+          "system" : "urn:oid:2.16.840.1.113883.6.238",
+          "code" : "2186-5",
+          "display" : "Not Hispanic or Latino"
+          }
+      },
+      "asked but unknown" : {
+        "url" : "ombCategory",
+        "valueCoding" : {
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+          "code" : "ASKU",
+          "display" : "Asked but Unknown"
+          }
+      },
+      "unknown" : {
+        "url" : "ombCategory",
+        "valueCoding" : {
+          "system" : "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+          "code" : "UNK",
+          "display" : "Unknown"
+          }
+      }
+    }
+    
+    initial_ethnicity_json = {
+      "extension" : [
+        {
+          "$ombCategory"
+        },
+        {
+          "url" : "text",
+          "valueString" : "$text"
+        }
+      ],
+      "url" : "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
+    }
+    #Create an ombcategory and detailed section of ethnicitiy extension
+    def assign_value(self, json_path, resource_definition, dataType, final_struct, key, value):
+        """Assign an ethnicity extension value.
+
+        Mirrors the behaviour of :class:`PatientRaceExtensionValueHandler` – if the
+        supplied ``value`` matches one of the known ``omb_categories`` the
+        appropriate extension is added/updated and ``final_struct`` is returned.
+        When there is **no** match the function now returns an empty dictionary
+        (``{}``) to satisfy the new test requirement.
+        """
+        original_final_struct = copy.deepcopy(final_struct)  # Keep a copy of the original structure
+        # Retrieve the ethnicity extension if it exists; make it if it does not.
+        if 'extension' not in final_struct:
+            final_struct['extension'] = []
+        ethnicity_block = utilFindExtensionWithURL(final_struct['extension'], 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity')
+        if ethnicity_block is None:
+            ethnicity_block = copy.deepcopy(self.initial_ethnicity_json)
+            final_struct['extension'].append(ethnicity_block)
+
+        matched = False
+        for ethnicity_key, ethnicity_structure in self.omb_categories.items():
+            if value.strip().lower() == ethnicity_key.strip().lower():
+                matched = True
+                # Replace $ombCategory in the extension list
+                for i, item in enumerate(ethnicity_block["extension"]):
+                    if isinstance(item, set) and "$ombCategory" in item:
+                        # Replace the set with the new structure
+                        ethnicity_block["extension"][i] = copy.deepcopy(ethnicity_structure)
+                    elif isinstance(item, dict) and item.get("valueString") == "$text":
+                        item['valueString'] = ethnicity_key
+                return final_struct
+        # No match – return empty dict as required
+        if not matched:
+            final_struct.clear()  # Clear any changes made to final_struct
+            final_struct.update(original_final_struct)  # Revert to the original structure to discard any partial changes
+            return {}
+      
+class PatientBirthSexExtensionValueHandler(AbstractStructureHandler):
+    birth_sex_block = {
+      "url" : "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+      "valueCode" : "$value"
+    }
+    #Assigna birthsex extension
+    def assign_value(self, json_path, resource_definition, dataType, final_struct, key, value):
+        #Retrieve the birthsex extension if it exists; make it if it does not.
+        if 'extension' not in final_struct:
+            final_struct['extension'] = []
+        birthsex_block = utilFindExtensionWithURL(final_struct['extension'], 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity')
+        if birthsex_block is None:
+            birthsex_block = self.birth_sex_block
+            birthsex_block['valueCode'] = value
+            final_struct['extension'].append(birthsex_block)
+        pass
+      
+class PatientMRNIdentifierValueHandler(AbstractStructureHandler):
+    patient_mrn_block = {
+      "use" : "usual",
+      "type" : {
+        "coding" : [
+          {
+            "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code" : "MR",
+            "display" : "Medical Record Number"
+          }
+        ],
+        "text" : "Medical Record Number"
+      },
+      "system" : "$system",
+      "value" : "$value"
+    }
+    #Assign a MRN identifier
+    def assign_value(self, json_path, resource_definition, dataType, final_struct, key, value):
+        #Retrieve the MRN identifier if it exists; make it if it does not.
+        target_identifier = self.patient_mrn_block
+        new_identifier = True
+        if 'identifier' not in final_struct:
+          final_struct['identifier'] = []
+        for identifier in final_struct['identifier']:
+          if 'type' in identifier:
+            for coding in identifier['type']['coding']:
+              if coding['code'] == 'MR':
+                target_identifier = identifier
+                new_identifier = False
+        if new_identifier:
+          final_struct['identifier'].append(target_identifier)
+        target_identifier[key] = value
+        pass
+      
+class PatientSSNIdentifierValueHandler(AbstractStructureHandler):
+    patient_mrn_block = {
+      "use" : "usual",
+      "type" : {
+        "coding" : [
+          {
+            "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code" : "SS"
+          }
+        ],
+        "text" : "Social Security Number"
+      },
+      "system" : "$system",
+      "value" : "$value"
+    }
+    #Assign a MRN identifier
+    def assign_value(self, json_path, resource_definition, dataType, final_struct, key, value):
+        #Retrieve the MRN identifier if it exists; make it if it does not.
+        target_identifier = self.patient_mrn_block
+        new_identifier = True
+        if 'identifier' not in final_struct:
+          final_struct['identifier'] = []
+        for identifier in final_struct['identifier']:
+          if 'type' in identifier:
+            for coding in identifier['type']['coding']:
+              if coding['code'] == 'SS':
+                target_identifier = identifier
+                new_identifier = False
+        if new_identifier:
+          final_struct['identifier'].append(target_identifier)
+        target_identifier[key] = value
+        pass
+      
+class OrganizationIdentiferNPIValueHandler(AbstractStructureHandler):
+    npi_identifier_block = {
+      "system" : "http://hl7.org.fhir/sid/us-npi",
+      "value" : "$value"
+    }
+    #Assigna birthsex extension
+    def assign_value(self, json_path, resource_definition, dataType, final_struct, key, value):
+        #Retrieve the birthsex extension if it exists; make it if it does not.
+        if 'identifier' not in final_struct:
+            final_struct['identifier'] = []
+        identifier_block = next((entry for entry in final_struct['identifier'] if entry['system'] == "http://hl7.org.fhir/sid/us-npi"), None)
+        if identifier_block is None:
+          identifier_block = self.npi_identifier_block
+          final_struct['identifier'].append(identifier_block)
+        identifier_block['value'] = str(value)
+        pass
+      
+class OrganizationIdentiferCLIAValueHandler(AbstractStructureHandler):
+    clia_identifier_block = {
+      "system" : "urn:oid:2.16.840.1.113883.4.7",
+      "value" : "$value"
+    }
+    #Assign a birthsex extension
+    def assign_value(self, json_path, resource_definition, dataType, final_struct, key, value):
+        #Retrieve the birthsex extension if it exists; make it if it does not.
+        if 'identifier' not in final_struct:
+            final_struct['identifier'] = []
+        identifier_block = next((entry for entry in final_struct['identifier'] if entry['system'] == "urn:oid:2.16.840.1.113883.4.7"), None)
+        if identifier_block is None:
+          identifier_block = self.clia_identifier_block
+          final_struct['identifier'].append(identifier_block)
+        identifier_block['value'] = str(value)
+        pass
+      
+class PractitionerIdentiferNPIValueHandler(AbstractStructureHandler):
+    npi_identifier_block = {
+      "system" : "http://hl7.org.fhir/sid/us-npi",
+      "value" : "$value"
+    }
+    #Assigna birthsex extension
+    def assign_value(self, json_path, resource_definition, dataType, final_struct, key, value):
+        #Retrieve the birthsex extension if it exists; make it if it does not.
+        if 'identifier' not in final_struct:
+            final_struct['identifier'] = []
+        identifier_block = next((entry for entry in final_struct['identifier'] if entry['system'] == "http://hl7.org.fhir/sid/us-npi"), None)
+        if identifier_block is None:
+          identifier_block = self.npi_identifier_block
+          final_struct['identifier'].append(identifier_block)
+        identifier_block['value'] = value
+        pass
+      
+class ObservationComponentHandler(AbstractStructureHandler):
+    pulse_oximetry_oxygen_flow_rate = {
+      "code" : {
+        "coding" : [
+          {
+            "system" : "http://loinc.org",
+            "code" : "3151-8",
+            "display" : "Inhaled oxygen flow rate"
+          }
+        ],
+        "text" : "Inhaled oxygen flow rate"
+      }
+    }
+    pulse_oximetry_oxygen_concentration = {
+      "code" : {
+        "coding" : [
+          {
+            "system" : "http://loinc.org",
+            "code" : "3150-0",
+            "display" : "Inhaled oxygen concentration"
+          }
+        ],
+        "text" : "Inhaled oxygen concentration"
+      }
+    }
+    #Find the appropriate component for the observaiton; then call build_structure again to continue the drill down
+    def assign_value(self, json_path, resource_definition, dataType, final_struct, key, value):
+        #Check to make sure the component part exists
+        if 'component' not in final_struct:
+          final_struct['component'] = []
+        components = final_struct['component']
+        #Look through the qualifier parts.
+        parts = json_path.split('.')
+        key_part = parts[1][:parts[1].index('[')]
+        qualifier = parts[1][parts[1].index('[')+1:parts[1].index(']')]
+        qualifier_condition = qualifier.split('=')
+        
+        target_component: dict = {}
+        if qualifier_condition[0] == 'code' and qualifier_condition[1] == '3151-8':
+          target_component = findComponentWithCoding(components, '3151-8') or self.pulse_oximetry_oxygen_flow_rate
+          if target_component is self.pulse_oximetry_oxygen_flow_rate:
+            components.append(target_component)
+        if qualifier_condition[0] == 'code' and qualifier_condition[1] == '3150-0':
+          target_component = findComponentWithCoding(components, '3150-0') or self.pulse_oximetry_oxygen_concentration
+          if target_component is self.pulse_oximetry_oxygen_concentration:
+            components.append(target_component)
+        #Recurse back down into 
+        # current_struct: Dict, json_path: str, resource_definition: ResourceDefinition, dataType: str, parts: List[str], value: Any, previous_parts: List[str]
+        return conversion.build_structure(target_component, '.'.join(parts[2:]), resource_definition, dataType, parts[2:], value, parts[:2])
+        pass
+
+#Special Handler just for $values. This one is data absent reason
+class AbstractValueHandler(ABC):
+  
+  @abstractmethod
+  def assign_value(self, final_struct, key, value, valueType):
+    pass
+  
+
+class DataAbsentReasonHandler(AbstractValueHandler):
+  #Assign data absent reason extension
+    data_absent_reason_block = {
+      "url" : "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+      "value" : "$value"
+    }
+    data_absent_reason_values = ['$unknown','$asked-unknown','$temp-unknown','$not-asked','$asked-declined','$masked','$not-applicable','$unsupported','$as-text','$error','$not-a-number','$negative-infinity','$positive-infinity','$not-performed','$not-permitted']
+    def assign_value(self, final_struct, key, value, valueType):
+        #Trim the value so the '$' is missing
+        if value and value.startswith('$'):
+          value = value[1:]
+        # if the final_struct is a list, we need the first entry of the list
+        if isinstance(final_struct, list):
+          if len(final_struct) == 0:
+            temp = {}
+            final_struct.append(temp)
+            final_struct = temp
+          else:
+            final_struct = final_struct[0]
+        #Retrieve the DAR extension if it exists; make it if it does not.
+        if 'extension' not in final_struct:
+            final_struct['extension'] = []
+        data_absent_reason_block = utilFindExtensionWithURL(final_struct['extension'], 'http://hl7.org/fhir/StructureDefinition/data-absent-reason')
+        if data_absent_reason_block is None:
+            data_absent_reason_block = self.data_absent_reason_block
+            data_absent_reason_block['value'] = value
+            final_struct['extension'].append(data_absent_reason_block)
+        pass
+      
+#Data dictionary of jsonpaths to match vs classes that need to be called
+custom_structure_handlers = {
+    "Patient.extension[Race].ombCategory": PatientRaceExtensionValueHandler(),
+    "Patient.extension[Ethnicity].ombCategory": PatientEthnicityExtensionValueHandler(),
+    "Patient.extension[Birthsex].value": PatientBirthSexExtensionValueHandler(),
+    "Patient.identifier[type=MR].system": PatientMRNIdentifierValueHandler(),
+    "Patient.identifier[type=MR].value": PatientMRNIdentifierValueHandler(),
+    "Patient.identifier[type=MRN].system": PatientMRNIdentifierValueHandler(),
+    "Patient.identifier[type=MRN].value": PatientMRNIdentifierValueHandler(),
+    "Patient.identifier[type=SSN].system": PatientSSNIdentifierValueHandler(),
+    "Patient.identifier[type=SSN].value": PatientSSNIdentifierValueHandler(),
+    "Organization.identifier[system=NPI].value": OrganizationIdentiferNPIValueHandler(),
+    "Organization.identifier[system=CLIA].value": OrganizationIdentiferCLIAValueHandler(),
+    "Practitioner.identifier[system=NPI].value": PractitionerIdentiferNPIValueHandler(),
+    "Observation.component[": ObservationComponentHandler()
+}
+
+#Data definition of values to match vs classes tht need to be called
+custom_value_handlers = [
+  {'value_criteria':DataAbsentReasonHandler.data_absent_reason_values, 'handler': DataAbsentReasonHandler()}
+]

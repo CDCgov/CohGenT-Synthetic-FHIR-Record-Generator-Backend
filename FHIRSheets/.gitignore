@@ -1,0 +1,20 @@
+# Ignore Excel temporary files
+~*.xls*
+~*.xlsx*
+
+# Ignore the output folder
+output/
+
+# Ignore JSON templates in src/resources/json_template
+src/resources/json_templates
+
+# Ignore the virtual environment folder
+venv/
+
+src/__pycache__
+
+# Ignore dist
+dist/
+
+#Ignore pyc build files.
+*.pyc

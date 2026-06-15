@@ -15,3 +15,19 @@ class TribalAffiliation(Base):
 
     def __repr__(self):
         return f"<TribalAffiliation(id={self.affiliation_id}, system={self.system}, code='{self.code}', display='{self.display}')>"
+
+class ProviderEntity(Base):
+    __tablename__ = 'provider_entity'
+    
+    # Primary key - matches entityId from JSON files
+    entity_id: Mapped[str] = mapped_column(String(100), primary_key=True, index=True)
+    
+    # Basic info for lookups
+    resource_type: Mapped[str] = mapped_column(String(50), nullable=False, index=True)
+    display_name: Mapped[str] = mapped_column(String(255), nullable=False)
+    
+    # Store full JSON entity definition
+    entity_json: Mapped[str] = mapped_column(String, nullable=False)
+    
+    def __repr__(self):
+        return f"<ProviderEntity(id={self.entity_id}, type={self.resource_type}, name='{self.display_name}')>"

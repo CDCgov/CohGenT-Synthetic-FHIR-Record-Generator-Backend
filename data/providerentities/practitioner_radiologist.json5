@@ -1,0 +1,131 @@
+// US Core Practitioner - Radiologist
+// Modify values below as needed, then request full FHIR Sheets entity build
+
+// ========================================
+// IDENTIFIERS
+// ========================================
+// NPI Identifier Value: 1539174682
+// NPI Identifier System: http://hl7.org/fhir/sid/us-npi
+// Note: Type 1 NPI (individual provider) verified non-existent in NPPES registry as of 2026-06-10
+
+// ========================================
+// NAME
+// ========================================
+// Family Name: Johnson
+// Given Name(s): Alex
+// Prefix: Dr.
+// Suffix: (leave empty if none)
+
+// ========================================
+// CONTACT INFORMATION
+// ========================================
+// Phone: 555-0102
+// Email: alex.johnson@regionalimaging.example
+
+// ========================================
+// ADDRESS
+// ========================================
+// Street Line 1: 789 Radiology Way
+// Street Line 2: (leave empty if none)
+// City: Anytown
+// State: IL
+// Postal Code: 12345
+// Country: US
+
+// ========================================
+// DEMOGRAPHICS
+// ========================================
+// Gender: other
+
+// ========================================
+// QUALIFICATIONS
+// ========================================
+// Qualification Code: 66862007
+// Qualification System: http://snomed.info/sct
+// Qualification Display: Radiologist
+// Issuer: American Board of Radiology
+
+{
+    "abstract": false,
+    "entityId": "USCorePractitioner003",
+    "resourceType": "Practitioner",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner",
+    "fields": [
+        {
+            "path": "Practitioner.identifier.[0].system",
+            "type": "string",
+            "userConfigured": false,
+            "value": "http://hl7.org/fhir/sid/us-npi"
+        },
+        {
+            "path": "Practitioner.identifier.[0].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "1539174682"            
+        },
+        {
+            "path": "Practitioner.name.[0].family",
+            "type": "string",
+            "userConfigured": false,
+            "value": "Johnson"
+        },
+        {
+            "path": "Practitioner.name.[0].given.[0]",
+            "type": "string",
+            "userConfigured": false,
+            "value": "Alex"
+        },
+        {
+            "path": "Practitioner.name.[0].prefix.[0]",
+            "type": "string",
+            "userConfigured": false,
+            "value": "Dr."
+        },
+        {
+            "path": "Practitioner.gender",
+            "type": "code",
+            "userConfigured": false,
+            "value": "other"            
+        },
+        {
+            "path": "Practitioner.telecom.[0].system",
+            "type": "code",
+            "userConfigured": false,
+            "value": "phone"
+        },
+        {
+            "path": "Practitioner.telecom.[0].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "555-0102"
+        },
+        {
+            "path": "Practitioner.telecom.[1].system",
+            "type": "code",
+            "userConfigured": false,
+            "value": "email"
+        },
+        {
+            "path": "Practitioner.telecom.[1].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "alex.johnson@regionalimaging.example"
+        },
+        {
+            "path": "Practitioner.address.[0]",
+            "type": "Address",
+            "userConfigured": false,
+            "value": "789 Radiology Way^Anytown^^12345^IL^US"
+        },
+        {
+            "path": "Practitioner.qualification.[0].code",
+            "type": "CodeableConcept",
+            "userConfigured": false,
+            "value": { 
+                "system": "http://snomed.info/sct",
+                "code": "66862007",
+                "display": "Radiologist"
+            }
+        }
+    ]
+}
