@@ -3,7 +3,7 @@ from typing import Any
 from sqlalchemy.orm import Session
 
 from api.features.generation.alias_types import Distributions, PatientRow
-from api.features.generation.entity_handler import process_entity
+from api.features.generation.entity_handler import process_entity, process_static_entity
 from api.features.generation.generators.email import generate_email
 from api.features.generation.generators.names import generate_name
 from api.features.generation.setting_handler import find_setting
@@ -93,7 +93,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                     logger.info(f"Successfully loaded common entity: {use_case.common_entities.diagnostic_report}")
 
     # Pre-loop Initializers
-    patients_as_dicts: list[dict[tuple[str,str], str]] = []
+    patients_as_dicts: list[PatientRow] = []
     distributions: Distributions = setup_patient_distributions(entities, configuration, default_settings)
 
     # Cache common entities before loops.
@@ -261,7 +261,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                                             dynamic_entities.append(linked_entity_model)
                                             dynamic_resource_links.append((cloned_entity.entity_id, dynamic_reference.reference_path, linked_entity_model.entity_id))
                                             
-                                            patient_row_as_dict.update(create_static_entity_patient_rows(linked_entity_model))
+                                            process_static_entity(linked_entity_model, patient_row_as_dict)
 
                                             # Handled any linked static references (e.g., PractitionerRole -> Organization and Practitioner)
                                             # NOTE: These must be fully self contained entities without any user configuration, the same as the initial dynamic entity.
@@ -269,7 +269,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                                                 static_reference_entity = entity_cache.get_provider_entity(static_reference.target_entity)
                                                 dynamic_entities.append(static_reference_entity)
                                                 dynamic_resource_links.append((linked_entity_model.entity_id, static_reference.reference_path, static_reference_entity.entity_id))
-                                                patient_row_as_dict.update(create_static_entity_patient_rows(static_reference_entity))
+                                                process_static_entity(static_reference_entity, patient_row_as_dict)
 
                                         else:
                                             logger.warning(f"Could not load entity with identifier: {dynamic_reference.link_identifier}. Skipped.")
@@ -330,26 +330,6 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
     return resource_definitions, resource_links, cohort
 
 '''
-
-'''
-def create_static_entity_patient_rows(entity: Entity) -> dict[tuple[str, str], str]:
-    new_patient_rows = {}
-    # Handle dynamic entity's main fields
-    for field in entity.fields or []:
-        val = field.value
-        if is_value_coding(field.value):
-            val = field.value
-            # Handle ValueCoding objects
-            if is_value_coding(val):
-                # Convert to caret-delimited string
-                val = value_coding_to_string(val)
-        new_patient_rows[(entity.entity_id), f"{entity.entity_id}/{field.path}"] = val
-    
-    return new_patient_rows
-    
-
-
-'''
 Distributions and Settings
 '''
 def setup_patient_distributions(entities: list[Entity], configuration: CohortSettings, default_settings: list[Setting]) -> Distributions:
@@ -385,29 +365,6 @@ def setup_patient_distributions(entities: list[Entity], configuration: CohortSet
             else:
                 raise HTTPException(status_code=500, detail=f"Could not find default setting for {patient_dist_field} distribution.")
     return distributions
-
-
-
-'''
-Patient Data Generator
-'''
-def generate_patient_row(
-    entities: list[Entity],
-    distributions: Distributions,
-    configuration: CohortSettings,
-    default_settings: list[Setting],
-    common_entities_map: dict,
-    entity_file_cache: dict,
-    loaded_common_entities: dict
-) -> tuple[dict, list[Entity], list[tuple[str, str, str]]]:
-    """
-    Generate a single patient's data row.
-    Returns: (patient_row_dict, dynamic_entities, dynamic_resource_links)
-    Lines 121-413
-    """
-    pass
-
-
 
 '''
 Medication Generator

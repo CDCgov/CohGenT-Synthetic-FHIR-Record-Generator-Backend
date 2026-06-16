@@ -398,6 +398,10 @@ NOTE: Not all use case scenarios require common entities. Certain, complex snaps
 
 ### Use Case Scenarios
 
+A "Use Case Scenario" is a specific public health/clinical scenario represented as a set of discrete entities along with associated end user facing form controls to guide generation of a patient cohort as FHIR. Entities consist of fields which can be populated with static values through direct assignment in the entity model or linked to the form controls to allow end user configuration. (Entities will be discussed in more depth below.)
+
+The Use Case Scenario file can be either JSON or JSON5 (JSON with comments). ### TODO
+
 TODO
 - Core configuration params.
 

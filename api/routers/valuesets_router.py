@@ -1,4 +1,4 @@
-from typing import Any, Optional, List
+from typing import Optional
 from loguru import logger
 from fastapi import Depends, HTTPException, APIRouter
 from pydantic import Field
@@ -29,7 +29,7 @@ class SimpleConcept(NoNullCamelModel):
 
 class SimpleConceptListResponse(NoNullCamelModel):
     total: int
-    results: List[SimpleConcept] = Field([])
+    results: list[SimpleConcept] = Field([])
 
 
 @router.get("/valuesets/tribal-affiliation", response_class=PrettyJSONResponse)

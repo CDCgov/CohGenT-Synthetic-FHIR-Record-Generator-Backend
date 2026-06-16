@@ -8,7 +8,6 @@ __version__ = "1.0.2"
 
 import io
 import csv
-from typing import List
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import StreamingResponse
 from loguru import logger
@@ -223,7 +222,7 @@ This takes back in a generation summary from the UI and converts it to a CSV. As
 is no way to make this generate without feeding the data back in. In future versions with a generation history, this can be changed.
 """
 @app.post("/convert-summary-to-csv")
-async def export_to_csv(summaries: List[PatientContainer]) -> StreamingResponse:
+async def export_to_csv(summaries: list[PatientContainer]) -> StreamingResponse:
     """
     Accepts a list of PatientRecordSummary objects and returns a CSV file.
     Handles dynamic resourceCounts keys.

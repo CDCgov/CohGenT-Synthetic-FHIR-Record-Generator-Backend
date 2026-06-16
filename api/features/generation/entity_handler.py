@@ -13,12 +13,12 @@ from api.features.generation.generators.names import generate_name
 from api.features.generation.generators.uuids import generate_uuid_identifier
 from api.features.generation.setting_handler import find_setting
 from api.features.generation.special_extension_handlers import SpecialExtensions, generate_tribal_affiliation
-from api.features.generation.type_handlers import handle_by_type
+from api.features.generation.type_handlers import handle_by_type, value_coding_to_string
 from api.models.cohort_settings import CohortSettings, Setting
 from api.models.entity import Entity
 from api.models.patient_meta import PatientMeta
 from api.models.use_case import UseCase
-from api.models.value_types import is_value_range
+from api.models.value_types import is_value_coding, is_value_range
 
 fake = Faker()
 
@@ -150,3 +150,23 @@ def process_entity(entity: Entity, patient_meta: PatientMeta, patient_row_as_dic
                 extension_index = extension_index + 1
             else:
                 patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}"] = generated_value
+
+
+def process_static_entity(entity: Entity, patient_row_as_dict: PatientRow):
+    '''
+    Simplified handler for entirely static entities (e.g., common entities and provider entities)
+    '''
+    # Handle entity's main fields
+    for field in entity.fields or []:
+        val = field.value
+        if is_value_coding(field.value):
+            val = value_coding_to_string(field.value)
+        elif isinstance(field.value, str):
+            val = field.value
+        elif isinstance(field.value, bool):
+            val = field.value
+        else:
+            logger.warning(f"Unable to process {entity.entity_id} field value {field.value}, found unexpected type {type(field.value)}. Skipping.")
+            continue
+        patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}"] = val
+    

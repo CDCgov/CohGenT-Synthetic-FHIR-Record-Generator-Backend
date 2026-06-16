@@ -1,6 +1,6 @@
 from api.models.no_null_camel_model import NoNullCamelModel
 from api.database.db_omop_tables import Concept
-from typing import List, Optional
+from typing import Optional
 from api.features.terminologysearch.system_map import reverse_lookup_system
 
 class ConceptResult(NoNullCamelModel):
@@ -27,4 +27,4 @@ class TerminologySearchResults(NoNullCamelModel):
     page: int
     sort_by: str
     sort_order: str
-    results: List[ConceptResult]
+    results: list[ConceptResult]

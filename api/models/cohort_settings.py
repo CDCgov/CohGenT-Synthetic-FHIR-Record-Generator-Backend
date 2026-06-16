@@ -3,7 +3,7 @@ from decimal import Decimal
 from enum import Enum
 from fastapi_camelcase import CamelModel
 from pydantic import Field as PydanticField, model_validator
-from typing import List, Optional
+from typing import Optional
 from api.models.value_types import ValueCoding, ValueLocation, ValueRange, ValueWeights, ValueTimeRangeAsDays, ValueRangeWithUnits, ValuePrevalence, ValueTribalAffiliation
 
 type ValueX = bool | str | ValueWeights | ValueLocation | ValueRange | ValueCoding | ValueTimeRangeAsDays | ValueRangeWithUnits | ValuePrevalence | ValueTribalAffiliation | None
@@ -17,7 +17,7 @@ class Medication(CamelModel):
     dosage: Optional[str] = None
 
 class MedicationSet(CamelModel):
-    medications: List[Medication] = []
+    medications: list[Medication] = []
     weight: int | float
 
 class EventPeriod(CamelModel):
