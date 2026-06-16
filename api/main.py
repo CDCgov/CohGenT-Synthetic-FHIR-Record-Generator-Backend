@@ -8,7 +8,7 @@ __version__ = "1.0.2"
 
 import io
 import csv
-from fastapi import Depends, FastAPI, HTTPException, Request
+from fastapi import Depends, FastAPI, HTTPException, Query, Request
 from fastapi.responses import StreamingResponse
 from loguru import logger
 from sqlalchemy.orm import Session
@@ -179,7 +179,10 @@ async def get_use_case_guidance():
 Generate FHIR Output
 """
 @app.post("/generate", response_class=PrettyJSONResponse)
-async def generate_fhir(cohort_settings: CohortSettings, raw: bool = False, main_db: Session = Depends(get_main_db)):
+async def generate_fhir(cohort_settings: CohortSettings,
+                        raw: bool = Query(default=False, description="Return raw JSON instead of a binary zip. Does not work for NDJSON."),
+                        main_db: Session = Depends(get_main_db)):
+
     # Execute Generation using settings and build the FHIR Sheets Inputs.
     resource_definitions, resource_links, cohort = start_generation(cohort_settings, main_db, settings.iteration_limit)
 
@@ -197,6 +200,7 @@ async def generate_fhir(cohort_settings: CohortSettings, raw: bool = False, main
         except Exception as e: 
             logger.exception(e)
             raise HTTPException(status_code=500, detail="Something went wrong executing FHIR generation library.")
+        
         if raw:
             return package_contents_as_json(bundle_list, cohort_settings)
         else:

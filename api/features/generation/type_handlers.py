@@ -7,15 +7,15 @@ from api.features.generation.generators.dates import append_days
 from api.features.generation.generators.addresses import generate_address
 from api.features.generation.generators.numbers import generate_number_from_range
 from api.features.generation.weighted_values import select_from_weighted_list
-from typing import Optional, TypeGuard
+from typing import Optional
+from api.features.generation.alias_types import Code
 import datetime # NOTE: Importing individual objects from datetime module breaks date type checking.
 from api.models.value_types import ValueCoding
-from api.models.value_types import  is_value_coding, is_value_time_range_as_days, is_value_location, is_value_range_with_units, is_value_weights, is_value_coding
+from api.models.value_types import  is_value_coding, is_value_time_range_as_days, is_value_location, is_value_range_with_units, is_value_weights, is_bool
 from api.models.cohort_settings import EventSetEntry
 from loguru import logger
 from fastapi import HTTPException
 
-type Code = str
 
 '''
 TODO: Refactor to following pattern seen in boolean:
@@ -60,8 +60,7 @@ def boolean(field_setting: Setting, patient_meta: PatientMeta, static_value: Val
     else:
         raise TypeError(f"Static value type is not none and does not match the expected FHIR type of boolean.")
 
-def is_bool(value: object) -> TypeGuard[bool]:
-    return isinstance(value, bool)
+
 
 def date(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueX, **kwargs): # -> date:
     raise NotImplementedError("date type handler not implemented. Patient birth date handled specially.")
@@ -114,7 +113,8 @@ def Identifier(field_setting: Setting, patient_meta: PatientMeta, static_value: 
 def HumanName(field_setting: Setting, meta: PatientMeta, static_value: ValueX, **kwargs):
     '''
     Processes generation behavior for the FHIR HumanName type. For patient generation where names are always randomized, the expected value is a bool to
-    indicate whether or not masking should occur. For static, non-user configured data, this will accept any string which is bounced back as the value.
+    indicate whether or not masking should occur. For static, non-user configured data, this will accept any string in the form of "GivenName FamilyName"
+    (e.g., "John Smith") which is bounced back as the value.
     '''
     if is_bool(field_setting.value):
         if field_setting.value:
@@ -148,12 +148,16 @@ def Quantity(field_setting: Setting, patient_meta: PatientMeta, static_value: di
     raise NotImplementedError("Quantity type handler not implemented. Quantity is only supported through the choice of data type handler for observations for now.")
 
 
+# Currently Supported Choice of DataTypes
 class ChoiceOfDataTypes(Enum):
     QUANTITY = "Quantity"
     STRING = "string"
 
 # TODO: Generalize the handling to the type handlers above.
 def process_choice_of_data_type_value(entry: EventSetEntry, field: Field):
+    '''
+    Process FHIR style choice of data type values ("value[x]" fields)
+    '''
     # Check if in the Choice of Data Types ENUM to see if handled...
     if field.type in (t.value for t in ChoiceOfDataTypes):
 

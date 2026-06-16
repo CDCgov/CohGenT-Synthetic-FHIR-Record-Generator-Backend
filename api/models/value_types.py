@@ -4,6 +4,16 @@ from decimal import Decimal
 
 from pydantic import Field, model_validator
 
+
+'''
+Primitive Types
+'''
+def is_bool(value: object) -> TypeGuard[bool]:
+    '''
+    TypeGuard for bool values
+    '''
+    return isinstance(value, bool)
+
 '''
 FHIR Aligned Types
 

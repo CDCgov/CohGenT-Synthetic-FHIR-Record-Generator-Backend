@@ -419,14 +419,26 @@
                 "type": "procedure",
                 "buttonLabel": "Procedure",
                 "entityFile": "USCoreProcedure",
-                "defaultSystem": "CPT"
+                "defaultSystem": "CPT",
+                "dynamicReferences": [
+                    {
+                        "targetEntityIdentifier": "USCorePractitionerRole001",
+                        "linkIdentifier": "performer"
+                    }
+                ]
             },
             {
                 "entityId": "radiology",
                 "type": "radiology",
                 "buttonLabel": "Radiology Report",
                 "entityFile": "USCoreDiagnosticReportRadiology",
-                "defaultSystem": "LOINC"
+                "defaultSystem": "LOINC",
+                "dynamicReferences": [
+                    {
+                        "targetEntityIdentifier": "USCorePractitionerRole003",
+                        "linkIdentifier": "performer"
+                    }
+                ]
             }
         ],
         "medication": "USCoreMedicationRequest",

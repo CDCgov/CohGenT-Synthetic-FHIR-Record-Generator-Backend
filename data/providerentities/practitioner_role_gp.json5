@@ -16,7 +16,7 @@
 // PRACTITIONER REFERENCE
 // ========================================
 // Practitioner ID: (will be linked via otherReferences)
-// Practitioner NPI: 1847362915
+// Practitioner NPI: 1336192029
 
 // ========================================
 // ORGANIZATION REFERENCE
@@ -85,7 +85,7 @@
             "value": {
                 "system": "http://snomed.info/sct",
                 "code": "59058001",
-                "display": "General Practitioner"
+                "display": "General physician"
             }
         },
         {

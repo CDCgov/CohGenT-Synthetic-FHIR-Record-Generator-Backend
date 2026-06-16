@@ -2,6 +2,8 @@
 
 *Note: This README's core information is focused on the CohGenT API backend service, while the deployment section provides information on the broader stack.*
 
+> **DISCLAIMER:** Synthetic provider NPIs use by CohGenT are all valid (pass the LUHN algorithmic check) but inactive (not assigned to a real provider) as of the time of development. However, these NPIs should not be assumed to always be inactive, and may eventually overlap with real world NPIs. Please use caution when working with them.
+
 ## Core CohGenT API Features
 
 - Provide an interface for generating Patient Health Records as FHIR Resources using the FHIR Sheets library.
@@ -604,3 +606,8 @@ The CSV contains the following columns:
 ## Sample Settings
 
 TODO
+
+## Provider Entities
+
+TODO*
+
