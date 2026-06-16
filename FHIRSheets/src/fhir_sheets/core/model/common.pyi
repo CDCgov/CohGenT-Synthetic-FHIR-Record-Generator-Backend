@@ -1,3 +1,0 @@
-from typing import Any
-
-def get_value_from_keys(data: dict[str, Any], keys: list[str], default: Any) -> Any: ...
