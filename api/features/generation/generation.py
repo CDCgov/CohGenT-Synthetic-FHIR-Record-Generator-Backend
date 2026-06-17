@@ -2,7 +2,7 @@ from typing import Any
 
 from sqlalchemy.orm import Session
 
-from api.features.generation.alias_types import Distributions, PatientRow
+from api.features.generation.alias_types import Distributions, PatientRow, ResourceLink
 from api.features.generation.entity_handler import process_entity, process_static_entity
 from api.features.generation.generators.email import generate_email
 from api.features.generation.generators.names import generate_name
@@ -80,7 +80,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
     # Initialize major entities (non-repeatable)
     entities: list[Entity] = generate_entities(use_case)
     dynamic_entities: list[Entity] = []
-    dynamic_resource_links: list[tuple[str, str, str]] = [] # Entity A (Origin) -> Path -> Entity B (Target), typically for Diagnostic Reports -> Observation on .result.
+    dynamic_resource_links: list[ResourceLink] = [] # Entity A (Origin) -> Path -> Entity B (Target), typically for Diagnostic Reports -> Observation on .result.
 
     # Pre-load common entities
     loaded_common_entities: dict[LoadedCommonEntityKeys, Entity] = {}
@@ -215,7 +215,6 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                         # match to a common entity
                         common_entity = common_entities_map.get(entry.type)
 
-
                         if common_entity is not None:
 
                             if common_entity.entity_file:
@@ -254,6 +253,13 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                                 
                                 # Handle dynamic linked entities (e.g., Practitioners/Practitioner Roles) setup in the use case
                                 if cloned_entity.dynamic_references and common_entity.dynamic_references:
+                                    # process_dynamic_entities(
+                                    #     cloned_entity,
+                                    #     common_entity,
+                                    #     entity_cache,
+                                    #     patient_row_as_dict,
+                                    #     dynamic_entities,
+                                    #     dynamic_resource_links)
                                     for dynamic_reference in cloned_entity.dynamic_references or []:
                                         linked_target = next((link_dr for link_dr in common_entity.dynamic_references if link_dr.link_identifier == dynamic_reference.link_identifier), None)
                                         if linked_target:
@@ -290,17 +296,18 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                         current_date += timedelta(days=increment)
 
         if use_case.common_entities and use_case.common_entities.medication and configuration.medication_sets:
-            medication_base_entity = read_common_entity(use_case.common_entities.medication)
+            medication_base_entity = read_common_entity(use_case.common_entities.medication.entity_file)
             if medication_base_entity:
-                patient_medications, medication_fields = process_patient_medications(
+                process_patient_medications(
                     medication_base_entity,
                     configuration.medication_sets,
-                    patient_count
+                    patient_count,
+                    dynamic_entities,
+                    dynamic_resource_links,
+                    patient_row_as_dict,
+                    use_case,
+                    entity_cache
                 )
-                dynamic_entities.extend(patient_medications)
-                patient_row_as_dict.update(medication_fields)
-
-
 
         patients_as_dicts.append(patient_row_as_dict)
     entities.extend(dynamic_entities)
@@ -328,6 +335,32 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
             logger.info(patients)
     
     return resource_definitions, resource_links, cohort
+
+
+'''
+Dynamic Entities
+'''
+def process_dynamic_entities(entity: Entity, common_entity: AdditionalEntity, entity_cache: ProviderCache, patient_row_as_dict: PatientRow, dynamic_entities: list[Entity], dynamic_resource_links: list[ResourceLink]):
+    for dynamic_reference in entity.dynamic_references or []:
+        linked_target = next((link_dr for link_dr in common_entity.dynamic_references if link_dr.link_identifier == dynamic_reference.link_identifier), None)
+        if linked_target is not None:
+            linked_entity_model = entity_cache.get_provider_entity(linked_target.target_entity_identifier)
+            dynamic_entities.append(linked_entity_model)
+            dynamic_resource_links.append((entity.entity_id, dynamic_reference.reference_path, linked_entity_model.entity_id))
+            
+            process_static_entity(linked_entity_model, patient_row_as_dict)
+
+            # Handled any linked static references (e.g., PractitionerRole -> Organization and Practitioner)
+            # NOTE: These must be fully self contained entities without any user configuration, the same as the initial dynamic entity.
+            for static_reference in linked_entity_model.static_references or []:
+                static_reference_entity = entity_cache.get_provider_entity(static_reference.target_entity)
+                dynamic_entities.append(static_reference_entity)
+                dynamic_resource_links.append((linked_entity_model.entity_id, static_reference.reference_path, static_reference_entity.entity_id))
+                process_static_entity(static_reference_entity, patient_row_as_dict)
+
+        else:
+            logger.warning(f"Could not load entity with identifier: {dynamic_reference.link_identifier}. Skipped.")
+
 
 '''
 Distributions and Settings
@@ -372,8 +405,13 @@ Medication Generator
 def process_patient_medications(
     medication_base_entity: Entity,
     medication_sets: list[MedicationSet],
-    patient_index: int
-) -> tuple[list[Entity], dict[tuple[str, str], str]]:
+    patient_index: int,
+    dynamic_entities: list[Entity],
+    dynamic_resource_links: list[ResourceLink],
+    patient_row_as_dict: PatientRow,
+    use_case: UseCase,
+    entity_cache: ProviderCache
+):
     """
     Select and process medications for a single patient.
     
@@ -381,12 +419,8 @@ def process_patient_medications(
         medication_base_entity: Base entity template for medications
         medication_sets: Available medication sets to choose from
         patient_index: Patient index for unique entity IDs
-        
-    Returns:
-        Tuple of (medication entities, patient field values dict)
+
     """
-    medication_entities: list[Entity] = []
-    patient_fields: dict[tuple[str, str], str] = {}
     
     # Select a medication set for this patient
     selected_set = select_medication_set(medication_sets)
@@ -395,7 +429,7 @@ def process_patient_medications(
     for med_count, medication in enumerate(selected_set.medications):
         medication_entity = copy(medication_base_entity)
         medication_entity.entity_id = f"{medication_entity.entity_id}_{patient_index}_{med_count}"
-        medication_entities.append(medication_entity)
+        dynamic_entities.append(medication_entity)
         
         for field in medication_entity.fields or []:
             key: tuple[str, str] = (
@@ -413,10 +447,29 @@ def process_patient_medications(
                     value = medication.dosage
             
             if value is not None:
-                patient_fields[key] = value
-    
-    return medication_entities, patient_fields
+                patient_row_as_dict[key] = value
 
+            for dynamic_reference in medication_base_entity.dynamic_references or []:
+                assert(use_case.common_entities)
+                assert(use_case.common_entities.medication)
+                linked_target = next((link_dr for link_dr in use_case.common_entities.medication.dynamic_references or [] if link_dr.link_identifier == dynamic_reference.link_identifier), None)
+                if linked_target:
+                    linked_entity_model = entity_cache.get_provider_entity(linked_target.target_entity_identifier)
+                    dynamic_entities.append(linked_entity_model)
+                    dynamic_resource_links.append((medication_entity.entity_id, dynamic_reference.reference_path, linked_entity_model.entity_id))
+                    
+                    process_static_entity(linked_entity_model, patient_row_as_dict)
+
+                    # Handled any linked static references (e.g., PractitionerRole -> Organization and Practitioner)
+                    # NOTE: These must be fully self contained entities without any user configuration, the same as the initial dynamic entity.
+                    for static_reference in linked_entity_model.static_references or []:
+                        static_reference_entity = entity_cache.get_provider_entity(static_reference.target_entity)
+                        dynamic_entities.append(static_reference_entity)
+                        dynamic_resource_links.append((linked_entity_model.entity_id, static_reference.reference_path, static_reference_entity.entity_id))
+                        process_static_entity(static_reference_entity, patient_row_as_dict)
+
+                else:
+                    logger.warning(f"Could not load entity with identifier: {dynamic_reference.link_identifier}. Skipped.")
 
 
 '''

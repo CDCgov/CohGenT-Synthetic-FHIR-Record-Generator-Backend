@@ -23,9 +23,13 @@ class AdditionalEntity(CamelModel):
     default_system: Optional[str] = None
     dynamic_references: Optional[list[DynamicReferencePointer]] = None
 
+class MedicationEntity(CamelModel):
+    entity_file: str
+    dynamic_references: Optional[list[DynamicReferencePointer]] = None
+
 class CommonEntities(CamelModel):
     additional_entities: Optional[list[AdditionalEntity]] = None
-    medication: Optional[str] = None
+    medication: Optional[MedicationEntity] = None
     diagnostic_report: Optional[str] = None
 
 class GenerationRules(CamelModel):

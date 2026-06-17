@@ -10,7 +10,7 @@ This directory contains field specification templates for static provider resour
 2. **practitioner_lab_tech.json5** - James Martinez, MT(ASCP), Lab Technician
    - NPI: 1691847523 (Type 1, verified non-existent in NPPES as of 2026-06-10)
 3. **practitioner_radiologist.json5** - Dr. Alex Johnson, Radiologist
-   - NPI: 1539174682 (Type 1, verified non-existent in NPPES as of 2026-06-10)
+   - NPI: 1227429218 (Type 1, verified non-existent in NPPES as of 2026-06-10)
 
 ### Organizations (4)
 1. **organization_clinic.json5** - Metro Health Clinic
@@ -35,7 +35,7 @@ This directory contains field specification templates for static provider resour
    - Links: Practitioner 1691847523 + Organization ORG-CITYLAB-001
 3. **practitioner_role_radiologist.json5** - Radiologist at Imaging Center
    - Identifier: ROLE-RAD-001
-   - Links: Practitioner 1539174682 + Organization ORG-IMAGING-001
+   - Links: Practitioner 1227429218 + Organization ORG-IMAGING-001
 
 ## Next Steps
 

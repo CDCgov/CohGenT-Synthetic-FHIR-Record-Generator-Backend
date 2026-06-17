@@ -187,7 +187,7 @@ async def generate_fhir(cohort_settings: CohortSettings,
     resource_definitions, resource_links, cohort = start_generation(cohort_settings, main_db, settings.iteration_limit)
 
     # Setup FHIR SHeets configuration.
-    fhir_sheets_config = FhirSheetsConfiguration({"random_seed": cohort_settings.seed})
+    fhir_sheets_config = FhirSheetsConfiguration({"random_seed": cohort_settings.seed, "enable_default_resource_links": False})
 
     if cohort_settings.output_format == OutputFormat.JSON:
         # TODO: Current version of this keeps flow from original implementation to avoid breaking changes. Needs to be handled in like manner to NDJSON once ready.

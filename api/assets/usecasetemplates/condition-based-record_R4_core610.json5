@@ -441,7 +441,15 @@
                 ]
             }
         ],
-        "medication": "USCoreMedicationRequest",
+        "medication": {
+            "entityFile": "USCoreMedicationRequest",
+            "dynamicReferences": [
+                {
+                    "targetEntityIdentifier": "USCorePractitionerRole001",
+                    "linkIdentifier": "requester"
+                }
+            ]
+        },
         "diagnosticReport": "USCoreDiagnosticReportLab"
     }
 }

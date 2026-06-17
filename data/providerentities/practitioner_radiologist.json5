@@ -4,7 +4,7 @@
 // ========================================
 // IDENTIFIERS
 // ========================================
-// NPI Identifier Value: 1539174682
+// NPI Identifier Value: 1227429218
 // NPI Identifier System: http://hl7.org/fhir/sid/us-npi
 // Note: Type 1 NPI (individual provider) verified non-existent in NPPES registry as of 2026-06-10
 
@@ -61,7 +61,7 @@
             "path": "Practitioner.identifier.[0].value",
             "type": "string",
             "userConfigured": false,
-            "value": "1539174682"            
+            "value": "1227429218"            
         },
         {
             "path": "Practitioner.name.[0].family",

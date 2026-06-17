@@ -4,7 +4,7 @@
 // ========================================
 // IDENTIFIERS
 // ========================================
-// NPI Identifier Value: 1336192029
+// NPI Identifier Value: 1596555684
 // NPI Identifier System: http://hl7.org/fhir/sid/us-npi
 // Note: Type 1 NPI (individual provider) - Family Medicine, FL (ACTIVE in NPPES registry)
 
@@ -50,7 +50,7 @@
             "path": "Practitioner.identifier.[0].value",
             "type": "string",
             "userConfigured": false,
-            "value": "1336192029"            
+            "value": "1596555684"            
         },
         {
             "path": "Practitioner.name.[0]",
