@@ -328,18 +328,17 @@ Assign a lab result to the current event set.
 - **Procedure Result Code**
   - **Description:** A medical concept that defines the procedure performed.
   - **Type:** Concept
-  - **FHIRPath:** Observation.code
+  - **FHIRPath:** Procedure.code
   - **Required:** No
 
 
 #### Add Radiology Report
 
 - **Radiology Report Result Code**
-  - **Description:** A medical concept that defines the radiology report.
+  - **Description:** A medical concept that defines the radiology procedure.
   - **Type:** Concept
-  - **FHIRPath:** Observation.code
+  - **FHIRPath:** DiagnosticReport.code
   - **Required:** No
-
 
 ### Medications
 
