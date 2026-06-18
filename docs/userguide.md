@@ -4,9 +4,9 @@
 
 # Introduction
 
-CohGenT (the Cohort Generation Tool), is a software application <mark>designed for data analysts and FHIR developers in the realm of public health and epidemiology</mark> to assist in creating and managing synthetic cohort data. Within CohGenT, "cohorts" are defined groups of synthetic patients following specific exposures or characteristics that influence the development of health outcomes. CohGent reduces the barrier-to-entry to testing applications with FHIR, providing common scenarios and a simple-to-use interface for those who need to create synthetic patient data.
+CohGenT (the Cohort Generation Tool), is a software application <mark>designed for public health practitioners, including data analysts and FHIR developers in the realm of public health and epidemiology</mark> to assist in creating and managing synthetic cohort data. Within CohGenT, "cohorts" are defined groups of synthetic patients following specific exposures or characteristics that influence the development of health outcomes. CohGent reduces the barrier-to-entry to testing applications with FHIR, providing common scenarios and a simple-to-use interface for those who need to create synthetic patient data.
 
-CohGenT generates synthetic data for testing data exchange including testing interoperability workflows. Generated data adheres to configurable FHIR profiles, including US Core, and exports can be validated to ensure they meet required FHIR specifications.
+CohGenT generates synthetic data for testing data exchange including testing interoperability workflows <mark>such as FHIR query and Bulk FHIR access </mark>. Generated data adheres to configurable FHIR profiles, including US Core, and exports can be validated to ensure they meet required FHIR specifications.
 Key features of the tool include:
 - A user-friendly interface for designing synthetic cohort FHIR data based on common federal guidelines.
 - Integrated tooling to generate FHIR JSON bundles ready for testing environments.
@@ -29,6 +29,8 @@ Start by selecting a cohort scenario, entering a name, and setting the primary e
 - US Core DiagnosticReport Profile for Report and Note Exchange (DiagnosticReport)
 - US Core Organization (Organization)
 - US Core Practitioner (Practitioner)
+
+> Note: While US Core Organization and US Core Practitioner are supported by the system, they are not independently generated. They are automatically constructed and included as supporting resources derived from the references present within the primary clinical payloads (e.g., Encounters, Diagnostics, and Procedures).
 
 ## Key Features
 
@@ -71,7 +73,9 @@ On the right side of the site header, the dropdown menu has links to "Documentat
 
 ### Set Cohort Scenario and Initial Settings
 
-Select "New Cohort Configuration" to go to the "Cohort Scenario" page. Then choose the cohort scenario you want to use. Cohort scenarios support common public health use cases and align with targeted FHIR Implementation Guides. 
+Select "New Cohort Configuration" to go to the "Cohort Scenario" page. Then choose the cohort scenario you want to use. Cohort scenarios support common public health use cases and align with targeted FHIR Implementation Guides.
+
+<mark>> Note: The specific cohort scenario or primary event is driven by the clinical condition the user selects.</mark>
 
 Within this step, set the following basic parameters for the new cohort:
 
@@ -91,7 +95,7 @@ Within this step, set the following basic parameters for the new cohort:
     - **Description:** if there is a date for which data should continue beyond the event period end date specified in the previous step.
     - **Type:** Date (MM/DD/YYYY)
     - **Required:** No
-    - **Example:** Setting a date of 06/31/2026 will follow the patient resources with periodic follow up labs and procedures until 06/31/2026.
+    - **Example:** <mark>Assuming the primary condition cohort period is January 1, 2025, through December 31, 2025, follow-up labs and procedures can be set to continue beyond that period, such as through June 30, 2026.</mark>
 
 ## Save Cohort Settings
 
@@ -146,6 +150,8 @@ Selecting **Bulk Data NDJSON** will generate a set of Newline Delimited JSON (ND
 - Choose **FHIR JSON Bundle** when you need to test individual patient workflows, manually review patient records, or upload data to FHIR servers using transaction Bundles.
 - Choose **Bulk Data FHIR NDJSON** when you need to test bulk data operations, perform analytics across many patients, or work with systems that support the FHIR Bulk Data Access API.
 
+Click "Generate FHIR Records", to initiate a cohort generation. Once complete, a new section will appear with the cohort title, generation date, and download button. Click the download button to save the cohort as a zip file. The zip file contains a large set of files of patient bundles in FHIR format.  These bundles are pre-formatted and ready to be uploaded directly to a FHIR server via a RESTful or web client.
+
 # Common Data Entry Types
 
 Many cohort scenarios use the same data entry fields within the tool.
@@ -159,13 +165,16 @@ When assigning numeric distributions for more than two categories, use the lock 
 
 ## Concept Entry
 
+> **Important:** It is highly recommended to identify your relevant code systems and potential codes ahead of time. While CohGenT provides search features and presets, gathering this information in advance makes configuration much smoother and ensures you select the absolute best match for your intended concept.
+
 In the current version of CohGenT, Concepts are entered at the Primary Condition, Clinical Data, and Medications steps. For Primary Condition, there are three different options for entering a concept: Search for Concept, Select Preset Concept, and Enter Concept Manually.
 
-Searching for the Concept involves entering the term (by code or by name) and selecting the correct System (or setting the System dropdown to "All Systems" if the System for that code or name is unknown). The Search results will show all concepts with that code or term, ordered by relevancy. Click on the concept you want, then click "Select" and the System, Code, and Display name will appear and be saved to your cohort.
+- **Searching for the Concept** involves entering the term (by code or by name) and selecting the correct System (or setting the System dropdown to "All Systems" if the System for that code or name is unknown). The Search results will show all concepts with that code or term, ordered by relevancy. Click on the concept you want, then click "Select" and the System, Code, and Display name will appear and be saved to your cohort.
 
-Selecting a Preset Concept involves opening the Preset Concept List and choosing the concept you want from the list of common conditions. Select "Use this Concept" to save that concept to your cohort. Any previously entered concepts will be over-ridden by new concepts selected.
+- **Selecting a Preset Concept** involves opening the Preset Concept List and choosing the concept you want from the list of common conditions. Select "Use this Concept" to save that concept to your cohort. Any previously entered concepts will be over-ridden by new concepts selected.
 
-Entering the Concept Manually involves selecting the system associated with your concept of interest and entering either the code or display name.
+- **Entering the Concept Manually** involves selecting the system associated with your concept of interest and entering either the code or display name.
+    >Note that using this option will not populate codes if left empty.
 
 Searching for the Concept or Entering the Concept Manually are the two mechanisms for entering the Concept for Clinical Data and Medications.
 
@@ -200,12 +209,12 @@ All patient Demographics have preset default settings to mimic US census and OMB
 - **Age At Diagnosis**
   - **Description:** The age of the patient at the time of the primary diagnosis.
   - **Type:** Range
-  - **FHIRPath:** Patient.Name
+  - **FHIRPath:** Patient.birthDate
   - **Required:** Yes, has defaults
   - **Default Behavior:** 18-65
 
 - **Sex Distribution**
-  - **Description:** Distribution of gender within the cohort
+  - **Description:** Distribution of <mark>administrative</mark> gender within the cohort
   - **Type:** Distribution
   - **FHIRPath:** Patient.gender
   - **Required:** Yes, has defaults
@@ -259,7 +268,7 @@ Use the Concept Finder to search for the condition, use the Quick Condition Sele
 
 Click "Search for Concept" to open the **Concept Finder** and enter in your condition's key word or exact code and system (if known).
 
-Click "Select Quick Condition" to open the **Quick Condition Selector** (with common presets) to select codes for COVID-19, Tuberculosis, RSV, Influenza, and Syphilis.
+Click "Select Quick Condition" to open the **Quick Condition Selector** (with common presets) to select codes for COVID-19, Tuberculosis, RSV, Influenza, <mark>or</mark> Syphilis.
 
 - **Primary Condition Concept**
   - **Description:** A medical concept that defines the primary event condition. _Note: The Concept's System, Code, and Display make up the Concept._
@@ -284,7 +293,11 @@ For example:
 
 #### Add Clinical Data Set
 
-Assign Clinical Data Set Settings to establish the timing of the data relative to the primary condition onset, then add one or multiple types of clinical data for that time period.
+<mark>Add a Clinical Data Set to add one or more of Lab Results, Procedures, or Radiology Reports. for each patient in the cohort. Additional clinical data sets can be created for sets with different timing.
+For example:
+•	A set of lab tests being performed weekly as one Clinical Data Set
+•	A procedure performed every 6 months as a second Clinical Data Set
+</mark>
 
 **Clinical Data Set Settings**
 
@@ -348,13 +361,13 @@ Add a Medication Set to specify medications. Add more than one set and assign we
 - **Medication**
   - **Description**: A medical concept that defines the medication. _Note: The Concept's System, Code, and Display make up the Concept._
   - **Type:** Concept
-  - **FHIRPath:** MedicationStatement.code
+  - **FHIRPath:** MedicationRequest.code
   - **Required:** No
 
 - **Dosage Instructions**
   - **Description:** Details on how medication should be taken.
   - **Type:** Text
-  - **FHIRPath:** MedicationStatement.dosage
+  - **FHIRPath:** MedicationRequest.dosageInstruction
   - **Required:** No
 
 # FAQs
