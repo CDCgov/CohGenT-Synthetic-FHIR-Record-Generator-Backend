@@ -101,11 +101,11 @@ At any time during cohort creation, if you wish to save the settings you have ap
 
 ### Review Cohort
 
-Review all of the cohort data on the Review Cohort page. If edits need to be made, navigate to previous pages using the left side bar or "Back" button. Select "Next" or move to the "Finalize and Generate" Step once ready.
+Review all of the cohort data on the Review Cohort page. To make changes, navigate to previous pages using the left side bar or "Back" button. Select "Next" or move to the "Finalize and Generate" Step once ready.
 
 ### Cohort File Generation
 
-The final step in generating a cohort is to confirm the cohort patient count and generate the cohort file. The maximum number of patients in v1.0 is 50.
+The final step in generating a cohort is to confirm the cohort patient count and generate the cohort file. The maximum number of patients in v1.1 is 50.
 
 Here, you can also optionally adjust advanced options, which include:
 
@@ -244,6 +244,13 @@ All patient Demographics have preset default settings to mimic US census and OMB
   - **Required:** Yes, has defaults
   - **Default Behavior:** Hispanic or Latino: 20%, Not Hispanic or Latino, 80%, Unknown: 0%
 
+- **Tribal Affiliation**
+  - **Description:** Prevalence of tribal affiliations, such as American Indian, Alaska Native, or Indigenous tribe or nation and whether or not the affiliation should be randomly assigned or specified.
+  - **Type:** Distribution
+  - **FHIRPath:** Patient.extension
+  - **Required:** Yes, has defaults
+  - **Default Behavior:** Prevalence of 5% across the cohort of a randomly selected tribal affiliation per patient.
+
 ### Primary Condition
 
 Configuration of the primary condition shared by the patients in the cohort. This is the condition being reporting/surveilled.
@@ -319,50 +326,25 @@ Assign a lab result to the current event set.
 #### Add Procedure
 
 - **Procedure Result Code**
-  - **Description:** A medical concept that defines the laboratory observation.
+  - **Description:** A medical concept that defines the procedure performed.
   - **Type:** Concept
   - **FHIRPath:** Observation.code
   - **Required:** No
 
-- **Result: Quantity**
-  - **Description:** The range of values for the lab result. Individual patients' lab results will span randomly across the set range.
-  - **Type:** Range
-  - **FHIRPath:** Observation.valueQuantity
-  - **Required:** No
-
-- **Result: String**
-   - **Description:** The character value for the lab result. Add multiple values to have patients' lab results randomly assigned to the different values you entered.
-  - **Type:** String
-  - **FHIRPath:** Observation.valueString
-  - **Example:** Low, Medium, and High value strings
-  - **Required:** No
 
 #### Add Radiology Report
 
-- **Lab/Observation Result Code**
-  - **Description:** A medical concept that defines the laboratory observation
+- **Radiology Report Result Code**
+  - **Description:** A medical concept that defines the radiology report.
   - **Type:** Concept
   - **FHIRPath:** Observation.code
   - **Required:** No
 
-- **Result: Quantity**
-  - **Description:** The range of values for the lab result. Individual patients' lab results will span randomly across the set range.
-  - **Type:** Range
-  - **FHIRPath:** Observation.valueQuantity
-  - **Required:** No
-
-- **Result: String**
-  - **Description:** The character value for the lab result. Add multiple values to have patients' lab results randomly assigned to the different values you entered.
-  - **Type:** String
-  - **FHIRPath:** Observation.valueString
-  - **Example:** Low, Medium, and High value strings
-  - **Required:** No
 
 ### Medications
 
-Configure the list of medications for the cohort of patients.
-<mark> note: this is going to change slightly in the next release</mark> 
-Use the Concept Finder to search for the medication or enter the Concept manually by selecting the appropriate System and entering either the code or display.
+Add a Medication Set to specify medications. Add more than one set and assign weighted values to specify which proportion of the cohort receives which medications.
+
 
 - **Medication**
   - **Description**: A medical concept that defines the medication. _Note: The Concept's System, Code, and Display make up the Concept._
