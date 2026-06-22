@@ -1,0 +1,127 @@
+// US Core Organization - Medical Laboratory
+// Modify values below as needed, then request full FHIR Sheets entity build
+
+// ========================================
+// IDENTIFIERS
+// ========================================
+// Identifier Value: ORG-CITYLAB-001
+// Identifier System: urn:cohgent:identifier:organization
+
+// ========================================
+// ACTIVE STATUS
+// ========================================
+// Active: true
+
+// ========================================
+// TYPE
+// ========================================
+// Type Code: dept
+// Type System: http://terminology.hl7.org/CodeSystem/organization-type
+// Type Display: Hospital Department
+
+// ========================================
+// NAME
+// ========================================
+// Organization Name: City Medical Laboratory
+
+// ========================================
+// CONTACT INFORMATION
+// ========================================
+// Phone: 555-0300
+// Fax: 555-0301
+// Email: lab@citylab.example
+
+// ========================================
+// ADDRESS
+// ========================================
+// Street Line 1: 456 Medical Plaza
+// Street Line 2: Suite 200
+// City: Anytown
+// State: IL
+// Postal Code: 12345
+// Country: US
+
+{
+    "abstract": false,
+    "entityId": "USCoreOrganization002",
+    "resourceType": "Organization",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization",
+    "fields": [
+        {
+            "path": "Organization.identifier.[0].system",
+            "type": "string",
+            "userConfigured": false,
+            "value": "urn:cohgent:identifier:organization"
+        },
+        {
+            "path": "Organization.identifier.[0].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "ORG-CITYLAB-001"
+        },
+        {
+            "path": "Organization.active",
+            "type": "boolean",
+            "userConfigured": false,
+            "value": true
+        },
+        {
+            "path": "Organization.type.[0]",
+            "type": "CodeableConcept",
+            "userConfigured": false,
+            "value": {
+                "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+                "code": "dept",
+                "display": "Hospital Department"
+            }
+        },
+        {
+            "path": "Organization.name",
+            "type": "string",
+            "userConfigured": false,
+            "value": "City Medical Laboratory"
+        },
+        {
+            "path": "Organization.telecom.[0].system",
+            "type": "code",
+            "userConfigured": false,
+            "value": "phone"
+        },
+        {
+            "path": "Organization.telecom.[0].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "555-0300"
+        },
+        {
+            "path": "Organization.telecom.[1].system",
+            "type": "code",
+            "userConfigured": false,
+            "value": "fax"
+        },
+        {
+            "path": "Organization.telecom.[1].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "555-0301"
+        },
+        {
+            "path": "Organization.telecom.[2].system",
+            "type": "code",
+            "userConfigured": false,
+            "value": "email"
+        },
+        {
+            "path": "Organization.telecom.[2].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "lab@citylab.example"
+        },
+        {
+            "path": "Organization.address.[0]",
+            "type": "Address",
+            "userConfigured": false,
+            "value": "456 Medical Plaza Suite 200^Anytown^^12345^IL^US"
+        }
+    ]
+}

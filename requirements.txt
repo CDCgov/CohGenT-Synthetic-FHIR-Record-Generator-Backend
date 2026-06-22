@@ -6,7 +6,7 @@ et-xmlfile==1.1.0
 Faker==37.11.0
 fastapi==0.116.1
 fastapi_camelcase==2.0.0
-fhir-sheets==2.4.6
+fhir-sheets==2.5.5
 h11==0.16.0
 h2==4.3.0
 hpack==4.1.0
@@ -18,9 +18,11 @@ idna==3.10
 iniconfig==2.1.0
 jsonpath-ng==1.6.1
 loguru==0.7.3
+numpy==2.4.6
 openpyxl==3.1.5
 orjson==3.10.7
 packaging==25.0
+pandas==3.0.3
 pluggy==1.6.0
 ply==3.11
 priority==2.0.0

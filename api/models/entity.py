@@ -6,6 +6,10 @@ class EntityReference(CamelModel):
     reference_path: str
     target_entity: str
 
+class DynamicReference(CamelModel):
+    reference_path: str
+    link_identifier: str
+
 class Entity(CamelModel):
     entity_id: str
     abstract: bool
@@ -14,4 +18,5 @@ class Entity(CamelModel):
     base_entity: Optional[str] = None
     profile: Optional[str] = None
     reference_path: Optional[str] = None
-    other_references: Optional[list[EntityReference]] = None
+    static_references: Optional[list[EntityReference]] = None
+    dynamic_references: Optional[list[DynamicReference]] = None

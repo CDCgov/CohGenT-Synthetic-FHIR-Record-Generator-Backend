@@ -4,7 +4,8 @@ from sqlalchemy.orm import Session
 from sqlalchemy import ColumnElement, and_, case, func, not_, or_, asc, desc
 from api.database.db_omop_tables import Concept
 from api.models.terminology_search_results import ConceptResult
-from api.features.terminologysearch.system_map import lookup_system, fhir_to_omop_systems
+from api.features.terminologysearch.system_map import lookup_system, reverse_lookup_system, fhir_to_omop_systems
+from api.features.presets.observation_values import get_preset_cache
 
 def search_concepts(
     db: Session,
@@ -13,7 +14,10 @@ def search_concepts(
     sort_by: Literal["name", "code", "system", "relevance"] = "relevance",
     sort_order: Literal["asc", "desc"] = "asc",
     page: int = 1,
-    count: int = 100
+    count: int = 100,
+    check_for_presets: bool = False,
+    main_db: Optional[Session] = None
+
     ):
 
     # Break up search terms...
@@ -96,8 +100,19 @@ def search_concepts(
     offset: int = (page - 1) * count
     results = query.offset(offset).limit(count).all()
 
+    if check_for_presets and main_db is not None:
+        preset_cache = get_preset_cache(main_db)
+        results_validated: list[ConceptResult] = []
+        for row in results:
+            fhir_system = reverse_lookup_system(row.vocabulary_id)
+            has_presets: bool = (row.concept_code, fhir_system) in preset_cache
+            results_validated.append(
+                ConceptResult.from_concept_table(row, has_presets=has_presets)
+            )
     # Parse results to Pydantic Model to verify integrity
-    results_validated = [ConceptResult.from_concept_table(row) for row in results]
+    else:
+        # Default behavior w/ out preset check.
+        results_validated = [ConceptResult.from_concept_table(row) for row in results]
     return results_validated, total_count
 
 def build_relevance_score(search_term: str):

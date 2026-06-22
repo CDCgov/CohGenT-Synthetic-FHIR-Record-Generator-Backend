@@ -4,6 +4,12 @@
     "resourceType": "DiagnosticReport",
     "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note",
     "referencePath": "subject",
+    "dynamicReferences": [
+        {
+            "referencePath": "performer",
+            "linkIdentifier": "performer"
+        }
+    ],
     "fields": [
         {
             "path": "DiagnosticReport.status",
