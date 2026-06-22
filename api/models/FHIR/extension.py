@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional, List
+from typing import Any, Dict, Optional
 from pydantic import Field
 from api.models.no_null_camel_model import NoNullCamelModel
 
@@ -27,7 +27,7 @@ class Extension(NoNullCamelModel):
     value_reference: Optional[Dict[str, Any]] = Field(None, description="Value of extension")
     
     # Nested extensions (for complex extensions)
-    extension: Optional[List['Extension']] = Field(None, description="Additional content defined by implementations")
+    extension: Optional[list['Extension']] = Field(None, description="Additional content defined by implementations")
     
     model_config = {"extra": "allow"}
     

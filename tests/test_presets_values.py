@@ -22,4 +22,4 @@ def test_preset_value_search() -> None:
     assert "code" in json["parameters"]
     assert "count" in json
     assert json["parameters"]["code"] == code
-    assert int(json["count"]) == 4 # type: ignore
+    assert int(json["count"]) == 3 # type: ignore

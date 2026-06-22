@@ -1,11 +1,12 @@
 from datetime import date
+from decimal import Decimal
 from enum import Enum
 from fastapi_camelcase import CamelModel
 from pydantic import Field as PydanticField, model_validator
-from typing import Literal, Optional
-from api.models.value_types import ValueCoding, ValueLocation, ValueRange, ValueWeights, ValueTimeRangeAsDays, ValueRangeWithUnits
+from typing import Optional
+from api.models.value_types import ValueCoding, ValueLocation, ValueRange, ValueWeights, ValueTimeRangeAsDays, ValueRangeWithUnits, ValuePrevalence, ValueTribalAffiliation
 
-type ValueX = bool | str | ValueWeights | ValueLocation | ValueRange | ValueCoding | ValueTimeRangeAsDays | ValueRangeWithUnits | None
+type ValueX = bool | str | ValueWeights | ValueLocation | ValueRange | ValueCoding | ValueTimeRangeAsDays | ValueRangeWithUnits | ValuePrevalence | ValueTribalAffiliation | None
 
 class Setting(CamelModel):
     rule_id: str
@@ -14,6 +15,10 @@ class Setting(CamelModel):
 class Medication(CamelModel):
     codeable_concept: ValueCoding
     dosage: Optional[str] = None
+
+class MedicationSet(CamelModel):
+    medications: list[Medication] = []
+    weight: int | float
 
 class EventPeriod(CamelModel):
     start: date
@@ -65,5 +70,5 @@ class CohortSettings(CamelModel):
     seed: int
     event_period: EventPeriod
     user_responses: Optional[list[Setting]] = None
-    medications: Optional[list[Medication]] = None
+    medication_sets: Optional[list[MedicationSet]] = None
     event_sets: Optional[list[EventSet]] = None

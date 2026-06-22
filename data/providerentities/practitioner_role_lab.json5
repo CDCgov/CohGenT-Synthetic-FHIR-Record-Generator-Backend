@@ -1,0 +1,126 @@
+// US Core PractitionerRole - Lab Technician at City Medical Laboratory
+// Modify values below as needed, then request full FHIR Sheets entity build
+
+// ========================================
+// IDENTIFIERS
+// ========================================
+// Identifier Value: ROLE-LAB-001
+// Identifier System: urn:cohgent:identifier:practitionerrole
+
+// ========================================
+// ACTIVE STATUS
+// ========================================
+// Active: true
+
+// ========================================
+// PRACTITIONER REFERENCE
+// ========================================
+// Practitioner ID: (will be linked via otherReferences)
+// Practitioner NPI: 1691847523
+
+// ========================================
+// ORGANIZATION REFERENCE
+// ========================================
+// Organization ID: (will be linked via otherReferences)
+// Organization Identifier: ORG-CITYLAB-001
+
+// ========================================
+// CODE (ROLE)
+// ========================================
+// Role Code: 159001000000105
+// Role System: http://snomed.info/sct
+// Role Display: Medical Laboratory Scientist
+
+// ========================================
+// SPECIALTY
+// ========================================
+// Specialty Code: 261904005
+// Specialty System: http://snomed.info/sct
+// Specialty Display: Clinical laboratory
+
+// ========================================
+// TELECOM
+// ========================================
+// Phone: 555-0101
+// Email: james.martinez@citylab.example
+
+{
+    "abstract": false,
+    "entityId": "USCorePractitionerRole002",
+    "resourceType": "PractitionerRole",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole",
+    "staticReferences": [
+        {
+            "referencePath": "practitioner",
+            "targetEntity": "USCorePractitioner002"
+        },
+        {
+            "referencePath": "organization",
+            "targetEntity": "USCoreOrganization002"
+        }
+    ],
+    "fields": [
+        {
+            "path": "PractitionerRole.identifier.[0].system",
+            "type": "string",
+            "userConfigured": false,
+            "value": "urn:cohgent:identifier:practitionerrole"
+        },
+        {
+            "path": "PractitionerRole.identifier.[0].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "ROLE-LAB-001"
+        },
+        {
+            "path": "PractitionerRole.active",
+            "type": "boolean",
+            "userConfigured": false,
+            "value": true
+        },
+        {
+            "path": "PractitionerRole.code.[0]",
+            "type": "CodeableConcept",
+            "userConfigured": false,
+            "value": {
+                "system": "http://snomed.info/sct",
+                "code": "159285000",
+                "display": "Medical laboratory technician"
+            }
+        },
+        {
+            "path": "PractitionerRole.specialty.[0]",
+            "type": "CodeableConcept",
+            "userConfigured": false,
+            "value": {
+                "system": "http://snomed.info/sct",
+                "code": "261904005",
+                "display": "Laboratory"
+            }
+        },
+        {
+            "path": "PractitionerRole.telecom.[0].system",
+            "type": "code",
+            "userConfigured": false,
+            "value": "phone"
+        },
+        {
+            "path": "PractitionerRole.telecom.[0].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "555-0101"
+        },
+        {
+            "path": "PractitionerRole.telecom.[1].system",
+            "type": "code",
+            "userConfigured": false,
+            "value": "email"
+        },
+        {
+            "path": "PractitionerRole.telecom.[1].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "james.martinez@citylab.example"
+        }
+    ]
+}

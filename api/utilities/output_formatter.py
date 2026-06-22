@@ -13,7 +13,7 @@ import base64
 import orjson
 from loguru import logger
 from collections import defaultdict
-
+from zoneinfo import ZoneInfo
 
 def package_contents_as_json(bundle_list: list[Bundle], cohort_settings: CohortSettings) -> GenerationSummaryJson:
     patient_containers: list[Any] = []
@@ -22,11 +22,9 @@ def package_contents_as_json(bundle_list: list[Bundle], cohort_settings: CohortS
         patient_summary = parse_patient_summary_from_bundle(bundle)
         patient_containers.append({"summary": patient_summary, "fhir": bundle})
     
-    current_time = datetime.now(timezone.utc)
-
     return GenerationSummaryJson.model_validate(
         {
-            "timeStamp": current_time.isoformat(),
+            "timeStamp": _get_time_as_utc_iso_string(),
             "generationParameters": generation_parameters,
             "generationSummary": patient_containers
         })
@@ -47,12 +45,18 @@ def package_contents_as_binary(bundle_list: list[Bundle], cohort_settings: Cohor
 
     zip_base64 = base64.b64encode(zip_buffer.getvalue()).decode('utf-8')
     generation_parameters = parse_generation_parameters(cohort_settings)
+
+    
     return GenerationSummaryBinary.model_validate({
-            "timeStamp": datetime.now(),
+            "timeStamp": _get_time_as_utc_iso_string(),
             "generationParameters": generation_parameters,
             "generationSummary": patient_containers,
             "data": zip_base64
         })
+
+def _get_time_as_utc_iso_string() -> str:
+    current_time = datetime.now(timezone.utc)
+    return current_time.isoformat()
 
 def parse_generation_parameters(cohort_settings: CohortSettings) -> dict[str, int | str]:
     return {
@@ -120,9 +124,8 @@ def package_contents_as_ndjson(record_list: list[list[FHIRResource]], cohort_set
 
     zip_base64 = base64.b64encode(zip_buffer.getvalue()).decode('utf-8')
     generation_parameters = parse_generation_parameters(cohort_settings)
-    print(patient_containers)
     return GenerationSummaryBinary.model_validate({
-            "timeStamp": datetime.now(),
+            "timeStamp": _get_time_as_utc_iso_string(),
             "generationParameters": generation_parameters,
             "generationSummary": patient_containers,
             "data": zip_base64
