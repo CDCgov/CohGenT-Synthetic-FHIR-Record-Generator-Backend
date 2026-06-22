@@ -20,7 +20,7 @@ jsonpath-ng==1.6.1
 loguru==0.7.3
 numpy==2.4.6
 openpyxl==3.1.5
-orjson==3.10.7
+orjson==3.11.6
 packaging==25.0
 pandas==3.0.3
 pluggy==1.6.0
