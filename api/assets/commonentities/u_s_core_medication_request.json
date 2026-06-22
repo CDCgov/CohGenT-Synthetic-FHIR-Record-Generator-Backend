@@ -4,6 +4,12 @@
     "resourceType": "MedicationRequest",
     "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest",
     "referencePath": "subject",
+    "dynamicReferences": [
+        {
+            "referencePath": "requester",
+            "linkIdentifier": "requester"
+        }
+    ],
     "fields": [
         {
             "path": "MedicationRequest.status",
@@ -15,7 +21,7 @@
             "path": "MedicationRequest.intent",
             "type": "code",
             "userConfigured": false,
-            "value": "plan"
+            "value": "order"
         },
         {
             "path": "MedicationRequest.medicationCodeableConcept",

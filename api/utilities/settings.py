@@ -1,6 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from functools import lru_cache
-from typing import List
 
 class Settings(BaseSettings):
     app_tag: str = ""
@@ -10,13 +9,13 @@ class Settings(BaseSettings):
     cors_origins: str = "*"
     omop_database_url: str | None = None
     show_fhirsheets_logs: bool = False
-    enable_run_logs: bool = False # TODO Implement
+    enable_run_logs: bool = False
     iteration_limit: int = 100 # Max number of iterations for event generation.
     root_path: str | None = None
     force_reseed: bool = False
 
     @property
-    def cors_origins_list(self) -> List[str]:
+    def cors_origins_list(self) -> list[str]:
         """Convert comma-separated string to list"""
         if self.cors_origins == "*":
             return ["*"]

@@ -1,5 +1,42 @@
 # Changelog
 
+## [1.1.1] - 2026-06-22 - R2 Hotfix 1
+### Fixed
+* Data absent reason value fixed from `value` to `valueCode` (FHIRSheets)
+* Improved run time of provider generation (more to do)
+
+## [1.1.0] - 2026-06-18 - Release 2
+### Added
+* Valueset Feature
+  * Valueset feature added. This feature is used to serve special valuesets to the UI that are expected to be relatively static and are not standard in OMOP CDM databases. For example, UCUM measurements. Valuesets are loaded into the database on startup as part of seed data. For this release, each valueset is considered "unique" and has its own endpoint. Eventually valuesets will be (or should be) migrated to a reusable pattern.
+  * U.S. Federal Tribal Affiliation valueset added.
+* Added support for arbitrary extensions in use case/scenarios.
+  * New field type, "Extension" (case sensitive).
+  * "Extension" has an additional `extensionDetails` field which is required if type is Extension. The `extensionDetails` field defines both the extension's value\[x\] type as well as the extension's FHIR URI.
+  * NOTE: Arbitrary sub extensions not currently supported. Framework for FHIR Sheets headers is in place, but generation values need more complexity to support in full. Only Tribal Affiliation is currently supported, and only the affiliation not enrollment. This needs to be expanded upon in future versions as the need for arbitrary complex extension handle arises.
+* Medication Sets added (this replaces old medication handling). Medications are now configured in sets, with each set having a given weight. A patient has one of the sets randomly selected for them. Note: This is the simple version allowing some configuration for those who want more variety in medications. It does not currently support timing or any other advanced features. Medication Sets are always an "or" relationship.
+* Clinical Provider Feature
+  * Clinical Provider feature added. This feature allows static provider entities (PractitionerRole, Practitioner, and Organization) to be stored and referenced across use cases dynamically. These providers can be populated without end user configuration to be attached to any entity. For more information, see the README file on how to use providers.
+### Changed
+* "Force Reseed" option now also applies to valuesets (and will apply to all other seeded data as well).
+* in Entities, "otherReferences" became "staticReferences" (this is accompanied by "dynamicReferences"). This is to support the clinical provider feature, and provide a bit more explicit naming.
+
+
+## [1.0.2] -  - Minor Feature Addition and Fixes
+Note: Version aligned with UI release.
+### Added
+* Enhanced terminology search with preset availability indicators. Search results now include a `hasPresets` field showing which concepts have predefined value ranges available. Implemented with in-memory caching that automatically updates when presets are added or removed.
+* Update samples endpoint now added. `PUT /samples/{id}` with a body of the settings. Note: This can overwrite any existing sample so should be used with caution. There are currently no safeguards in place.
+* Patient telecom (ContactPoint[] type) is now supported. Generates both email and phone number for each patient. IMPORTANT: For this release, masking values is not handled. A future version will shift "masking" to all major PII instead of just name. Additional control will also be added for chance to occur for each telecom contact point to support more variety in data. Assumes special value of $patientContactPoint.
+### Fixed
+* Sample settings now return properly as JSON rather than a string that must be parsed.
+* Several points of inconsistent error handling fixed.
+* 
+### Changed
+* Several points of error handling, including logging and reporting to clients, have been improved. More to follow.
+* All database tables swapped to using more modern mapped columns in SQL Alchemy.
+* To support realistic emails, patient names are now generated as part of initial setup for patient meta information, and then when the human name is processed it will pull from the patient_meta.name field or set the value for FHIR sheets as "masked" depending on settings. This will eventually be further modified to support processing of name for practitioners/etc.
+* MedicationRequest.intent changed to "order" (was "plan").
 
 ## [1.0.0] - 2026-05-08 - Release 1
 ### Added
