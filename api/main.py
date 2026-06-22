@@ -4,14 +4,15 @@ Initilization file.
 Set title and version below. Additional tags may be set by enviroment.
 '''
 __title__ = "CohGenT - Cohort Generation Tool API"
-__version__ = "1.0.0"
+__version__ = "1.1.1"
 
 import io
 import csv
-from typing import List
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import Depends, FastAPI, HTTPException, Query, Request
 from fastapi.responses import StreamingResponse
 from loguru import logger
+from sqlalchemy.orm import Session
+from api.features.presets.observation_values import get_preset_cache
 from api.models.FHIR.bundle import Bundle
 from api.models.FHIR.fhirresource import FHIRResource
 from api.models.responses.generation_summary import PatientContainer
@@ -26,9 +27,9 @@ from api.models.cohort_settings import CohortSettings
 from api.models.responses.jsonresponse import PrettyJSONResponse
 from api.utilities.settings import get_settings
 from api.models.responses.basic_response_models import InfoResponse, UseCaseCollectionResponse
-from api.database.database_client import DatabaseClient
-from api.database import db_preset_tables, db_sample_tables  # type: ignore - IMPORT IS REQUIRED TO BUILD TABLES
-from api.routers import presets_router, terminology_router, samples_router
+from api.database.database_client import DatabaseClient, get_main_db
+from api.database import db_preset_tables, db_sample_tables, db_other_tables  # type: ignore - IMPORT IS REQUIRED TO BUILD TABLES
+from api.routers import presets_router, terminology_router, samples_router, valuesets_router, providers_router
 from api.models.cohort_settings import OutputFormat
 
 from fhir_sheets.core.config.FhirSheetsConfiguration import FhirSheetsConfiguration # type: ignore
@@ -72,8 +73,15 @@ async def lifespan(app: FastAPI):
         if settings.force_reseed:
             logger.warning("FORCE_RESEED enabled - will clear and reload data")
         
-        seed_all(db_client.get_session(), force_reseed=settings.force_reseed)
+        db_session = db_client.get_session()
+        seed_all(db_session, force_reseed=settings.force_reseed)
         logger.info("Seed data loaded successfully")
+        cache = get_preset_cache(db_session)
+        logger.info(f"Preset cache initialized with {len(cache)} codes.")
+
+        from api.database.seed_provider_entities import seed_provider_entities
+        seed_provider_entities(db_session, force_reseed=settings.force_reseed)
+    
     except FileNotFoundError as e:
         logger.error(f"Lab value preset seed data file not found: {e}")
     except Exception as e:
@@ -105,6 +113,8 @@ if settings.root_path:
 # Add secondary routers
 app.include_router(presets_router.router)
 app.include_router(samples_router.router)
+app.include_router(valuesets_router.router)
+app.include_router(providers_router.router)
 if omop_client is not None:
     app.include_router(terminology_router.router)
 
@@ -169,12 +179,15 @@ async def get_use_case_guidance():
 Generate FHIR Output
 """
 @app.post("/generate", response_class=PrettyJSONResponse)
-async def generate_fhir(cohort_settings: CohortSettings, raw: bool = False):
+async def generate_fhir(cohort_settings: CohortSettings,
+                        raw: bool = Query(default=False, description="Return raw JSON instead of a binary zip. Does not work for NDJSON."),
+                        main_db: Session = Depends(get_main_db)):
+
     # Execute Generation using settings and build the FHIR Sheets Inputs.
-    resource_definitions, resource_links, cohort = start_generation(cohort_settings, settings.iteration_limit)
+    resource_definitions, resource_links, cohort = start_generation(cohort_settings, main_db, settings.iteration_limit)
 
     # Setup FHIR SHeets configuration.
-    fhir_sheets_config = FhirSheetsConfiguration({"random_seed": cohort_settings.seed})
+    fhir_sheets_config = FhirSheetsConfiguration({"random_seed": cohort_settings.seed, "enable_default_resource_links": False})
 
     if cohort_settings.output_format == OutputFormat.JSON:
         # TODO: Current version of this keeps flow from original implementation to avoid breaking changes. Needs to be handled in like manner to NDJSON once ready.
@@ -184,8 +197,10 @@ async def generate_fhir(cohort_settings: CohortSettings, raw: bool = False):
                 bundle_dict = create_transaction_bundle(resource_definitions, resource_links, cohort, i, fhir_sheets_config) # pyright: ignore[reportUnknownVariableType]
                 bundle = Bundle.model_validate(bundle_dict)
                 bundle_list.append(bundle)
-        except Exception:
+        except Exception as e: 
+            logger.exception(e)
             raise HTTPException(status_code=500, detail="Something went wrong executing FHIR generation library.")
+        
         if raw:
             return package_contents_as_json(bundle_list, cohort_settings)
         else:
@@ -211,7 +226,7 @@ This takes back in a generation summary from the UI and converts it to a CSV. As
 is no way to make this generate without feeding the data back in. In future versions with a generation history, this can be changed.
 """
 @app.post("/convert-summary-to-csv")
-async def export_to_csv(summaries: List[PatientContainer]) -> StreamingResponse:
+async def export_to_csv(summaries: list[PatientContainer]) -> StreamingResponse:
     """
     Accepts a list of PatientRecordSummary objects and returns a CSV file.
     Handles dynamic resourceCounts keys.

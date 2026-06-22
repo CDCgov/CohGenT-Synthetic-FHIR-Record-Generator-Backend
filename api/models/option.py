@@ -1,7 +1,18 @@
 from fastapi_camelcase import CamelModel
 from typing import Optional
 from pydantic import model_validator
-from api.models.value_types import ValueWeights, ValueTimeRangeAsDays
+from api.models.value_types import ValuePrevalence, ValueWeights, ValueTimeRangeAsDays
+from enum import Enum
+
+class ControlType(str, Enum):
+    CHECKBOX = "checkbox"
+    RANGE = "range"
+    WEIGHTING = "weighting"
+    LOCATION = "location"
+    RELATIVE_TIME_RANGE = "relative-time-range"
+    TRIBAL_AFFILIATION = "tribal-affiliation"
+    PREVALENCE = "prevalence"
+    CONCEPT = "concept"
 
 class Option(CamelModel):
     rule_id: str
@@ -9,13 +20,13 @@ class Option(CamelModel):
     description: Optional[str] = None
     tooltip: Optional[str] = None
     tags: Optional[list[str]]
-    control: str # checkbox | range | weighting | location
+    control: ControlType
 
     # checkbox
     default_state: Optional[bool] = None
 
     # range
-    default_values: Optional[ValueWeights | ValueTimeRangeAsDays | list[int]] = None
+    default_values: Optional[ValueWeights | ValueTimeRangeAsDays | ValuePrevalence | list[int]] = None
     decimal_spaces_allowed: Optional[bool] = None
     min_max: Optional[tuple[int|float, int|float]] = None
 

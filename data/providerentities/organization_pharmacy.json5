@@ -1,0 +1,127 @@
+// US Core Organization - Pharmacy
+// Modify values below as needed, then request full FHIR Sheets entity build
+
+// ========================================
+// IDENTIFIERS
+// ========================================
+// Identifier Value: ORG-PHARMACY-001
+// Identifier System: urn:cohgent:identifier:organization
+
+// ========================================
+// ACTIVE STATUS
+// ========================================
+// Active: true
+
+// ========================================
+// TYPE
+// ========================================
+// Type Code: pharm
+// Type System: http://terminology.hl7.org/CodeSystem/organization-type
+// Type Display: Pharmacy
+
+// ========================================
+// NAME
+// ========================================
+// Organization Name: PharmaCare Network
+
+// ========================================
+// CONTACT INFORMATION
+// ========================================
+// Phone: 555-0500
+// Fax: 555-0501
+// Email: contact@pharmacare.example
+
+// ========================================
+// ADDRESS
+// ========================================
+// Street Line 1: 321 Pharmacy Boulevard
+// Street Line 2: (leave empty if none)
+// City: Anytown
+// State: IL
+// Postal Code: 12345
+// Country: US
+
+{
+    "abstract": false,
+    "entityId": "USCoreOrganization004",
+    "resourceType": "Organization",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization",
+    "fields": [
+        {
+            "path": "Organization.identifier.[0].system",
+            "type": "string",
+            "userConfigured": false,
+            "value": "urn:cohgent:identifier:organization"
+        },
+        {
+            "path": "Organization.identifier.[0].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "ORG-PHARMACY-001"
+        },
+        {
+            "path": "Organization.active",
+            "type": "boolean",
+            "userConfigured": false,
+            "value": true
+        },
+        {
+            "path": "Organization.type.[0]",
+            "type": "CodeableConcept",
+            "userConfigured": false,
+            "value": {
+                "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+                "code": "pharm",
+                "display": "Pharmacy"
+            }
+        },
+        {
+            "path": "Organization.name",
+            "type": "string",
+            "userConfigured": false,
+            "value": "PharmaCare Network"
+        },
+        {
+            "path": "Organization.telecom.[0].system",
+            "type": "code",
+            "userConfigured": false,
+            "value": "phone"
+        },
+        {
+            "path": "Organization.telecom.[0].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "555-0500"
+        },
+        {
+            "path": "Organization.telecom.[1].system",
+            "type": "code",
+            "userConfigured": false,
+            "value": "fax"
+        },
+        {
+            "path": "Organization.telecom.[1].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "555-0501"
+        },
+        {
+            "path": "Organization.telecom.[2].system",
+            "type": "code",
+            "userConfigured": false,
+            "value": "email"
+        },
+        {
+            "path": "Organization.telecom.[2].value",
+            "type": "string",
+            "userConfigured": false,
+            "value": "contact@pharmacare.example"
+        },
+        {
+            "path": "Organization.address.[0]",
+            "type": "Address",
+            "userConfigured": false,
+            "value": "321 Pharmacy Boulevard^Anytown^^12345^IL^US"
+        }
+    ]
+}

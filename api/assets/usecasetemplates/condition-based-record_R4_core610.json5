@@ -127,6 +127,17 @@
                             {"value": "Unknown", "weight": 0.00 }
                         ]
                     }
+                },
+                {
+                    "ruleId": "patient-tribal-affiliation",
+                    "label": "Tribal Affiliation",
+                    "description": "Set the prevalence of patients with a tribal affiliation. You can choose to randomize a tribal affiliation or specify a single affiliation.",
+                    "tooltip": "Possible tribal affiliations are from the entire list of federally recognized tribal affiliations.",
+                    "tags": ["default"],
+                    "control": "tribal-affiliation",
+                    "defaultValues": {
+                        "prevalence": 0.05
+                    }
                 }
             ]
         },
@@ -147,7 +158,7 @@
                 {
                     "ruleId": "condition-abatement",
                     "label": "Condition Duration",
-                    "description": "Set the expected duration of the primary condition or leave empty if condition is expected to remain active.",
+                    "description": "Set the expected duration of the primary condition or leave empty if condition is expected to remain active throughout the clinical data period (established in the initial Cohort Scenario selection step).",
                     "tooltip": "Condition duration is defined by the time between condition onset and condition abatement (when a condition is no longer active).",
                     "tags": ["optional"],
                     "control": "relative-time-range",
@@ -231,6 +242,23 @@
                     ]
                 },
                 {
+                    "path": "Patient.extension",
+                    "type": "Extension",
+                    "userConfigured": true,
+                    "userSettingRuleId": "patient-tribal-affiliation",
+                    "extensionDetails": {
+                        "valueType": "Complex",
+                        "extensionUri": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-tribal-affiliation",
+                        "subExtensions": [
+                            {
+                                "valueType": "CodeableConcept",
+                                "extensionUri": "tribalAffiliation"
+                            }
+                        ],
+                        "specialHandler": "tribal-affiliation"
+                    }
+                },
+                {
                     "path": "Patient.extension[Race].ombCategory.value",
                     "type": "code",
                     "userConfigured": true,
@@ -243,6 +271,12 @@
                     "userConfigured": true,
                     "userSettingRuleId": "patient-ethnicity",
                     "value": "$patientEthnicity"
+                },
+                {
+                    "path": "Patient.telecom",
+                    "type": "ContactPoint",
+                    "userConfigured": false,
+                    "value": "$patientContactPoint"
                 }
             ]
         },
@@ -252,7 +286,7 @@
             "resourceType": "Encounter",
             "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter", // U.S. Core Encounter 6.1.0
             "referencePath": "subject",
-            "otherReferences": [
+            "staticReferences": [
                 {
                     "referencePath": "reasonReference",
                     "targetEntity": "PrimaryCondition"
@@ -372,24 +406,50 @@
                 "type": "observation",
                 "buttonLabel": "Lab Result",
                 "entityFile": "USCoreObservationLab",
-                "defaultSystem": "LOINC"
+                "defaultSystem": "LOINC",
+                "dynamicReferences": [
+                    {
+                        "targetEntityIdentifier": "USCorePractitionerRole002",
+                        "linkIdentifier": "performer"
+                    }
+                ]
             },
             {
                 "entityId": "procedure",
                 "type": "procedure",
                 "buttonLabel": "Procedure",
                 "entityFile": "USCoreProcedure",
-                "defaultSystem": "CPT"
+                "defaultSystem": "CPT",
+                "dynamicReferences": [
+                    {
+                        "targetEntityIdentifier": "USCorePractitionerRole001",
+                        "linkIdentifier": "performer"
+                    }
+                ]
             },
             {
                 "entityId": "radiology",
                 "type": "radiology",
                 "buttonLabel": "Radiology Report",
                 "entityFile": "USCoreDiagnosticReportRadiology",
-                "defaultSystem": "LOINC"
+                "defaultSystem": "LOINC",
+                "dynamicReferences": [
+                    {
+                        "targetEntityIdentifier": "USCorePractitionerRole003",
+                        "linkIdentifier": "performer"
+                    }
+                ]
             }
         ],
-        "medication": "USCoreMedicationRequest",
+        "medication": {
+            "entityFile": "USCoreMedicationRequest",
+            "dynamicReferences": [
+                {
+                    "targetEntityIdentifier": "USCorePractitionerRole001",
+                    "linkIdentifier": "requester"
+                }
+            ]
+        },
         "diagnosticReport": "USCoreDiagnosticReportLab"
     }
 }

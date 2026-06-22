@@ -1,0 +1,580 @@
+code,display
+338, Native Village of Afognak
+339, Agdaagux Tribe of King Cove
+340, Native Village of Akhiok
+341, Akiachak Native Community
+342, Akiak Native Community
+343, Native Village of Akutan
+344, Village of Alakanuk
+345, Alatna Village
+346, Native Village of Aleknagik
+347, Algaaciq Native Village (St. Mary's)
+348, Allakaket Village
+349, Native Village of Ambler
+350, Village of Anaktuvuk Pass
+351, Yupiit of Andreafski
+352, Angoon Community Association
+353, Village of Aniak
+354, Anvik Village
+355, Arctic Village
+356, Asa'carsarmiut Tribe
+357, Native Village of Atka
+358, Village of Atmautluak
+359, Native Village of Atqasuk
+360, Native Village of Barrow Inupiat Traditional Government
+361, Beaver Village
+362, Native Village of Belkofski
+363, Village of Bill Moore's Slough
+364, Birch Creek Tribe
+365, Native Village of Brevig Mission
+366, Native Village of Buckland
+367, Native Village of Cantwell
+368, Native Village of Chenega (aka Chanega)
+369, Chalkyitsik Village
+370, Village of Chefornak
+371, Chevak Native Village
+372, Chickaloon Native Village
+373, Chignik Bay Tribal Council
+374, Native Village of Chignik Lagoon
+375, Chignik Lake Village
+376, Chilkat Indian Village (Klukwan)
+377, Chilkoot Indian Association (Haines)
+378, Chinik Eskimo Community (Golovin)
+379, Cheesh-Na Tribe
+380, Native Village of Chitina
+381, "Native Village of Chuathbaluk (Russian Mission, Kuskokwim)"
+382, Chuloonawick Native Village
+383, Circle Native Community
+384, Village of Clarks Point
+385, Native Village of Council
+386, Craig Tribal Association
+387, Village of Crooked Creek
+388, Curyung Tribal Council
+389, Native Village of Deering
+390, Native Village of Diomede (aka Inalik)
+391, Village of Dot Lake
+392, Douglas Indian Association
+393, Native Village of Eagle
+394, Native Village of Eek
+395, Egegik Village
+396, Eklutna Native Village
+397, Native Village of Ekuk
+398, Native Village of Ekwok
+399, Native Village of Elim
+400, Emmonak Village
+401, Evansville Village (aka Bettles Field)
+402, Native Village of Eyak (Cordova)
+403, Native Village of False Pass
+404, Native Village of Fort Yukon
+405, Native Village of Gakona
+406, Galena Village (aka Louden Village)
+407, Native Village of Gambell
+408, Native Village of Georgetown
+409, Native Village of Goodnews Bay
+410, Organized Village of Grayling (aka Holikachuk)
+411, Gulkana Village Council
+412, Native Village of Hamilton
+413, Healy Lake Village
+414, Holy Cross Tribe
+415, Hoonah Indian Association
+416, Native Village of Hooper Bay
+417, Hughes Village
+418, Huslia Village
+419, Hydaburg Cooperative Association
+420, Igiugig Village
+421, Village of Iliamna
+422, Inupiat Community of the Arctic Slope
+423, Iqugmiut Traditional Council
+424, Ivanof Bay Tribe
+425, Kaguyak Village
+426, Organized Village of Kake
+427, Kaktovik Village (aka Barter Island)
+428, Village of Kalskag
+429, Village of Kaltag
+430, Native Village of Kanatak
+431, Native Village of Karluk
+432, Organized Village of Kasaan
+433, Kasigluk Traditional Elders Council
+434, Kenaitze Indian Tribe
+435, Ketchikan Indian Community
+436, Native Village of Kiana
+437, King Island Native Community
+438, King Salmon Tribe
+439, Native Village of Kipnuk
+440, Native Village of Kivalina
+441, Klawock Cooperative Association
+442, Native Village of Kluti Kaah (aka Copper Center)
+443, Knik Tribe
+444, Native Village of Kobuk
+445, Kokhanok Village
+446, Native Village of Kongiganak
+447, Village of Kotlik
+448, Native Village of Kotzebue
+449, Native Village of Koyuk
+450, Koyukuk Native Village
+451, Organized Village of Kwethluk
+452, Native Village of Kwigillingok
+453, Native Village of Kwinhagak (aka Quinhagak)
+454, Native Village of Larsen Bay
+455, Levelock Village
+456, Tangirnaq Native Village
+457, Lime Village
+458, Village of Lower Kalskag
+459, Manley Hot Springs Village
+460, Manokotak Village
+461, Native Village of Marshall (aka Fortuna Ledge)
+462, Native Village of Mary's Igloo
+463, McGrath Native Village
+464, Native Village of Mekoryuk
+465, Mentasta Traditional Council
+466, "Metlakatla Indian Community, Annette Island Reserve"
+467, Native Village of Minto
+468, Naknek Native Village
+469, Native Village of Nanwalek (aka English Bay)
+470, Native Village of Napaimute
+471, Native Village of Napakiak
+472, Native Village of Napaskiak
+473, Native Village of Nelson Lagoon
+474, Nenana Native Association
+475, New Koliganek Village Council
+476, New Stuyahok Village
+477, Newhalen Village
+478, Newtok Village
+479, Native Village of Nightmute
+480, Nikolai Village
+481, Native Village of Nikolski
+482, Ninilchik Village
+483, Native Village of Noatak
+484, Nome Eskimo Community
+485, Nondalton Village
+486, Noorvik Native Community
+487, Northway Village
+488, Native Village of Nuiqsut (aka Nooiksut)
+489, Nulato Village
+490, Nunakauyarmiut Tribe
+491, Native Village of Nunapitchuk
+492, Village of Ohogamiut
+493, Alutiiq Tribe of Old Harbor
+494, Orutsararmiut Traditional Native Council
+495, Oscarville Traditional Village
+496, Native Village of Ouzinkie
+497, Native Village of Paimiut
+498, Pauloff Harbor Village
+499, Pedro Bay Village
+500, Native Village of Perryville
+501, Petersburg Indian Association
+502, Native Village of Pilot Point
+503, Pilot Station Traditional Village
+504, Pitka's Point Traditional Council
+505, Platinum Traditional Village
+506, Native Village of Point Hope
+507, Native Village of Point Lay
+508, Native Village of Port Graham
+509, Native Village of Port Heiden
+510, Native Village of Port Lions
+511, Portage Creek Village (aka Ohgsenakale)
+512, Pribilof Islands Aleut Communities of St. Paul & St. George Islands (Saint George Island and Saint Paul Island)
+513, Qagan Tayagungin Tribe of Sand Point
+514, Qawalangin Tribe of Unalaska
+515, Rampart Village
+516, Village of Red Devil
+517, Native Village of Ruby
+518, Saint George Island
+519, Native Village of Saint Michael
+520, Saint Paul Island
+521, Salamatof Tribe
+522, Native Village of Savoonga
+523, Organized Village of Saxman
+524, Native Village of Scammon Bay
+525, Native Village of Selawik
+526, Seldovia Village Tribe
+527, Shageluk Native Village
+528, Native Village of Shaktoolik
+529, Native Village of Nunam Iqua
+530, Native Village of Shishmaref
+531, Sun'aq Tribe of Kodiak
+532, Native Village of Shungnak
+533, Sitka Tribe of Alaska
+534, Skagway Village
+535, Village of Sleetmute
+536, Village of Solomon
+537, South Naknek Village
+538, Stebbins Community Association
+539, Native Village of Stevens
+540, Village of Stony River
+541, Takotna Village
+542, Native Village of Tanacross
+543, Native Village of Tanana
+544, Native Village of Tatitlek
+545, Native Village of Tazlina
+546, Telida Village
+547, Native Village of Teller
+548, Native Village of Tetlin
+549, Central Council of the Tlingit & Haida Indian Tribes
+550, Traditional Village of Togiak
+551, Tuluksak Native Community
+552, Native Village of Tuntutuliak
+553, Native Village of Tununak
+554, Twin Hills Village
+555, Native Village of Tyonek
+556, Ugashik Village
+557, Umkumiut Native Village
+558, Native Village of Unalakleet
+559, Native Village of Unga
+560, Village of Venetie
+561, Native Village of Venetie Tribal Government (Arctic Village and Village of Venetie)
+562, Village of Wainwright
+563, Native Village of Wales
+564, Native Village of White Mountain
+565, Wrangell Cooperative Association
+566, Yakutat Tlingit Tribe
+1, Absentee-Shawnee Tribe of Indians of Oklahoma
+2, "Agua Caliente Band of Cahuilla Indians of the Agua Caliente Indian Reservation, California"
+3, Ak-Chin Indian Community
+4, Alabama-Coushatta Tribe of Texas
+5, Alabama-Quassarte Tribal Town
+6, "Alturas Indian Rancheria, California"
+7, Apache Tribe of Oklahoma
+8, "Northern Arapaho Tribe of the Wind River Reservation"
+9, Mi'kmaq Nation
+10, "Assiniboine and Sioux Tribes of the Fort Peck Indian Reservation, Montana"
+11, "Augustine Band of Cahuilla Indians, California"
+12, "Bad River Band of the Lake Superior Tribe of Chippewa Indians of the Bad River Reservation, Wisconsin"
+33, Barona Group of Capitan Grande Band of Mission Ind
+13, "Bay Mills Indian Community, Michigan"
+14, "Bear River Band of the Rohnerville Rancheria, California"
+15, Berry Creek Rancheria of Maidu Indians of California
+16, "Big Lagoon Rancheria, California"
+17, Big Pine Paiute Tribe of the Owens Valley
+18, Big Sandy Rancheria of Western Mono Indians of California
+19, "Big Valley Band of Pomo Indians of the Big Valley Rancheria, California"
+20, Blackfeet Tribe of the Blackfeet Indian Reservation of Montana
+21, "Blue Lake Rancheria, California"
+160, Bois Forte Band (Nett Lake); Fond du Lac Band; Gra
+22, Bridgeport Indian Colony
+23, Buena Vista Rancheria of Me-Wuk Indians of California
+24, Burns Paiute Tribe
+25, "Cabazon Band of Mission Indians, California"
+26, "Cachil DeHe Band of Wintun Indians of the Colusa Indian Community of the Colusa Rancheria, California"
+27, Caddo Nation of Oklahoma
+29, Cahto Tribe of the Laytonville Rancheria
+28, Cahuilla Band of Indians
+30, "California Valley Miwok Tribe, California"
+31, "Campo Band of Diegueno Mission Indians of the Campo Indian Reservation, California"
+32, Capitan Grande Band of Diegueno Mission Indians of California
+35, Catawba Indian Nation
+36, Cayuga Nation
+37, "Cedarville Rancheria, California"
+38, "Chemehuevi Indian Tribe of the Chemehuevi Reservation, California"
+39, "Cher-Ae Heights Indian Community of the Trinidad Rancheria, California"
+40, Cherokee Nation
+42, "Cheyenne River Sioux Tribe of the Cheyenne River Reservation, South Dakota"
+41, "Cheyenne and Arapaho Tribes, Oklahoma"
+43, The Chickasaw Nation
+44, Chicken Ranch Rancheria of Me-Wuk Indians of California
+45, "Chippewa Cree Indians of the Rocky Boy's Reservation, Montana"
+46, Chitimacha Tribe of Louisiana
+47, The Choctaw Nation of Oklahoma
+48, "Citizen Potawatomi Nation, Oklahoma"
+49, Cloverdale Rancheria of Pomo Indians of California
+50, Cocopah Tribe of Arizona
+51, Coeur D'Alene Tribe
+52, Cold Springs Rancheria of Mono Indians of California
+53, "Colorado River Indian Tribes of the Colorado River Indian Reservation, Arizona and California"
+54, "Comanche Nation, Oklahoma"
+55, Confederated Salish and Kootenai Tribes of the Flathead Reservation
+64, Confederated Tribes and Bands of the Yakama Nation
+56, Confederated Tribes of the Chehalis Reservation
+57, Confederated Tribes of the Colville Reservation
+58, "Confederated Tribes of the Coos, Lower Umpqua and Siuslaw Indians"
+59, "Confederated Tribes of the Goshute Reservation, Nevada and Utah"
+60, Confederated Tribes of the Grand Ronde Community of Oregon
+61, Confederated Tribes of Siletz Indians of Oregon
+62, Confederated Tribes of the Umatilla Indian Reservation
+63, Confederated Tribes of the Warm Springs Reservation of Oregon
+65, Coquille Indian Tribe
+66, Kletsel Dehe Band of Wintun Indians
+67, Coushatta Tribe of Louisiana
+68, Cow Creek Band of Umpqua Tribe of Indians
+69, Coyote Valley Band of Pomo Indians of California
+71, "Crow Creek Sioux Tribe of the Crow Creek Reservation, South Dakota"
+70, Crow Tribe of Montana
+72, "Ewiiaapaayp Band of Kumeyaay Indians, California"
+73, Timbisha Shoshone Tribe
+74, "Delaware Nation, Oklahoma"
+75, Delaware Tribe of Indians
+76, "Dry Creek Rancheria Band of Pomo Indians, California"
+77, "Duckwater Shoshone Tribe of the Duckwater Reservation, Nevada"
+78, Eastern Band of Cherokee Indians
+79, Eastern Shawnee Tribe of Oklahoma
+80, "Elem Indian Colony of Pomo Indians of the Sulphur Bank Rancheria, California"
+81, "Elk Valley Rancheria, California"
+82, Ely Shoshone Tribe of Nevada
+83, Enterprise Rancheria of Maidu Indians of California
+84, Flandreau Santee Sioux Tribe of South Dakota
+85, "Forest County Potawatomi Community, Wisconsin"
+86, Fort Belknap Indian Community of the Fort Belknap Reservation of Montana
+87, Fort Bidwell Indian Community of the Fort Bidwell Reservation of California
+88, "Fort Independence Indian Community of Paiute Indians of the Fort Independence Reservation, California"
+89, "Fort McDermitt Paiute and Shoshone Tribes of the Fort McDermitt Indian Reservation, Nevada and Oregon"
+90, "Fort McDowell Yavapai Nation, Arizona"
+91, "Fort Mojave Indian Tribe of Arizona, California & Nevada"
+92, Fort Sill Apache Tribe of Oklahoma
+93, "Gila River Indian Community of the Gila River Indian Reservation, Arizona"
+94, "Grand Traverse Band of Ottawa and Chippewa Indians, Michigan"
+95, "Federated Indians of Graton Rancheria, California"
+96, Greenville Rancheria
+97, Grindstone Indian Rancheria of Wintun-Wailaki Indians of California
+98, Guidiville Rancheria of California
+99, "Hannahville Indian Community, Michigan"
+100, "Havasupai Tribe of the Havasupai Reservation, Arizona"
+101, Ho-Chunk Nation of Wisconsin
+102, Hoh Indian Tribe
+103, "Hoopa Valley Tribe, California"
+104, Hopi Tribe of Arizona
+105, "Hopland Band of Pomo Indians, California"
+106, Houlton Band of Maliseet Indians
+107, "Hualapai Indian Tribe of the Hualapai Indian Reservation, Arizona"
+108, "Nottawaseppi Huron Band of the Potawatomi, Michigan"
+109, "Inaja Band of Diegueno Mission Indians of the Inaja and Cosmit Reservation, California"
+110, Ione Band of Miwok Indians of California
+111, Iowa Tribe of Kansas and Nebraska
+112, Iowa Tribe of Oklahoma
+113, Jackson Band of Miwuk Indians
+114, Jamestown S'Klallam Tribe
+115, Jamul Indian Village of California
+116, Jena Band of Choctaw Indians
+117, "Jicarilla Apache Nation, New Mexico"
+118, "Kaibab Band of Paiute Indians of the Kaibab Indian Reservation, Arizona"
+119, Kalispel Indian Community of the Kalispel Reservation
+120, Karuk Tribe
+121, "Kashia Band of Pomo Indians of the Stewarts Point Rancheria, California"
+122, "Kaw Nation, Oklahoma"
+123, "Keweenaw Bay Indian Community, Michigan"
+124, Kialegee Tribal Town
+127, Kickapoo Traditional Tribe of Texas
+125, Kickapoo Tribe of Indians of the Kickapoo Reservation in Kansas
+126, Kickapoo Tribe of Oklahoma
+128, Kiowa Indian Tribe of Oklahoma
+129, Klamath Tribes
+130, Kootenai Tribe of Idaho
+131, "La Jolla Band of Luiseno Indians, California"
+132, "La Posta Band of Diegueno Mission Indians of the La Posta Indian Reservation, California"
+133, Lac Courte Oreilles Band of Lake Superior Chippewa Indians of Wisconsin
+134, Lac du Flambeau Band of Lake Superior Chippewa Indians of the Lac du Flambeau Reservation of Wisconsin
+135, Lac Vieux Desert Band of Lake Superior Chippewa Indians of Michigan
+136, "Las Vegas Tribe of Paiute Indians of the Las Vegas Indian Colony, Nevada"
+137, "Little River Band of Ottawa Indians, Michigan"
+138, "Little Traverse Bay Bands of Odawa Indians, Michigan"
+140, "Los Coyotes Band of Cahuilla and Cupeno Indians, California"
+141, "Lovelock Paiute Tribe of the Lovelock Indian Colony, Nevada"
+142, "Lower Brule Sioux Tribe of the Lower Brule Reservation, South Dakota"
+143, Lower Elwha Tribal Community
+139, Koi Nation of Northern California
+144, Lower Sioux Indian Community in the State of Minnesota
+145, Lummi Tribe of the Lummi Reservation
+146, Lytton Rancheria of California
+147, Makah Indian Tribe of the Makah Indian Reservation
+148, "Manchester Band of Pomo Indians of the Manchester Rancheria, California"
+149, "Manzanita Band of Diegueno Mission Indians of the Manzanita Reservation, California"
+150, Mashantucket Pequot Indian Tribe
+151, Match-e-be-nash-she-wish Band of Pottawatomi Indians of Michigan
+152, "Mechoopda Indian Tribe of Chico Rancheria, California"
+153, Menominee Indian Tribe of Wisconsin
+154, "Mesa Grande Band of Diegueno Mission Indians of the Mesa Grande Reservation, California"
+155, "Mescalero Apache Tribe of the Mescalero Reservation, New Mexico"
+156, Miami Tribe of Oklahoma
+157, Miccosukee Tribe of Indians
+158, Middletown Rancheria of Pomo Indians of California
+159, "Minnesota Chippewa Tribe, Minnesota (Six component reservations: Bois Forte Band (Nett Lake); Fond du Lac Band; Grand Portage Band; Leech Lake Band; Mille Lacs Band; White Earth Band)"
+161, Mississippi Band of Choctaw Indians
+162, "Moapa Band of Paiute Indians of the Moapa River Indian Reservation, Nevada"
+163, Modoc Nation
+164, Mohegan Tribe of Indians of Connecticut
+165, Mooretown Rancheria of Maidu Indians of California
+166, "Morongo Band of Mission Indians, California"
+167, Muckleshoot Indian Tribe
+168, The Muscogee (Creek) Nation
+169, Narragansett Indian Tribe
+170, "Navajo Nation, Arizona, New Mexico, & Utah"
+171, Nez Perce Tribe
+172, Nisqually Indian Tribe of the Nisqually Reservatio
+173, Nooksack Indian Tribe
+174, "Northern Cheyenne Tribe of the Northern Cheyenne Indian Reservation, Montana"
+175, Northfork Rancheria of Mono Indians of California
+176, Northwestern Band of the Shoshone Nation
+177, Oglala Sioux Tribe
+178, Omaha Tribe of Nebraska
+179, Oneida Indian Nation
+180, Oneida Nation
+181, Onondaga Nation
+182, The Osage Nation
+184, "Otoe-Missouria Tribe of Indians, Oklahoma"
+183, Ottawa Tribe of Oklahoma
+185, "Paiute Indian Tribe of Utah (Cedar Band of Paiutes, Kanosh Band of Paiutes, Koosharem Band of Paiutes, Indian Peaks Band of Paiutes, and Shivwits Band of Paiutes)"
+186, Bishop Paiute Tribe
+188, Lone Pine Paiute-Shoshone Tribe
+187, "Paiute-Shoshone Tribe of the Fallon Reservation and Colony, Nevada"
+189, Pala Band of Mission Indians
+190, Pascua Yaqui Tribe of Arizona
+191, Paskenta Band of Nomlaki Indians of California
+192, Passamaquoddy Tribe
+193, "Pauma Band of Luiseno Mission Indians of the Pauma & Yuima Reservation, California"
+194, Pawnee Nation of Oklahoma
+195, Pechanga Band of Indians
+196, Penobscot Nation
+197, Peoria Tribe of Indians of Oklahoma
+198, Picayune Rancheria of Chukchansi Indians of California
+199, "Pinoleville Pomo Nation, California"
+200, "Pit River Tribe, California (includes XL Ranch, Big Bend, Likely, Lookout, Montgomery Creek, and Roaring Creek Rancherias)"
+201, Poarch Band of Creek Indians
+202, "Pokagon Band of Potawatomi Indians, Michigan and Indiana"
+203, Ponca Tribe of Indians of Oklahoma
+204, Ponca Tribe of Nebraska
+205, Port Gamble S'Klallam Tribe
+206, "Potter Valley Tribe, California"
+207, Prairie Band Potawatomi Nation
+208, Prairie Island Indian Community in the State of Minnesota
+209, "Pueblo of Acoma, New Mexico"
+210, "Pueblo of Cochiti, New Mexico"
+212, "Pueblo of Isleta, New Mexico"
+211, "Pueblo of Jemez, New Mexico"
+213, "Pueblo of Laguna, New Mexico"
+214, "Pueblo of Nambe, New Mexico"
+215, "Pueblo of Picuris, New Mexico"
+216, "Pueblo of Pojoaque, New Mexico"
+217, "Pueblo of San Felipe, New Mexico"
+219, "Pueblo of San Ildefonso, New Mexico"
+218, "Ohkay Owingeh, New Mexico"
+220, "Pueblo of Sandia, New Mexico"
+221, "Pueblo of Santa Ana, New Mexico"
+222, "Pueblo of Santa Clara, New Mexico"
+223, Santo Domingo Pueblo
+224, "Pueblo of Taos, New Mexico"
+225, "Pueblo of Tesuque, New Mexico"
+226, "Pueblo of Zia, New Mexico"
+227, Puyallup Tribe of the Puyallup Reservation
+228, "Pyramid Lake Paiute Tribe of the Pyramid Lake Reservation, Nevada"
+229, Quapaw Nation
+230, Quartz Valley Indian Community of the Quartz Valley Reservation of California
+231, "Quechan Tribe of the Fort Yuma Indian Reservation, California & Arizona"
+232, Quileute Tribe of the Quileute Reservation
+233, Quinault Indian Nation
+234, "Ramona Band of Cahuilla, California"
+235, Red Cliff Band of Lake Superior Chippewa Indians of Wisconsin
+236, "Red Lake Band of Chippewa Indians, Minnesota"
+237, "Redding Rancheria, California"
+238, Redwood Valley or Little River Band of Pomo Indians of the Redwood Valley Rancheria California
+239, "Reno-Sparks Indian Colony, Nevada"
+240, "Resighini Rancheria, California"
+241, "Rincon Band of Luiseno Mission Indians of Rincon Reservation, California"
+242, Robinson Rancheria
+243, "Rosebud Sioux Tribe of the Rosebud Indian Reservation, South Dakota"
+244, "Round Valley Indian Tribes, Round Valley Reservation, California"
+245, "Yocha Dehe Wintun Nation, California"
+247, "Sac & Fox Nation of Missouri in Kansas and Nebraska"
+248, "Sac & Fox Nation, Oklahoma"
+246, Sac & Fox Tribe of the Mississippi in Iowa
+249, Saginaw Chippewa Indian Tribe of Michigan
+250, "Salt River Pima-Maricopa Indian Community of the Salt River Reservation, Arizona"
+251, Samish Indian Nation
+252, "San Carlos Apache Tribe of the San Carlos Reservation, Arizona"
+253, San Juan Southern Paiute Tribe of Arizona
+254, Yuhaaviatam of San Manuel Nation
+255, "San Pasqual Band of Diegueno Mission Indians of California"
+257, "Santa Rosa Band of Cahuilla Indians, California"
+256, "Santa Rosa Indian Community of the Santa Rosa Rancheria, California"
+258, "Santa Ynez Band of Chumash Mission Indians of the Santa Ynez Reservation, California"
+259, "Iipay Nation of Santa Ysabel, California"
+260, "Santee Sioux Nation, Nebraska"
+261, Sauk-Suiattle Indian Tribe
+262, "Sault Ste. Marie Tribe of Chippewa Indians, Michigan"
+263, "Scotts Valley Band of Pomo Indians of California"
+264, The Seminole Nation of Oklahoma
+265, Seminole Tribe of Florida
+266, Seneca Nation of Indians
+267, Seneca-Cayuga Nation
+268, Shakopee Mdewakanton Sioux Community of Minnesota
+269, Shawnee Tribe
+270, "Sherwood Valley Rancheria of Pomo Indians of California"
+271, "Shingle Springs Band of Miwok Indians, Shingle Springs Rancheria (Verona Tract), California"
+272, Shoalwater Bay Indian Tribe of the Shoalwater Bay Indian Reservation
+273, "Eastern Shoshone Tribe of the Wind River Reservation, Wyoming"
+274, Shoshone-Bannock Tribes of the Fort Hall Reservation
+275, "Shoshone-Paiute Tribes of the Duck Valley Reservation, Nevada"
+276, "Sisseton-Wahpeton Oyate of the Lake Traverse Reservation, South Dakota"
+277, Skokomish Indian Tribe
+278, Skull Valley Band of Goshute Indians of Utah
+279, Tolowa Dee-ni' Nation
+280, Snoqualmie Indian Tribe
+281, "Soboba Band of Luiseno Indians, California"
+282, "Sokaogon Chippewa Community, Wisconsin"
+283, "Southern Ute Indian Tribe of the Southern Ute Reservation, Colorado"
+284, "Spirit Lake Tribe, North Dakota"
+285, Spokane Tribe of the Spokane Reservation
+286, Squaxin Island Tribe of the Squaxin Island Reservation
+287, St. Croix Chippewa Indians of Wisconsin
+288, Saint Regis Mohawk Tribe
+289, Standing Rock Sioux Tribe of North & South Dakota
+291, "Stillaguamish Tribe of Indians of Washington"
+290, "Stockbridge Munsee Community, Wisconsin"
+292, Summit Lake Paiute Tribe of Nevada
+293, "Suquamish Indian Tribe of the Port Madison Reservation"
+294, "Susanville Indian Rancheria, California"
+295, Swinomish Indian Tribal Community
+296, Sycuan Band of the Kumeyaay Nation
+297, "Wiyot Tribe, California"
+298, Table Mountain Rancheria
+299, Te-Moak Tribe of Western Shoshone Indians of Nevada (Four constituent bands: Battle Mountain Band; Elko Band; South Fork Band; and Wells Band)
+300, Thlopthlocco Tribal Town
+301, "Three Affiliated Tribes of the Fort Berthold Reservation, North Dakota"
+302, Tohono O'odham Nation of Arizona
+303, Tonawanda Band of Seneca
+304, Tonkawa Tribe of Indians of Oklahoma
+305, Tonto Apache Tribe of Arizona
+306, "Torres Martinez Desert Cahuilla Indians, California"
+308, Tulalip Tribes of Washington
+307, "Tule River Indian Tribe of the Tule River Reservation, California"
+309, Tunica-Biloxi Indian Tribe
+310, Tuolumne Band of Me-Wuk Indians of the Tuolumne Rancheria of California
+311, Turtle Mountain Band of Chippewa Indians of North Dakota
+312, Tuscarora Nation
+313, Twenty-Nine Palms Band of Mission Indians of California
+314, United Auburn Indian Community of the Auburn Rancheria of California
+315, "United Keetoowah Band of Cherokee Indians in Oklahoma"
+316, "Habematolel Pomo of Upper Lake, California"
+317, "Upper Sioux Community, Minnesota"
+318, Upper Skagit Indian Tribe
+319, "Ute Indian Tribe of the Uintah & Ouray Reservation, Utah"
+320, Ute Mountain Ute Tribe
+321, "Utu Utu Gwaitu Paiute Tribe of the Benton Paiute Reservation, California"
+34, "Viejas (Baron Long) Group of Capitan Grande Band o"
+322, "Walker River Paiute Tribe of the Walker River Reservation, Nevada"
+323, Wampanoag Tribe of Gay Head (Aquinnah)
+324, "Washoe Tribe of Nevada & California (Carson Colony, Dresslerville Colony, Woodfords Community, Stewart Community, & Washoe Ranches)"
+325, "White Mountain Apache Tribe of the Fort Apache Reservation, Arizona"
+326, "Wichita and Affiliated Tribes (Wichita, Keechi, Waco, & Tawakonie), Oklahoma"
+327, Winnebago Tribe of Nebraska
+328, Winnemucca Indian Colony of Nevada
+329, Wyandotte Nation
+330, "Yankton Sioux Tribe of South Dakota"
+331, "Yavapai-Apache Nation of the Camp Verde Indian Reservation, Arizona"
+332, Yavapai-Prescott Indian Tribe
+333, "Yerington Paiute Tribe of the Yerington Colony & Campbell Ranch, Nevada"
+334, "Yomba Shoshone Tribe of the Yomba Reservation, Nevada"
+335, Ysleta del Sur Pueblo
+336, "Yurok Tribe of the Yurok Reservation, California"
+337, "Zuni Tribe of the Zuni Reservation, New Mexico"
+567, Chickahominy Indian Tribe
+568, Chickahominy Indian Tribe—Eastern Division
+569, Monacan Indian Nation
+570, Nansemond Indian Nation
+571, "Rappahannock Tribe, Inc."
+572, Upper Mattaponi Tribe
+573, Cowlitz Indian Tribe
+574, Little Shell Tribe of Chippewa Indians of Montana
+575, Mashpee Wampanoag Tribe
+576, Pamunkey Indian Tribe
+577, Shinnecock Indian Nation
+578, "Wilton Rancheria, California"
+579, Tejon Indian Tribe

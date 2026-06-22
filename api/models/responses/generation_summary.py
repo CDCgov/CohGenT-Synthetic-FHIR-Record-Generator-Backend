@@ -24,7 +24,7 @@ class GenerationSummaryJson(NoNullCamelModel):
     generation_summary: list[PatientContainer]
 
 class GenerationSummaryBinary(NoNullCamelModel):
-    time_stamp: datetime
+    time_stamp: str # ISO Formatted DateTime String with TimeZone
     generation_parameters: GenerationParameters 
     generation_summary: list[PatientContainer]
     data: str
