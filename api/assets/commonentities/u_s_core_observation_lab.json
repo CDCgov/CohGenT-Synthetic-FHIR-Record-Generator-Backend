@@ -4,6 +4,12 @@
     "resourceType": "Observation",
     "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab",
     "referencePath": "subject",
+    "dynamicReferences": [
+        {
+            "referencePath": "performer",
+            "linkIdentifier": "performer"
+        }
+    ],
     "fields": [
         {
             "path": "Observation.status",
