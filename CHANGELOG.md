@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.1.1] - 2026-06-22 - R2 Hotfix 1
+### Fixed
+* Data absent reason value fixed from `value` to `valueCode` (FHIRSheets)
+* Improved run time of provider generation (more to do)
+
 ## [1.1.0] - 2026-06-18 - Release 2
 ### Added
 * Valueset Feature

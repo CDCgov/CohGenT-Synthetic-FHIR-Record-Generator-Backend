@@ -4,7 +4,7 @@ Initilization file.
 Set title and version below. Additional tags may be set by enviroment.
 '''
 __title__ = "CohGenT - Cohort Generation Tool API"
-__version__ = "1.1.0"
+__version__ = "1.1.1"
 
 import io
 import csv

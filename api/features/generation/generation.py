@@ -449,27 +449,27 @@ def process_patient_medications(
             if value is not None:
                 patient_row_as_dict[key] = value
 
-            for dynamic_reference in medication_base_entity.dynamic_references or []:
-                assert(use_case.common_entities)
-                assert(use_case.common_entities.medication)
-                linked_target = next((link_dr for link_dr in use_case.common_entities.medication.dynamic_references or [] if link_dr.link_identifier == dynamic_reference.link_identifier), None)
-                if linked_target:
-                    linked_entity_model = entity_cache.get_provider_entity(linked_target.target_entity_identifier)
-                    dynamic_entities.append(linked_entity_model)
-                    dynamic_resource_links.append((medication_entity.entity_id, dynamic_reference.reference_path, linked_entity_model.entity_id))
-                    
-                    process_static_entity(linked_entity_model, patient_row_as_dict)
+        for dynamic_reference in medication_base_entity.dynamic_references or []:
+            assert(use_case.common_entities)
+            assert(use_case.common_entities.medication)
+            linked_target = next((link_dr for link_dr in use_case.common_entities.medication.dynamic_references or [] if link_dr.link_identifier == dynamic_reference.link_identifier), None)
+            if linked_target:
+                linked_entity_model = entity_cache.get_provider_entity(linked_target.target_entity_identifier)
+                dynamic_entities.append(linked_entity_model)
+                dynamic_resource_links.append((medication_entity.entity_id, dynamic_reference.reference_path, linked_entity_model.entity_id))
+                
+                process_static_entity(linked_entity_model, patient_row_as_dict)
 
-                    # Handled any linked static references (e.g., PractitionerRole -> Organization and Practitioner)
-                    # NOTE: These must be fully self contained entities without any user configuration, the same as the initial dynamic entity.
-                    for static_reference in linked_entity_model.static_references or []:
-                        static_reference_entity = entity_cache.get_provider_entity(static_reference.target_entity)
-                        dynamic_entities.append(static_reference_entity)
-                        dynamic_resource_links.append((linked_entity_model.entity_id, static_reference.reference_path, static_reference_entity.entity_id))
-                        process_static_entity(static_reference_entity, patient_row_as_dict)
+                # Handled any linked static references (e.g., PractitionerRole -> Organization and Practitioner)
+                # NOTE: These must be fully self contained entities without any user configuration, the same as the initial dynamic entity.
+                for static_reference in linked_entity_model.static_references or []:
+                    static_reference_entity = entity_cache.get_provider_entity(static_reference.target_entity)
+                    dynamic_entities.append(static_reference_entity)
+                    dynamic_resource_links.append((linked_entity_model.entity_id, static_reference.reference_path, static_reference_entity.entity_id))
+                    process_static_entity(static_reference_entity, patient_row_as_dict)
 
-                else:
-                    logger.warning(f"Could not load entity with identifier: {dynamic_reference.link_identifier}. Skipped.")
+            else:
+                logger.warning(f"Could not load entity with identifier: {dynamic_reference.link_identifier}. Skipped.")
 
 
 '''
