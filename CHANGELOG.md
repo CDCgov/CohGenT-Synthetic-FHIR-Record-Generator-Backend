@@ -1,5 +1,10 @@
 # Changelog
 
+## [Unreleased] -
+### Added
+* Medications now support $eventDate special handler.
+* MedicationRequest.authoredOn field added.
+
 ## [1.1.1] - 2026-06-22 - R2 Hotfix 1
 ### Fixed
 * Data absent reason value fixed from `value` to `valueCode` (FHIRSheets)

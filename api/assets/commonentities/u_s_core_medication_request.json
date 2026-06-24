@@ -24,6 +24,12 @@
             "value": "order"
         },
         {
+            "path": "MedicationRequest.authoredOn",
+            "type": "dateTime",
+            "userConfigured": false,
+            "value": "$eventDate"
+        },
+        {
             "path": "MedicationRequest.medicationCodeableConcept",
             "type": "CodeableConcept",
             "userConfigured": true

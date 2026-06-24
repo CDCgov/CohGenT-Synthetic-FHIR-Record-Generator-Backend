@@ -302,6 +302,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                     medication_base_entity,
                     configuration.medication_sets,
                     patient_count,
+                    patient_meta,
                     dynamic_entities,
                     dynamic_resource_links,
                     patient_row_as_dict,
@@ -406,6 +407,7 @@ def process_patient_medications(
     medication_base_entity: Entity,
     medication_sets: list[MedicationSet],
     patient_index: int,
+    patient_meta: PatientMeta,
     dynamic_entities: list[Entity],
     dynamic_resource_links: list[ResourceLink],
     patient_row_as_dict: PatientRow,
@@ -439,7 +441,10 @@ def process_patient_medications(
             value: str | None = None
             
             if not field.user_configured:
-                value = field.value if isinstance(field.value, str) else ""
+                if field.value == C.SpecialTypeFunctions.EVENT_DATE.value:
+                    value = str(patient_meta.event_date)
+                else:
+                    value = field.value if isinstance(field.value, str) else ""
             else:
                 if field.path == "MedicationRequest.medicationCodeableConcept":
                     value = f"{medication.codeable_concept.system}^{medication.codeable_concept.code}^{medication.codeable_concept.display}"
