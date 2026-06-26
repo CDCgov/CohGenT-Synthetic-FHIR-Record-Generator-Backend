@@ -1,0 +1,267 @@
+# CohGenT Administrator Guide (DRAFT)
+
+## Introduction
+
+### Purpose of this Guide
+
+Audience: CDC application administrators, program “power users,” and IT operations staff.
+Scope: Configuration, governance, support, and operations of CohGenT. (Note: day‑to‑day scenario creation lives in the User Guide.)
+
+### What CohGenT Does 
+
+Generates synthetic FHIR‑conformant patient records for public health scenarios.
+Supports USCDI‑aligned data elements.
+Outputs JSON or NDJSON for downstream testing and analytics.
+Runs only in CDC’s private environment; no real patient data is processed.
+
+## Roles, Permissions, and Access Management
+### Role Definitions:
+* System Administrator
+  * Manages application configuration, integrations, releases. 
+  * Can access all scenarios, logs, and system settings.
+* Application Administrator / Program Admin
+  * Manages scenarios, reusable configurations, and output destinations.
+  * Can create/modify existing back-end features (e.g., demographics, clinincal data).
+* Standard User
+  * Can create and run cohorts using available scenarios and templates.
+  * Limited ability to change global settings.
+
+### Access Control
+
+<mark> need to fill in this section</mark>
+* How admins are provisioned (e.g., via SSO/CDC AD group membership).
+* How to grant/remove admin rights (screens or procedures).
+* Any environment‑specific access rules (e.g., different AD groups for test/stage/prod).
+
+## System Overview 
+<mark> need to fill in this section</mark>
+Architecture Diagram
+Environments
+Test, staging, production (or CDC equivalents).
+Purpose and recommended usage for each:
+Test: for admins/devs to validate configuration and new scenarios.
+Staging: pre‑production validation with realistic workloads.
+Production: official synthetic data generation for CDC projects.
+Key Components Admins Touch
+Web admin console.
+Configuration store (e.g., config files, admin UI section).
+Output locations: shared folders, S3 buckets, internal APIs.
+Monitoring tools (Splunk, CloudWatch, Azure Monitor, etc., as applicable).
+
+## Configuration & Scenario Governance
+### Global Configuration
+<mark> need to fill in this section</mark>
+System‑wide settings
+Default FHIR version and USCDI version (if configurable).
+Default output format (JSON vs NDJSON).
+Max cohort size per job / per user to prevent overload.
+Timeouts and resource limits (if exposed).
+Environment‑specific settings
+Base URLs, output directories/buckets, email configs (if job status notifications are sent).
+Differences between test/stage/prod (e.g., larger caps in prod, experimental features only in test).
+
+### Scenario Management
+<mark> may not be in scope for this guide</mark>
+Scenario Creation Governance
+Which roles can:
+Create new scenarios.
+Publish scenarios for general use.
+Edit or retire existing scenarios.
+Required metadata for a scenario (e.g., name, description, owner, contact, public health purpose).
+Scenario Templates and Reuse
+How to create baseline scenario templates that programs can adapt.
+Recommended naming conventions (e.g., “COVID‑19_Hospitalized_Adult_v1”).
+
+### Demographic and Clinical Configuration
+<mark> need to fill in this section</mark>
+Demographic Distribution Settings
+Age distributions, race/ethnicity distributions, gender/sex attributes.
+How to align settings with public health priorities without mimicking real identifiable distributions.
+Guardrails and warnings: avoid replicating real local small‑cell counts or highly unique combinations.
+Scenario‑Specific Clinical Configurations
+Selecting medications, lab tests, vital signs, conditions, procedures.
+Ensuring codes are valid (LOINC, SNOMED, RxNorm, ICD‑10, etc.).
+Update process when new code sets or versions are introduced.
+Include guidance on:
+Where admins can configure default clinical elements that users will see for each scenario.
+How to handle versioning of scenario definitions when coding schemes change.
+
+### FHIR & USCDI Configuration and Validation
+#### FHIR Configuration
+<mark> need to fill in this section</mark>
+Which FHIR resources are generated (e.g., Patient, Encounter, Condition, Procedure, Observation, MedicationRequest, etc.).
+If configurable:
+How to enable/disable certain resources in a scenario.
+How to choose FHIR profiles (e.g., US Core profiles) where applicable.
+References to where FHIR profiles or Implementation Guides used by CohGenT are documented.
+USCDI Alignment
+
+Which USCDI data classes/elements are supported (problems, labs, meds, vitals, demographics, etc.).
+How admins ensure generated data remains USCDI conformant as USCDI evolves:
+Process for updating to new USCDI versions.
+Any configuration screens for enabling newly supported elements.
+Validation Controls
+
+Any built‑in validation:
+FHIR resource validation (conformance, required fields).
+Code system validation (LOINC/SNOMED code validity if your app supports it).
+How admins can:
+Enable stricter validation for certain environments.
+Review validation error reports for failed jobs.
+
+## Output Management (JSON/NDJSON & Integration)
+<mark> need to fill in this section</mark>
+Output Formats and Options
+How admins define:
+Default output format (JSON vs NDJSON).
+Whether users can override this per job.
+Size and performance considerations:
+Guidance on using NDJSON for large cohorts.
+Limits to avoid oversized output files.
+
+### Output Storage and Access
+<mark> need to fill in this section</mark>
+Configuration of output destinations:
+Internal file shares, object storage, or downstream systems.
+Naming schemes for output (cohort ID, scenario name, timestamp).
+Access controls for generated data:
+Which roles can see/download which output sets.
+Retention policies (how long generated data is kept and where).
+
+### Downstream Integrations
+<mark> need to fill in this section</mark>
+If CohGenT feeds:
+Test environments of surveillance systems.
+Analytics platforms or ETL pipelines.
+Admin responsibilities:
+Ensuring endpoints are correct.
+Coordination with receiving system owners when scenarios or formats change.
+Communicating breaking changes in resource structure or codes.
+
+## Operational Monitoring and Logs
+<mark> need to fill in this section</mark>
+### Job Monitoring
+How to view:
+Job queue, running jobs, and completed jobs.
+Job status (pending, running, completed, failed, cancelled).
+Key metrics:
+Records generated per job.
+Job duration.
+Error rates (per scenario, per user).
+### Logs and Diagnostics
+Where to find logs in CDC’s environment:
+Application logs (generation pipeline, validation).
+Access logs (who ran what, when).
+Infrastructure logs (if relevant).
+How to filter:
+By user, scenario, job ID.
+By error/warning level.
+### Alerts
+If configured:
+Types of alerts:
+Job failures above threshold.
+High error rates for a particular scenario.
+Resource utilization issues (CPU, memory).
+How to configure:
+Alert recipients (email groups, Slack/Teams channel, ticketing system).
+Thresholds and escalation tiers.
+
+## Common Administrative Tasks (Step‑by‑Step)
+<mark> need to fill in this section</mark>
+
+Concrete, repeatable tasks admins will perform:
+### Create a New Standard Scenario
+
+Preconditions (role, environment).
+Steps to define scenario metadata, default demographics, clinical elements, and outputs.
+How to test and then publish the scenario.
+Update Demographics for an Existing Scenario
+How to adjust distributions safely.
+How to test that FHIR generation still passes validation.
+Communicating changes to affected users/programs.
+Bulk Configure Output Destinations for a Program
+Example: configuring where all “Influenza” scenarios write outputs.
+Testing access from downstream systems.
+Review Failed Jobs
+Steps: navigate to admin console → filter failed jobs → open error details → check logs.
+Common causes and quick resolutions (e.g., misconfigured codes, environment config issue).
+Clone and Modify a Scenario for a New Use Case
+Cloning patterns.
+Renaming, updating parameters.
+Marking initial status as “pilot” until validated.
+Each task should include:
+
+Screenshots or precise UI references.
+Risk notes: e.g., “Changing this setting will impact all future jobs for this scenario.”
+
+## Troubleshooting & Support Workflow
+### Common Issues
+1. Users cannot see a scenario they expect
+  1. Check role/permissions.
+  2. Check scenario status (draft, retired).
+  3. Environment mismatch (they’re in test, scenario is only in prod).
+2. Job fails immediately
+  1. Misconfigured scenario (invalid codes or missing required demographics).
+  2. System configuration issue (output destination unavailable).
+  3. FHIR validation failure.
+3. Job takes too long or never completes
+  1. Resource constraints – check system metrics.
+  2. Downstream integration timeouts.
+4. Generated FHIR records don’t match user expectations
+  1. Scenario misinterpretation (user configured wrong parameters).
+  2. USCDI element not enabled or incomplete configuration.
+  3. Version mismatch (scenario built for an older FHIR/USCDI assumption).
+
+### Troubleshooting Checklists
+
+* “Job failed” checklist:
+  1. Confirm scenario and cohort size.
+  2. Review error message in UI.
+  3. Check logs for stack trace or validation errors.
+  4. Validate configuration (codes, output destination).
+  5. Re‑run in test environment if needed.
+
+## Escalation
+<mark> need to fill in this section</mark>
+When to involve:
+Infrastructure/IT (network, storage failures).
+Development team (bug in generation logic, FHIR mapping issues).
+Security/privacy officials (if there is concern about synthetic data being too realistic or misused).
+What to capture:
+Scenario name & version, job ID.
+User, environment, timestamp.
+Parameters selected.
+Error messages / log snippets.
+
+## Backup, Recovery, and Maintenance
+<mark> need to fill in this section</mark>
+What Requires Backup
+Scenario definitions, configuration settings.
+Audit logs, job metadata.
+Not necessarily the generated output itself (depending on policy), since it can be regenerated, but document CDC’s chosen practice.
+Restore Considerations
+Restoring configuration vs restoring generated data sets.
+Versioning of scenarios (how to roll back a problematic change).
+Maintenance Tasks
+Periodic review of:
+Scenarios in use vs obsolete scenarios.
+Code lists and mappings (updated LOINC, etc.).
+Job volume and performance (archiving old log data).
+Maintenance window procedures:
+How to communicate planned downtime.
+How to verify CohGenT post‑maintenance (smoke tests).
+11. Governance, Compliance, and Responsible Use
+Even though the data is synthetic, governance matters:
+
+## Synthetic Data Policy
+
+CohGenT  is intended solely for generating synthetic, fictitious patient data for testing purposes. 
+Do not enter, upload, or attempt to replicate any actual patient information, protected health information (PHI), or personally identifiable information (PII).
+Any resemblance to real patients or individuals is purely coincidental. Users are solely responsible for ensuring compliance with applicable privacy laws and regulations, including HIPAA and other data protection requirements.
+
+
+## Training and Reference Materials
+User Guide
+Technical documentation 
+Training Sessions
+Demo 
