@@ -4,6 +4,7 @@
 ### Added
 * Medications now support $eventDate special handler.
 * MedicationRequest.authoredOn field added.
+* Terminology search can now be filtered by Domain.
 
 ## [1.1.1] - 2026-06-22 - R2 Hotfix 1
 ### Fixed

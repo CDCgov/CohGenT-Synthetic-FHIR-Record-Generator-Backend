@@ -7,6 +7,7 @@ class ConceptResult(NoNullCamelModel):
     name: str
     code: str
     system: str
+    domain: str
     has_presets: Optional[bool] = None
 
     @classmethod
@@ -16,12 +17,14 @@ class ConceptResult(NoNullCamelModel):
             name=concept.concept_name,
             code=concept.concept_code,
             system=reverse_lookup_system(concept.vocabulary_id),
+            domain=concept.domain_id,
             has_presets=has_presets
         )
     
 class TerminologySearchResults(NoNullCamelModel):
     term: str
     system: str | None
+    domain: str | None
     total: int
     count: int
     page: int
