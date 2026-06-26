@@ -195,6 +195,151 @@ In the Condition Based Cohort Scenario, CohGenT creates a sequence of clinical e
 | **Clinical Data** | Laboratory Results, Procedures, Diagnostic Panels | US Core Laboratory Result<br>US Core Procedure | No | Repeating Events |
 | **Medications** | Medication | US Core MedicationStatement | No | Singular Event |
 
+## Complete Example: Syphilis Surveillance Cohort
+
+> **TODO:** Add complete end-to-end example showing a single cohort configuration from start to finish.
+
+This example demonstrates creating a cohort for syphilis surveillance with follow-up laboratory testing.
+
+### Example Overview
+
+**Cohort Purpose:** Generate synthetic patient records for testing a syphilis case reporting system with laboratory follow-up data.
+
+**Scenario Details:**
+- **Cohort Name:** "Syphilis Patients with Quarterly Lab Follow-up"
+- **Patient Count:** 25 patients
+- **Primary Condition:** Syphilis (SNOMED CT: 76272004)
+- **Time Period:** January 1, 2025 - December 31, 2025
+- **Extended Data:** Through June 30, 2026 (for follow-up labs)
+
+### Step-by-Step Configuration
+
+#### 1. Cohort Scenario and Initial Settings
+
+**TODO:** Add screenshot of Cohort Scenario page
+
+- **Cohort Scenario:** Condition-Based Record
+- **Cohort Name:** Syphilis Patients with Quarterly Lab Follow-up
+- **Primary Clinical Data Period:** 01/01/2025 - 12/31/2025
+- **Extend Data Until:** 06/30/2026
+
+#### 2. Patient Demographics
+
+**TODO:** Add screenshot of Demographics configuration
+
+**Customized Settings:**
+- **Age at Diagnosis:** 16-45 years (targeting sexually active population)
+- **Sex Distribution:** 
+  - Male: 60%
+  - Female: 40%
+  - Unknown: 0%
+- **Geographic Location:** 
+  - State: California
+  - City: San Francisco
+- **Living/Deceased:** 
+  - Living: 98%
+  - Deceased: 2%
+- **Race/Ethnicity:** Using default US census distributions
+
+#### 3. Primary Condition Configuration
+
+**TODO:** Add screenshot of Condition configuration with search results
+
+**Condition Details:**
+- **System:** SNOMED CT
+- **Code:** 76272004
+- **Display:** Syphilis (disorder)
+- **Condition Duration:** Onset Plus 2 weeks to 6 months
+  - *Rationale: Simulates varying treatment response times*
+
+#### 4. Clinical Data Sets
+
+**TODO:** Add screenshot showing multiple clinical data sets
+
+**Clinical Data Set 1: Initial Diagnostic Labs**
+- **Timing:** At Onset (same day as condition diagnosis)
+- **Lab Panel:** Yes - "Syphilis serology panel"
+  - System: LOINC
+  - Code: 50690-7
+  - Display: Syphilis serology panel
+
+**Lab Tests in Panel:**
+1. **RPR (Rapid Plasma Reagin)**
+   - System: LOINC
+   - Code: 20507-0
+   - Display: Reagin Ab [Titer] in Serum by RPR
+   - Result Type: Quantity
+   - Range: 1:1 to 1:256 (titers)
+
+2. **Treponemal Test (TP-PA)**
+   - System: LOINC
+   - Code: 5393-9
+   - Display: Treponema pallidum Ab [Presence] in Serum
+   - Result Type: String
+   - Values: "Positive", "Negative", "Indeterminate"
+
+**Clinical Data Set 2: Follow-up Labs**
+- **Timing:** Onset Plus 3 months, Repeat every 3 months
+- **Lab Panel:** No (individual tests)
+
+**Lab Tests:**
+1. **RPR Follow-up**
+   - System: LOINC
+   - Code: 20507-0
+   - Display: Reagin Ab [Titer] in Serum by RPR
+   - Result Type: Quantity
+   - Range: 1:1 to 1:64 (lower titers showing treatment response)
+
+#### 5. Medications
+
+**TODO:** Add screenshot of medication configuration
+
+**Medication 1: Benzathine Penicillin G**
+- **System:** RxNorm
+- **Code:** 105078
+- **Display:** Penicillin G benzathine 2.4 MU injection
+- **Dosage Instructions:** "2.4 million units IM once weekly for 3 weeks"
+
+**Medication 2: Doxycycline (Alternative for penicillin-allergic patients)**
+- **System:** RxNorm
+- **Code:** 3640
+- **Display:** Doxycycline
+- **Dosage Instructions:** "100 mg PO twice daily for 28 days"
+
+#### 6. Review and Generate
+
+**TODO:** Add screenshot of Review page
+
+**Generation Settings:**
+- **Patient Count:** 25
+- **Random Seed:** [Auto-generated or custom]
+- **Output Format:** FHIR JSON Bundle (for individual patient review)
+
+### Expected Output
+
+**TODO:** Add example of generated bundle structure
+
+The generated cohort will produce:
+- 25 patient bundles (one per patient)
+- Each bundle containing:
+  - 1 Patient resource
+  - 1 Condition resource (Syphilis)
+  - 1 Encounter resource (for condition diagnosis)
+  - 3-5 Observation resources (initial diagnostic labs)
+  - 2-4 sets of follow-up Observation resources (quarterly labs through June 2026)
+  - 1-2 MedicationRequest resources
+  - Supporting Organization and Practitioner resources
+
+### Use Cases for This Cohort
+
+This synthetic cohort can be used to test:
+- Case reporting workflows for syphilis surveillance
+- Laboratory result integration and trending
+- Medication adherence tracking
+- Follow-up care coordination
+- FHIR query capabilities for condition-based searches
+- Bulk data export for public health reporting
+
 ### Patient Demographics
 
 All patient Demographics have preset default settings to mimic US census and OMB distributions. To make changes, select "Customize Patient Demographics". The Demographics Summary will automatically update based on any changes made. Once you are satisfied with patient demographics as shown in the Demographics Summary, select "Next" or navigate to the next step in the left-hand navigation pane.
@@ -369,6 +514,317 @@ Add a Medication Set to specify medications. Add more than one set and assign we
   - **Type:** Text
   - **FHIRPath:** MedicationRequest.dosageInstruction
   - **Required:** No
+
+# Advanced Examples
+
+## Example: Combining Multiple Cohorts for Mixed Population Testing
+
+> **TODO:** Add complete example showing how to create and combine two distinct cohorts into a single dataset.
+
+This advanced example demonstrates creating two separate cohorts with different characteristics and combining them to simulate a more realistic, heterogeneous patient population for testing.
+
+### Why Combine Cohorts?
+
+Real-world public health scenarios often involve diverse patient populations with varying disease stages, demographics, and clinical presentations. Combining cohorts allows you to:
+- Test systems with different population diversity
+- Simulate different disease stages or severity levels
+- Create control groups alongside case groups
+- Test data analytics and reporting across subpopulations
+- Validate query capabilities across distinct patient characteristics
+
+### Combined Cohort: Tuberculosis Surveillance - Early vs. Late Stage
+
+In this example, we will generate a mixed population of TB patients at different disease stages to test case classification, treatment protocols, and outcome tracking.
+
+**Cohort A: Early-Stage TB (Latent/Newly Diagnosed)**
+- Recently diagnosed, minimal symptoms
+- Basic diagnostic labs
+- Standard first-line treatment
+
+**Cohort B: Late-Stage TB with Complications**
+- Advanced disease with complications
+- Extensive diagnostic workup
+- Complex treatment regimens including second-line drugs
+
+### Cohort A Configuration: Early-Stage TB
+
+#### Basic Settings
+- **Cohort Name:** "TB Early Stage - Latent and Newly Diagnosed"
+- **Primary Clinical Data Period:** 01/01/2025 - 12/31/2025
+- **Extend Data Until:** 06/30/2026
+
+#### Demographics
+
+- **Age at Diagnosis:** 25-55 years (working-age population)
+- **Sex Distribution:** Male: 55%, Female: 45%
+- **Geographic Location:** 
+  - State: New York
+  - City: New York City
+- **Living/Deceased:** Living: 100%, Deceased: 0%
+- **Race, Ethnicity and Tribal Affiliation**: Default
+#### Primary Condition
+- **System:** SNOMED CT
+- **Code:** 56717001
+- **Display:** Tuberculosis (disorder)
+- **Condition Duration:** Onset Plus 6 months to 12 months
+
+#### Clinical Data Sets
+
+**Clinical Data Set 1: Initial Diagnostic Workup**
+- **Timing:** At Onset
+
+**Lab Tests:**
+1. **Mycobacterium Tuberculosis Stimulated Gamma Interferon Panel (TST)**
+   - System: LOINC
+   - Code: 71775-1
+   - Display: Mycobacterium tuberculosis stimulated gamma interferon panel - Blood
+   - Result Type: String
+   - Values: "Positive": 99.5%, "Negative": 0.05%
+
+2. **Chest X-Ray Chest Views**
+   - System: LOINC
+   - Code: 30745-4
+   - Display: XR Chest Views
+   - Result Type: String
+   - Values: "Normal": 0.1%, "Minimal infiltrates": 2%, "Small nodules:97.9%"
+
+**Clinical Data Set 2: Follow-up Monitoring**
+- **Timing:** Onset Plus 1 month, Repeat every 2 months
+
+**Lab Tests:**
+1. **Sputum Culture**
+   - System: LOINC
+   - Code: 543-9
+   - Display: Mycobacterium tuberculosis [Presence] in Sputum by Organism specific culture
+   - Result Type: String
+   - Values: "Negative": 2%, "Positive - low count": 98%
+
+#### Medications
+**TODO:** Add medication comparison table
+
+**Medication 1: Isoniazid**
+- System: RxNorm
+- Code: 6038
+- Display: Isoniazid
+- Dosage: "300 mg PO daily for 9 months"
+
+**Medication 2: Rifampin**
+- System: RxNorm
+- Code: 9384
+- Display: Rifampin
+- Dosage: "600 mg PO daily for 9 months"
+
+### Cohort B Configuration: Late-Stage TB with Complications
+
+#### Basic Settings
+- **Cohort Name:** "TB Late Stage - Advanced Disease with Complications"
+- **Primary Clinical Data Period:** 01/01/2025 - 12/31/2025
+- **Extend Data Until:** 12/31/2026 (longer follow-up for complex cases)
+
+#### Demographics
+
+**Customized Settings:**
+- **Age at Diagnosis:** 45-75 years (older population with comorbidities)
+- **Sex Distribution:** Male: 65%, Female: 35%
+- **Geographic Location:** 
+  - State: New York
+  - City: New York City (same location for comparison)
+- **Living/Deceased:** Living: 85%, Deceased: 15% (higher mortality)
+- **Race, Ethnicity and Tribal Affiliation**: Default
+
+#### Primary Condition
+- **System:** SNOMED CT
+- **Code:** 154283005
+- **Display:** Pulmonary tuberculosis (disorder)
+- **Condition Duration:** Onset Plus 12 months to 24 months (longer treatment)
+
+#### Clinical Data Sets
+
+**Clinical Data Set 1: Extensive Initial Workup**
+- **Timing:** At Onset
+
+**Lab Tests:**
+1. **Portable XR Chest Views**
+   - System: LOINC
+   - Code: 30746-2
+   - Display: Portable XR Chest Views
+   - Result Type: String
+   - Values: "Normal": 0.1%, "Minimal infiltrates": 2%, "Small nodules:97.9%"
+
+2. **Sputum AFB Smear**
+   - System: LOINC
+   - Code: 14556-7
+   - Display: Acid fast bacillus [Presence] in Sputum by Light microscopy
+   - Result Type: String
+   - Values: "3+ Positive", "4+ Positive"
+
+3. **Drug Susceptibility Testing**
+   - System: LOINC
+   - Code: 559-5
+   - Display: Mycobacterium tuberculosis rifampin resistance
+   - Result Type: String
+   - Values: "Susceptible", "Resistant"
+
+**Clinical Data Set 2: Intensive Monitoring**
+- **Timing:** Onset Plus 2 weeks, Repeat every 2 weeks
+
+**Lab Tests:**
+1. **Sputum Culture with Quantification**
+   - System: LOINC
+   - Code: 85581-7
+   - Display: Mycobacterium avium and Mycobacterium intracellulare DNA [Identifier] in Sputum or Bronchial by NAA with probe detection
+   - Result Type: String
+   - Values: "Positive - high count": 48%, "Positive - moderate count": 40%, "Positive - low count": 10%, "Negative": 2%
+
+2. **Liver Function Tests** (monitoring for drug toxicity)
+   - System: LOINC
+   - Code: 1742-6
+   - Display: Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma
+   - Result Type: Quantity
+   - Range: 7-52 U/L 9Normal Range)
+
+#### Medications
+
+**Medication 1: Isoniazid (First-line)**
+- System: RxNorm
+- Code: 6038
+- Display: Isoniazid
+- Dosage: "300 mg PO daily"
+
+**Medication 2: Rifampin (First-line)**
+- System: RxNorm
+- Code: 9384
+- Display: Rifampin
+- Dosage: "600 mg PO daily"
+
+**Medication 3: Pyrazinamide (First-line)**
+- System: RxNorm
+- Code: 8987
+- Display: Pyrazinamide
+- Dosage: "1500 mg PO daily"
+
+**Medication 4: Ethambutol (First-line)**
+- System: RxNorm
+- Code: 4119
+- Display: Ethambutol
+- Dosage: "1200 mg PO daily"
+
+**Medication 5: Levofloxacin (Second-line for resistant cases)**
+- System: RxNorm
+- Code: 82122
+- Display: Levofloxacin
+- Dosage: "750 mg PO daily"
+
+### Combining the Cohorts
+
+**TODO:** Add step-by-step instructions for combining cohorts
+
+#### Method 1: Generate Separately and Merge Files
+
+1. **Generate Cohort A:**
+   - Configure and generate "TB Early Stage" cohort
+   - Download as FHIR JSON Bundle format
+   - Save to a designated folder (e.g., `TB_Early_Stage/`)
+
+2. **Generate Cohort B:**
+   - Configure and generate "TB Late Stage" cohort  
+   - Download as FHIR JSON Bundle format
+   - Save to a different folder (e.g., `TB_Late_Stage/`)
+
+3. **Merge the Cohorts:**
+   - Extract both ZIP files
+   - Combine all patient bundle files into a single directory
+   - Result: 50 total patient bundles (30 early-stage + 20 late-stage)
+
+#### Method 2: Using Bulk FHIR NDJSON Format
+
+1. **Generate Both Cohorts as NDJSON:**
+   - Generate Cohort A with Bulk Data NDJSON format
+   - Generate Cohort B with Bulk Data NDJSON format
+
+2. **Merge NDJSON Files by Resource Type:**
+   - Combine Patient.ndjson files (append Cohort B patients to Cohort A)
+   - Combine Condition.ndjson files
+   - Combine Observation.ndjson files
+   - Combine MedicationRequest.ndjson files
+   - Combine all other resource type files
+
+3. **Result:** Single set of NDJSON files containing all 50 patients organized by resource type
+
+### Key Differences Between Cohorts
+
+**TODO:** Add comparison visualization/table
+
+| **Characteristic** | **Cohort A (Early-Stage)** | **Cohort B (Late-Stage)** |
+|---|---|---|
+| **Patient Count** | 30 | 20 |
+| **Age Range** | 25-55 years | 45-75 years |
+| **Mortality Rate** | 0% | 15% |
+| **Condition Duration** | 6-12 months | 12-24 months |
+| **Initial Diagnostic Tests** | 2 tests | 3 tests |
+| **Follow-up Frequency** | Every 2 months | Every 2 weeks |
+| **Medication Count** | 2 (first-line only) | 5 (first + second-line) |
+| **Extended Data Period** | 6 months | 12 months |
+| **Disease Severity** | Latent/Minimal | Advanced/Complicated |
+
+### Use Cases for Combined Cohorts
+
+This combined TB cohort dataset can be used to test:
+
+1. **Population Health Analytics:**
+   - Compare outcomes between early and late-stage diagnosis
+   - Analyze treatment effectiveness across disease stages
+   - Calculate mortality rates by subpopulation
+
+2. **Clinical Decision Support:**
+   - Test algorithms that recommend different treatment protocols based on disease stage
+   - Validate drug interaction checking across simple and complex regimens
+
+3. **Public Health Reporting:**
+   - Test case classification systems (latent vs. active TB)
+   - Validate reporting workflows for different disease stages
+   - Test contact tracing prioritization (higher priority for late-stage cases)
+
+4. **FHIR Query Capabilities:**
+   - Query for patients by disease severity
+   - Filter by medication regimen complexity
+   - Search across different diagnostic test results
+
+5. **Data Visualization and Dashboards:**
+   - Create stratified views by disease stage
+   - Display treatment adherence across subpopulations
+   - Show outcome trends for different patient groups
+
+### Technical Considerations
+
+**Patient ID Uniqueness:**
+- Each cohort generation creates unique patient IDs
+- No risk of ID collision when combining cohorts
+- Each patient maintains referential integrity within their bundle
+
+**Random Seed Management:**
+- Use different random seeds for each cohort to ensure variation
+- Document seeds used for reproducibility
+- Consider using seeds that indicate cohort type (e.g., 1000 for Cohort A, 2000 for Cohort B)
+
+**Temporal Alignment:**
+- Both cohorts use the same primary clinical data period (2025)
+- Different extended data periods reflect different follow-up needs
+- Ensure date ranges make sense when analyzing combined data
+
+**Resource References:**
+- Organization and Practitioner resources are auto-generated per cohort
+- May result in duplicate organizations when combining
+- This is acceptable for testing purposes and reflects real-world scenarios
+
+### Tips for Creating Combined Cohorts
+
+1. **Plan Demographics Carefully:** Ensure demographic differences reflect realistic population characteristics
+2. **Use Consistent Geography:** Keep location consistent (or intentionally vary) based on testing needs
+3. **Vary Clinical Complexity:** Create clear distinctions in clinical data complexity between cohorts
+4. **Document Differences:** Maintain clear documentation of what distinguishes each cohort
+5. **Test Incrementally:** Generate and validate each cohort individually before combining
+6. **Consider File Format:** Choose NDJSON for easier programmatic merging, JSON Bundles for manual review
 
 # FAQs
 
