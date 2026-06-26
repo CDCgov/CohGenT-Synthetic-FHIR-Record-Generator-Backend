@@ -72,6 +72,7 @@ def search_concepts_post(
     return _search_concepts_logic(
         request.term,
         request.system,
+        request.domain,
         request.sort_by,
         request.sort_order,
         request.page,
