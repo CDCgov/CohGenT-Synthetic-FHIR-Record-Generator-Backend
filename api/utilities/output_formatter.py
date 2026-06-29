@@ -43,6 +43,8 @@ def package_contents_as_binary(bundle_list: list[Bundle], cohort_settings: Cohor
             except Exception:
                 logger.error(f"Unable to parse JSON for {file_name} with bundle id of {bundle.id}. Skipping.")
 
+        zipf.writestr("cohort_settings.json", cohort_settings.model_dump_json(indent=2))
+
     zip_base64 = base64.b64encode(zip_buffer.getvalue()).decode('utf-8')
     generation_parameters = parse_generation_parameters(cohort_settings)
 
@@ -121,6 +123,8 @@ def package_contents_as_ndjson(record_list: list[list[FHIRResource]], cohort_set
                 zipf.writestr(file_name, ndjson_outputs)
             except Exception:
                 logger.error(f"Unable to write NDJSON for {file_name}. Skipping.")
+    
+        zipf.writestr("cohort_settings.json", cohort_settings.model_dump_json(indent=2))
 
     zip_base64 = base64.b64encode(zip_buffer.getvalue()).decode('utf-8')
     generation_parameters = parse_generation_parameters(cohort_settings)

@@ -6,6 +6,7 @@
 * MedicationRequest.authoredOn field added.
 * Terminology search can now be filtered by Domain.
 * Clinical Data Sets/Event Sets now support a local "until" date for generation. This allows sets to be setup in phases or otherwise terminate early.
+* The cohort settings used to generate the data is now included in all output zip files.
 
 ## [1.1.1] - 2026-06-22 - R2 Hotfix 1
 ### Fixed
