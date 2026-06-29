@@ -2,7 +2,7 @@ from datetime import date
 from decimal import Decimal
 from enum import Enum
 from fastapi_camelcase import CamelModel
-from pydantic import Field as PydanticField, model_validator
+from pydantic import Field as PyField, model_validator
 from typing import Optional
 from api.models.value_types import ValueCoding, ValueLocation, ValueRange, ValueWeights, ValueTimeRangeAsDays, ValueRangeWithUnits, ValuePrevalence, ValueTribalAffiliation
 
@@ -37,6 +37,7 @@ class EventSetTiming(CamelModel):
     offset: int # in Days
     repeat: bool
     repeat_timing: Optional[int] = None # in Days
+    until: Optional[int] = None # in Days
 
 class EventSetEntry(CamelModel):
     type: str
@@ -62,13 +63,45 @@ class OutputFormat(str, Enum):
     NDJSON = "ndjson"
     
 class CohortSettings(CamelModel):
-    output_format: Optional[OutputFormat] = OutputFormat.JSON
-    use_case_id: str
-    fhir_version: Optional[str] = "R4"
-    us_core_version: Optional[str] = None
-    count: int = PydanticField(default=1, ge=1, le=50)
-    seed: int
-    event_period: EventPeriod
-    user_responses: Optional[list[Setting]] = None
-    medication_sets: Optional[list[MedicationSet]] = None
-    event_sets: Optional[list[EventSet]] = None
+    output_format: Optional[OutputFormat] = PyField(
+        default=OutputFormat.JSON,
+        description="Format for the generated FHIR bundle output. Choose 'json' for a single Bundle resource or 'ndjson' for newline-delimited JSON with individual resources."
+    )
+    use_case_id: str = PyField(
+        ...,
+        description="Unique identifier referencing a use case template that defines the clinical scenario, resources, and data structure to generate."
+    )
+    fhir_version: Optional[str] = PyField(
+        default="R4",
+        description="FHIR specification version to use for generated resources. Currently only 'R4' is supported."
+    )
+    us_core_version: Optional[str] = PyField(
+        default=None,
+        description="US Core Implementation Guide version (e.g., '6.1.0'). Note: Filtering by US Core version is not currently implemented."
+    )
+    count: int = PyField(
+        default=1,
+        ge=1,
+        le=50,
+        description="Number of synthetic patients to generate in the cohort. Must be between 1 and 50."
+    )
+    seed: int = PyField(
+        ...,
+        description="Random seed value for reproducible data generation. Using the same seed with identical settings will produce the same synthetic data."
+    )
+    event_period: EventPeriod = PyField(
+        ...,
+        description="Time boundaries defining when clinical events occur for all patients in the cohort. Includes start date, end date, and optional extended generation boundary."
+    )
+    user_responses: Optional[list[Setting]] = PyField(
+        default=None,
+        description="User-configured field settings that override default use case values. Each setting targets a specific rule_id with a custom value."
+    )
+    medication_sets: Optional[list[MedicationSet]] = PyField(
+        default=None,
+        description="Weighted sets of medications to distribute across the patient cohort. Each set has a weight determining how frequently it's assigned to patients."
+    )
+    event_sets: Optional[list[EventSet]] = PyField(
+        default=None,
+        description="Repeating clinical event configurations (e.g., lab panels, procedures) that occur at specified intervals throughout the event period."
+    )

@@ -173,7 +173,11 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                 '''
                 start_date = patient_meta.event_date
                 current_date = start_date + timedelta(days=event_set.timing.offset)
+                
                 end_date = patient_meta.generate_until_date
+                if event_set.timing.until:
+                    event_set_until_date = start_date + timedelta(days=event_set.timing.offset) + timedelta(days=event_set.timing.until)
+                    end_date = min(event_set_until_date, end_date)
                 increment = event_set.timing.repeat_timing
                 
                 '''
