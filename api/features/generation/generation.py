@@ -150,7 +150,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                            default_settings,
                            main_db)
         '''
-        Handle Additional Clinical Data (Event Sets)
+        Handle Clinical Data Sets (Event Sets)
         '''
         if configuration.event_sets:
             for event_set_count, event_set in enumerate(configuration.event_sets):
@@ -171,28 +171,32 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                 Repetitive generation for event sets.
                 "Date grouping" forward to support diagnostic reports.
                 '''
-                start_date = patient_meta.event_date
-                current_date = start_date + timedelta(days=event_set.timing.offset)
+                # "Start Date" is the patient's event date plus the offset
+                start_date = patient_meta.event_date + timedelta(days=event_set.timing.offset)
                 
+                # "Current Date" is the variable to be updated on each loop tracking increments
+                current_date = start_date
+
+                # "End Date" is when to stop generation. If the event set/clinical data set is set to generate "forever",
+                # this is equal to the patient level generate until date.
                 end_date = patient_meta.generate_until_date
-                if event_set.timing.until:
-                    event_set_until_date = start_date + timedelta(days=event_set.timing.offset) + timedelta(days=event_set.timing.until)
+                if event_set.timing.until and event_set.timing.until > 0:
+                    event_set_until_date = start_date + timedelta(days=event_set.timing.until)
                     end_date = min(event_set_until_date, end_date)
+                
+                # Tne amount to increment current date on each loop
                 increment = event_set.timing.repeat_timing
                 
-                '''
-                Iteration break to avoid users setting up endless looping. This is controlled by the iteration_limit
-                parameter on the generate function. iteration_limit determines the max number of iterations that may
-                occur.
-                '''
+                # Safety counter to prevent infinite loops (limit configurable via iteration_limit parameter)
                 current_iteration = 1
 
                 while current_date <= end_date:
                     
-                    # If include_diagnostc_report, set that up first
+                    # If include_diagnostc_report for lab panels, set that up first
                     # Setup reference to build link objects.
                     current_dr_entity_id: str | None = None
-
+                    
+                    # Build diagnostic report lab panel itself
                     if event_set.include_diagnostic_report:
                         assert(use_case.common_entities is not None)
                         cloned_dr_entity = copy(loaded_common_entities[LoadedCommonEntityKeys.DIAGNOSTIC_REPORT])
@@ -251,38 +255,36 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                                             if fhir_type_match_check(entry.value, field.type):
                                                 value = str(process_choice_of_data_type_value(entry, field))
                                             else:
-                                                include_field = False # Toggle this is there is not a type match to avoid overwrites from Nones.
+                                                include_field = False # Toggle this if there is not a type match to avoid overwrites from Nones.
                                     if include_field:
                                         patient_row_as_dict[key] = value
                                 
                                 # Handle dynamic linked entities (e.g., Practitioners/Practitioner Roles) setup in the use case
                                 if cloned_entity.dynamic_references and common_entity.dynamic_references:
-                                    # process_dynamic_entities(
-                                    #     cloned_entity,
-                                    #     common_entity,
-                                    #     entity_cache,
-                                    #     patient_row_as_dict,
-                                    #     dynamic_entities,
-                                    #     dynamic_resource_links)
                                     for dynamic_reference in cloned_entity.dynamic_references or []:
                                         linked_target = next((link_dr for link_dr in common_entity.dynamic_references if link_dr.link_identifier == dynamic_reference.link_identifier), None)
                                         if linked_target:
-                                            linked_entity_model = entity_cache.get_provider_entity(linked_target.target_entity_identifier)
-                                            dynamic_entities.append(linked_entity_model)
-                                            dynamic_resource_links.append((cloned_entity.entity_id, dynamic_reference.reference_path, linked_entity_model.entity_id))
-                                            
-                                            process_static_entity(linked_entity_model, patient_row_as_dict)
+                                            # Check if local (in use case) reference
+                                            if linked_target.target_entity_identifier.startswith("@"):
+                                                dynamic_resource_links.append((cloned_entity.entity_id, dynamic_reference.reference_path, linked_target.target_entity_identifier[1:]))
+                                            # If not, then pull from db (providers only atm)
+                                            else:
+                                                linked_entity_model = entity_cache.get_provider_entity(linked_target.target_entity_identifier)
+                                                dynamic_entities.append(linked_entity_model)
+                                                dynamic_resource_links.append((cloned_entity.entity_id, dynamic_reference.reference_path, linked_entity_model.entity_id))
+                                                
+                                                process_static_entity(linked_entity_model, patient_row_as_dict)
 
-                                            # Handled any linked static references (e.g., PractitionerRole -> Organization and Practitioner)
-                                            # NOTE: These must be fully self contained entities without any user configuration, the same as the initial dynamic entity.
-                                            for static_reference in linked_entity_model.static_references or []:
-                                                static_reference_entity = entity_cache.get_provider_entity(static_reference.target_entity)
-                                                dynamic_entities.append(static_reference_entity)
-                                                dynamic_resource_links.append((linked_entity_model.entity_id, static_reference.reference_path, static_reference_entity.entity_id))
-                                                process_static_entity(static_reference_entity, patient_row_as_dict)
+                                                # Handled any linked static references (e.g., PractitionerRole -> Organization and Practitioner)
+                                                # NOTE: These must be fully self contained entities without any user configuration, the same as the initial dynamic entity.
+                                                for static_reference in linked_entity_model.static_references or []:
+                                                    static_reference_entity = entity_cache.get_provider_entity(static_reference.target_entity)
+                                                    dynamic_entities.append(static_reference_entity)
+                                                    dynamic_resource_links.append((linked_entity_model.entity_id, static_reference.reference_path, static_reference_entity.entity_id))
+                                                    process_static_entity(static_reference_entity, patient_row_as_dict)
 
                                         else:
-                                            logger.warning(f"Could not load entity with identifier: {dynamic_reference.link_identifier}. Skipped.")
+                                            logger.warning(f"Could not load entity with link identifier: {dynamic_reference.link_identifier} for {cloned_entity.entity_id}. Skipped.")
 
                         else:
                             raise HTTPException(status_code=422, detail=f"Issue parsing common entity. Unable to find entity file for type {entry.type}. Ensure use case/scenario refers to an existing file name and that the file name is parsable.")

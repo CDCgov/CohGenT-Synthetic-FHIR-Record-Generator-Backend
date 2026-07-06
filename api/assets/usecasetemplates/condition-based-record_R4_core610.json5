@@ -424,6 +424,10 @@
                     {
                         "targetEntityIdentifier": "USCorePractitionerRole001",
                         "linkIdentifier": "performer"
+                    },
+                    {
+                        "targetEntityIdentifier": "@PrimaryCondition",
+                        "linkIdentifier": "reason"
                     }
                 ]
             },

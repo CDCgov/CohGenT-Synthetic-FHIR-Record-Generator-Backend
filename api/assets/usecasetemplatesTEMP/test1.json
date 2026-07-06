@@ -1,8 +1,0 @@
-{
-    "useCaseId": "version-testing",
-    "useCaseVersion": "0.1.0",
-    "title": "Version Testing",
-    "fhirVersion": "R4",
-    "usCoreVersion": "4.0.0",
-    "description": "This use case is empty and is only for testing version drop downs. Do not use."
-}

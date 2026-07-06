@@ -1,8 +1,15 @@
+"""
+Cohort generation configuration models.
+
+This module defines the primary user-facing models for cohort generation,
+including CohortSettings (main configuration), EventSet (repeating clinical
+data), and MedicationSet (medication configurations).
+"""
+
 from datetime import date
-from decimal import Decimal
 from enum import Enum
 from fastapi_camelcase import CamelModel
-from pydantic import Field as PyField, model_validator
+from pydantic import Field as PyField, field_validator, model_validator
 from typing import Optional
 from api.models.value_types import ValueCoding, ValueLocation, ValueRange, ValueWeights, ValueTimeRangeAsDays, ValueRangeWithUnits, ValuePrevalence, ValueTribalAffiliation
 
@@ -63,6 +70,18 @@ class OutputFormat(str, Enum):
     NDJSON = "ndjson"
     
 class CohortSettings(CamelModel):
+    """
+    Complete configuration for cohort generation, submitted by the UI.
+    
+    This model defines all user-configurable parameters that control how
+    synthetic FHIR records are generated, including patient count, temporal
+    boundaries, and clinical data specifications.
+    
+    Relationships:
+        - References a UseCase by useCaseId
+        - Contains EventSet[] for repeating clinical observations
+        - Contains MedicationSet[] for medication generation
+    """
     output_format: Optional[OutputFormat] = PyField(
         default=OutputFormat.JSON,
         description="Format for the generated FHIR bundle output. Choose 'json' for a single Bundle resource or 'ndjson' for newline-delimited JSON with individual resources."
@@ -105,3 +124,10 @@ class CohortSettings(CamelModel):
         default=None,
         description="Repeating clinical event configurations (e.g., lab panels, procedures) that occur at specified intervals throughout the event period."
     )
+    
+    @field_validator("seed")
+    def validate_seed(cls, v):
+        """Ensure seed is a positive integer for reproducibility."""
+        if v <= 0:
+            raise ValueError("Seed must be positive")
+        return v
