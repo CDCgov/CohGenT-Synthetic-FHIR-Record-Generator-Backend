@@ -1,7 +1,7 @@
 from fastapi_camelcase import CamelModel
 from typing import Optional
 from pydantic import model_validator
-from api.models.value_types import ValuePrevalence, ValueWeights, ValueTimeRangeAsDays
+from api.models.value_types import ValueOccupation, ValuePrevalence, ValueWeights, ValueTimeRangeAsDays
 from enum import Enum
 
 class ControlType(str, Enum):
@@ -13,6 +13,7 @@ class ControlType(str, Enum):
     TRIBAL_AFFILIATION = "tribal-affiliation"
     PREVALENCE = "prevalence"
     CONCEPT = "concept"
+    OCCUPATION = "occupation"
 
 class Option(CamelModel):
     rule_id: str
@@ -26,7 +27,7 @@ class Option(CamelModel):
     default_state: Optional[bool] = None
 
     # range
-    default_values: Optional[ValueWeights | ValueTimeRangeAsDays | ValuePrevalence | list[int]] = None
+    default_values: Optional[ValueWeights | ValueTimeRangeAsDays | ValuePrevalence | ValueOccupation | list[int]] = None
     decimal_spaces_allowed: Optional[bool] = None
     min_max: Optional[tuple[int|float, int|float]] = None
 

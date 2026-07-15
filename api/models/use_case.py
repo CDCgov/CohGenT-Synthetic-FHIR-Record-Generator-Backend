@@ -32,7 +32,7 @@ from enum import Enum
 from fastapi_camelcase import CamelModel
 from typing import Literal, Optional
 
-from pydantic import Field
+from pydantic import Field, model_validator
 from api.models.entity import Entity
 from api.models.option import Option
 
@@ -53,8 +53,6 @@ class FormRuleType(str, Enum):
     MEDICATION = "medication"
     """Step for configuring medication generation (MedicationSets)."""
 
-##
-
 class FormRule(CamelModel):
     """
     Defines a step in the UI configuration form.
@@ -73,29 +71,143 @@ class FormRule(CamelModel):
     options: Optional[list[Option]] = Field(None, description="List of form controls/options for user input (see Option model)")
 
 class DynamicReferencePointer(CamelModel):
-    link_identifier: str
-    target_entity_identifier: str
+    """
+    Maps a dynamic reference link to a provider entity.
+    
+    Dynamic references allow common entities to reference provider resources
+    (Practitioner, PractitionerRole, Organization) without hardcoding which
+    specific provider entity to use. The use case specifies the mapping from
+    linkIdentifier (defined in the common entity) to targetEntityIdentifier
+    (the actual provider entity to use).
+    
+    This enables:
+      - Same entity template used with different providers across use cases
+      - Automatic reference chain resolution (PractitionerRole -> Practitioner + Organization)
+    
+    Example:
+        Common entity has: {"linkIdentifier": "performer"}
+        Use case maps to: {"linkIdentifier": "performer", 
+                          "targetEntityIdentifier": "USCorePractitionerRole002"}
+        Result: performer reference points to Lab Technician Role + related resources
+    """
+    link_identifier: str = Field(description=(
+            "Link identifier matching a dynamic reference in the common entity. "
+            "Must match the link_identifier in the entity's dynamicReferences array."
+        )
+    )
+    target_entity_identifier: str = Field(description=(
+            "Entity ID of the provider resource to link to "
+            "(e.g., 'USCorePractitionerRole002'). Must exist in provider cache."
+        )
+    )
+
 
 class AdditionalEntity(CamelModel):
-    entity_id: str
-    type: str
-    button_label: str
-    entity_file: str
-    default_system: Optional[str] = None
-    dynamic_references: Optional[list[DynamicReferencePointer]] = None
+    """
+    Reference to a reusable clinical data entity.
+    
+    Additional entities are templates for repeating clinical observations,
+    procedures, or other resources that can be generated multiple times per
+    patient through EventSets. They link to entity files in commonentities/
+    and support dynamic references to provider resources.
+    
+    Example: Lab observation template that can be used for CBC, CMP, etc.
+    """
+    entity_id: str = Field(description="Unique identifier for this entity reference within the use case")
+    type: str = Field(description=(
+            "Type identifier matching a common entity type "
+            "(e.g., 'observation', 'procedure'). Used to match EventSet entries "
+            "to entity templates."
+        )
+    )
+    button_label: str = Field(description="Display label for this entity in the UI")
+    entity_file: str = Field(description=(
+            "Identifier for the entity definition in api/assets/commonentities/ "
+            "(without .json/json5 extension, e.g., 'USCoreObservationLab')"
+        )
+    )
+    default_system: Optional[str] = Field(None,
+        description=(
+            "Default code system URI for this entity type "
+            "(e.g., 'http://loinc.org' for lab observations)"
+        )
+    )
+    dynamic_references: Optional[list[DynamicReferencePointer]] = Field(None,
+        description=(
+            "Dynamic reference mappings to provider entities. Links entity fields "
+            "to provider resources (Practitioner, Organization) by link_identifier."
+        )
+    )
+
 
 class MedicationEntity(CamelModel):
-    entity_file: str
-    dynamic_references: Optional[list[DynamicReferencePointer]] = None
+    """
+    Configuration for medication generation.
+    
+    References the medication entity template and provider resource mappings
+    for generating MedicationRequest resources.
+    """
+    entity_file: str = Field(description=(
+            "Identifier for the entity definition in api/assets/commonentities/ "
+            "(e.g., 'USCoreMedicationRequest')"
+        )
+    )
+    dynamic_references: Optional[list[DynamicReferencePointer]] = Field(None,
+        description="Dynamic reference mappings to provider entities (e.g., prescriber, pharmacy)"
+    )
 
 class CommonEntities(CamelModel):
-    additional_entities: Optional[list[AdditionalEntity]] = None
-    medication: Optional[MedicationEntity] = None
-    diagnostic_report: Optional[str] = None
+    """
+    References to reusable entity templates.
+    
+    Common entities are entity definitions stored in separate files
+    (api/assets/commonentities/) that can be reused across multiple use cases.
+    These typically represent repeating clinical data like lab results,
+    procedures, or medications.
+    
+    Unlike core entities (defined directly in the use case), common entities:
+      - Live in separate files for reusability
+      - Can be generated multiple times per patient (via EventSets)
+      - Support dynamic references to provider resources
+    """
+    additional_entities: Optional[list[AdditionalEntity]] = Field(None,
+        description=(
+            "List of reusable clinical data entities (labs, procedures, imaging). "
+            "Referenced by EventSet entries to generate repeating observations."
+        )
+    )
+    medication: Optional[MedicationEntity] = Field(None,
+        description="Medication entity configuration for MedicationRequest generation"
+    )
+    diagnostic_report: Optional[str] = Field(None,
+        description=(
+            "Filename of DiagnosticReport entity template in commonentities/ "
+            "(e.g., 'USCoreDiagnosticReportLab'). Used as container for lab panels."
+        )
+    )
 
 class GenerationRules(CamelModel):
-    event_date: str
-    end_date: Optional[str] = None
+    """
+    Rules for controlling generation behavior.
+    
+    Defines fields that have special meaning during generation, particularly
+    for temporal boundaries and date relationships.
+    """
+    event_date: str = Field(
+        description=(
+            "Entity field path that represents the primary event date "
+            "(e.g., 'PrimaryEncounter/Encounter.period.start'). This field is used "
+            "as the reference point for all relative date calculations."
+        )
+    )
+    end_date: Optional[str] = Field(None,
+        description=(
+            "Entity field path representing the end boundary for generation "
+            "(e.g., 'PrimaryCondition/Condition.abatementDateTime'). If this date "
+            "is earlier than the cohort-wide end date, it takes precedence for "
+            "this patient's record generation."
+        )
+    )
 
 class UseCase(CamelModel):
     """
@@ -119,9 +231,9 @@ class UseCase(CamelModel):
     use_case_version: str = Field(description="Version string for this use case configuration")
     title: str = Field(description="Human-readable title displayed in UI")
     fhir_version: Literal["R4", "R5"] = Field(description="FHIR standard version this use case targets")
-    us_core_version: Optional[str] = Field(default=None, description="US Core Implementation Guide version if applicable (e.g., '6.1.0')")
+    us_core_version: Optional[str] = Field(None, description="US Core Implementation Guide version if applicable (e.g., '6.1.0')")
     description: str = Field(description="Detailed description of what this use case generates")
-    generation_rules: Optional[GenerationRules] = Field(default=None, description="Special rules for generation timing and boundaries. Warning: Experimental, not fully implemented.")
-    form_rules: Optional[list[FormRule]] = Field(default=None, description="UI form configuration specifying user input controls. Should only be empty if use case has no customization.")
-    entities: Optional[list[Entity]] = Field(default=None, description="Core FHIR resource entity definitions (Patient, Condition, Encounter, etc.)")
-    common_entities: Optional[CommonEntities] = Field(default=None, description="References to reusable entity templates for labs, medications, etc. and their configuration options")
+    generation_rules: Optional[GenerationRules] = Field(None, description="Special rules for generation timing and boundaries.")
+    form_rules: Optional[list[FormRule]] = Field(None, description="UI form configuration specifying user input controls. Should only be empty if use case has no customization.")
+    entities: Optional[list[Entity]] = Field(None, description="Core FHIR resource entity definitions (Patient, Condition, Encounter, etc.)")
+    common_entities: Optional[CommonEntities] = Field(None, description="References to reusable entity templates for labs, medications, etc. and their configuration options")

@@ -1,0 +1,274 @@
+code,system,display
+0170,urn:oid:2.16.840.1.114222.4.5.336,Crop Production
+0180,urn:oid:2.16.840.1.114222.4.5.336,Animal Production and Aquaculture
+0190,urn:oid:2.16.840.1.114222.4.5.336,Forestry except Logging
+0270,urn:oid:2.16.840.1.114222.4.5.336,Logging
+0280,urn:oid:2.16.840.1.114222.4.5.336,"Fishing, Hunting and Trapping"
+0290,urn:oid:2.16.840.1.114222.4.5.336,Support Activities For Agriculture and Forestry
+0370,urn:oid:2.16.840.1.114222.4.5.336,Oil and Gas Extraction
+0380,urn:oid:2.16.840.1.114222.4.5.336,Coal Mining
+0390,urn:oid:2.16.840.1.114222.4.5.336,Metal Ore Mining
+0470,urn:oid:2.16.840.1.114222.4.5.336,Nonmetallic Mineral Mining and Quarrying
+0480,urn:oid:2.16.840.1.114222.4.5.336,Not Specified Type of Mining
+0490,urn:oid:2.16.840.1.114222.4.5.336,Support Activities For Mining
+0570,urn:oid:2.16.840.1.114222.4.5.336,"Electric Power Generation, Transmission and Distribution"
+0580,urn:oid:2.16.840.1.114222.4.5.336,Natural Gas Distribution
+0590,urn:oid:2.16.840.1.114222.4.5.336,"Electric and Gas, and Other Combinations"
+0670,urn:oid:2.16.840.1.114222.4.5.336,"Water, Steam, Air-Conditioning, and Irrigation Systems"
+0680,urn:oid:2.16.840.1.114222.4.5.336,Sewage Treatment Facilities
+0690,urn:oid:2.16.840.1.114222.4.5.336,Not Specified Utilities
+0770,urn:oid:2.16.840.1.114222.4.5.336,Construction
+1070,urn:oid:2.16.840.1.114222.4.5.336,"Animal Food, Grain and Oilseed Milling"
+1080,urn:oid:2.16.840.1.114222.4.5.336,Sugar and Confectionery Products
+1090,urn:oid:2.16.840.1.114222.4.5.336,Fruit and Vegetable Preserving and Specialty Food Manufacturing
+1170,urn:oid:2.16.840.1.114222.4.5.336,Dairy Product Manufacturing
+1180,urn:oid:2.16.840.1.114222.4.5.336,Animal Slaughtering and Processing
+1190,urn:oid:2.16.840.1.114222.4.5.336,Retail Bakeries
+1270,urn:oid:2.16.840.1.114222.4.5.336,"Bakeries and Tortilla Manufacturing, except Retail Bakeries"
+1280,urn:oid:2.16.840.1.114222.4.5.336,"Seafood and Other Miscellaneous Foods, N.E.C."
+1290,urn:oid:2.16.840.1.114222.4.5.336,Not Specified Food Industries
+1370,urn:oid:2.16.840.1.114222.4.5.336,Beverage Manufacturing
+1390,urn:oid:2.16.840.1.114222.4.5.336,Tobacco Manufacturing
+1470,urn:oid:2.16.840.1.114222.4.5.336,"Fiber, Yarn, and Thread Mills"
+1480,urn:oid:2.16.840.1.114222.4.5.336,"Fabric Mills, except Knitting Mills"
+1490,urn:oid:2.16.840.1.114222.4.5.336,Textile and Fabric Finishing and Fabric Coating Mills
+1570,urn:oid:2.16.840.1.114222.4.5.336,Carpet and Rug Mills
+1590,urn:oid:2.16.840.1.114222.4.5.336,"Textile Product Mills, except Carpet and Rug"
+1670,urn:oid:2.16.840.1.114222.4.5.336,"Knitting Fabric Mills, and Apparel Knitting Mills"
+1691,urn:oid:2.16.840.1.114222.4.5.336,"Cut and Sew, and Apparel Accessories and Other Apparel Manufacturing"
+1770,urn:oid:2.16.840.1.114222.4.5.336,Footwear Manufacturing
+1790,urn:oid:2.16.840.1.114222.4.5.336,Leather Tanning and Finishing and Other Allied Products Manufacturing
+1870,urn:oid:2.16.840.1.114222.4.5.336,"Pulp, Paper, and Paperboard Mills"
+1880,urn:oid:2.16.840.1.114222.4.5.336,Paperboard Container Manufacturing
+1890,urn:oid:2.16.840.1.114222.4.5.336,Miscellaneous Paper and Pulp Products
+1990,urn:oid:2.16.840.1.114222.4.5.336,Printing and Related Support Activities
+2070,urn:oid:2.16.840.1.114222.4.5.336,Petroleum Refining
+2090,urn:oid:2.16.840.1.114222.4.5.336,Miscellaneous Petroleum and Coal Products
+2170,urn:oid:2.16.840.1.114222.4.5.336,"Resin, Synthetic Rubber, and Fibers and Filaments Manufacturing"
+2180,urn:oid:2.16.840.1.114222.4.5.336,Agricultural Chemical Manufacturing
+2190,urn:oid:2.16.840.1.114222.4.5.336,Pharmaceutical and Medicine Manufacturing
+2270,urn:oid:2.16.840.1.114222.4.5.336,"Paint, Coating, and Adhesive Manufacturing"
+2280,urn:oid:2.16.840.1.114222.4.5.336,"Soap, Cleaning Compound, and Cosmetics Manufacturing"
+2290,urn:oid:2.16.840.1.114222.4.5.336,Industrial and Miscellaneous Chemicals
+2370,urn:oid:2.16.840.1.114222.4.5.336,Plastics Product Manufacturing
+2380,urn:oid:2.16.840.1.114222.4.5.336,Tire Manufacturing
+2390,urn:oid:2.16.840.1.114222.4.5.336,"Rubber Products, except Tires, Manufacturing"
+2470,urn:oid:2.16.840.1.114222.4.5.336,"Pottery, Ceramics, and Plumbing Fixture Manufacturing"
+2480,urn:oid:2.16.840.1.114222.4.5.336,Clay Building Material and Refractories Manufacturing
+2490,urn:oid:2.16.840.1.114222.4.5.336,Glass and Glass Product Manufacturing
+2570,urn:oid:2.16.840.1.114222.4.5.336,"Cement, Concrete, Lime, and Gypsum Product Manufacturing"
+2590,urn:oid:2.16.840.1.114222.4.5.336,Miscellaneous Nonmetallic Mineral Product Manufacturing
+2670,urn:oid:2.16.840.1.114222.4.5.336,Iron and Steel Mills and Steel Product Manufacturing
+2680,urn:oid:2.16.840.1.114222.4.5.336,Aluminum Production and Processing
+2690,urn:oid:2.16.840.1.114222.4.5.336,Nonferrous Metal (except Aluminum) Production and Processing
+2770,urn:oid:2.16.840.1.114222.4.5.336,Foundries
+2780,urn:oid:2.16.840.1.114222.4.5.336,Metal Forgings and Stampings
+2790,urn:oid:2.16.840.1.114222.4.5.336,Cutlery and Hand Tool Manufacturing
+2870,urn:oid:2.16.840.1.114222.4.5.336,"Structural Metals, and Boiler, Tank, and Shipping Container Manufacturing"
+2880,urn:oid:2.16.840.1.114222.4.5.336,"Machine Shops; Turned Product; Screw, Nut, and Bolt Manufacturing"
+2890,urn:oid:2.16.840.1.114222.4.5.336,"Coating, Engraving, Heat Treating, and Allied Activities"
+2970,urn:oid:2.16.840.1.114222.4.5.336,Ordnance
+2980,urn:oid:2.16.840.1.114222.4.5.336,Miscellaneous Fabricated Metal Products Manufacturing
+2990,urn:oid:2.16.840.1.114222.4.5.336,Not Specified Metal Industries
+3070,urn:oid:2.16.840.1.114222.4.5.336,Agricultural Implement Manufacturing
+3080,urn:oid:2.16.840.1.114222.4.5.336,"Construction, and Mining and Oil and Gas Field Machinery Manufacturing"
+3095,urn:oid:2.16.840.1.114222.4.5.336,Commercial and Service Industry Machinery Manufacturing
+3170,urn:oid:2.16.840.1.114222.4.5.336,Metalworking Machinery Manufacturing
+3180,urn:oid:2.16.840.1.114222.4.5.336,"Engine, Turbine, and Power Transmission Equipment Manufacturing"
+3291,urn:oid:2.16.840.1.114222.4.5.336,"Machinery Manufacturing, N.E.C. or Not Specified"
+3365,urn:oid:2.16.840.1.114222.4.5.336,Computer and Peripheral Equipment Manufacturing
+3370,urn:oid:2.16.840.1.114222.4.5.336,"Communications, Audio, and Video Equipment Manufacturing"
+3380,urn:oid:2.16.840.1.114222.4.5.336,"Navigational, Measuring, Electromedical, and Control Instruments Manufacturing"
+3390,urn:oid:2.16.840.1.114222.4.5.336,"Electronic Component and Product Manufacturing, N.E.C."
+3470,urn:oid:2.16.840.1.114222.4.5.336,Household Appliance Manufacturing
+3490,urn:oid:2.16.840.1.114222.4.5.336,"Electric Lighting and Electrical Equipment Manufacturing, and Other Electrical Component Manufacturing, N.E.C."
+3570,urn:oid:2.16.840.1.114222.4.5.336,Motor Vehicles and Motor Vehicle Equipment Manufacturing
+3580,urn:oid:2.16.840.1.114222.4.5.336,Aircraft and Parts Manufacturing
+3590,urn:oid:2.16.840.1.114222.4.5.336,Aerospace Products and Parts Manufacturing
+3670,urn:oid:2.16.840.1.114222.4.5.336,Railroad Rolling Stock Manufacturing
+3680,urn:oid:2.16.840.1.114222.4.5.336,Ship and Boat Building
+3690,urn:oid:2.16.840.1.114222.4.5.336,Other Transportation Equipment Manufacturing
+3770,urn:oid:2.16.840.1.114222.4.5.336,Sawmills and Wood Preservation
+3780,urn:oid:2.16.840.1.114222.4.5.336,"Veneer, Plywood, and Engineered Wood Products"
+3790,urn:oid:2.16.840.1.114222.4.5.336,Prefabricated Wood Buildings and Mobile Homes
+3875,urn:oid:2.16.840.1.114222.4.5.336,Miscellaneous Wood Products
+3895,urn:oid:2.16.840.1.114222.4.5.336,Furniture and Related Product Manufacturing
+3960,urn:oid:2.16.840.1.114222.4.5.336,Medical Equipment and Supplies Manufacturing
+3970,urn:oid:2.16.840.1.114222.4.5.336,"Sporting and Athletic Goods, and Doll, Toy and Game Manufacturing"
+3980,urn:oid:2.16.840.1.114222.4.5.336,"Miscellaneous Manufacturing, N.E.C."
+3990,urn:oid:2.16.840.1.114222.4.5.336,Not Specified Manufacturing Industries
+4070,urn:oid:2.16.840.1.114222.4.5.336,Motor Vehicle and Motor Vehicle Parts and Supplies Merchant Wholesalers
+4080,urn:oid:2.16.840.1.114222.4.5.336,Furniture and Home Furnishing Merchant Wholesalers
+4090,urn:oid:2.16.840.1.114222.4.5.336,Lumber and Other Construction Materials Merchant Wholesalers
+4170,urn:oid:2.16.840.1.114222.4.5.336,Professional and Commercial Equipment and Supplies Merchant Wholesalers
+4180,urn:oid:2.16.840.1.114222.4.5.336,"Metals and Minerals, except Petroleum, Merchant Wholesalers"
+4195,urn:oid:2.16.840.1.114222.4.5.336,Household Appliances and Electrical and Electronic Goods Merchant Wholesalers
+4265,urn:oid:2.16.840.1.114222.4.5.336,"Hardware, Plumbing and Heating Equipment, and Supplies Merchant Wholesalers"
+4270,urn:oid:2.16.840.1.114222.4.5.336,"Machinery, Equipment, and Supplies Merchant Wholesalers"
+4280,urn:oid:2.16.840.1.114222.4.5.336,Recyclable Material Merchant Wholesalers
+4290,urn:oid:2.16.840.1.114222.4.5.336,Miscellaneous Durable Goods Merchant Wholesalers
+4370,urn:oid:2.16.840.1.114222.4.5.336,Paper and Paper Products Merchant Wholesalers
+4380,urn:oid:2.16.840.1.114222.4.5.336,"Drugs, Sundries, and Chemical and Allied Products Merchant Wholesalers"
+4390,urn:oid:2.16.840.1.114222.4.5.336,"Apparel, Piece Goods, and Notions Merchant Wholesalers"
+4470,urn:oid:2.16.840.1.114222.4.5.336,Grocery and Related Product Merchant Wholesalers
+4480,urn:oid:2.16.840.1.114222.4.5.336,Farm Product Raw Material Merchant Wholesalers
+4490,urn:oid:2.16.840.1.114222.4.5.336,Petroleum and Petroleum Products Merchant Wholesalers
+4560,urn:oid:2.16.840.1.114222.4.5.336,Alcoholic Beverages Merchant Wholesalers
+4570,urn:oid:2.16.840.1.114222.4.5.336,Farm Supplies Merchant Wholesalers
+4580,urn:oid:2.16.840.1.114222.4.5.336,Miscellaneous Nondurable Goods Merchant Wholesalers
+4585,urn:oid:2.16.840.1.114222.4.5.336,Wholesale Electronic Markets and Agents and Brokers
+4590,urn:oid:2.16.840.1.114222.4.5.336,Not Specified Wholesale Trade
+4670,urn:oid:2.16.840.1.114222.4.5.336,Automobile Dealers
+4680,urn:oid:2.16.840.1.114222.4.5.336,Other Motor Vehicle Dealers
+4690,urn:oid:2.16.840.1.114222.4.5.336,"Automotive Parts, Accessories, and Tire Stores"
+4770,urn:oid:2.16.840.1.114222.4.5.336,Furniture and Home Furnishings Stores
+4780,urn:oid:2.16.840.1.114222.4.5.336,Household Appliance Stores
+4795,urn:oid:2.16.840.1.114222.4.5.336,Electronics Stores
+4870,urn:oid:2.16.840.1.114222.4.5.336,Building Material and Supplies Dealers
+4880,urn:oid:2.16.840.1.114222.4.5.336,Hardware Stores
+4890,urn:oid:2.16.840.1.114222.4.5.336,Lawn and Garden Equipment and Supplies Stores
+4971,urn:oid:2.16.840.1.114222.4.5.336,Supermarkets and other grocery (except convenience) stores
+4972,urn:oid:2.16.840.1.114222.4.5.336,Convenience Stores
+4980,urn:oid:2.16.840.1.114222.4.5.336,Specialty Food Stores
+4990,urn:oid:2.16.840.1.114222.4.5.336,"Beer, Wine, and Liquor Stores"
+5070,urn:oid:2.16.840.1.114222.4.5.336,Pharmacies and Drug Stores
+5080,urn:oid:2.16.840.1.114222.4.5.336,"Health and Personal Care, except Drug, Stores"
+5090,urn:oid:2.16.840.1.114222.4.5.336,Gasoline Stations
+5170,urn:oid:2.16.840.1.114222.4.5.336,Clothing Stores
+5180,urn:oid:2.16.840.1.114222.4.5.336,Shoe Stores
+5190,urn:oid:2.16.840.1.114222.4.5.336,"Jewelry, Luggage, and Leather Goods Stores"
+5275,urn:oid:2.16.840.1.114222.4.5.336,"Sporting Goods, and Hobby and Toy Stores"
+5280,urn:oid:2.16.840.1.114222.4.5.336,"Sewing, Needlework, and Piece Goods Stores"
+5295,urn:oid:2.16.840.1.114222.4.5.336,Musical Instrument and Supplies Stores
+5370,urn:oid:2.16.840.1.114222.4.5.336,Book Stores and News Dealers
+5381,urn:oid:2.16.840.1.114222.4.5.336,Department Stores
+5391,urn:oid:2.16.840.1.114222.4.5.336,"General Merchandise Stores, including Warehouse Clubs and Supercenters"
+5470,urn:oid:2.16.840.1.114222.4.5.336,Retail Florists
+5480,urn:oid:2.16.840.1.114222.4.5.336,Office Supplies and Stationery Stores
+5490,urn:oid:2.16.840.1.114222.4.5.336,Used Merchandise Stores
+5570,urn:oid:2.16.840.1.114222.4.5.336,"Gift, Novelty, and Souvenir Shops"
+5580,urn:oid:2.16.840.1.114222.4.5.336,Miscellaneous Retail Stores
+5593,urn:oid:2.16.840.1.114222.4.5.336,Electronic Shopping and Mail-Order Houses
+5670,urn:oid:2.16.840.1.114222.4.5.336,Vending Machine Operators
+5680,urn:oid:2.16.840.1.114222.4.5.336,Fuel Dealers
+5690,urn:oid:2.16.840.1.114222.4.5.336,Other Direct Selling Establishments
+5790,urn:oid:2.16.840.1.114222.4.5.336,Not Specified Retail Trade
+6070,urn:oid:2.16.840.1.114222.4.5.336,Air Transportation
+6080,urn:oid:2.16.840.1.114222.4.5.336,Rail Transportation
+6090,urn:oid:2.16.840.1.114222.4.5.336,Water Transportation
+6170,urn:oid:2.16.840.1.114222.4.5.336,Truck Transportation
+6180,urn:oid:2.16.840.1.114222.4.5.336,Bus Service and Urban Transit
+6190,urn:oid:2.16.840.1.114222.4.5.336,Taxi and Limousine Service
+6270,urn:oid:2.16.840.1.114222.4.5.336,Pipeline Transportation
+6280,urn:oid:2.16.840.1.114222.4.5.336,Scenic and Sightseeing Transportation
+6290,urn:oid:2.16.840.1.114222.4.5.336,Services Incidental to Transportation
+6370,urn:oid:2.16.840.1.114222.4.5.336,Postal Service
+6380,urn:oid:2.16.840.1.114222.4.5.336,Couriers and Messengers
+6390,urn:oid:2.16.840.1.114222.4.5.336,Warehousing and Storage
+6470,urn:oid:2.16.840.1.114222.4.5.336,Newspaper Publishers
+6480,urn:oid:2.16.840.1.114222.4.5.336,"Periodical, Book, and Directory Publishers"
+6490,urn:oid:2.16.840.1.114222.4.5.336,Software Publishers
+6570,urn:oid:2.16.840.1.114222.4.5.336,Motion Pictures and Video Industries
+6590,urn:oid:2.16.840.1.114222.4.5.336,Sound Recording Industries
+6670,urn:oid:2.16.840.1.114222.4.5.336,Broadcasting (except Internet)
+6672,urn:oid:2.16.840.1.114222.4.5.336,Internet Publishing and Broadcasting and Web Search Portals
+6680,urn:oid:2.16.840.1.114222.4.5.336,Wired Telecommunications Carriers
+6690,urn:oid:2.16.840.1.114222.4.5.336,"Telecommunications, except Wired Telecommunications Carriers"
+6695,urn:oid:2.16.840.1.114222.4.5.336,"Data Processing, Hosting, and Related Services"
+6770,urn:oid:2.16.840.1.114222.4.5.336,Libraries and Archives
+6780,urn:oid:2.16.840.1.114222.4.5.336,"Other Information Services, except Libraries and Archives, and Internet Publishing and Broadcasting and Web Search Portals"
+6870,urn:oid:2.16.840.1.114222.4.5.336,Banking and Related Activities
+6880,urn:oid:2.16.840.1.114222.4.5.336,"Savings Institutions, including Credit Unions"
+6890,urn:oid:2.16.840.1.114222.4.5.336,Nondepository Credit and Related Activities
+6970,urn:oid:2.16.840.1.114222.4.5.336,"Securities, Commodities, Funds, Trusts, and Other Financial Investments"
+6991,urn:oid:2.16.840.1.114222.4.5.336,Insurance Carriers
+6992,urn:oid:2.16.840.1.114222.4.5.336,"Agencies, Brokerages, and Other Insurance Related Activities"
+7071,urn:oid:2.16.840.1.114222.4.5.336,"Lessors of Real Estate, and Offices of Real Estate Agents and Brokers"
+7072,urn:oid:2.16.840.1.114222.4.5.336,"Real Estate Property Managers, Offices of Real Estate Appraisers, and Other Activities Related to Real Estate"
+7080,urn:oid:2.16.840.1.114222.4.5.336,Automotive Equipment Rental and Leasing
+7181,urn:oid:2.16.840.1.114222.4.5.336,Other Consumer Goods Rental
+7190,urn:oid:2.16.840.1.114222.4.5.336,"Commercial, Industrial, and Other Intangible Assets Rental and Leasing"
+7270,urn:oid:2.16.840.1.114222.4.5.336,Legal Services
+7280,urn:oid:2.16.840.1.114222.4.5.336,"Accounting, Tax Preparation, Bookkeeping, and Payroll Services"
+7290,urn:oid:2.16.840.1.114222.4.5.336,"Architectural, Engineering, and Related Services"
+7370,urn:oid:2.16.840.1.114222.4.5.336,Specialized Design Services
+7380,urn:oid:2.16.840.1.114222.4.5.336,Computer Systems Design and Related Services
+7390,urn:oid:2.16.840.1.114222.4.5.336,"Management, Scientific, and Technical Consulting Services"
+7460,urn:oid:2.16.840.1.114222.4.5.336,Scientific Research and Development Services
+7470,urn:oid:2.16.840.1.114222.4.5.336,"Advertising, Public Relations, and Related Services"
+7480,urn:oid:2.16.840.1.114222.4.5.336,Veterinary Services
+7490,urn:oid:2.16.840.1.114222.4.5.336,"Other Professional, Scientific, and Technical Services"
+7570,urn:oid:2.16.840.1.114222.4.5.336,Management of Companies and Enterprises
+7580,urn:oid:2.16.840.1.114222.4.5.336,Employment Services
+7590,urn:oid:2.16.840.1.114222.4.5.336,Business Support Services
+7670,urn:oid:2.16.840.1.114222.4.5.336,Travel Arrangements and Reservation Services
+7680,urn:oid:2.16.840.1.114222.4.5.336,Investigation and Security Services
+7690,urn:oid:2.16.840.1.114222.4.5.336,Services to Buildings and Dwellings (except Cleaning During Construction and Immediately after Construction)
+7770,urn:oid:2.16.840.1.114222.4.5.336,Landscaping Services
+7780,urn:oid:2.16.840.1.114222.4.5.336,Other Administrative and Other Support Services
+7790,urn:oid:2.16.840.1.114222.4.5.336,Waste Management and Remediation Services
+7860,urn:oid:2.16.840.1.114222.4.5.336,Elementary and Secondary Schools
+7870,urn:oid:2.16.840.1.114222.4.5.336,"Colleges, Universities, and Professional Schools, including Junior Colleges"
+7880,urn:oid:2.16.840.1.114222.4.5.336,"Business, Technical, and Trade Schools and Training"
+7890,urn:oid:2.16.840.1.114222.4.5.336,"Other Schools and Instruction, and Educational Support Services"
+7970,urn:oid:2.16.840.1.114222.4.5.336,Offices of Physicians
+7980,urn:oid:2.16.840.1.114222.4.5.336,Offices of Dentists
+7990,urn:oid:2.16.840.1.114222.4.5.336,Offices of Chiropractors
+8070,urn:oid:2.16.840.1.114222.4.5.336,Offices of Optometrists
+8080,urn:oid:2.16.840.1.114222.4.5.336,Offices of Other Health Practitioners
+8090,urn:oid:2.16.840.1.114222.4.5.336,Outpatient Care Centers
+8170,urn:oid:2.16.840.1.114222.4.5.336,Home Health Care Services
+8180,urn:oid:2.16.840.1.114222.4.5.336,Other Health Care Services
+8191,urn:oid:2.16.840.1.114222.4.5.336,"General Medical and Surgical Hospitals, and Specialty (except Psychiatric and Substance Abuse) Hospitals"
+8192,urn:oid:2.16.840.1.114222.4.5.336,Psychiatric and Substance Abuse Hospitals
+8270,urn:oid:2.16.840.1.114222.4.5.336,Nursing Care Facilities (Skilled Nursing Facilities)
+8290,urn:oid:2.16.840.1.114222.4.5.336,"Residential Care Facilities, except Skilled Nursing Facilities"
+8370,urn:oid:2.16.840.1.114222.4.5.336,Individual and Family Services
+8380,urn:oid:2.16.840.1.114222.4.5.336,"Community Food and Housing, and Emergency Services"
+8390,urn:oid:2.16.840.1.114222.4.5.336,Vocational Rehabilitation Services
+8470,urn:oid:2.16.840.1.114222.4.5.336,Child Day Care Services
+8561,urn:oid:2.16.840.1.114222.4.5.336,Performing Arts Companies
+8562,urn:oid:2.16.840.1.114222.4.5.336,Spectator Sports
+8563,urn:oid:2.16.840.1.114222.4.5.336,"Promoters of Performing Arts, Sports, and Similar Events, Agents and Managers for Artists, Athletes, Entertainers, and Other Public Figures"
+8564,urn:oid:2.16.840.1.114222.4.5.336,"Independent Artists, Writers, and Performers"
+8570,urn:oid:2.16.840.1.114222.4.5.336,"Museums, Art Galleries, Historical Sites, and Similar Institutions"
+8580,urn:oid:2.16.840.1.114222.4.5.336,Bowling Centers
+8590,urn:oid:2.16.840.1.114222.4.5.336,"Other Amusement, Gambling, and Recreation Industries"
+8660,urn:oid:2.16.840.1.114222.4.5.336,Traveler Accommodation
+8670,urn:oid:2.16.840.1.114222.4.5.336,"Recreational Vehicle Parks and Camps, and Rooming and Boarding Houses"
+8680,urn:oid:2.16.840.1.114222.4.5.336,Restaurants and Other Food Services
+8690,urn:oid:2.16.840.1.114222.4.5.336,"Drinking Places, Alcoholic Beverages"
+8770,urn:oid:2.16.840.1.114222.4.5.336,Automotive Repair and Maintenance
+8780,urn:oid:2.16.840.1.114222.4.5.336,Car Washes
+8790,urn:oid:2.16.840.1.114222.4.5.336,Electronic and Precision Equipment Repair and Maintenance
+8870,urn:oid:2.16.840.1.114222.4.5.336,Commercial and Industrial Machinery and Equipment Repair and Maintenance
+8891,urn:oid:2.16.840.1.114222.4.5.336,Personal and Household Goods Repair and Maintenance
+8970,urn:oid:2.16.840.1.114222.4.5.336,Barber Shops
+8980,urn:oid:2.16.840.1.114222.4.5.336,Beauty Salons
+8990,urn:oid:2.16.840.1.114222.4.5.336,Nail Salons and Other Personal Care Services
+9070,urn:oid:2.16.840.1.114222.4.5.336,Drycleaning and Laundry Services
+9080,urn:oid:2.16.840.1.114222.4.5.336,"Funeral Homes, and Cemeteries and Crematories"
+9090,urn:oid:2.16.840.1.114222.4.5.336,Other Personal Services
+9160,urn:oid:2.16.840.1.114222.4.5.336,Religious Organizations
+9170,urn:oid:2.16.840.1.114222.4.5.336,"Civic, Social, Advocacy Organizations, and Grantmaking and Giving Services"
+9180,urn:oid:2.16.840.1.114222.4.5.336,Labor Unions
+9190,urn:oid:2.16.840.1.114222.4.5.336,"Business, Professional, Political, and Similar Organizations"
+9290,urn:oid:2.16.840.1.114222.4.5.336,Private Households
+9370,urn:oid:2.16.840.1.114222.4.5.336,Executive Offices and Legislative Bodies
+9380,urn:oid:2.16.840.1.114222.4.5.336,Public Finance Activities
+9390,urn:oid:2.16.840.1.114222.4.5.336,Other General Government and Support
+9470,urn:oid:2.16.840.1.114222.4.5.336,"Justice, Public Order, and Safety Activities"
+9480,urn:oid:2.16.840.1.114222.4.5.336,Administration of Human Resource Programs
+9490,urn:oid:2.16.840.1.114222.4.5.336,Administration of Environmental Quality and Housing Programs
+9570,urn:oid:2.16.840.1.114222.4.5.336,Administration of Economic Programs and Space Research
+9590,urn:oid:2.16.840.1.114222.4.5.336,National Security and International Affairs
+9670,urn:oid:2.16.840.1.114222.4.5.336,U. S. Army
+9680,urn:oid:2.16.840.1.114222.4.5.336,U. S. Air Force
+9690,urn:oid:2.16.840.1.114222.4.5.336,U. S. Navy
+9770,urn:oid:2.16.840.1.114222.4.5.336,U. S. Marines
+9780,urn:oid:2.16.840.1.114222.4.5.336,U. S. Coast Guard
+9790,urn:oid:2.16.840.1.114222.4.5.336,"Armed Forces, Branch Not Specified"
+9870,urn:oid:2.16.840.1.114222.4.5.336,Military Reserves or National Guard
+9880,urn:oid:2.16.840.1.114222.4.5.336,NIOSH-Retired
+9890,urn:oid:2.16.840.1.114222.4.5.336,NIOSH-Non-Paid Workers
+9990,urn:oid:2.16.840.1.114222.4.5.336,NIOSH-Insufficient Information

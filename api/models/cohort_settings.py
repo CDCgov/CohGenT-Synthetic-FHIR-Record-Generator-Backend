@@ -11,9 +11,9 @@ from enum import Enum
 from fastapi_camelcase import CamelModel
 from pydantic import Field as PyField, field_validator, model_validator
 from typing import Optional
-from api.models.value_types import ValueCoding, ValueLocation, ValueRange, ValueWeights, ValueTimeRangeAsDays, ValueRangeWithUnits, ValuePrevalence, ValueTribalAffiliation
+from api.models.value_types import ValueCoding, ValueLocation, ValueOccupation, ValueRange, ValueWeights, ValueTimeRangeAsDays, ValueRangeWithUnits, ValuePrevalence, ValueTribalAffiliation
 
-type ValueX = bool | str | ValueWeights | ValueLocation | ValueRange | ValueCoding | ValueTimeRangeAsDays | ValueRangeWithUnits | ValuePrevalence | ValueTribalAffiliation | None
+type ValueX = bool | str | ValueWeights | ValueLocation | ValueRange | ValueCoding | ValueTimeRangeAsDays | ValueRangeWithUnits | ValuePrevalence | ValueTribalAffiliation | ValueOccupation | None
 
 class Setting(CamelModel):
     rule_id: str

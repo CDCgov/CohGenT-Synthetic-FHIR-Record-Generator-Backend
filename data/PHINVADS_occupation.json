@@ -1,0 +1,4037 @@
+{
+  "valueSetOID": "2.16.840.1.114222.4.11.8065",
+  "valueSetName": "Occupation CDC Census 2018",
+  "valueSetCode": "PHVS_Occupation_CDC_Census2018",
+  "definitionText": null,
+  "assigningAuthorityID": "80DA8521-CC06-E811-88F9-0017A477041A",
+  "authorityName": "CDC NIOSH",
+  "authorityURL": null,
+  "authorityDescriptionText": "CDC NIOSH",
+  "authorityContactInformation": "CDC NIOSH",
+  "statusDate": "2022-07-21T00:00:00-04",
+  "versionList": [
+    {
+      "conceptList": [
+        {
+          "conceptCode": "0010",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Chief Executives"
+        },
+        {
+          "conceptCode": "0020",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "General and Operations Managers"
+        },
+        {
+          "conceptCode": "0030",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Legislators"
+        },
+        {
+          "conceptCode": "0040",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Advertising and Promotions Managers"
+        },
+        {
+          "conceptCode": "0051",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Marketing Managers"
+        },
+        {
+          "conceptCode": "0052",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Sales Managers"
+        },
+        {
+          "conceptCode": "0060",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Public Relations and Fundraising Managers"
+        },
+        {
+          "conceptCode": "0101",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Administrative Services Managers"
+        },
+        {
+          "conceptCode": "0102",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Facilities Managers"
+        },
+        {
+          "conceptCode": "0110",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Computer and Information Systems Managers"
+        },
+        {
+          "conceptCode": "0120",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Financial Managers"
+        },
+        {
+          "conceptCode": "0135",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Compensation and Benefits Managers"
+        },
+        {
+          "conceptCode": "0136",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Human Resources Managers"
+        },
+        {
+          "conceptCode": "0137",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Training and Development Managers"
+        },
+        {
+          "conceptCode": "0140",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Industrial Production Managers"
+        },
+        {
+          "conceptCode": "0150",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Purchasing Managers"
+        },
+        {
+          "conceptCode": "0160",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Transportation, Storage, and Distribution Managers"
+        },
+        {
+          "conceptCode": "0205",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Farmers, Ranchers, and Other Agricultural Managers"
+        },
+        {
+          "conceptCode": "0220",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Construction Managers"
+        },
+        {
+          "conceptCode": "0230",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Education and Childcare Administrators"
+        },
+        {
+          "conceptCode": "0300",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Architectural and Engineering Managers"
+        },
+        {
+          "conceptCode": "0310",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Food Service Managers"
+        },
+        {
+          "conceptCode": "0325",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Funeral Home Managers"
+        },
+        {
+          "conceptCode": "0335",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Entertainment and Recreation Managers"
+        },
+        {
+          "conceptCode": "0340",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Lodging Managers"
+        },
+        {
+          "conceptCode": "0350",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Medical and Health Services Managers"
+        },
+        {
+          "conceptCode": "0360",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Natural Sciences Managers"
+        },
+        {
+          "conceptCode": "0400",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Postmasters and Mail Superintendents"
+        },
+        {
+          "conceptCode": "0410",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Property, Real Estate, and Community Association Managers"
+        },
+        {
+          "conceptCode": "0420",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Social and Community Service Managers"
+        },
+        {
+          "conceptCode": "0425",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Emergency Management Directors"
+        },
+        {
+          "conceptCode": "0426",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Personal Service Managers, All Other"
+        },
+        {
+          "conceptCode": "0440",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Managers, All Other"
+        },
+        {
+          "conceptCode": "0500",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Agents and Business Managers of Artists, Performers, and Athletes"
+        },
+        {
+          "conceptCode": "0510",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Buyers and Purchasing Agents, Farm Products"
+        },
+        {
+          "conceptCode": "0520",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Wholesale and Retail Buyers, Except Farm Products"
+        },
+        {
+          "conceptCode": "0530",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Purchasing Agents, Except Wholesale, Retail, and Farm Products"
+        },
+        {
+          "conceptCode": "0540",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Claims Adjusters, Appraisers, Examiners, and Investigators"
+        },
+        {
+          "conceptCode": "0565",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Compliance Officers"
+        },
+        {
+          "conceptCode": "0600",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Cost Estimators"
+        },
+        {
+          "conceptCode": "0630",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Human Resources Workers"
+        },
+        {
+          "conceptCode": "0640",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Compensation, Benefits, and Job Analysis Specialists"
+        },
+        {
+          "conceptCode": "0650",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Training and Development Specialists"
+        },
+        {
+          "conceptCode": "0700",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Logisticians"
+        },
+        {
+          "conceptCode": "0705",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Project Management Specialists"
+        },
+        {
+          "conceptCode": "0710",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Management Analysts"
+        },
+        {
+          "conceptCode": "0725",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Meeting, Convention, and Event Planners"
+        },
+        {
+          "conceptCode": "0726",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Fundraisers"
+        },
+        {
+          "conceptCode": "0735",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Market Research Analysts and Marketing Specialists"
+        },
+        {
+          "conceptCode": "0750",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Business Operations Specialists, All Other"
+        },
+        {
+          "conceptCode": "0800",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Accountants and Auditors"
+        },
+        {
+          "conceptCode": "0810",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Property Appraisers and Assessors"
+        },
+        {
+          "conceptCode": "0820",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Budget Analysts"
+        },
+        {
+          "conceptCode": "0830",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Credit Analysts"
+        },
+        {
+          "conceptCode": "0845",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Financial and Investment Analysts"
+        },
+        {
+          "conceptCode": "0850",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Personal Financial Advisors"
+        },
+        {
+          "conceptCode": "0860",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Insurance Underwriters"
+        },
+        {
+          "conceptCode": "0900",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Financial Examiners"
+        },
+        {
+          "conceptCode": "0910",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Credit Counselors and Loan Officers"
+        },
+        {
+          "conceptCode": "0930",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Tax Examiners and Collectors, and Revenue Agents"
+        },
+        {
+          "conceptCode": "0940",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Tax Preparers"
+        },
+        {
+          "conceptCode": "0960",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Financial Specialists"
+        },
+        {
+          "conceptCode": "1005",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Computer and Information Research Scientists"
+        },
+        {
+          "conceptCode": "1006",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Computer Systems Analysts"
+        },
+        {
+          "conceptCode": "1007",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Information Security Analysts"
+        },
+        {
+          "conceptCode": "1010",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Computer Programmers"
+        },
+        {
+          "conceptCode": "1021",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Software Developers"
+        },
+        {
+          "conceptCode": "1022",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Software Quality Assurance Analysts and Testers"
+        },
+        {
+          "conceptCode": "1031",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Web Developers"
+        },
+        {
+          "conceptCode": "1032",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Web and Digital Interface Designers"
+        },
+        {
+          "conceptCode": "1050",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Computer Support Specialists"
+        },
+        {
+          "conceptCode": "1065",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Database Administrators and Architects"
+        },
+        {
+          "conceptCode": "1105",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Network and Computer Systems Administrators"
+        },
+        {
+          "conceptCode": "1106",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Computer Network Architects"
+        },
+        {
+          "conceptCode": "1108",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Computer Occupations, All Other"
+        },
+        {
+          "conceptCode": "1200",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Actuaries"
+        },
+        {
+          "conceptCode": "1210",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Mathematicians"
+        },
+        {
+          "conceptCode": "1220",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Operations Research Analysts"
+        },
+        {
+          "conceptCode": "1230",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Statisticians"
+        },
+        {
+          "conceptCode": "1240",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Mathematical Science Occupations"
+        },
+        {
+          "conceptCode": "1305",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Architects, Except Landscape and Naval"
+        },
+        {
+          "conceptCode": "1306",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Landscape Architects"
+        },
+        {
+          "conceptCode": "1310",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Surveyors, Cartographers, and Photogrammetrists"
+        },
+        {
+          "conceptCode": "1320",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Aerospace Engineers"
+        },
+        {
+          "conceptCode": "1330",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Agricultural Engineers"
+        },
+        {
+          "conceptCode": "1340",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Bioengineers and Biomedical Engineers"
+        },
+        {
+          "conceptCode": "1350",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Chemical Engineers"
+        },
+        {
+          "conceptCode": "1360",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Civil Engineers"
+        },
+        {
+          "conceptCode": "1400",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Computer Hardware Engineers"
+        },
+        {
+          "conceptCode": "1410",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Electrical and Electronics Engineers"
+        },
+        {
+          "conceptCode": "1420",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Environmental Engineers"
+        },
+        {
+          "conceptCode": "1430",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Industrial Engineers, Including Health and Safety"
+        },
+        {
+          "conceptCode": "1440",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Marine Engineers and Naval Architects"
+        },
+        {
+          "conceptCode": "1450",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Materials Engineers"
+        },
+        {
+          "conceptCode": "1460",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Mechanical Engineers"
+        },
+        {
+          "conceptCode": "1500",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Mining and Geological Engineers, Including Mining Safety Engineers"
+        },
+        {
+          "conceptCode": "1510",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Nuclear Engineers"
+        },
+        {
+          "conceptCode": "1520",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Petroleum Engineers"
+        },
+        {
+          "conceptCode": "1530",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Engineers, All Other"
+        },
+        {
+          "conceptCode": "1541",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Architectural and Civil Drafters"
+        },
+        {
+          "conceptCode": "1545",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Drafters"
+        },
+        {
+          "conceptCode": "1551",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Electrical and Electronic Engineering Technologists and Technicians"
+        },
+        {
+          "conceptCode": "1555",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Engineering Technologists and Technicians, Except Drafters"
+        },
+        {
+          "conceptCode": "1560",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Surveying and Mapping Technicians"
+        },
+        {
+          "conceptCode": "1600",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Agricultural and Food Scientists"
+        },
+        {
+          "conceptCode": "1610",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Biological Scientists"
+        },
+        {
+          "conceptCode": "1640",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Conservation Scientists and Foresters"
+        },
+        {
+          "conceptCode": "1650",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Medical Scientists"
+        },
+        {
+          "conceptCode": "1660",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Life Scientists, All Other"
+        },
+        {
+          "conceptCode": "1700",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Astronomers and Physicists"
+        },
+        {
+          "conceptCode": "1710",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Atmospheric and Space Scientists"
+        },
+        {
+          "conceptCode": "1720",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Chemists and Materials Scientists"
+        },
+        {
+          "conceptCode": "1745",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Environmental Scientists and Specialists, Including Health"
+        },
+        {
+          "conceptCode": "1750",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Geoscientists and Hydrologists, Except Geographers"
+        },
+        {
+          "conceptCode": "1760",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Physical Scientists, All Other"
+        },
+        {
+          "conceptCode": "1800",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Economists"
+        },
+        {
+          "conceptCode": "1815",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Survey Researchers"
+        },
+        {
+          "conceptCode": "1821",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Clinical and Counseling Psychologists"
+        },
+        {
+          "conceptCode": "1822",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "School Psychologists"
+        },
+        {
+          "conceptCode": "1825",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Psychologists"
+        },
+        {
+          "conceptCode": "1830",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Sociologists"
+        },
+        {
+          "conceptCode": "1840",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Urban and Regional Planners"
+        },
+        {
+          "conceptCode": "1860",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Miscellaneous Social Scientists and Related Workers"
+        },
+        {
+          "conceptCode": "1900",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Agricultural and Food Science Technicians"
+        },
+        {
+          "conceptCode": "1910",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Biological Technicians"
+        },
+        {
+          "conceptCode": "1920",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Chemical Technicians"
+        },
+        {
+          "conceptCode": "1935",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Environmental Science and Geoscience Technicians"
+        },
+        {
+          "conceptCode": "1940",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Nuclear Technicians"
+        },
+        {
+          "conceptCode": "1950",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Social Science Research Assistants"
+        },
+        {
+          "conceptCode": "1970",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Life, Physical, and Social Science Technicians"
+        },
+        {
+          "conceptCode": "1980",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Occupational Health and Safety Specialists and Technicians"
+        },
+        {
+          "conceptCode": "2001",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Substance Abuse and Behavioral Disorder Counselors"
+        },
+        {
+          "conceptCode": "2002",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Educational, Guidance, and Career Counselors and Advisors"
+        },
+        {
+          "conceptCode": "2003",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Marriage and Family Therapists"
+        },
+        {
+          "conceptCode": "2004",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Mental Health Counselors"
+        },
+        {
+          "conceptCode": "2005",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Rehabilitation Counselors"
+        },
+        {
+          "conceptCode": "2006",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Counselors, All Other"
+        },
+        {
+          "conceptCode": "2011",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Child, Family, and School Social Workers"
+        },
+        {
+          "conceptCode": "2012",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Healthcare Social Workers"
+        },
+        {
+          "conceptCode": "2013",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Mental Health and Substance Abuse Social Workers"
+        },
+        {
+          "conceptCode": "2014",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Social Workers, All Other"
+        },
+        {
+          "conceptCode": "2015",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Probation Officers and Correctional Treatment Specialists"
+        },
+        {
+          "conceptCode": "2016",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Social and Human Service Assistants"
+        },
+        {
+          "conceptCode": "2025",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Community and Social Service Specialists"
+        },
+        {
+          "conceptCode": "2040",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Clergy"
+        },
+        {
+          "conceptCode": "2050",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Directors, Religious Activities and Education"
+        },
+        {
+          "conceptCode": "2060",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Religious Workers, All Other"
+        },
+        {
+          "conceptCode": "2100",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Lawyers"
+        },
+        {
+          "conceptCode": "2105",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Judicial Law Clerks"
+        },
+        {
+          "conceptCode": "2110",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Judges, Magistrates, and Other Judicial Workers"
+        },
+        {
+          "conceptCode": "2145",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Paralegals and Legal Assistants"
+        },
+        {
+          "conceptCode": "2170",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Title Examiners, Abstractors, and Searchers"
+        },
+        {
+          "conceptCode": "2180",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Legal Support Workers, All Other"
+        },
+        {
+          "conceptCode": "2205",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Postsecondary Teachers"
+        },
+        {
+          "conceptCode": "2300",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Preschool and Kindergarten Teachers"
+        },
+        {
+          "conceptCode": "2310",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Elementary and Middle School Teachers"
+        },
+        {
+          "conceptCode": "2320",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Secondary School Teachers"
+        },
+        {
+          "conceptCode": "2330",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Special Education Teachers"
+        },
+        {
+          "conceptCode": "2350",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Tutors"
+        },
+        {
+          "conceptCode": "2360",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Teachers and Instructors"
+        },
+        {
+          "conceptCode": "2400",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Archivists, Curators, and Museum Technicians"
+        },
+        {
+          "conceptCode": "2435",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Librarians and Media Collections Specialists"
+        },
+        {
+          "conceptCode": "2440",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Library Technicians"
+        },
+        {
+          "conceptCode": "2545",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Teaching Assistants"
+        },
+        {
+          "conceptCode": "2555",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Educational Instruction and Library Workers"
+        },
+        {
+          "conceptCode": "2600",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Artists and Related Workers"
+        },
+        {
+          "conceptCode": "2631",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Commercial and Industrial Designers"
+        },
+        {
+          "conceptCode": "2632",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Fashion Designers"
+        },
+        {
+          "conceptCode": "2633",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Floral Designers"
+        },
+        {
+          "conceptCode": "2634",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Graphic Designers"
+        },
+        {
+          "conceptCode": "2635",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Interior Designers"
+        },
+        {
+          "conceptCode": "2636",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Merchandise Displayers and Window Trimmers"
+        },
+        {
+          "conceptCode": "2640",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Designers"
+        },
+        {
+          "conceptCode": "2700",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Actors"
+        },
+        {
+          "conceptCode": "2710",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Producers and Directors"
+        },
+        {
+          "conceptCode": "2721",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Athletes and Sports Competitors"
+        },
+        {
+          "conceptCode": "2722",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Coaches and Scouts"
+        },
+        {
+          "conceptCode": "2723",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Umpires, Referees, and Other Sports Officials"
+        },
+        {
+          "conceptCode": "2740",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Dancers and Choreographers"
+        },
+        {
+          "conceptCode": "2751",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Music Directors and Composers"
+        },
+        {
+          "conceptCode": "2752",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Musicians and Singers"
+        },
+        {
+          "conceptCode": "2755",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Disc Jockeys, Except Radio"
+        },
+        {
+          "conceptCode": "2770",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Entertainers and Performers, Sports and Related Workers, All Other"
+        },
+        {
+          "conceptCode": "2805",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Broadcast Announcers and Radio Disc Jockeys"
+        },
+        {
+          "conceptCode": "2810",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "News Analysts, Reporters, and Journalists"
+        },
+        {
+          "conceptCode": "2825",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Public Relations Specialists"
+        },
+        {
+          "conceptCode": "2830",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Editors"
+        },
+        {
+          "conceptCode": "2840",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Technical Writers"
+        },
+        {
+          "conceptCode": "2850",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Writers and Authors"
+        },
+        {
+          "conceptCode": "2861",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Interpreters and Translators"
+        },
+        {
+          "conceptCode": "2862",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Court Reporters and Simultaneous Captioners"
+        },
+        {
+          "conceptCode": "2865",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Media and Communication Workers, All Other"
+        },
+        {
+          "conceptCode": "2905",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Broadcast, Sound, and Lighting Technicians"
+        },
+        {
+          "conceptCode": "2910",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Photographers"
+        },
+        {
+          "conceptCode": "2920",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Television, Video, and Film Camera Operators and Editors"
+        },
+        {
+          "conceptCode": "2970",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Media and Communication Equipment Workers, All Other"
+        },
+        {
+          "conceptCode": "3000",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Chiropractors"
+        },
+        {
+          "conceptCode": "3010",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Dentists"
+        },
+        {
+          "conceptCode": "3030",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Dietitians and Nutritionists"
+        },
+        {
+          "conceptCode": "3040",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Optometrists"
+        },
+        {
+          "conceptCode": "3050",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Pharmacists"
+        },
+        {
+          "conceptCode": "3065",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Emergency Medicine Physicians"
+        },
+        {
+          "conceptCode": "3070",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Radiologists"
+        },
+        {
+          "conceptCode": "3090",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Physicians"
+        },
+        {
+          "conceptCode": "3100",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Surgeons"
+        },
+        {
+          "conceptCode": "3110",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Physician Assistants"
+        },
+        {
+          "conceptCode": "3120",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Podiatrists"
+        },
+        {
+          "conceptCode": "3140",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Audiologists"
+        },
+        {
+          "conceptCode": "3150",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Occupational Therapists"
+        },
+        {
+          "conceptCode": "3160",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Physical Therapists"
+        },
+        {
+          "conceptCode": "3200",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Radiation Therapists"
+        },
+        {
+          "conceptCode": "3210",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Recreational Therapists"
+        },
+        {
+          "conceptCode": "3220",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Respiratory Therapists"
+        },
+        {
+          "conceptCode": "3230",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Speech-Language Pathologists"
+        },
+        {
+          "conceptCode": "3235",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Exercise Physiologists"
+        },
+        {
+          "conceptCode": "3245",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Therapists, All Other"
+        },
+        {
+          "conceptCode": "3250",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Veterinarians"
+        },
+        {
+          "conceptCode": "3255",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Registered Nurses"
+        },
+        {
+          "conceptCode": "3256",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Nurse Anesthetists"
+        },
+        {
+          "conceptCode": "3257",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Nurse Midwives"
+        },
+        {
+          "conceptCode": "3258",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Nurse Practitioners"
+        },
+        {
+          "conceptCode": "3261",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Acupuncturists"
+        },
+        {
+          "conceptCode": "3270",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Healthcare Diagnosing or Treating Practitioners, All Other"
+        },
+        {
+          "conceptCode": "3300",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Clinical Laboratory Technologists and Technicians"
+        },
+        {
+          "conceptCode": "3310",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Dental Hygienists"
+        },
+        {
+          "conceptCode": "3321",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Cardiovascular Technologists and Technicians"
+        },
+        {
+          "conceptCode": "3322",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Diagnostic Medical Sonographers"
+        },
+        {
+          "conceptCode": "3323",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Radiologic Technologists and Technicians"
+        },
+        {
+          "conceptCode": "3324",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Magnetic Resonance Imaging Technologists"
+        },
+        {
+          "conceptCode": "3330",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Nuclear Medicine Technologists and Medical Dosimetrists"
+        },
+        {
+          "conceptCode": "3401",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Emergency Medical Technicians"
+        },
+        {
+          "conceptCode": "3402",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Paramedics"
+        },
+        {
+          "conceptCode": "3421",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Pharmacy Technicians"
+        },
+        {
+          "conceptCode": "3422",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Psychiatric Technicians"
+        },
+        {
+          "conceptCode": "3423",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Surgical Technologists"
+        },
+        {
+          "conceptCode": "3424",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Veterinary Technologists and Technicians"
+        },
+        {
+          "conceptCode": "3430",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Dietetic Technicians and Ophthalmic Medical Technicians"
+        },
+        {
+          "conceptCode": "3500",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Licensed Practical and Licensed Vocational Nurses"
+        },
+        {
+          "conceptCode": "3515",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Medical Records Specialists"
+        },
+        {
+          "conceptCode": "3520",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Opticians, Dispensing"
+        },
+        {
+          "conceptCode": "3545",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Miscellaneous Health Technologists and Technicians"
+        },
+        {
+          "conceptCode": "3550",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Healthcare Practitioners and Technical Occupations"
+        },
+        {
+          "conceptCode": "3601",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Home Health Aides"
+        },
+        {
+          "conceptCode": "3602",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Personal Care Aides"
+        },
+        {
+          "conceptCode": "3603",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Nursing Assistants"
+        },
+        {
+          "conceptCode": "3605",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Orderlies and Psychiatric Aides"
+        },
+        {
+          "conceptCode": "3610",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Occupational Therapy Assistants and Aides"
+        },
+        {
+          "conceptCode": "3620",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Physical Therapist Assistants and Aides"
+        },
+        {
+          "conceptCode": "3630",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Massage Therapists"
+        },
+        {
+          "conceptCode": "3640",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Dental Assistants"
+        },
+        {
+          "conceptCode": "3645",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Medical Assistants"
+        },
+        {
+          "conceptCode": "3646",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Medical Transcriptionists"
+        },
+        {
+          "conceptCode": "3647",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Pharmacy Aides"
+        },
+        {
+          "conceptCode": "3648",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Veterinary Assistants and Laboratory Animal Caretakers"
+        },
+        {
+          "conceptCode": "3649",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Phlebotomists"
+        },
+        {
+          "conceptCode": "3655",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Healthcare Support Workers"
+        },
+        {
+          "conceptCode": "3700",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "First-Line Supervisors of Correctional Officers"
+        },
+        {
+          "conceptCode": "3710",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "First-Line Supervisors of Police and Detectives"
+        },
+        {
+          "conceptCode": "3720",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "First-Line Supervisors of Firefighting and Prevention Workers"
+        },
+        {
+          "conceptCode": "3725",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "First-Line Supervisors of Security Workers"
+        },
+        {
+          "conceptCode": "3735",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "First-Line Supervisors of Protective Service Workers, All Other"
+        },
+        {
+          "conceptCode": "3740",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Firefighters"
+        },
+        {
+          "conceptCode": "3750",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Fire Inspectors"
+        },
+        {
+          "conceptCode": "3801",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Bailiffs"
+        },
+        {
+          "conceptCode": "3802",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Correctional Officers and Jailers"
+        },
+        {
+          "conceptCode": "3820",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Detectives and Criminal Investigators"
+        },
+        {
+          "conceptCode": "3830",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Fish and Game Wardens"
+        },
+        {
+          "conceptCode": "3840",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Parking Enforcement Workers"
+        },
+        {
+          "conceptCode": "3870",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Police Officers"
+        },
+        {
+          "conceptCode": "3900",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Animal Control Workers"
+        },
+        {
+          "conceptCode": "3910",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Private Detectives and Investigators"
+        },
+        {
+          "conceptCode": "3930",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Security Guards and Gambling Surveillance Officers"
+        },
+        {
+          "conceptCode": "3940",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Crossing Guards and Flaggers"
+        },
+        {
+          "conceptCode": "3945",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Transportation Security Screeners"
+        },
+        {
+          "conceptCode": "3946",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "School Bus Monitors"
+        },
+        {
+          "conceptCode": "3960",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Protective Service Workers"
+        },
+        {
+          "conceptCode": "4000",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Chefs and Head Cooks"
+        },
+        {
+          "conceptCode": "4010",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "First-Line Supervisors of Food Preparation and Serving Workers"
+        },
+        {
+          "conceptCode": "4020",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Cooks"
+        },
+        {
+          "conceptCode": "4030",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Food Preparation Workers"
+        },
+        {
+          "conceptCode": "4040",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Bartenders"
+        },
+        {
+          "conceptCode": "4055",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Fast Food and Counter Workers"
+        },
+        {
+          "conceptCode": "4110",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Waiters and Waitresses"
+        },
+        {
+          "conceptCode": "4120",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Food Servers, Nonrestaurant"
+        },
+        {
+          "conceptCode": "4130",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Dining Room and Cafeteria Attendants and Bartender Helpers"
+        },
+        {
+          "conceptCode": "4140",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Dishwashers"
+        },
+        {
+          "conceptCode": "4150",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Hosts and Hostesses, Restaurant, Lounge, and Coffee Shop"
+        },
+        {
+          "conceptCode": "4160",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Food Preparation and Serving Related Workers, All Other"
+        },
+        {
+          "conceptCode": "4200",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "First-Line Supervisors of Housekeeping and Janitorial Workers"
+        },
+        {
+          "conceptCode": "4210",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "First-Line Supervisors of Landscaping, Lawn Service, and Groundskeeping Workers"
+        },
+        {
+          "conceptCode": "4220",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Janitors and Building Cleaners"
+        },
+        {
+          "conceptCode": "4230",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Maids and Housekeeping Cleaners"
+        },
+        {
+          "conceptCode": "4240",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Pest Control Workers"
+        },
+        {
+          "conceptCode": "4251",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Landscaping and Groundskeeping Workers"
+        },
+        {
+          "conceptCode": "4252",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Tree Trimmers and Pruners"
+        },
+        {
+          "conceptCode": "4255",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Grounds Maintenance Workers"
+        },
+        {
+          "conceptCode": "4330",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Supervisors of Personal Care and Service Workers"
+        },
+        {
+          "conceptCode": "4340",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Animal Trainers"
+        },
+        {
+          "conceptCode": "4350",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Animal Caretakers"
+        },
+        {
+          "conceptCode": "4400",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Gambling Services Workers"
+        },
+        {
+          "conceptCode": "4420",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Ushers, Lobby Attendants, and Ticket Takers"
+        },
+        {
+          "conceptCode": "4435",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Entertainment Attendants and Related Workers"
+        },
+        {
+          "conceptCode": "4461",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Embalmers, Crematory Operators and Funeral Attendants"
+        },
+        {
+          "conceptCode": "4465",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Morticians, Undertakers, and Funeral Arrangers"
+        },
+        {
+          "conceptCode": "4500",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Barbers"
+        },
+        {
+          "conceptCode": "4510",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Hairdressers, Hairstylists, and Cosmetologists"
+        },
+        {
+          "conceptCode": "4521",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Manicurists and Pedicurists"
+        },
+        {
+          "conceptCode": "4522",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Skincare Specialists"
+        },
+        {
+          "conceptCode": "4525",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Personal Appearance Workers"
+        },
+        {
+          "conceptCode": "4530",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Baggage Porters, Bellhops, and Concierges"
+        },
+        {
+          "conceptCode": "4540",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Tour and Travel Guides"
+        },
+        {
+          "conceptCode": "4600",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Childcare Workers"
+        },
+        {
+          "conceptCode": "4621",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Exercise Trainers and Group Fitness Instructors"
+        },
+        {
+          "conceptCode": "4622",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Recreation Workers"
+        },
+        {
+          "conceptCode": "4640",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Residential Advisors"
+        },
+        {
+          "conceptCode": "4655",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Personal Care and Service Workers, All Other"
+        },
+        {
+          "conceptCode": "4700",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "First-Line Supervisors of Retail Sales Workers"
+        },
+        {
+          "conceptCode": "4710",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "First-Line Supervisors of Non-Retail Sales Workers"
+        },
+        {
+          "conceptCode": "4720",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Cashiers"
+        },
+        {
+          "conceptCode": "4740",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Counter and Rental Clerks"
+        },
+        {
+          "conceptCode": "4750",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Parts Salespersons"
+        },
+        {
+          "conceptCode": "4760",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Retail Salespersons"
+        },
+        {
+          "conceptCode": "4800",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Advertising Sales Agents"
+        },
+        {
+          "conceptCode": "4810",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Insurance Sales Agents"
+        },
+        {
+          "conceptCode": "4820",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Securities, Commodities, and Financial Services Sales Agents"
+        },
+        {
+          "conceptCode": "4830",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Travel Agents"
+        },
+        {
+          "conceptCode": "4840",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Sales Representatives of Services, Except Advertising, Insurance, Financial Services, and Travel"
+        },
+        {
+          "conceptCode": "4850",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Sales Representatives, Wholesale and Manufacturing"
+        },
+        {
+          "conceptCode": "4900",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Models, Demonstrators, and Product Promoters"
+        },
+        {
+          "conceptCode": "4920",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Real Estate Brokers and Sales Agents"
+        },
+        {
+          "conceptCode": "4930",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Sales Engineers"
+        },
+        {
+          "conceptCode": "4940",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Telemarketers"
+        },
+        {
+          "conceptCode": "4950",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Door-to-Door Sales Workers, News and Street Vendors, and Related Workers"
+        },
+        {
+          "conceptCode": "4965",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Sales and Related Workers, All Other"
+        },
+        {
+          "conceptCode": "5000",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "First-Line Supervisors of Office and Administrative Support Workers"
+        },
+        {
+          "conceptCode": "5010",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Switchboard Operators, Including Answering Service"
+        },
+        {
+          "conceptCode": "5020",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Telephone Operators"
+        },
+        {
+          "conceptCode": "5040",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Communications Equipment Operators, All Other"
+        },
+        {
+          "conceptCode": "5100",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Bill and Account Collectors"
+        },
+        {
+          "conceptCode": "5110",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Billing and Posting Clerks"
+        },
+        {
+          "conceptCode": "5120",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Bookkeeping, Accounting, and Auditing Clerks"
+        },
+        {
+          "conceptCode": "5130",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Gambling Cage Workers"
+        },
+        {
+          "conceptCode": "5140",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Payroll and Timekeeping Clerks"
+        },
+        {
+          "conceptCode": "5150",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Procurement Clerks"
+        },
+        {
+          "conceptCode": "5160",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Tellers"
+        },
+        {
+          "conceptCode": "5165",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Financial Clerks, All Other"
+        },
+        {
+          "conceptCode": "5200",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Brokerage Clerks"
+        },
+        {
+          "conceptCode": "5210",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Correspondence Clerks"
+        },
+        {
+          "conceptCode": "5220",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Court, Municipal, and License Clerks"
+        },
+        {
+          "conceptCode": "5230",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Credit Authorizers, Checkers, and Clerks"
+        },
+        {
+          "conceptCode": "5240",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Customer Service Representatives"
+        },
+        {
+          "conceptCode": "5250",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Eligibility Interviewers, Government Programs"
+        },
+        {
+          "conceptCode": "5260",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "File Clerks"
+        },
+        {
+          "conceptCode": "5300",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Hotel, Motel, and Resort Desk Clerks"
+        },
+        {
+          "conceptCode": "5310",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Interviewers, Except Eligibility and Loan"
+        },
+        {
+          "conceptCode": "5320",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Library Assistants, Clerical"
+        },
+        {
+          "conceptCode": "5330",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Loan Interviewers and Clerks"
+        },
+        {
+          "conceptCode": "5340",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "New Accounts Clerks"
+        },
+        {
+          "conceptCode": "5350",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Order Clerks"
+        },
+        {
+          "conceptCode": "5360",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Human Resources Assistants, Except Payroll and Timekeeping"
+        },
+        {
+          "conceptCode": "5400",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Receptionists and Information Clerks"
+        },
+        {
+          "conceptCode": "5410",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Reservation and Transportation Ticket Agents and Travel Clerks"
+        },
+        {
+          "conceptCode": "5420",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Information and Record Clerks, All Other"
+        },
+        {
+          "conceptCode": "5500",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Cargo and Freight Agents"
+        },
+        {
+          "conceptCode": "5510",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Couriers and Messengers"
+        },
+        {
+          "conceptCode": "5521",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Public Safety Telecommunicators"
+        },
+        {
+          "conceptCode": "5522",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Dispatchers, Except Police, Fire, and Ambulance"
+        },
+        {
+          "conceptCode": "5530",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Meter Readers, Utilities"
+        },
+        {
+          "conceptCode": "5540",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Postal Service Clerks"
+        },
+        {
+          "conceptCode": "5550",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Postal Service Mail Carriers"
+        },
+        {
+          "conceptCode": "5560",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Postal Service Mail Sorters, Processors, and Processing Machine Operators"
+        },
+        {
+          "conceptCode": "5600",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Production, Planning, and Expediting Clerks"
+        },
+        {
+          "conceptCode": "5610",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Shipping, Receiving, and Inventory Clerks"
+        },
+        {
+          "conceptCode": "5630",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Weighers, Measurers, Checkers, and Samplers, Recordkeeping"
+        },
+        {
+          "conceptCode": "5710",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Executive Secretaries and Executive Administrative Assistants"
+        },
+        {
+          "conceptCode": "5720",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Legal Secretaries and Administrative Assistants"
+        },
+        {
+          "conceptCode": "5730",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Medical Secretaries and Administrative Assistants"
+        },
+        {
+          "conceptCode": "5740",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Secretaries and Administrative Assistants, Except Legal, Medical, and Executive"
+        },
+        {
+          "conceptCode": "5810",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Data Entry Keyers"
+        },
+        {
+          "conceptCode": "5820",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Word Processors and Typists"
+        },
+        {
+          "conceptCode": "5830",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Desktop Publishers"
+        },
+        {
+          "conceptCode": "5840",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Insurance Claims and Policy Processing Clerks"
+        },
+        {
+          "conceptCode": "5850",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Mail Clerks and Mail Machine Operators, Except Postal Service"
+        },
+        {
+          "conceptCode": "5860",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Office Clerks, General"
+        },
+        {
+          "conceptCode": "5900",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Office Machine Operators, Except Computer"
+        },
+        {
+          "conceptCode": "5910",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Proofreaders and Copy Markers"
+        },
+        {
+          "conceptCode": "5920",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Statistical Assistants"
+        },
+        {
+          "conceptCode": "5940",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Office and Administrative Support Workers, All Other"
+        },
+        {
+          "conceptCode": "6005",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "First-Line Supervisors of Farming, Fishing, and Forestry Workers"
+        },
+        {
+          "conceptCode": "6010",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Agricultural Inspectors"
+        },
+        {
+          "conceptCode": "6020",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Animal Breeders"
+        },
+        {
+          "conceptCode": "6040",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Graders and Sorters, Agricultural Products"
+        },
+        {
+          "conceptCode": "6050",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Miscellaneous Agricultural Workers"
+        },
+        {
+          "conceptCode": "6115",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Fishing and Hunting Workers"
+        },
+        {
+          "conceptCode": "6120",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Forest and Conservation Workers"
+        },
+        {
+          "conceptCode": "6130",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Logging Workers"
+        },
+        {
+          "conceptCode": "6200",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "First-Line Supervisors of Construction Trades and Extraction Workers"
+        },
+        {
+          "conceptCode": "6210",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Boilermakers"
+        },
+        {
+          "conceptCode": "6220",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Brickmasons, Blockmasons, and Stonemasons"
+        },
+        {
+          "conceptCode": "6230",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Carpenters"
+        },
+        {
+          "conceptCode": "6240",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Carpet, Floor, and Tile Installers and Finishers"
+        },
+        {
+          "conceptCode": "6250",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Cement Masons, Concrete Finishers, and Terrazzo Workers"
+        },
+        {
+          "conceptCode": "6260",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Construction Laborers"
+        },
+        {
+          "conceptCode": "6305",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Construction Equipment Operators"
+        },
+        {
+          "conceptCode": "6330",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Drywall Installers, Ceiling Tile Installers, and Tapers"
+        },
+        {
+          "conceptCode": "6355",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Electricians"
+        },
+        {
+          "conceptCode": "6360",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Glaziers"
+        },
+        {
+          "conceptCode": "6400",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Insulation Workers"
+        },
+        {
+          "conceptCode": "6410",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Painters and Paperhangers"
+        },
+        {
+          "conceptCode": "6441",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Pipelayers"
+        },
+        {
+          "conceptCode": "6442",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Plumbers, Pipefitters, and Steamfitters"
+        },
+        {
+          "conceptCode": "6460",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Plasterers and Stucco Masons"
+        },
+        {
+          "conceptCode": "6500",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Reinforcing Iron and Rebar Workers"
+        },
+        {
+          "conceptCode": "6515",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Roofers"
+        },
+        {
+          "conceptCode": "6520",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Sheet Metal Workers"
+        },
+        {
+          "conceptCode": "6530",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Structural Iron and Steel Workers"
+        },
+        {
+          "conceptCode": "6540",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Solar Photovoltaic Installers"
+        },
+        {
+          "conceptCode": "6600",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Helpers, Construction Trades"
+        },
+        {
+          "conceptCode": "6660",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Construction and Building Inspectors"
+        },
+        {
+          "conceptCode": "6700",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Elevator and Escalator Installers and Repairers"
+        },
+        {
+          "conceptCode": "6710",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Fence Erectors"
+        },
+        {
+          "conceptCode": "6720",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Hazardous Materials Removal Workers"
+        },
+        {
+          "conceptCode": "6730",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Highway Maintenance Workers"
+        },
+        {
+          "conceptCode": "6740",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Rail-Track Laying and Maintenance Equipment Operators"
+        },
+        {
+          "conceptCode": "6750",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Septic Tank Servicers and Sewer Pipe Cleaners"
+        },
+        {
+          "conceptCode": "6765",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Miscellaneous Construction and Related Workers"
+        },
+        {
+          "conceptCode": "6800",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Derrick, Rotary Drill, and Service Unit Operators, Oil and Gas"
+        },
+        {
+          "conceptCode": "6821",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Excavating and Loading Machine and Dragline Operators, Surface Mining"
+        },
+        {
+          "conceptCode": "6825",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Earth Drillers, Except Oil and Gas"
+        },
+        {
+          "conceptCode": "6835",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Explosives Workers, Ordnance Handling Experts, and Blasters"
+        },
+        {
+          "conceptCode": "6850",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Underground Mining Machine Operators"
+        },
+        {
+          "conceptCode": "6920",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Roustabouts, Oil and Gas"
+        },
+        {
+          "conceptCode": "6950",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Extraction Workers"
+        },
+        {
+          "conceptCode": "7000",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "First-Line Supervisors of Mechanics, Installers, and Repairers"
+        },
+        {
+          "conceptCode": "7010",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Computer, Automated Teller, and Office Machine Repairers"
+        },
+        {
+          "conceptCode": "7020",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Radio and Telecommunications Equipment Installers and Repairers"
+        },
+        {
+          "conceptCode": "7030",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Avionics Technicians"
+        },
+        {
+          "conceptCode": "7040",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Electric Motor, Power Tool, and Related Repairers"
+        },
+        {
+          "conceptCode": "7050",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Electrical and Electronics Installers and Repairers, Transportation Equipment"
+        },
+        {
+          "conceptCode": "7100",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Electrical and Electronics Repairers, Industrial and Utility"
+        },
+        {
+          "conceptCode": "7110",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Electronic Equipment Installers and Repairers, Motor Vehicles"
+        },
+        {
+          "conceptCode": "7120",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Audiovisual Equipment Installers and Repairers"
+        },
+        {
+          "conceptCode": "7130",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Security and Fire Alarm Systems Installers"
+        },
+        {
+          "conceptCode": "7140",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Aircraft Mechanics and Service Technicians"
+        },
+        {
+          "conceptCode": "7150",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Automotive Body and Related Repairers"
+        },
+        {
+          "conceptCode": "7160",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Automotive Glass Installers and Repairers"
+        },
+        {
+          "conceptCode": "7200",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Automotive Service Technicians and Mechanics"
+        },
+        {
+          "conceptCode": "7210",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Bus and Truck Mechanics and Diesel Engine Specialists"
+        },
+        {
+          "conceptCode": "7220",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Heavy Vehicle and Mobile Equipment Service Technicians and Mechanics"
+        },
+        {
+          "conceptCode": "7240",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Small Engine Mechanics"
+        },
+        {
+          "conceptCode": "7260",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Miscellaneous Vehicle and Mobile Equipment Mechanics, Installers, and Repairers"
+        },
+        {
+          "conceptCode": "7300",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Control and Valve Installers and Repairers"
+        },
+        {
+          "conceptCode": "7315",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Heating, Air Conditioning, and Refrigeration Mechanics and Installers"
+        },
+        {
+          "conceptCode": "7320",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Home Appliance Repairers"
+        },
+        {
+          "conceptCode": "7330",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Industrial and Refractory Machinery Mechanics"
+        },
+        {
+          "conceptCode": "7340",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Maintenance and Repair Workers, General"
+        },
+        {
+          "conceptCode": "7350",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Maintenance Workers, Machinery"
+        },
+        {
+          "conceptCode": "7360",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Millwrights"
+        },
+        {
+          "conceptCode": "7410",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Electrical Power-Line Installers and Repairers"
+        },
+        {
+          "conceptCode": "7420",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Telecommunications Line Installers and Repairers"
+        },
+        {
+          "conceptCode": "7430",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Precision Instrument and Equipment Repairers"
+        },
+        {
+          "conceptCode": "7440",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Wind Turbine Service Technicians"
+        },
+        {
+          "conceptCode": "7510",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Coin, Vending, and Amusement Machine Servicers and Repairers"
+        },
+        {
+          "conceptCode": "7520",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Commercial Divers"
+        },
+        {
+          "conceptCode": "7540",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Locksmiths and Safe Repairers"
+        },
+        {
+          "conceptCode": "7550",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Manufactured Building and Mobile Home Installers"
+        },
+        {
+          "conceptCode": "7560",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Riggers"
+        },
+        {
+          "conceptCode": "7610",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Helpers--Installation, Maintenance, and Repair Workers"
+        },
+        {
+          "conceptCode": "7640",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Installation, Maintenance, and Repair Workers"
+        },
+        {
+          "conceptCode": "7700",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "First-Line Supervisors of Production and Operating Workers"
+        },
+        {
+          "conceptCode": "7710",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Aircraft Structure, Surfaces, Rigging, and Systems Assemblers"
+        },
+        {
+          "conceptCode": "7720",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Electrical, Electronics, and Electromechanical Assemblers"
+        },
+        {
+          "conceptCode": "7730",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Engine and Other Machine Assemblers"
+        },
+        {
+          "conceptCode": "7740",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Structural Metal Fabricators and Fitters"
+        },
+        {
+          "conceptCode": "7750",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Assemblers and Fabricators"
+        },
+        {
+          "conceptCode": "7800",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Bakers"
+        },
+        {
+          "conceptCode": "7810",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Butchers and Other Meat, Poultry, and Fish Processing Workers"
+        },
+        {
+          "conceptCode": "7830",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Food and Tobacco Roasting, Baking, and Drying Machine Operators and Tenders"
+        },
+        {
+          "conceptCode": "7840",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Food Batchmakers"
+        },
+        {
+          "conceptCode": "7850",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Food Cooking Machine Operators and Tenders"
+        },
+        {
+          "conceptCode": "7855",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Food Processing Workers, All Other"
+        },
+        {
+          "conceptCode": "7905",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Computer Numerically Controlled Tool Operators and Programmers"
+        },
+        {
+          "conceptCode": "7925",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Forming Machine Setters, Operators, and Tenders, Metal and Plastic"
+        },
+        {
+          "conceptCode": "7950",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Cutting, Punching, and Press Machine Setters, Operators, and Tenders, Metal and Plastic"
+        },
+        {
+          "conceptCode": "8000",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Grinding, Lapping, Polishing, and Buffing Machine Tool Setters, Operators, and Tenders, Metal and Plastic"
+        },
+        {
+          "conceptCode": "8025",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Machine Tool Setters, Operators, and Tenders, Metal and Plastic"
+        },
+        {
+          "conceptCode": "8030",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Machinists"
+        },
+        {
+          "conceptCode": "8040",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Metal Furnace Operators, Tenders, Pourers, and Casters"
+        },
+        {
+          "conceptCode": "8060",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Model Makers and Patternmakers, Metal and Plastic"
+        },
+        {
+          "conceptCode": "8100",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Molders and Molding Machine Setters, Operators, and Tenders, Metal and Plastic"
+        },
+        {
+          "conceptCode": "8130",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Tool and Die Makers"
+        },
+        {
+          "conceptCode": "8140",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Welding, Soldering, and Brazing Workers"
+        },
+        {
+          "conceptCode": "8225",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Metal Workers and Plastic Workers"
+        },
+        {
+          "conceptCode": "8250",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Prepress Technicians and Workers"
+        },
+        {
+          "conceptCode": "8255",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Printing Press Operators"
+        },
+        {
+          "conceptCode": "8256",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Print Binding and Finishing Workers"
+        },
+        {
+          "conceptCode": "8300",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Laundry and Dry-Cleaning Workers"
+        },
+        {
+          "conceptCode": "8310",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Pressers, Textile, Garment, and Related Materials"
+        },
+        {
+          "conceptCode": "8320",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Sewing Machine Operators"
+        },
+        {
+          "conceptCode": "8335",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Shoe and Leather Workers"
+        },
+        {
+          "conceptCode": "8350",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Tailors, Dressmakers, and Sewers"
+        },
+        {
+          "conceptCode": "8365",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Textile Machine Setters, Operators, and Tenders"
+        },
+        {
+          "conceptCode": "8450",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Upholsterers"
+        },
+        {
+          "conceptCode": "8465",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Textile, Apparel, and Furnishings Workers"
+        },
+        {
+          "conceptCode": "8500",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Cabinetmakers and Bench Carpenters"
+        },
+        {
+          "conceptCode": "8510",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Furniture Finishers"
+        },
+        {
+          "conceptCode": "8530",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Sawing Machine Setters, Operators, and Tenders, Wood"
+        },
+        {
+          "conceptCode": "8540",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Woodworking Machine Setters, Operators, and Tenders, Except Sawing"
+        },
+        {
+          "conceptCode": "8555",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Woodworkers"
+        },
+        {
+          "conceptCode": "8600",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Power Plant Operators, Distributors, and Dispatchers"
+        },
+        {
+          "conceptCode": "8610",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Stationary Engineers and Boiler Operators"
+        },
+        {
+          "conceptCode": "8620",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Water and Wastewater Treatment Plant and System Operators"
+        },
+        {
+          "conceptCode": "8630",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Miscellaneous Plant and System Operators"
+        },
+        {
+          "conceptCode": "8640",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Chemical Processing Machine Setters, Operators, and Tenders"
+        },
+        {
+          "conceptCode": "8650",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Crushing, Grinding, Polishing, Mixing, and Blending Workers"
+        },
+        {
+          "conceptCode": "8710",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Cutting Workers"
+        },
+        {
+          "conceptCode": "8720",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Extruding, Forming, Pressing, and Compacting Machine Setters, Operators, and Tenders"
+        },
+        {
+          "conceptCode": "8730",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Furnace, Kiln, Oven, Drier, and Kettle Operators and Tenders"
+        },
+        {
+          "conceptCode": "8740",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Inspectors, Testers, Sorters, Samplers, and Weighers"
+        },
+        {
+          "conceptCode": "8750",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Jewelers and Precious Stone and Metal Workers"
+        },
+        {
+          "conceptCode": "8760",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Dental and Ophthalmic Laboratory Technicians and Medical Appliance Technicians"
+        },
+        {
+          "conceptCode": "8800",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Packaging and Filling Machine Operators and Tenders"
+        },
+        {
+          "conceptCode": "8810",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Painting Workers"
+        },
+        {
+          "conceptCode": "8830",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Photographic Process Workers and Processing Machine Operators"
+        },
+        {
+          "conceptCode": "8850",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Adhesive Bonding Machine Operators and Tenders"
+        },
+        {
+          "conceptCode": "8865",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Production Equipment Operators and Tenders"
+        },
+        {
+          "conceptCode": "8910",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Etchers and Engravers"
+        },
+        {
+          "conceptCode": "8920",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Molders, Shapers, and Casters, Except Metal and Plastic"
+        },
+        {
+          "conceptCode": "8930",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Paper Goods Machine Setters, Operators, and Tenders"
+        },
+        {
+          "conceptCode": "8940",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Tire Builders"
+        },
+        {
+          "conceptCode": "8950",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Helpers--Production Workers"
+        },
+        {
+          "conceptCode": "8990",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Production Workers"
+        },
+        {
+          "conceptCode": "9005",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Supervisors of Transportation and Material Moving Workers"
+        },
+        {
+          "conceptCode": "9010",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "NIOSH-Homemaker"
+        },
+        {
+          "conceptCode": "9020",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Volunteers"
+        },
+        {
+          "conceptCode": "9030",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Aircraft Pilots and Flight Engineers"
+        },
+        {
+          "conceptCode": "9040",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Air Traffic Controllers and Airfield Operations Specialists"
+        },
+        {
+          "conceptCode": "9050",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Flight Attendants"
+        },
+        {
+          "conceptCode": "9060",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Retired"
+        },
+        {
+          "conceptCode": "9070",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Students"
+        },
+        {
+          "conceptCode": "9100",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Did Not Work"
+        },
+        {
+          "conceptCode": "9110",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Ambulance Drivers and Attendants, Except Emergency Medical Technicians"
+        },
+        {
+          "conceptCode": "9121",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Bus Drivers, School"
+        },
+        {
+          "conceptCode": "9122",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Bus Drivers, Transit and Intercity"
+        },
+        {
+          "conceptCode": "9130",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Driver/Sales Workers and Truck Drivers"
+        },
+        {
+          "conceptCode": "9141",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Shuttle Drivers and Chauffeurs"
+        },
+        {
+          "conceptCode": "9142",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Taxi Drivers"
+        },
+        {
+          "conceptCode": "9150",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Motor Vehicle Operators, All Other"
+        },
+        {
+          "conceptCode": "9210",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Locomotive Engineers and Operators"
+        },
+        {
+          "conceptCode": "9240",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Railroad Conductors and Yardmasters"
+        },
+        {
+          "conceptCode": "9265",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Rail Transportation Workers"
+        },
+        {
+          "conceptCode": "9300",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Sailors and Marine Oilers"
+        },
+        {
+          "conceptCode": "9310",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Ship and Boat Captains and Operators"
+        },
+        {
+          "conceptCode": "9330",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Ship Engineers"
+        },
+        {
+          "conceptCode": "9350",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Parking Attendants"
+        },
+        {
+          "conceptCode": "9365",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Transportation Service Attendants"
+        },
+        {
+          "conceptCode": "9410",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Transportation Inspectors"
+        },
+        {
+          "conceptCode": "9415",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Passenger Attendants"
+        },
+        {
+          "conceptCode": "9430",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Transportation Workers"
+        },
+        {
+          "conceptCode": "9510",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Crane and Tower Operators"
+        },
+        {
+          "conceptCode": "9570",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Conveyor, Dredge, and Hoist and Winch Operators"
+        },
+        {
+          "conceptCode": "9600",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Industrial Truck and Tractor Operators"
+        },
+        {
+          "conceptCode": "9610",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Cleaners of Vehicles and Equipment"
+        },
+        {
+          "conceptCode": "9620",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Laborers and Freight, Stock, and Material Movers, Hand"
+        },
+        {
+          "conceptCode": "9630",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Machine Feeders and Offbearers"
+        },
+        {
+          "conceptCode": "9640",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Packers and Packagers, Hand"
+        },
+        {
+          "conceptCode": "9645",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Stockers and Order Fillers"
+        },
+        {
+          "conceptCode": "9650",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Pumping Station Operators"
+        },
+        {
+          "conceptCode": "9720",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Refuse and Recyclable Material Collectors"
+        },
+        {
+          "conceptCode": "9760",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Other Material Moving Workers"
+        },
+        {
+          "conceptCode": "9830",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Military, Rank Not Specified"
+        },
+        {
+          "conceptCode": "9840",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "NIOSH-Armed Forces, Military, Commissioned Officers and Warrant Officers"
+        },
+        {
+          "conceptCode": "9850",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "NIOSH-Armed Forces, Military, Non-Commissioned Officers and Other Enlisted Personnel"
+        },
+        {
+          "conceptCode": "9900",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.339",
+          "cdcpreferredDesignation": "Insufficient Information"
+        }
+      ],
+      "valueSetVersion": 1
+    }
+  ]
+}

@@ -238,3 +238,14 @@ class ValueTribalAffiliation(ValuePrevalence):
 
 def is_value_tribal_affiliation(value: object) -> TypeGuard[ValueTribalAffiliation]:
     return isinstance(value, ValueTribalAffiliation)
+
+class ValueOccupation(CamelModel):
+    """
+    """
+    occupation_code: Optional[str] = Field(
+        default=None,
+        description="Specific Occupation code, or None for random selection"
+    )
+
+def is_value_occupation(value: object) -> TypeGuard[ValueOccupation]:
+    return isinstance(value, ValueOccupation)

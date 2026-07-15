@@ -1,9 +1,14 @@
 from faker import Faker
 
-def generate_address(city: str | None, state: str | None) -> str:
+from api.features.generation.constants import SpecialValues
+
+def generate_address(city: str | None, state: str | None, mask_pii_enabled: bool = False) -> str:
     fake = Faker()
 
-    line: str = fake.street_address()
+    if mask_pii_enabled:
+        line: str = "" # TODO: Swap this to handle $masked once fhir sheets supports primitive masked items.
+    else:
+        line: str = fake.street_address()
 
     if not city:
         city = fake.city()

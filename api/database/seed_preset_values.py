@@ -203,18 +203,134 @@ def seed_tribal_affiliations(db: Session, force_reseed: bool = False):
         logger.error(f"Error seeding tribal affiliations: {e}")
         raise
 
+from api.database.db_other_tables import Industry, Occupation
+
+def seed_industries(db: Session, force_reseed: bool = False):
+    """Seed industries from CSV"""
+    existing_count = db.query(Industry).count()
+    if existing_count > 0 and not force_reseed:
+        logger.info(f"industry table already has {existing_count} records, skipping seed...")
+        return existing_count
+    
+    if force_reseed and existing_count > 0:
+        logger.warning(f"Force reseed enabled - deleting {existing_count} existing industry records")
+        # Must delete occupations first due to foreign key constraint
+        occupation_count = db.query(Occupation).count()
+        if occupation_count > 0:
+            logger.warning(f"  Deleting {occupation_count} occupation records first (foreign key dependency)")
+            db.query(Occupation).delete()
+        db.query(Industry).delete()
+        db.commit()
+    
+    csv_path = Path(__file__).parent.parent.parent / "data" / "industries.csv"
+    
+    if not csv_path.exists():
+        logger.error(f"CSV file not found: {csv_path}")
+        raise FileNotFoundError(f"Required seed data file missing: industries.csv")
+    
+    try:
+        # Read CSV with explicit dtype to preserve leading zeros in codes
+        df = pd.read_csv(csv_path, skipinitialspace=True, dtype={'code': str})
+        df = df.map(lambda x: x.strip() if isinstance(x, str) else x)
+        records = df.to_dict('records')
+        
+        if not records:
+            logger.warning("No data found in industries.csv")
+            return 0
+        
+        db.bulk_insert_mappings(Industry, records)
+        db.commit()
+        
+        logger.info(f"✓ Successfully seeded {len(records)} industries")
+        return len(records)
+        
+    except Exception as e:
+        db.rollback()
+        logger.error(f"Error seeding industries: {e}")
+        raise
+
+def seed_occupations(db: Session, force_reseed: bool = False):
+    """Seed occupations from CSV (requires industries to be seeded first)"""
+    existing_count = db.query(Occupation).count()
+    if existing_count > 0 and not force_reseed:
+        logger.info(f"occupation table already has {existing_count} records, skipping seed...")
+        return existing_count
+    
+    if force_reseed and existing_count > 0:
+        logger.warning(f"Force reseed enabled - deleting {existing_count} existing occupation records")
+        db.query(Occupation).delete()
+        db.commit()
+    
+    csv_path = Path(__file__).parent.parent.parent / "data" / "occupations.csv"
+    
+    if not csv_path.exists():
+        logger.error(f"CSV file not found: {csv_path}")
+        raise FileNotFoundError(f"Required seed data file missing: occupations.csv")
+    
+    try:
+        # Read CSV with explicit dtype to ensure industry_code is string
+        df = pd.read_csv(csv_path, skipinitialspace=True, dtype={'industry_code': str, 'code': str})
+        df = df.map(lambda x: x.strip() if isinstance(x, str) else x)
+        records = df.to_dict('records')
+        
+        if not records:
+            logger.warning("No data found in occupations.csv")
+            return 0
+        
+        # Resolve industry_code to industry_id and filter out unmapped records
+        valid_records = []
+        for record in records:
+            industry_code = str(record['industry_code']).strip()
+            industry = db.query(Industry).filter(
+                Industry.code == industry_code
+            ).first()
+            
+            if not industry:
+                # Debug: show what codes exist
+                all_industry_codes = [i.code for i in db.query(Industry.code).all()]
+                logger.warning(f"Industry code '{industry_code}' (type: {type(industry_code)}, len: {len(industry_code)}) not found for occupation '{record['display']}'")
+                logger.debug(f"Available industry codes include: {all_industry_codes[:10]}")
+                continue
+            
+            record['industry_id'] = industry.industry_id
+            del record['industry_code']  # Remove before insert
+            valid_records.append(record)
+        
+        if not valid_records:
+            logger.warning("No occupations could be mapped to industries")
+            return 0
+        
+        db.bulk_insert_mappings(Occupation, valid_records)
+        db.commit()
+        
+        logger.info(f"✓ Successfully seeded {len(records)} occupations")
+        return len(records)
+        
+    except Exception as e:
+        db.rollback()
+        logger.error(f"Error seeding occupations: {e}")
+        raise
+
+
 def seed_all(db: Session, force_reseed: bool = False):
     """Run all seed functions"""
     try:
         seed_lab_value_presets(db, force_reseed=force_reseed)
     except Exception as e:
+        db.rollback()
         logger.error(f"Lab value presets seeding failed: {e}")
-        # Continue with other seeds even if one fails
     
     try:
         seed_tribal_affiliations(db, force_reseed=force_reseed)
     except Exception as e:
+        db.rollback()
         logger.error(f"Tribal affiliations seeding failed: {e}")
-        # Continue even if this fails
     
+    try:
+        seed_industries(db, force_reseed) 
+        seed_occupations(db, force_reseed) 
+    except Exception as e:
+        db.rollback()
+        logger.error(f"ODH occupations and industry seeding failed: {e}")
+
     logger.info("All seeding operations complete")

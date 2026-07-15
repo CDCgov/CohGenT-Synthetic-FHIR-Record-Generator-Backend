@@ -8,6 +8,10 @@ class BooleanMap(CamelModel):
     value: str = PyField(...)
     map_to: bool = PyField(...)
 
+class ConceptMap(CamelModel):
+    value: str = PyField(...)
+    map_to: ValueCoding = PyField(...)
+
 class ExtensionDetails(CamelModel):
     value_type: str = PyField(...)
     extension_uri: str = PyField(...)
@@ -24,8 +28,10 @@ class Field(CamelModel):
     user_configured: bool = PyField(...)
     user_setting_rule_id: Optional[str] = PyField(None)
     value: Optional[str | bool | ValueCoding] = PyField(None)
-    boolean_map: Optional[list[BooleanMap]] = PyField(None)
+    boolean_maps: Optional[list[BooleanMap]] = PyField(None)
+    concept_maps: Optional[list[ConceptMap]] = PyField(None)
     extension_details: Optional[ExtensionDetails] = PyField(None)
+    pii: Optional[bool] = PyField(False)
 
     @model_validator(mode='after')
     def check_value_exists(self) -> 'Field':

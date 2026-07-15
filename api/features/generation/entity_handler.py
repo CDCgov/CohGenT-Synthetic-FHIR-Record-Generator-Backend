@@ -22,7 +22,7 @@ from api.models.value_types import is_value_coding, is_value_range
 
 fake = Faker()
 
-def process_entity(entity: Entity, patient_meta: PatientMeta, patient_row_as_dict: PatientRow, use_case: UseCase, distributions: Distributions, configuration: CohortSettings, default_settings: list[Setting], main_db: Session):
+def process_entity(entity: Entity, patient_meta: PatientMeta, patient_row_as_dict: PatientRow, use_case: UseCase, distributions: Distributions, configuration: CohortSettings, default_settings: list[Setting], main_db: Session, mask_pii_enabled: bool = False):
     if entity.resource_type == C.FhirResourceTypes.PATIENT.value:
         # TODO: Add handling to skip if not in record. require?
         assert(entity.fields is not None)                
@@ -74,11 +74,16 @@ def process_entity(entity: Entity, patient_meta: PatientMeta, patient_row_as_dic
                         # TODO: Implement error handling
                     else:
                         if field.extension_details.special_handler in SpecialExtensions:
+                            # NOTE: Only Tribal Affiliation supported for special extensions right now.
                             generated_value = generate_tribal_affiliation(field_setting, main_db)
                         else:
-                            generated_value = handle_by_type(field.extension_details.value_type, field, patient_meta, field_setting)
-                else:                            
-                    generated_value = handle_by_type(field.type, field, patient_meta, field_setting)
+                            should_mask = mask_pii_enabled and field.pii
+                            generated_value = handle_by_type(field.extension_details.value_type, field, patient_meta, field_setting, should_mask, main_db)
+                else:
+                    print("SHOULD BE HERE")
+                    print(type(main_db))
+                    should_mask = mask_pii_enabled and field.pii
+                    generated_value = handle_by_type(field.type, field, patient_meta, field_setting, should_mask, main_db)
 
                     # If field is declared by the use case as the end date, see if it is
                     # earlier than the cohort wide "generate until" date. Ensuring that the field
@@ -91,8 +96,11 @@ def process_entity(entity: Entity, patient_meta: PatientMeta, patient_row_as_dic
                             else:
                                 raise HTTPException(status_code=500, detail=f"Error generating. End date {use_case.generation_rules.end_date} does not point to a valid datetime.")
             else:
+                # Check if flagged for masking and mask PII is enabled.
+                if field.pii and mask_pii_enabled and field.value not in C.SpecialTypeFunctions:
+                    generated_value = C.SpecialValues.MASKED.value
                 # Special Type Functions.
-                if field.value == C.SpecialTypeFunctions.UUID.value:
+                elif field.value == C.SpecialTypeFunctions.UUID.value:
                     generated_value = generate_uuid_identifier()
                 elif field.value == C.SpecialTypeFunctions.EVENT_DATE.value:
                     generated_value = str(patient_meta.event_date)
@@ -115,20 +123,29 @@ def process_entity(entity: Entity, patient_meta: PatientMeta, patient_row_as_dic
                         # If no abatement field was found in the entity, just assume active.
                         generated_value = C.ConditionClinicalStatusValues.ACTIVE.value
                 elif field.value == C.SpecialTypeFunctions.PATIENT_CONTACT_POINT.value:
-                    generated_value = [
-                        # TODO: HIGH PRIORITY!! "Masked" should be moved to a general setting to cover these values
-                        {"system": "email", "value": generate_email(patient_meta.name)},
-                        {"system": "phone", "value": fake.basic_phone_number()}
-                    ]
+                    if mask_pii_enabled:
+                        generated_value = [
+                            {"system": "email", "value": C.SpecialValues.MASKED.value},
+                            {"system": "phone", "value": C.SpecialValues.MASKED.value}
+                        ]
+                    else:
+                        generated_value = [
+                            {"system": "email", "value": generate_email(patient_meta.name)},
+                            {"system": "phone", "value": fake.basic_phone_number()}
+                        ]
                 else:
-                    generated_value = handle_by_type(field.type, field, patient_meta, field_setting)
+                    should_mask = mask_pii_enabled and field.pii
+                    generated_value = handle_by_type(field.type, field, patient_meta, field_setting, should_mask, main_db)
 
 
             if field.type == C.FhirType.IDENTIFIER.value:
                 patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}/Value"] = generated_value
                 patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}/System"] = C.identifier_system + ":" + entity.resource_type.lower()
             elif field.type == C.FhirType.CONTACT_POINT.value:
-                if isinstance(generated_value, list):
+                if mask_pii_enabled:
+                    # TODO: Switch to setting $masked when FHIR Sheets supports primitive extension parsing.
+                    pass
+                elif isinstance(generated_value, list):
                     for i, v in enumerate(generated_value):
                         patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}[{i}]/Value"] = v["value"]
                         patient_row_as_dict[(entity.entity_id), f"{entity.entity_id}/{field.path}[{i}]/System"] = v["system"]

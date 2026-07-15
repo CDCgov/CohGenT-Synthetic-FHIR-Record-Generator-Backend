@@ -112,7 +112,9 @@ The Use Case Scenario file can be either JSON or JSON5 (JSON with comments).
 TODO
 - Entity Model
 
-#### Form Rules
+#### Fields
+
+### Form Rules
 
 TODO
 - Form Model
@@ -120,14 +122,15 @@ TODO
 - Types of "controls"
 - Connecting a form rule to an entity field
 
-#### Common Entities
+
+### Common Entities
 
 TODO
 - Configuring common entities
 - Dynamic Links
 
 
-### Type Support
+## Type Support
 FHIR Type support is limited in the current version of the application, based around what was defined for the existing scenario(s). Typing is a complex alignment between the user input, the generation requirements, and the expected FHIR Sheets formatting. For example, the internal typing provides for a "ValueCoding" type in Pydantic which handles a combination of system, code, and display strings and is allowed input to generate either the FHIR Coding or CodeableConcept types. When building or modifying a scenario, failure to align allowed input types to the FHIR type will cause an error in processing.
 
 Currently the following combinations are supported:
@@ -310,8 +313,12 @@ This creates the complete provider context chain without requiring separate refe
 
 Best Practice: Use PractitionerRole for clinical references (performer, participant, etc.) rather than direct Practitioner references, as it provides richer context including the practitioner's role and organization.
 
+### Masking PII
 
-## Lab Value Presets
+TODO
+
+## Other Features
+### Lab Value Presets
 
 The API serves presets for common lab value to the UI to improve usability. Presets are identified by a combination of code, system, and preset_name. Each code/system pair may have many preset ranges, such as low, normal, or high clinical ranges. For example, inputting a concept code of 17861-6 (Calcium test), will provide three ranges to select from to autopopulate the form fields for the lab observation value (min value of range, max value of range, and unit).
 
@@ -337,18 +344,20 @@ The CSV contains the following columns:
 
 \* Not a column in the database, used for documentation in the CSV only.
 
-## Sample Settings
+### Sample Settings
 
 TODO
 
-## Provider Entities
+### Provider Entities
 
 TODO*
 
-### Updating Valuesets
+### Special Valuesets
 
-TODO
+The API provides several specialized endpoints for valuesets that not are not easily represented due to size and sourcing. For this version this includes Tribal Affiliation and Occupational Data. These are all handled by the `valuesets_router.py` file, and stored in dedicated database tables as simple concepts. These valuesets must be maintained when updated
 
-### Migrating Versions of FHIR or Implementation Guides
+####
+
+## Migrating Versions of FHIR or Implementation Guides
 
 TODO

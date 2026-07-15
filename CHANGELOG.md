@@ -7,6 +7,9 @@
 * Terminology search can now be filtered by Domain.
 * Clinical Data Sets/Event Sets now support a local "until" date for generation. This allows sets to be setup in phases or otherwise terminate early.
 * The cohort settings used to generate the data is now included in all output zip files.
+* Similar to Tribal Affiliation, ODH Occupation values are now served by the API for use in UI autocomplete. Industry is also stored in the table, used to populate entity models.
+### Changed
+* "Mask Patient Names" now shifted to a special field "mask-pii" (in the `field.ruleId`), which applies to a select set of fields flagged as `"pii": true`.
 
 ## [1.1.1] - 2026-06-22 - R2 Hotfix 1
 ### Fixed

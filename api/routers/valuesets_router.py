@@ -47,3 +47,16 @@ def get_tribal_affiliations(db: Session = Depends(get_main_db)) -> SimpleConcept
     except Exception as e:
         logger.error(f"Error fetching tribal affiliations: {e}")
         raise HTTPException(status_code=500, detail="Error fetching tribal affiliations")
+    
+from api.database.db_other_tables import Occupation
+
+@router.get("/valuesets/occupation", response_class=PrettyJSONResponse)
+def get_occupations(db: Session = Depends(get_main_db)) -> SimpleConceptListResponse:
+    """Get list of available occupations for ODH profiles"""
+    try:
+        results = db.query(Occupation).order_by(Occupation.display).all()
+        concepts = [SimpleConcept.model_validate(occ) for occ in results]
+        return SimpleConceptListResponse(total=len(concepts), results=concepts)
+    except Exception as e:
+        logger.error(f"Error fetching occupations: {e}")
+        raise HTTPException(status_code=500, detail="Error fetching occupations")

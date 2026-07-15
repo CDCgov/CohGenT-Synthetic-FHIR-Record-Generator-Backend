@@ -1,0 +1,1930 @@
+{
+  "valueSetOID": "2.16.840.1.114222.4.11.8066",
+  "valueSetName": "Industry CDC Census 2018",
+  "valueSetCode": "PHVS_Industry_CDC_Census2018",
+  "definitionText": null,
+  "assigningAuthorityID": "80DA8521-CC06-E811-88F9-0017A477041A",
+  "authorityName": "CDC NIOSH",
+  "authorityURL": null,
+  "authorityDescriptionText": "CDC NIOSH",
+  "authorityContactInformation": "CDC NIOSH",
+  "statusDate": "2022-07-21T00:00:00-04",
+  "versionList": [
+    {
+      "conceptList": [
+        {
+          "conceptCode": "0170",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Crop Production"
+        },
+        {
+          "conceptCode": "0180",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Animal Production and Aquaculture"
+        },
+        {
+          "conceptCode": "0190",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Forestry except Logging"
+        },
+        {
+          "conceptCode": "0270",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Logging"
+        },
+        {
+          "conceptCode": "0280",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Fishing, Hunting and Trapping"
+        },
+        {
+          "conceptCode": "0290",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Support Activities For Agriculture and Forestry"
+        },
+        {
+          "conceptCode": "0370",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Oil and Gas Extraction"
+        },
+        {
+          "conceptCode": "0380",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Coal Mining"
+        },
+        {
+          "conceptCode": "0390",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Metal Ore Mining"
+        },
+        {
+          "conceptCode": "0470",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Nonmetallic Mineral Mining and Quarrying"
+        },
+        {
+          "conceptCode": "0480",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Not Specified Type of Mining"
+        },
+        {
+          "conceptCode": "0490",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Support Activities For Mining"
+        },
+        {
+          "conceptCode": "0570",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Electric Power Generation, Transmission and Distribution"
+        },
+        {
+          "conceptCode": "0580",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Natural Gas Distribution"
+        },
+        {
+          "conceptCode": "0590",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Electric and Gas, and Other Combinations"
+        },
+        {
+          "conceptCode": "0670",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Water, Steam, Air-Conditioning, and Irrigation Systems"
+        },
+        {
+          "conceptCode": "0680",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Sewage Treatment Facilities"
+        },
+        {
+          "conceptCode": "0690",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Not Specified Utilities"
+        },
+        {
+          "conceptCode": "0770",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Construction"
+        },
+        {
+          "conceptCode": "1070",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Animal Food, Grain and Oilseed Milling"
+        },
+        {
+          "conceptCode": "1080",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Sugar and Confectionery Products"
+        },
+        {
+          "conceptCode": "1090",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Fruit and Vegetable Preserving and Specialty Food Manufacturing"
+        },
+        {
+          "conceptCode": "1170",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Dairy Product Manufacturing"
+        },
+        {
+          "conceptCode": "1180",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Animal Slaughtering and Processing"
+        },
+        {
+          "conceptCode": "1190",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Retail Bakeries"
+        },
+        {
+          "conceptCode": "1270",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Bakeries and Tortilla Manufacturing, except Retail Bakeries"
+        },
+        {
+          "conceptCode": "1280",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Seafood and Other Miscellaneous Foods, N.E.C."
+        },
+        {
+          "conceptCode": "1290",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Not Specified Food Industries"
+        },
+        {
+          "conceptCode": "1370",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Beverage Manufacturing"
+        },
+        {
+          "conceptCode": "1390",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Tobacco Manufacturing"
+        },
+        {
+          "conceptCode": "1470",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Fiber, Yarn, and Thread Mills"
+        },
+        {
+          "conceptCode": "1480",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Fabric Mills, except Knitting Mills"
+        },
+        {
+          "conceptCode": "1490",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Textile and Fabric Finishing and Fabric Coating Mills"
+        },
+        {
+          "conceptCode": "1570",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Carpet and Rug Mills"
+        },
+        {
+          "conceptCode": "1590",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Textile Product Mills, except Carpet and Rug"
+        },
+        {
+          "conceptCode": "1670",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Knitting Fabric Mills, and Apparel Knitting Mills"
+        },
+        {
+          "conceptCode": "1691",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Cut and Sew, and Apparel Accessories and Other Apparel Manufacturing"
+        },
+        {
+          "conceptCode": "1770",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Footwear Manufacturing"
+        },
+        {
+          "conceptCode": "1790",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Leather Tanning and Finishing and Other Allied Products Manufacturing"
+        },
+        {
+          "conceptCode": "1870",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Pulp, Paper, and Paperboard Mills"
+        },
+        {
+          "conceptCode": "1880",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Paperboard Container Manufacturing"
+        },
+        {
+          "conceptCode": "1890",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Miscellaneous Paper and Pulp Products"
+        },
+        {
+          "conceptCode": "1990",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Printing and Related Support Activities"
+        },
+        {
+          "conceptCode": "2070",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Petroleum Refining"
+        },
+        {
+          "conceptCode": "2090",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Miscellaneous Petroleum and Coal Products"
+        },
+        {
+          "conceptCode": "2170",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Resin, Synthetic Rubber, and Fibers and Filaments Manufacturing"
+        },
+        {
+          "conceptCode": "2180",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Agricultural Chemical Manufacturing"
+        },
+        {
+          "conceptCode": "2190",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Pharmaceutical and Medicine Manufacturing"
+        },
+        {
+          "conceptCode": "2270",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Paint, Coating, and Adhesive Manufacturing"
+        },
+        {
+          "conceptCode": "2280",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Soap, Cleaning Compound, and Cosmetics Manufacturing"
+        },
+        {
+          "conceptCode": "2290",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Industrial and Miscellaneous Chemicals"
+        },
+        {
+          "conceptCode": "2370",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Plastics Product Manufacturing"
+        },
+        {
+          "conceptCode": "2380",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Tire Manufacturing"
+        },
+        {
+          "conceptCode": "2390",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Rubber Products, except Tires, Manufacturing"
+        },
+        {
+          "conceptCode": "2470",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Pottery, Ceramics, and Plumbing Fixture Manufacturing"
+        },
+        {
+          "conceptCode": "2480",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Clay Building Material and Refractories Manufacturing"
+        },
+        {
+          "conceptCode": "2490",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Glass and Glass Product Manufacturing"
+        },
+        {
+          "conceptCode": "2570",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Cement, Concrete, Lime, and Gypsum Product Manufacturing"
+        },
+        {
+          "conceptCode": "2590",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Miscellaneous Nonmetallic Mineral Product Manufacturing"
+        },
+        {
+          "conceptCode": "2670",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Iron and Steel Mills and Steel Product Manufacturing"
+        },
+        {
+          "conceptCode": "2680",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Aluminum Production and Processing"
+        },
+        {
+          "conceptCode": "2690",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Nonferrous Metal (except Aluminum) Production and Processing"
+        },
+        {
+          "conceptCode": "2770",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Foundries"
+        },
+        {
+          "conceptCode": "2780",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Metal Forgings and Stampings"
+        },
+        {
+          "conceptCode": "2790",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Cutlery and Hand Tool Manufacturing"
+        },
+        {
+          "conceptCode": "2870",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Structural Metals, and Boiler, Tank, and Shipping Container Manufacturing"
+        },
+        {
+          "conceptCode": "2880",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Machine Shops; Turned Product; Screw, Nut, and Bolt Manufacturing"
+        },
+        {
+          "conceptCode": "2890",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Coating, Engraving, Heat Treating, and Allied Activities"
+        },
+        {
+          "conceptCode": "2970",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Ordnance"
+        },
+        {
+          "conceptCode": "2980",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Miscellaneous Fabricated Metal Products Manufacturing"
+        },
+        {
+          "conceptCode": "2990",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Not Specified Metal Industries"
+        },
+        {
+          "conceptCode": "3070",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Agricultural Implement Manufacturing"
+        },
+        {
+          "conceptCode": "3080",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Construction, and Mining and Oil and Gas Field Machinery Manufacturing"
+        },
+        {
+          "conceptCode": "3095",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Commercial and Service Industry Machinery Manufacturing"
+        },
+        {
+          "conceptCode": "3170",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Metalworking Machinery Manufacturing"
+        },
+        {
+          "conceptCode": "3180",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Engine, Turbine, and Power Transmission Equipment Manufacturing"
+        },
+        {
+          "conceptCode": "3291",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Machinery Manufacturing, N.E.C. or Not Specified"
+        },
+        {
+          "conceptCode": "3365",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Computer and Peripheral Equipment Manufacturing"
+        },
+        {
+          "conceptCode": "3370",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Communications, Audio, and Video Equipment Manufacturing"
+        },
+        {
+          "conceptCode": "3380",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Navigational, Measuring, Electromedical, and Control Instruments Manufacturing"
+        },
+        {
+          "conceptCode": "3390",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Electronic Component and Product Manufacturing, N.E.C."
+        },
+        {
+          "conceptCode": "3470",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Household Appliance Manufacturing"
+        },
+        {
+          "conceptCode": "3490",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Electric Lighting and Electrical Equipment Manufacturing, and Other Electrical Component Manufacturing, N.E.C."
+        },
+        {
+          "conceptCode": "3570",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Motor Vehicles and Motor Vehicle Equipment Manufacturing"
+        },
+        {
+          "conceptCode": "3580",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Aircraft and Parts Manufacturing"
+        },
+        {
+          "conceptCode": "3590",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Aerospace Products and Parts Manufacturing"
+        },
+        {
+          "conceptCode": "3670",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Railroad Rolling Stock Manufacturing"
+        },
+        {
+          "conceptCode": "3680",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Ship and Boat Building"
+        },
+        {
+          "conceptCode": "3690",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Other Transportation Equipment Manufacturing"
+        },
+        {
+          "conceptCode": "3770",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Sawmills and Wood Preservation"
+        },
+        {
+          "conceptCode": "3780",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Veneer, Plywood, and Engineered Wood Products"
+        },
+        {
+          "conceptCode": "3790",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Prefabricated Wood Buildings and Mobile Homes"
+        },
+        {
+          "conceptCode": "3875",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Miscellaneous Wood Products"
+        },
+        {
+          "conceptCode": "3895",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Furniture and Related Product Manufacturing"
+        },
+        {
+          "conceptCode": "3960",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Medical Equipment and Supplies Manufacturing"
+        },
+        {
+          "conceptCode": "3970",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Sporting and Athletic Goods, and Doll, Toy and Game Manufacturing"
+        },
+        {
+          "conceptCode": "3980",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Miscellaneous Manufacturing, N.E.C."
+        },
+        {
+          "conceptCode": "3990",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Not Specified Manufacturing Industries"
+        },
+        {
+          "conceptCode": "4070",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Motor Vehicle and Motor Vehicle Parts and Supplies Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4080",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Furniture and Home Furnishing Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4090",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Lumber and Other Construction Materials Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4170",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Professional and Commercial Equipment and Supplies Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4180",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Metals and Minerals, except Petroleum, Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4195",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Household Appliances and Electrical and Electronic Goods Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4265",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Hardware, Plumbing and Heating Equipment, and Supplies Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4270",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Machinery, Equipment, and Supplies Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4280",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Recyclable Material Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4290",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Miscellaneous Durable Goods Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4370",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Paper and Paper Products Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4380",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Drugs, Sundries, and Chemical and Allied Products Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4390",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Apparel, Piece Goods, and Notions Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4470",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Grocery and Related Product Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4480",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Farm Product Raw Material Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4490",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Petroleum and Petroleum Products Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4560",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Alcoholic Beverages Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4570",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Farm Supplies Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4580",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Miscellaneous Nondurable Goods Merchant Wholesalers"
+        },
+        {
+          "conceptCode": "4585",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Wholesale Electronic Markets and Agents and Brokers"
+        },
+        {
+          "conceptCode": "4590",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Not Specified Wholesale Trade"
+        },
+        {
+          "conceptCode": "4670",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Automobile Dealers"
+        },
+        {
+          "conceptCode": "4680",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Other Motor Vehicle Dealers"
+        },
+        {
+          "conceptCode": "4690",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Automotive Parts, Accessories, and Tire Stores"
+        },
+        {
+          "conceptCode": "4770",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Furniture and Home Furnishings Stores"
+        },
+        {
+          "conceptCode": "4780",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Household Appliance Stores"
+        },
+        {
+          "conceptCode": "4795",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Electronics Stores"
+        },
+        {
+          "conceptCode": "4870",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Building Material and Supplies Dealers"
+        },
+        {
+          "conceptCode": "4880",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Hardware Stores"
+        },
+        {
+          "conceptCode": "4890",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Lawn and Garden Equipment and Supplies Stores"
+        },
+        {
+          "conceptCode": "4971",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Supermarkets and other grocery (except convenience) stores"
+        },
+        {
+          "conceptCode": "4972",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Convenience Stores"
+        },
+        {
+          "conceptCode": "4980",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Specialty Food Stores"
+        },
+        {
+          "conceptCode": "4990",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Beer, Wine, and Liquor Stores"
+        },
+        {
+          "conceptCode": "5070",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Pharmacies and Drug Stores"
+        },
+        {
+          "conceptCode": "5080",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Health and Personal Care, except Drug, Stores"
+        },
+        {
+          "conceptCode": "5090",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Gasoline Stations"
+        },
+        {
+          "conceptCode": "5170",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Clothing Stores"
+        },
+        {
+          "conceptCode": "5180",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Shoe Stores"
+        },
+        {
+          "conceptCode": "5190",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Jewelry, Luggage, and Leather Goods Stores"
+        },
+        {
+          "conceptCode": "5275",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Sporting Goods, and Hobby and Toy Stores"
+        },
+        {
+          "conceptCode": "5280",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Sewing, Needlework, and Piece Goods Stores"
+        },
+        {
+          "conceptCode": "5295",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Musical Instrument and Supplies Stores"
+        },
+        {
+          "conceptCode": "5370",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Book Stores and News Dealers"
+        },
+        {
+          "conceptCode": "5381",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Department Stores"
+        },
+        {
+          "conceptCode": "5391",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "General Merchandise Stores, including Warehouse Clubs and Supercenters"
+        },
+        {
+          "conceptCode": "5470",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Retail Florists"
+        },
+        {
+          "conceptCode": "5480",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Office Supplies and Stationery Stores"
+        },
+        {
+          "conceptCode": "5490",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Used Merchandise Stores"
+        },
+        {
+          "conceptCode": "5570",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Gift, Novelty, and Souvenir Shops"
+        },
+        {
+          "conceptCode": "5580",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Miscellaneous Retail Stores"
+        },
+        {
+          "conceptCode": "5593",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Electronic Shopping and Mail-Order Houses"
+        },
+        {
+          "conceptCode": "5670",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Vending Machine Operators"
+        },
+        {
+          "conceptCode": "5680",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Fuel Dealers"
+        },
+        {
+          "conceptCode": "5690",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Other Direct Selling Establishments"
+        },
+        {
+          "conceptCode": "5790",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Not Specified Retail Trade"
+        },
+        {
+          "conceptCode": "6070",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Air Transportation"
+        },
+        {
+          "conceptCode": "6080",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Rail Transportation"
+        },
+        {
+          "conceptCode": "6090",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Water Transportation"
+        },
+        {
+          "conceptCode": "6170",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Truck Transportation"
+        },
+        {
+          "conceptCode": "6180",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Bus Service and Urban Transit"
+        },
+        {
+          "conceptCode": "6190",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Taxi and Limousine Service"
+        },
+        {
+          "conceptCode": "6270",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Pipeline Transportation"
+        },
+        {
+          "conceptCode": "6280",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Scenic and Sightseeing Transportation"
+        },
+        {
+          "conceptCode": "6290",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Services Incidental to Transportation"
+        },
+        {
+          "conceptCode": "6370",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Postal Service"
+        },
+        {
+          "conceptCode": "6380",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Couriers and Messengers"
+        },
+        {
+          "conceptCode": "6390",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Warehousing and Storage"
+        },
+        {
+          "conceptCode": "6470",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Newspaper Publishers"
+        },
+        {
+          "conceptCode": "6480",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Periodical, Book, and Directory Publishers"
+        },
+        {
+          "conceptCode": "6490",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Software Publishers"
+        },
+        {
+          "conceptCode": "6570",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Motion Pictures and Video Industries"
+        },
+        {
+          "conceptCode": "6590",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Sound Recording Industries"
+        },
+        {
+          "conceptCode": "6670",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Broadcasting (except Internet)"
+        },
+        {
+          "conceptCode": "6672",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Internet Publishing and Broadcasting and Web Search Portals"
+        },
+        {
+          "conceptCode": "6680",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Wired Telecommunications Carriers"
+        },
+        {
+          "conceptCode": "6690",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Telecommunications, except Wired Telecommunications Carriers"
+        },
+        {
+          "conceptCode": "6695",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Data Processing, Hosting, and Related Services"
+        },
+        {
+          "conceptCode": "6770",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Libraries and Archives"
+        },
+        {
+          "conceptCode": "6780",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Other Information Services, except Libraries and Archives, and Internet Publishing and Broadcasting and Web Search Portals"
+        },
+        {
+          "conceptCode": "6870",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Banking and Related Activities"
+        },
+        {
+          "conceptCode": "6880",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Savings Institutions, including Credit Unions"
+        },
+        {
+          "conceptCode": "6890",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Nondepository Credit and Related Activities"
+        },
+        {
+          "conceptCode": "6970",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Securities, Commodities, Funds, Trusts, and Other Financial Investments"
+        },
+        {
+          "conceptCode": "6991",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Insurance Carriers"
+        },
+        {
+          "conceptCode": "6992",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Agencies, Brokerages, and Other Insurance Related Activities"
+        },
+        {
+          "conceptCode": "7071",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Lessors of Real Estate, and Offices of Real Estate Agents and Brokers"
+        },
+        {
+          "conceptCode": "7072",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Real Estate Property Managers, Offices of Real Estate Appraisers, and Other Activities Related to Real Estate"
+        },
+        {
+          "conceptCode": "7080",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Automotive Equipment Rental and Leasing"
+        },
+        {
+          "conceptCode": "7181",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Other Consumer Goods Rental"
+        },
+        {
+          "conceptCode": "7190",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Commercial, Industrial, and Other Intangible Assets Rental and Leasing"
+        },
+        {
+          "conceptCode": "7270",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Legal Services"
+        },
+        {
+          "conceptCode": "7280",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Accounting, Tax Preparation, Bookkeeping, and Payroll Services"
+        },
+        {
+          "conceptCode": "7290",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Architectural, Engineering, and Related Services"
+        },
+        {
+          "conceptCode": "7370",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Specialized Design Services"
+        },
+        {
+          "conceptCode": "7380",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Computer Systems Design and Related Services"
+        },
+        {
+          "conceptCode": "7390",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Management, Scientific, and Technical Consulting Services"
+        },
+        {
+          "conceptCode": "7460",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Scientific Research and Development Services"
+        },
+        {
+          "conceptCode": "7470",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Advertising, Public Relations, and Related Services"
+        },
+        {
+          "conceptCode": "7480",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Veterinary Services"
+        },
+        {
+          "conceptCode": "7490",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Other Professional, Scientific, and Technical Services"
+        },
+        {
+          "conceptCode": "7570",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Management of Companies and Enterprises"
+        },
+        {
+          "conceptCode": "7580",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Employment Services"
+        },
+        {
+          "conceptCode": "7590",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Business Support Services"
+        },
+        {
+          "conceptCode": "7670",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Travel Arrangements and Reservation Services"
+        },
+        {
+          "conceptCode": "7680",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Investigation and Security Services"
+        },
+        {
+          "conceptCode": "7690",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Services to Buildings and Dwellings (except Cleaning During Construction and Immediately after Construction)"
+        },
+        {
+          "conceptCode": "7770",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Landscaping Services"
+        },
+        {
+          "conceptCode": "7780",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Other Administrative and Other Support Services"
+        },
+        {
+          "conceptCode": "7790",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Waste Management and Remediation Services"
+        },
+        {
+          "conceptCode": "7860",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Elementary and Secondary Schools"
+        },
+        {
+          "conceptCode": "7870",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Colleges, Universities, and Professional Schools, including Junior Colleges"
+        },
+        {
+          "conceptCode": "7880",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Business, Technical, and Trade Schools and Training"
+        },
+        {
+          "conceptCode": "7890",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Other Schools and Instruction, and Educational Support Services"
+        },
+        {
+          "conceptCode": "7970",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Offices of Physicians"
+        },
+        {
+          "conceptCode": "7980",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Offices of Dentists"
+        },
+        {
+          "conceptCode": "7990",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Offices of Chiropractors"
+        },
+        {
+          "conceptCode": "8070",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Offices of Optometrists"
+        },
+        {
+          "conceptCode": "8080",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Offices of Other Health Practitioners"
+        },
+        {
+          "conceptCode": "8090",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Outpatient Care Centers"
+        },
+        {
+          "conceptCode": "8170",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Home Health Care Services"
+        },
+        {
+          "conceptCode": "8180",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Other Health Care Services"
+        },
+        {
+          "conceptCode": "8191",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "General Medical and Surgical Hospitals, and Specialty (except Psychiatric and Substance Abuse) Hospitals"
+        },
+        {
+          "conceptCode": "8192",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Psychiatric and Substance Abuse Hospitals"
+        },
+        {
+          "conceptCode": "8270",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Nursing Care Facilities (Skilled Nursing Facilities)"
+        },
+        {
+          "conceptCode": "8290",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Residential Care Facilities, except Skilled Nursing Facilities"
+        },
+        {
+          "conceptCode": "8370",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Individual and Family Services"
+        },
+        {
+          "conceptCode": "8380",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Community Food and Housing, and Emergency Services"
+        },
+        {
+          "conceptCode": "8390",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Vocational Rehabilitation Services"
+        },
+        {
+          "conceptCode": "8470",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Child Day Care Services"
+        },
+        {
+          "conceptCode": "8561",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Performing Arts Companies"
+        },
+        {
+          "conceptCode": "8562",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Spectator Sports"
+        },
+        {
+          "conceptCode": "8563",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Promoters of Performing Arts, Sports, and Similar Events, Agents and Managers for Artists, Athletes, Entertainers, and Other Public Figures"
+        },
+        {
+          "conceptCode": "8564",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Independent Artists, Writers, and Performers"
+        },
+        {
+          "conceptCode": "8570",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Museums, Art Galleries, Historical Sites, and Similar Institutions"
+        },
+        {
+          "conceptCode": "8580",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Bowling Centers"
+        },
+        {
+          "conceptCode": "8590",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Other Amusement, Gambling, and Recreation Industries"
+        },
+        {
+          "conceptCode": "8660",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Traveler Accommodation"
+        },
+        {
+          "conceptCode": "8670",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Recreational Vehicle Parks and Camps, and Rooming and Boarding Houses"
+        },
+        {
+          "conceptCode": "8680",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Restaurants and Other Food Services"
+        },
+        {
+          "conceptCode": "8690",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Drinking Places, Alcoholic Beverages"
+        },
+        {
+          "conceptCode": "8770",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Automotive Repair and Maintenance"
+        },
+        {
+          "conceptCode": "8780",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Car Washes"
+        },
+        {
+          "conceptCode": "8790",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Electronic and Precision Equipment Repair and Maintenance"
+        },
+        {
+          "conceptCode": "8870",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Commercial and Industrial Machinery and Equipment Repair and Maintenance"
+        },
+        {
+          "conceptCode": "8891",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Personal and Household Goods Repair and Maintenance"
+        },
+        {
+          "conceptCode": "8970",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Barber Shops"
+        },
+        {
+          "conceptCode": "8980",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Beauty Salons"
+        },
+        {
+          "conceptCode": "8990",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Nail Salons and Other Personal Care Services"
+        },
+        {
+          "conceptCode": "9070",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Drycleaning and Laundry Services"
+        },
+        {
+          "conceptCode": "9080",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Funeral Homes, and Cemeteries and Crematories"
+        },
+        {
+          "conceptCode": "9090",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Other Personal Services"
+        },
+        {
+          "conceptCode": "9160",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Religious Organizations"
+        },
+        {
+          "conceptCode": "9170",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Civic, Social, Advocacy Organizations, and Grantmaking and Giving Services"
+        },
+        {
+          "conceptCode": "9180",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Labor Unions"
+        },
+        {
+          "conceptCode": "9190",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Business, Professional, Political, and Similar Organizations"
+        },
+        {
+          "conceptCode": "9290",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Private Households"
+        },
+        {
+          "conceptCode": "9370",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Executive Offices and Legislative Bodies"
+        },
+        {
+          "conceptCode": "9380",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Public Finance Activities"
+        },
+        {
+          "conceptCode": "9390",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Other General Government and Support"
+        },
+        {
+          "conceptCode": "9470",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Justice, Public Order, and Safety Activities"
+        },
+        {
+          "conceptCode": "9480",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Administration of Human Resource Programs"
+        },
+        {
+          "conceptCode": "9490",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Administration of Environmental Quality and Housing Programs"
+        },
+        {
+          "conceptCode": "9570",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Administration of Economic Programs and Space Research"
+        },
+        {
+          "conceptCode": "9590",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "National Security and International Affairs"
+        },
+        {
+          "conceptCode": "9670",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "U. S. Army"
+        },
+        {
+          "conceptCode": "9680",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "U. S. Air Force"
+        },
+        {
+          "conceptCode": "9690",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "U. S. Navy"
+        },
+        {
+          "conceptCode": "9770",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "U. S. Marines"
+        },
+        {
+          "conceptCode": "9780",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "U. S. Coast Guard"
+        },
+        {
+          "conceptCode": "9790",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Armed Forces, Branch Not Specified"
+        },
+        {
+          "conceptCode": "9870",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "Military Reserves or National Guard"
+        },
+        {
+          "conceptCode": "9880",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "NIOSH-Retired"
+        },
+        {
+          "conceptCode": "9890",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "NIOSH-Non-Paid Workers"
+        },
+        {
+          "conceptCode": "9990",
+          "valueSetConceptDefinitionText": null,
+          "valueSetConceptStatusDate": "2022-07-21T00:00:00-04",
+          "codeSystemOID": "2.16.840.1.114222.4.5.336",
+          "cdcpreferredDesignation": "NIOSH-Insufficient Information"
+        }
+      ],
+      "valueSetVersion": 1
+    }
+  ]
+}

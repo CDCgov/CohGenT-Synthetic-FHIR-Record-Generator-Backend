@@ -1,5 +1,5 @@
-from sqlalchemy import String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import ForeignKey, Integer, String
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from api.database.database_client import Base
 
 '''
@@ -15,6 +15,37 @@ class TribalAffiliation(Base):
 
     def __repr__(self):
         return f"<TribalAffiliation(id={self.affiliation_id}, system={self.system}, code='{self.code}', display='{self.display}')>"
+
+
+class Industry(Base):
+    """North American Industry Classification System (NAICS) codes"""
+    __tablename__ = 'industry'
+    
+    industry_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    system: Mapped[str] = mapped_column(String(255), nullable=False, default="urn:oid:2.16.840.1.114222.4.5.336", server_default="urn:oid:2.16.840.1.114222.4.5.336")
+    code: Mapped[str] = mapped_column(String(100), unique=True, index=True)
+    display: Mapped[str] = mapped_column(String(500))
+
+    occupations: Mapped[list["Occupation"]] = relationship("Occupation", back_populates="industry")
+
+    def __repr__(self):
+        return f"<Industry(code='{self.code}', display='{self.display}')>"
+
+class Occupation(Base):
+    """Standard Occupational Classification (SOC) codes"""
+    __tablename__ = 'occupation'
+    
+    occupation_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    system: Mapped[str] = mapped_column(String(255), nullable=False, default="urn:oid:2.16.840.1.114222.4.5.339", server_default="urn:oid:2.16.840.1.114222.4.5.339")
+    code: Mapped[str] = mapped_column(String(100), unique=True, index=True)
+    display: Mapped[str] = mapped_column(String(500))
+    industry_id: Mapped[int] = mapped_column(Integer, ForeignKey('industry.industry_id'), nullable=False)
+
+    industry: Mapped["Industry"] = relationship("Industry", back_populates="occupations")
+
+    def __repr__(self):
+        return f"<Occupation(id={self.occupation_id}, system={self.system}, code='{self.code}', display='{self.display}')>"
+
 
 class ProviderEntity(Base):
     __tablename__ = 'provider_entity'

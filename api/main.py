@@ -8,10 +8,14 @@ __version__ = "1.2.0"
 
 import io
 import csv
-from fastapi import Depends, FastAPI, HTTPException, Query, Request
-from fastapi.responses import StreamingResponse
+import time
+from fastapi import Depends, FastAPI, HTTPException, Query, Request, Response
+from fastapi.responses import ORJSONResponse, StreamingResponse
 from loguru import logger
+import orjson
+from sqlalchemy.exc import OperationalError
 from sqlalchemy.orm import Session
+from starlette import status
 from api.features.presets.observation_values import get_preset_cache
 from api.models.FHIR.bundle import Bundle
 from api.models.FHIR.fhirresource import FHIRResource
@@ -28,7 +32,6 @@ from api.models.responses.jsonresponse import PrettyJSONResponse
 from api.utilities.settings import get_settings
 from api.models.responses.basic_response_models import InfoResponse, UseCaseCollectionResponse
 from api.database.database_client import DatabaseClient, get_main_db
-from api.database import db_preset_tables, db_sample_tables, db_other_tables  # type: ignore - IMPORT IS REQUIRED TO BUILD TABLES
 from api.routers import presets_router, terminology_router, samples_router, valuesets_router, providers_router
 from api.models.cohort_settings import OutputFormat
 
@@ -62,7 +65,8 @@ async def lifespan(app: FastAPI):
     logger.info(f"{app.title} Starting")
     logger.info(f"Version {app.version}")
     logger.info("="*60)
-    
+
+    from api.database import db_preset_tables, db_sample_tables, db_other_tables  # type: ignore - IMPORT IS REQUIRED TO BUILD TABLES
     logger.info(f"Checking main database...")
     db_client.create_all_tables()
     
@@ -142,13 +146,14 @@ async def add_security_headers(request: Request, call_next):
 # Setup Logging
 setup_logging(log_level=settings.log_level, show_fhirsheets_logs=settings.show_fhirsheets_logs)
 
-
-
-"""
-Provides basic information about the application.
-"""
+'''
+Endpoints
+'''
 @app.get("/info", response_class=PrettyJSONResponse)
 async def info():
+    """
+    Provides basic information about the application.
+    """
     if omop_client is None:
         terminology_search_status = "Disabled (Client not configured)"
     else:
@@ -161,13 +166,17 @@ async def info():
             }
         }) 
 
+"""
+"""
 
-"""
-Returns use cases/scenarios.
-"""
+
+
 @app.get("/usecaseguidance", response_class=PrettyJSONResponse) # LEGACY SUPPORT ONLY
 @app.get("/scenarios", response_class=PrettyJSONResponse)
 async def get_use_case_guidance():
+    """
+    Returns use cases/scenarios.
+    """
     use_cases = read_use_case_assets()
     return UseCaseCollectionResponse.model_validate({
             "count": len(use_cases),
@@ -175,28 +184,35 @@ async def get_use_case_guidance():
     })
 
 
-"""
-Generate FHIR Output
-"""
-@app.post("/generate", response_class=PrettyJSONResponse)
-async def generate_fhir(cohort_settings: CohortSettings,
+
+@app.post("/generate")
+def generate_fhir(cohort_settings: CohortSettings,
                         raw: bool = Query(default=False, description="Return raw JSON instead of a binary zip. Does not work for NDJSON."),
                         main_db: Session = Depends(get_main_db)):
-
+    """
+    Generate FHIR Output
+    """
     # Execute Generation using settings and build the FHIR Sheets Inputs.
     resource_definitions, resource_links, cohort = start_generation(cohort_settings, main_db, settings.iteration_limit)
 
     # Setup FHIR SHeets configuration.
     fhir_sheets_config = FhirSheetsConfiguration({"random_seed": cohort_settings.seed, "enable_default_resource_links": False})
-
+    start = time.time()
     if cohort_settings.output_format == OutputFormat.JSON:
         # TODO: Current version of this keeps flow from original implementation to avoid breaking changes. Needs to be handled in like manner to NDJSON once ready.
         bundle_list: list[Bundle] = []
         try:
             for i in range(cohort_settings.count):
-                bundle_dict = create_transaction_bundle(resource_definitions, resource_links, cohort, i, fhir_sheets_config) # pyright: ignore[reportUnknownVariableType]
+                start = time.time()
+                bundle_dict = create_transaction_bundle(resource_definitions, resource_links, cohort, i, fhir_sheets_config)
+                logger.info(f"create_transaction_bundle {i}: {time.time()-start}s")
+                
+                start = time.time()
                 bundle = Bundle.model_validate(bundle_dict)
+                logger.info(f"Bundle.model_validate {i}: {time.time()-start}s")
+                
                 bundle_list.append(bundle)
+
         except Exception as e: 
             logger.exception(e)
             raise HTTPException(status_code=500, detail="Something went wrong executing FHIR generation library.")
@@ -220,16 +236,16 @@ async def generate_fhir(cohort_settings: CohortSettings,
     else:
         raise HTTPException(status_code=501, detail="Output type not implemented. Please see documentation for supported output types.")
 
-"""
-Convert Summary to CSV
-This takes back in a generation summary from the UI and converts it to a CSV. As the generation is not saved in memory, there
-is no way to make this generate without feeding the data back in. In future versions with a generation history, this can be changed.
-"""
+
 @app.post("/convert-summary-to-csv")
 async def export_to_csv(summaries: list[PatientContainer]) -> StreamingResponse:
     """
+    Convert Summary to CSV
+
     Accepts a list of PatientRecordSummary objects and returns a CSV file.
     Handles dynamic resourceCounts keys.
+
+    Note: This is a helper endpoint for the primary User Interface.
     """
     # Create an in-memory text stream
     output = io.StringIO()
@@ -277,3 +293,173 @@ async def export_to_csv(summaries: list[PatientContainer]) -> StreamingResponse:
             "Content-Disposition": "attachment; filename=patient_summary.csv"
         }
     )
+
+
+from datetime import datetime
+from pathlib import Path
+
+@app.get("/health", tags=["System"], response_class=PrettyJSONResponse)
+async def health_check(db: Session = Depends(get_main_db)):
+    """
+    Comprehensive health check for deployment troubleshooting.
+    
+    Checks:
+    - Database connectivity
+    - Required seed data
+    - File system access
+    - Application configuration
+    
+    Returns 200 if all checks pass, 503 if any critical check fails.
+    """
+    health_status = {
+        "timestamp": datetime.utcnow().isoformat(),
+        "application": {
+            "name": __title__,
+            "version": __version__,
+            "status": "unknown"
+        },
+        "checks": {}
+    }
+    
+    all_healthy = True
+    
+    # 1. Database Connection Check
+    # try:
+    #     db.execute("SELECT 1")
+    #     health_status["checks"]["database_connection"] = {
+    #         "status": "healthy",
+    #         "message": "Database connection successful"
+    #     }
+    # except OperationalError as e:
+    #     all_healthy = False
+    #     health_status["checks"]["database_connection"] = {
+    #         "status": "unhealthy",
+    #         "message": "Database connection failed - infrastructure issue",
+    #         "error": str(e),
+    #         "resolution": (
+    #             "Verify: (1) Database service is running, "
+    #             "(2) Network connectivity, (3) DATABASE_URL is correct. "
+    #             "Contact your system administrator."
+    #         )
+    #     }
+    # except Exception as e:
+    #     all_healthy = False
+    #     health_status["checks"]["database_connection"] = {
+    #         "status": "unhealthy",
+    #         "message": "Unexpected database error",
+    #         "error": str(e),
+    #         "resolution": "Check application logs and contact your system administrator."
+    #     }
+    
+    # 2. Database Tables Check
+    try:
+        from api.database.db_preset_tables import ValuePreset
+        from api.database.db_other_tables import TribalAffiliation, Occupation, Industry
+
+        # Try to query each critical table
+        db.query(ValuePreset).first()
+        db.query(TribalAffiliation).first()
+        db.query(Industry).first()
+        db.query(Occupation).first()
+        
+        health_status["checks"]["database_tables"] = {
+            "status": "healthy",
+            "message": "All required database tables exist"
+        }
+    except Exception as e:
+        all_healthy = False
+        health_status["checks"]["database_tables"] = {
+            "status": "unhealthy",
+            "message": "Database tables missing or inaccessible",
+            "error": str(e),
+            "resolution": (
+                "Database schema may not be initialized. "
+                "Ensure application startup completed successfully. "
+                "Check logs for table creation errors."
+            )
+        }
+    
+    # 3. Seed Data Check
+    try:
+        from api.database.db_preset_tables import ValuePreset
+        preset_count = db.query(ValuePreset).count()
+        
+        if preset_count > 0:
+            health_status["checks"]["seed_data"] = {
+                "status": "healthy",
+                "message": f"Lab value presets loaded ({preset_count} records)"
+            }
+        else:
+            all_healthy = False
+            health_status["checks"]["seed_data"] = {
+                "status": "warning",
+                "message": "No lab value presets found",
+                "resolution": (
+                    "Seed data may not have loaded. Check startup logs for CSV file errors. "
+                    "Verify data/lab_value_presets.csv exists."
+                )
+            }
+    except Exception as e:
+        # Don't fail health check for seed data issues
+        health_status["checks"]["seed_data"] = {
+            "status": "warning",
+            "message": "Could not verify seed data",
+            "error": str(e)
+        }
+    
+    # 4. File System Access Check
+    try:
+        use_case_dir = Path("api/assets/usecasetemplates")
+        common_entities_dir = Path("api/assets/commonentities")
+        
+        if use_case_dir.exists() and common_entities_dir.exists():
+            use_case_count = len(list(use_case_dir.glob("*.json*")))
+            common_entity_count = len(list(common_entities_dir.glob("*.json*")))
+            
+            health_status["checks"]["file_system"] = {
+                "status": "healthy",
+                "message": f"File system accessible ({use_case_count} use cases, {common_entity_count} common entities)"
+            }
+        else:
+            all_healthy = False
+            health_status["checks"]["file_system"] = {
+                "status": "unhealthy",
+                "message": "Required directories not found",
+                "resolution": (
+                    "Application files may not be properly deployed. "
+                    "Verify api/assets/ directory structure is intact."
+                )
+            }
+    except Exception as e:
+        all_healthy = False
+        health_status["checks"]["file_system"] = {
+            "status": "unhealthy",
+            "message": "File system access error",
+            "error": str(e),
+            "resolution": "Check file permissions and disk availability."
+        }
+    
+    # 5. Configuration Check
+    health_status["checks"]["configuration"] = {
+        "status": "info",
+        "database_url_configured": bool(settings.database_url),
+        "omop_database_configured": bool(settings.omop_database_url),
+        "logging_enabled": settings.enable_run_logs
+    }
+    
+    # Set overall status
+    if all_healthy:
+        health_status["application"]["status"] = "healthy"
+        health_status["message"] = "All systems operational"
+        return health_status
+    else:
+        health_status["application"]["status"] = "unhealthy"
+        health_status["message"] = (
+            "One or more health checks failed. This indicates an infrastructure "
+            "or configuration issue with your deployment. Review failed checks above "
+            "and contact your system administrator."
+        )
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=health_status
+        )

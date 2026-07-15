@@ -1,6 +1,7 @@
+import time
 from typing import Any
 from api.models.FHIR.fhirresource import FHIRResource
-from api.models.responses.generation_summary import GenerationSummaryJson, GenerationSummaryBinary, PatientRecordSummary
+from api.models.responses.generation_summary import GenerationParameters, GenerationSummaryJson, GenerationSummaryBinary, PatientContainer, PatientRecordSummary
 from api.models.cohort_settings import CohortSettings
 from api.models.FHIR.patient import Patient
 from api.models.FHIR.bundle import Bundle, BundleEntry
@@ -16,18 +17,15 @@ from collections import defaultdict
 from zoneinfo import ZoneInfo
 
 def package_contents_as_json(bundle_list: list[Bundle], cohort_settings: CohortSettings) -> GenerationSummaryJson:
-    patient_containers: list[Any] = []
+    patient_containers: list[PatientContainer] = []
     generation_parameters = parse_generation_parameters(cohort_settings)
     for bundle in bundle_list:
         patient_summary = parse_patient_summary_from_bundle(bundle)
-        patient_containers.append({"summary": patient_summary, "fhir": bundle})
-    
-    return GenerationSummaryJson.model_validate(
-        {
-            "timeStamp": _get_time_as_utc_iso_string(),
-            "generationParameters": generation_parameters,
-            "generationSummary": patient_containers
-        })
+        patient_containers.append(PatientContainer(summary = patient_summary, fhir = bundle))
+    return GenerationSummaryJson(
+        time_stamp = _get_time_as_utc_iso_string(),
+        generation_parameters = generation_parameters,
+        generation_summary = patient_containers)
 
 def package_contents_as_binary(bundle_list: list[Bundle], cohort_settings: CohortSettings) -> GenerationSummaryBinary:
     patient_containers: list[Any] = []
@@ -49,23 +47,22 @@ def package_contents_as_binary(bundle_list: list[Bundle], cohort_settings: Cohor
     generation_parameters = parse_generation_parameters(cohort_settings)
 
     
-    return GenerationSummaryBinary.model_validate({
-            "timeStamp": _get_time_as_utc_iso_string(),
-            "generationParameters": generation_parameters,
-            "generationSummary": patient_containers,
-            "data": zip_base64
-        })
+    return GenerationSummaryBinary(
+            time_stamp= _get_time_as_utc_iso_string(),
+            generation_parameters= generation_parameters,
+            generation_summary= patient_containers,
+            data= zip_base64
+        )
 
 def _get_time_as_utc_iso_string() -> str:
     current_time = datetime.now(timezone.utc)
     return current_time.isoformat()
 
-def parse_generation_parameters(cohort_settings: CohortSettings) -> dict[str, int | str]:
-    return {
-                "useCaseId": cohort_settings.use_case_id,
-                "count": cohort_settings.count,
-                "seed": cohort_settings.seed
-            }
+def parse_generation_parameters(cohort_settings: CohortSettings) -> GenerationParameters:
+    return GenerationParameters(
+                use_case_id = cohort_settings.use_case_id,
+                count = cohort_settings.count,
+                seed = cohort_settings.seed)
 
 def parse_patient_summary_from_bundle(bundle: Bundle) -> PatientRecordSummary:
     patient_summary = {}

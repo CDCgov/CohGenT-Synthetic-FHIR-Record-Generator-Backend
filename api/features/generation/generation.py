@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import Any
 
 from sqlalchemy.orm import Session
@@ -15,7 +16,7 @@ from api.models.option import ControlType
 from api.models.use_case import AdditionalEntity, UseCase, FormRule
 from api.models.entity import Entity
 from api.models.patient_meta import PatientMeta
-from api.models.value_types import is_value_coding, is_value_range, is_value_time_range_as_days, is_value_tribal_affiliation, is_value_prevalence
+from api.models.value_types import ValueOccupation, ValueTribalAffiliation, is_bool, is_value_coding, is_value_occupation, is_value_range, is_value_time_range_as_days, is_value_tribal_affiliation, is_value_prevalence
 from api.features.generation.fhir_sheets_interfaces import generate_all
 from api.utilities.file_reader import get_use_case_by_id, read_common_entity
 from api.features.generation.type_handlers import handle_by_type, process_choice_of_data_type_value, fhir_type_match_check, value_coding_to_string
@@ -48,6 +49,9 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
     start = time.time() # Start run timer
     session_id = f"{datetime.fromtimestamp(start)} - {generate_uuid_identifier()}"
 
+    # Log to main logs (always)
+    logger.info(f"Starting cohort generation: {configuration.count} patients, use_case={configuration.use_case_id}, seed={configuration.seed}")
+
     entity_cache = ProviderCache(main_db)
     
     if settings.enable_run_logs:
@@ -77,6 +81,24 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
     else:
         default_settings = parse_default_settings(use_case.form_rules)
 
+    mask_pii_enabled = False
+    mask_pii_setting = next(
+        (setting for setting in configuration.user_responses or [] 
+        if setting.rule_id == "mask-pii"), 
+        None
+    )
+
+    if mask_pii_setting is None:
+        # Fall back to default if user didn't provide it
+        mask_pii_setting = next(
+            (setting for setting in default_settings 
+            if setting.rule_id == "mask-pii"),
+            None
+        )
+
+    if mask_pii_setting and is_bool(mask_pii_setting.value):
+        mask_pii_enabled = mask_pii_setting.value
+
     # Initialize major entities (non-repeatable)
     entities: list[Entity] = generate_entities(use_case)
     dynamic_entities: list[Entity] = []
@@ -95,6 +117,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
     # Pre-loop Initializers
     patients_as_dicts: list[PatientRow] = []
     distributions: Distributions = setup_patient_distributions(entities, configuration, default_settings)
+    added_provider_ids: set[str] = set()
 
     # Cache common entities before loops.
     # TODO: Add error handling on this.
@@ -110,13 +133,14 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
             return None
         if common_entity.entity_file not in entity_file_cache:
             entity_file_cache[common_entity.entity_file] = read_common_entity(common_entity.entity_file)
-        return entity_file_cache[common_entity.entity_file]
-    
+        return entity_file_cache[common_entity.entity_file]   
+
     # Generate Patient Rows
     '''
     Handle static entities and patient initialization.
     '''
     for patient_count in range(configuration.count):
+        logger.info(f"Generating patient {patient_count + 1}/{configuration.count}")
         '''
         Initialize Patient Row and Major Dependent Variables
         patient_row = The row of data for the patient. (Equivalent to spreadsheet row.)
@@ -148,7 +172,8 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                            use_case, distributions,
                            configuration,
                            default_settings,
-                           main_db)
+                           main_db,
+                           mask_pii_enabled)
         '''
         Handle Clinical Data Sets (Event Sets)
         '''
@@ -212,7 +237,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                                 if field.value is not None and field.value == C.SpecialValues.CURRENT.value:
                                     value = str(current_date)
                                 else:
-                                    value = handle_by_type(field.type, field, patient_meta, None)
+                                    value = handle_by_type(field.type, field, patient_meta, None, main_db=main_db)
                             else:
                                 if field.path == "DiagnosticReport.code":
                                     value = f"{event_set.diagnostic_report_concept.system}^{event_set.diagnostic_report_concept.code}^{event_set.diagnostic_report_concept.display}"
@@ -244,7 +269,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                                         if field.value is not None and field.value == C.SpecialValues.CURRENT.value:
                                             value = str(current_date)
                                         else:
-                                            value = handle_by_type(field.type, field, patient_meta, None)
+                                            value = handle_by_type(field.type, field, patient_meta, None, main_db)
                                     else:
                                         # TODO: make generic/move to handler, supporting all codeable concepts.
                                         # Currently only supports fields with "code" field label for now in alighment with support ofr Observation and Procedure.
@@ -270,19 +295,24 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                                             # If not, then pull from db (providers only atm)
                                             else:
                                                 linked_entity_model = entity_cache.get_provider_entity(linked_target.target_entity_identifier)
-                                                dynamic_entities.append(linked_entity_model)
-                                                dynamic_resource_links.append((cloned_entity.entity_id, dynamic_reference.reference_path, linked_entity_model.entity_id))
+                                                # Only add entity once
+                                                if linked_entity_model.entity_id not in added_provider_ids:
+                                                    dynamic_entities.append(linked_entity_model)
+                                                    added_provider_ids.add(linked_entity_model.entity_id)
+                                                    process_static_entity(linked_entity_model, patient_row_as_dict)
+
+                                                    # Handle static references (PractitionerRole -> Org/Practitioner)
+                                                    for static_reference in linked_entity_model.static_references or []:
+                                                        static_reference_entity = entity_cache.get_provider_entity(static_reference.target_entity)
+                                                        
+                                                        if static_reference_entity.entity_id not in added_provider_ids:
+                                                            dynamic_entities.append(static_reference_entity)
+                                                            added_provider_ids.add(static_reference_entity.entity_id)
+                                                            process_static_entity(static_reference_entity, patient_row_as_dict)
+                                                        
+                                                        dynamic_resource_links.append((linked_entity_model.entity_id, static_reference.reference_path, static_reference_entity.entity_id))
                                                 
-                                                process_static_entity(linked_entity_model, patient_row_as_dict)
-
-                                                # Handled any linked static references (e.g., PractitionerRole -> Organization and Practitioner)
-                                                # NOTE: These must be fully self contained entities without any user configuration, the same as the initial dynamic entity.
-                                                for static_reference in linked_entity_model.static_references or []:
-                                                    static_reference_entity = entity_cache.get_provider_entity(static_reference.target_entity)
-                                                    dynamic_entities.append(static_reference_entity)
-                                                    dynamic_resource_links.append((linked_entity_model.entity_id, static_reference.reference_path, static_reference_entity.entity_id))
-                                                    process_static_entity(static_reference_entity, patient_row_as_dict)
-
+                                                dynamic_resource_links.append((cloned_entity.entity_id, dynamic_reference.reference_path, linked_entity_model.entity_id))
                                         else:
                                             logger.warning(f"Could not load entity with link identifier: {dynamic_reference.link_identifier} for {cloned_entity.entity_id}. Skipped.")
 
@@ -319,17 +349,11 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
         patients_as_dicts.append(patient_row_as_dict)
     entities.extend(dynamic_entities)
 
-    end = time.time()
-    with logger.contextualize(run_id=session_id):
-        if settings.enable_run_logs:
-            logger.info(f"Cohort Generated Successfully! Beginning output processing.")
-            logger.info(f"Run Time: {end - start}")
-    
     '''
     Setting up and calling FHIR Sheets.
     '''
     # Build FHIR Sheets Objects
-    resource_definitions, resource_links, headers = generate_all(entities, dynamic_resource_links)
+    resource_definitions, resource_links, headers = generate_all(entities, dynamic_resource_links, mask_pii_enabled)
     patients: list[PatientEntry] = [PatientEntry(patient_as_dict) for patient_as_dict in patients_as_dicts]
     cohort = CohortData(headers, patients)
 
@@ -340,6 +364,15 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
             log_resource_links(session_id, resource_links)
             logger.info(headers)
             logger.info(patients)
+
+    end = time.time()
+    logger.info(f"Cohort Generated Successfully! Beginning output processing.")
+    logger.info(f"Run Time: {end - start}")    
+    # Write to the run log as well.
+    with logger.contextualize(run_id=session_id):
+        if settings.enable_run_logs:
+            logger.info(f"Cohort Generated Successfully! Beginning output processing.")
+            logger.info(f"Run Time: {end - start}")
     
     return resource_definitions, resource_links, cohort
 
@@ -524,7 +557,17 @@ def parse_default_settings(form_rules: list[FormRule]) -> list[Setting]:
                     elif is_value_prevalence(option.default_values):
                         setting["value"] = option.default_values
                     else:
-                        pass
+                        # If no default provided...
+                        setting["value"] = {
+                            "prevalence": Decimal(0.05),
+                            "affiliationCode": None
+                            }
+                elif option.control == ControlType.OCCUPATION:
+                    if is_value_occupation(option.default_values):
+                        setting["value"] = option.default_values
+                    else:
+                        # If no default provided...
+                        setting["value"] = {"occupationCode": None}
                 elif option.control in ControlType:
                     # All other valid control types passed. Some do not allow default values.
                     pass
