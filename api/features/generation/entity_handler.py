@@ -80,8 +80,6 @@ def process_entity(entity: Entity, patient_meta: PatientMeta, patient_row_as_dic
                             should_mask = mask_pii_enabled and field.pii
                             generated_value = handle_by_type(field.extension_details.value_type, field, patient_meta, field_setting, should_mask, main_db)
                 else:
-                    print("SHOULD BE HERE")
-                    print(type(main_db))
                     should_mask = mask_pii_enabled and field.pii
                     generated_value = handle_by_type(field.type, field, patient_meta, field_setting, should_mask, main_db)
 

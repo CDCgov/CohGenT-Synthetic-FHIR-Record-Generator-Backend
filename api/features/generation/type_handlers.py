@@ -145,6 +145,11 @@ def Coding(field_setting: Setting, patient_meta: PatientMeta, static_value: Valu
             raise TypeError(f"{type(field_setting.value)} not (yet?) supported for FHIR type of Coding/CodeableConcept, occurred when generating {field_setting.rule_id}.")
     elif is_value_coding(static_value):
         return value_coding_to_string(static_value)
+    elif is_value_occupation(static_value):
+        if main_db is None:
+            raise TypeError(f"{type(static_value)} cannot be used outside of a flow where database is not accessible. Please contact maintainers.")
+        else:
+            return generate_occupation(static_value, main_db)
     else:
         raise TypeError(f"Expected ValueCoding for types Coding or CodeableConcept for static values - {field_setting}")
 
