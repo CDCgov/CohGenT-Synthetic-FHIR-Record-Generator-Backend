@@ -107,27 +107,147 @@ A "Use Case Scenario" is a specific public health/clinical scenario represented 
 
 The Use Case Scenario file can be either JSON or JSON5 (JSON with comments).
 
-### Entities
+Relevant Files:
+* `./api/models/use_case.py`
 
-TODO
-- Entity Model
+### Entities and Fields
 
-#### Fields
+An "Entity" models the backbone of a FHIR Resource (e.g., `Patient`) for generation, defining meta data such as an identifier for the Entity, the Entity's profile, major references/links to other Entities, and the Fields within. A "Field" is a single FHIR Resource field (e.g., a patient's name). Each Field provides information on the FHIR Path for the (FHIR) field within the resource (e.g., `Patient.name`), the FHIR type, whether or not the Field is use configurable in the current use case, and if not user configurable what the value should be set as. For user configurable fields, it also includes which user control ("Option") it connects to via the `userSettingRuleId` attribute, and may contain special map objects that connect the user facing options to a specific value such as a boolean or Coding based on the FHIR Type of the field.
+
+For example, given the case of the `Patient.deceasedBoolean` field, the user facing UI option may provide a weighted binary option of either "Living" or "Deceased". Using the `booleanMap` attribute, "Living" can be mapped to False and "Deceased" to True when generating the FHIR output.
+
+Entities support inheritance through the `baseEntity` attribute, allowing common field sets to be reused across similar resources (e.g., base observation fields shared by multiple lab test entities).
+
+Relevant Files:
+* `api/models/entity.py`
+* `api/models/field.py`
 
 ### Form Rules
 
-TODO
-- Form Model
-- Types of "steps"
-- Types of "controls"
-- Connecting a form rule to an entity field
+Form Rules define the user interface controls for configuring cohort generation parameters. Each use case scenario includes a `formRules` array that specifies the form structure, including organization into steps/sections and the individual configuration options presented to users. This is a simplified approach based on FHIR Questionnaires.
+
+**Form Structure:**
+- **Steps**: Organize the form into logical sections (e.g., "Patient Demographics", "Clinical Data"). Each step has a label and contains multiple options. Steps may either be defined purely by the use case scenario by defining the type as `custom` or leverage one of the prebuilt UI steps for common needs.
+- **Options**: Individual configuration controls within a step. Each option is defined by the `Option` model, which specifies the control type, labels, default values, and validation rules.
+
+**Supported Control Types:**
+Options can use various control types to match the data being configured:
+- `CHECKBOX` - Binary on/off toggles (e.g., "Include smoking status")
+- `RANGE` - Numeric ranges with min/max (e.g., patient age 20-65)
+- `WEIGHTING` - Distribution sliders for weighted selections (e.g., 40% male, 60% female)
+- `RELATIVE_TIME_RANGE` - Time offsets in days (e.g., onset 30-90 days before event)
+- `TRIBAL_AFFILIATION` - Tribal affiliation selector with prevalence
+- `OCCUPATION` - Occupation code selector
+- `CONCEPT` - Clinical concept/terminology picker (codes, diagnoses)
+- `LOCATION` - Geographic location (state, city)
+- `PREVALENCE` - Prevalence-based controls for optional features
+
+**Connecting to Entity Fields:**
+Options connect to entity fields through the `ruleId` attribute in the Option and the `userSettingRuleId` attribute in the Field. When a field is user-configurable (`userConfigured: true`), its `userSettingRuleId` must match a `ruleId` from an option in the form rules. During generation, the system looks up the user's setting for that rule ID and applies it to the corresponding field.
+
+**Example:**
+```json
+// In formRules
+{
+  "ruleId": "patient-age",
+  "label": "Patient Age Range",
+  "control": "range",
+  "defaultValues": [18, 65]
+}
+
+// In entity field
+{
+  "path": "Patient.birthDate",
+  "userConfigured": true,
+  "userSettingRuleId": "patient-age"
+}
+```
+
+When generation occurs, the user's age range setting (retrieved via `ruleId: "patient-age"`) is used to calculate appropriate birth dates for the `Patient.birthDate` field.
+
+Relevant Files:
+* `api/models/use_case.py` - FormRule model
+* `api/models/option.py` - Option and ControlType definitions
+* `api/models/cohort_settings.py` - Setting model (user responses)
 
 
 ### Common Entities
 
-TODO
-- Configuring common entities
-- Dynamic Links
+Common entities are reusable entity templates stored as separate files in `./api/assets/commonentities/` that can be shared across multiple use case scenarios as part of the `additional-data-time-series` form step, which connects to (user facing in the UI) Clinical Data Sets or (in the API model) Event Sets. Unlike the singleton entities defined directly in a use case scenario file, common entities are designed to be generated multiple times (e.g., lab results that repeat weekly) and which of the templates are used may be customized per use case.
+
+**Why Common Entities?**
+Common entities solve the problem of repetitive entities for large amounts of data generation over an extended period. For example, lab observations follow the same FHIR structure regardless of which specific lab test is being ordered and in which context (defined as the use case scenario) it is being ordered. Rather than defining a complete Observation entity for every possible lab test in every use case, you create one "US Core Observation Lab" common entity template and reuse it with different lab codes (LOINC codes) specified in each use case in the `additional-data-time-series` step of the UI (shown as Clinical Data). 
+
+**Structure:**
+Common entity files contain standard Entity definitions just like entities in use case scenarios, but they're designed to be:
+1. **Reusable** - The same entity file can be referenced by multiple use cases
+2. **Parameterizable** - Key fields (like diagnostic codes) can be overridden when referenced
+3. **Repeatable** - Used in event sets to generate multiple instances with different dates/values
+4. **Dynamically linkable** - Can reference provider entities or use case entities through dynamic references
+
+**How to Use Common Entities:**
+
+1. **Reference in Use Case** - In your use case scenario's `commonEntities` section, specify which common entity files to use:
+```json
+"commonEntities": {
+    "diagnosticReport": "USCoreDiagnosticReportLab",
+    "medication": "USCoreMedicationRequest",
+    "additionalEntities": [
+        {
+            "entityId": "labResult",
+            "type": "observation",
+            "buttonLabel": "Lab Result",
+            "entityFile": "USCoreObservationLab",
+            "defaultSystem": "LOINC"
+        }
+    ]
+}
+```
+
+2. **Use in Event Sets** - Reference the common entity by its `type` when defining repeating clinical data:
+```json
+"eventSets": [
+    {
+        "name": "Weekly Labs",
+        "timing": {
+            "offset": 0,
+            "repeat": true,
+            "repeatTiming": 7
+        },
+        "entry": [
+            {
+                "type": "observation",  // matches additionalEntities.type above
+                "codeableConcept": {
+                    "system": "http://loinc.org",
+                    "code": "2823-3",
+                    "display": "Potassium"
+                }
+            }
+        ]
+    }
+]
+```
+
+3. **Configure Dynamic Links** - Common entities can include `dynamicReferences` that get resolved when used. This allows linking to provider entities or other resources specific to each use case. See the "Dynamic References" section for details on how these links work.
+
+**Built-in Common Entities:**
+- `USCoreObservationLab` - Lab test results
+- `USCoreDiagnosticReportLab` - Lab report containers (configured at the event set level to wrap a set of lab test observations)
+- `USCoreDiagnosticReportRadiology` - Radiology reports  
+- `USCoreProcedure` - Clinical procedures
+- `USCoreMedicationRequest` - Medication orders (handled in their own step outsode of `additional-data-time-series`/Clinical Data but in a similar way)
+
+**Creating New Common Entities:**
+1. Create a JSON file in `./api/assets/commonentities/`
+2. Define the entity following the standard Entity model structure
+3. Use `dynamicReferences` for any links that should be configurable per use case
+4. Add user-configurable fields where appropriate (e.g., observation values)
+5. Reference it in use case scenarios via `commonEntities.additionalEntities`
+
+Relevant Files:
+* `./api/assets/commonentities/` - Common entity definition files
+* `./api/models/use_case.py` - CommonEntities and AdditionalEntity models
+* `./api/utilities/file_reader.py` - `read_common_entity()` function
 
 
 ## Type Support
@@ -136,22 +256,28 @@ FHIR Type support is limited in the current version of the application, based ar
 Currently the following combinations are supported:
 | CohGenT Input Type | FHIR Output Type | Notes
 |-------------|------|------
-ValueWeights (with boolean map field) | boolean
-ValueWeights | string | Observations only.
-ValueTimeRangeAsDays | datetime | Generates a relative datetime based on generation parameters.
-ValueTimeRangeAsDays | instant | Generates a relative datetime based on generation parameters.
+ValueAddress | Address | Only supports setting State and City. Country is always US. Other elements are always randomized.
 ValueCoding | CodeableConcept | Only a single Coding element is supported.
 ValueCoding | Coding
-ValueAddress | Address | Only supports setting State and City. Country is always US. Other elements are always randomized.
+ValueOccupation | CodeableConcept | Special field that will compare a code against the occupation table of the database.
 ValueRangeWithUnits | Quantity | Observations only.
+ValueTimeRangeAsDays | datetime | Generates a relative datetime based on generation parameters.
+ValueTimeRangeAsDays | instant | Generates a relative datetime based on generation parameters.
+ValueWeights (with boolean map field) | boolean
+ValueWeights (with concept map field) | CodeableConcept
+ValueWeights (with concept map field) | Coding
+ValueWeights | string | Observations only.
 
-Note that "HumanName" is a special field and considered always randomly generated. For more information, see the special values listed further down. (For preset static names, use FHIR Sheets style indexing. This is mostly only applicable to static provider resources.)
+Note that "HumanName" is a special field and considered always randomly generate (though in more static locations like provider entities, can be defined by its sub elements). For more information, see the special values listed further down. (For preset static names, use FHIR Sheets style indexing. This is mostly only applicable to static provider resources.)
 
-Static fields may be defined in the entity definitions for fixed values in FHIR profiles mostly, but also for non-user facing concerns such as Observation statuses. The supported types are:
+Static field values may be defined in the entity definitions for fixed values in FHIR profiles mostly, but also for non-user facing concerns such as Observation statuses. The supported types are:
 * ValueCoding -> Coding
 * ValueCoding -> CodeableConcept
 * string -> string
 * string -> code
+* string -> Address (in FHIR Sheets carat delimited format)
+* string -> CodeableConcept (in FHIR Sheets carat delimited format)
+* string -> Coding (in FHIR Sheets carat delimited format)
 
 Special values can be used for some fields, set as a reserved string. These direct generation.
 * $uuid - Used for Identifier fields to note that a UUID should be inserted.
@@ -160,6 +286,7 @@ Special values can be used for some fields, set as a reserved string. These dire
 * $current - Set a datetime field as the current datetime being iterated through in cases where repetition is occuring. For example, when there are repeat lab tests in an event set that generate weekly, specifying $current will appropriately fill in the blank with the date of the current iteration relative to the event date. This should only be use for entities which can repeat.
 * $conditionClinicalStatus - Set either "active" or "resolved" for a Condition resource dynamically by whether an abatement date setting exists. This simply checks if there is a default or user provided setting with a path starting with "Condition.abatementDate" in the entity, and then evaluates if it will produce a date (start and end date of the relative time range are not 0, which for that type indicates a "do not generate" empty state). Note that this should only be used with Condition.clinicalStatus. There is no validation enforcing this however. In future versions this would ideally be changed to a more generic rule handling.
 * $patientContactPoint - Sets both email and phone systems with values.
+* $industry - Sets the patient's industry relative to occupation. **WARNING: Must come after occupation in the field order. ODH UsualWork profile only.**
 
 Some other special values ($) are present but do not have special functions attached to them, and are only to meet validation requirements for certain user configured fields. These should be disregarded.
 
@@ -360,4 +487,20 @@ The API provides several specialized endpoints for valuesets that not are not ea
 
 ## Migrating Versions of FHIR or Implementation Guides
 
-TODO
+The core CohGenT application code is FHIR version agnostic, and should not need to be modified for the sake of migrating FHIR or IG versions. However, use case scenarios are built to a single specific version of FHIR and/or IG. The Condition Based Record targets FHIR R4 US Core 6.1.0 (and ODH 1.3.0). This file (and other future use cases) is where the migraton would need to occur--though it is recommended to simply create a new version of the use case scenario and tag it appropriately.
+
+The exception here would be for special handlers such as Tribal Affiliation in CohGenT, or the OMB Race and Ethnicity special handlers in FHIR Sheets.
+
+## Known Issues and Limitations
+
+### Original FHIR Sheets Centric Design ("Iterate and Fill")
+
+This project started out as a way to complete spreadsheets in bulk for the FHIR Sheets CLI tool. This meant the original design focused heavily on the idea of
+literally filling out a giant table of dat with logical but mostly arbitrary data, without real field interdepencies or complex considerations. The simple "iterate and fill" approach is unsuited for continued evolution of the application as it has evolved, and has created significant tech debt.
+### Incomplete Type Handing
+
+FHIR Types and support for various UI control types were implemented on an as needed basis by feature request for the default Condition Based Record use case scenario. While adding new type support is relatively simple in the API, new control types in the UI may take more dedicated effort.
+
+### Limited Testing with Additional Use Cases
+
+All development focused around the relatively simple Condition Based Record (modeled around a basic public health scenario such as a reportable condition) and more complex or varied scenarios were not able to be tested. For FHIR records that would use mostly snap shot documentings using static values or simple weights among concepts (e.g., Medicolegal Death Investiation using the MDI FHIR IG) this would likely work when entities are modeled properly without code modification, but for more complex IG's with more resource nesting, complex compositions, or requirements such as message bundle wrappers significant upgrades would need to made (to FHIR Sheets as well as CohGenT).

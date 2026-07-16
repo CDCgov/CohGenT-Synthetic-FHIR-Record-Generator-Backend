@@ -5,6 +5,7 @@ from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from loguru import logger
 
+from api.database.db_other_tables import Occupation
 from api.features.generation.alias_types import Distributions, PatientRow
 import api.features.generation.constants as C
 from api.features.generation.generators.dates import calculate_birth_date, generate_age_at_event_date
@@ -131,6 +132,36 @@ def process_entity(entity: Entity, patient_meta: PatientMeta, patient_row_as_dic
                             {"system": "email", "value": generate_email(patient_meta.name)},
                             {"system": "phone", "value": fake.basic_phone_number()}
                         ]
+                elif field.value == C.SpecialTypeFunctions.PATIENT_INDUSTRY.value:
+                    occupation_value = patient_row_as_dict[(entity.entity_id, f"{entity.entity_id}/Observation.valueCodeableConcept")]
+                    if occupation_value:
+                        # Parse "system^code^display" format
+                        if isinstance(occupation_value, str):
+                            parts = occupation_value.split("^")
+                            occ_code = parts[1] if len(parts) > 1 else None
+                            
+                            if occ_code:
+                                # Query occupation and get related industry via FK relationship
+                                occupation = main_db.query(Occupation).filter(
+                                    Occupation.code == occ_code
+                                ).first()
+                                
+                                if occupation and occupation.industry:
+                                    # Use the relationship to get industry
+                                    industry = occupation.industry
+                                    generated_value = f"{industry.system}^{industry.code}^{industry.display}"
+                                else:
+                                    # Handle case where industry not found
+                                    logger.warning(f"No industry found for occupation code {occ_code}")
+                                    generated_value = None
+                            else:
+                                logger.warning("Could not parse occupation code from value")
+                                generated_value = None
+                        else:
+                            logger.warning("Could not get occupation from patient date. Warning: Industry must come after occuptation in field order.")
+                    else:
+                        logger.warning("Occupation value not found in patient row")
+                        generated_value = None
                 else:
                     should_mask = mask_pii_enabled and field.pii
                     generated_value = handle_by_type(field.type, field, patient_meta, field_setting, should_mask, main_db)

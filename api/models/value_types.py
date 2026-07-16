@@ -241,6 +241,16 @@ def is_value_tribal_affiliation(value: object) -> TypeGuard[ValueTribalAffiliati
 
 class ValueOccupation(CamelModel):
     """
+    Occupation configuration for employment/occupation fields.
+    
+    Used for occupation-related observations (employment status, usual occupation).
+    When occupation_code is None, a random occupation is selected from the
+    standard occupation database. When specified, the exact occupation code
+    is used.
+    
+    Examples:
+        {"occupation_code": "15-1252.00"}  # Specific occupation (Software Developers)
+        {"occupation_code": None}  # Random occupation selection
     """
     occupation_code: Optional[str] = Field(
         default=None,

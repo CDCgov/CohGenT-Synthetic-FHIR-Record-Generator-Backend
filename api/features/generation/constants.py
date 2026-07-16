@@ -15,6 +15,7 @@ class SpecialTypeFunctions(str, Enum):
     EVENT_DATE = "$eventDate"
     CONDITION_CLINICAL_STATUS = "$conditionClinicalStatus"
     PATIENT_CONTACT_POINT = "$patientContactPoint"
+    PATIENT_INDUSTRY = "$industry"
 
 # Type Enums
 class FhirType(str, Enum):

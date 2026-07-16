@@ -157,7 +157,7 @@
                 {
                     "ruleId": "patient-occupation",
                     "label": "Occupation",
-                    "description": "Sets configuration for handling the patients' occupation. You can choose to randomize an occupation per patient or specify a single occupation for the entire cohort..",
+                    "description": "Set the patients' occupation. You can choose to randomize an occupation per patient or specify a single occupation for the entire cohort.",
                     "tooltip": "Sets the patient's usual occupation and usual industry using the ODH Usual Work profile.",
                     "tags": ["default"],
                     "control": "occupation",
@@ -515,6 +515,22 @@
                     "type": "CodeableConcept",
                     "userConfigured": true,
                     "userSettingRuleId": "patient-occupation"
+                },
+                {
+                    "path": "Observation.component.[0].code",
+                    "type": "CodeableConcept",
+                    "userConfigured": false,
+                    "value": {
+                        "system": "http://loinc.org",
+                        "code": "21844-6",
+                        "display": "History of Usual industry"                        
+                    }
+                },
+                {
+                    "path": "Observation.component.[0].valueCodeableConcept",
+                    "type": "CodeableConcept",
+                    "userConfigured": false, // Indirect from occupation.
+                    "value": "$industry"                  
                 }
             ]
         }
