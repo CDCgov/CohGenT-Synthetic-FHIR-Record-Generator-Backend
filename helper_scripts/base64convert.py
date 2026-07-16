@@ -1,5 +1,5 @@
 '''
-Debug util for testing encoded binary returns
+Debug util for testing encoded binary returns.
 '''
 
 import base64

@@ -43,6 +43,10 @@ The source code within the `./api/` folder includes the following modules:
 * `./api/routers/` - All FastAPI router files. Generally there is one per feature. Note that some simpler features may consist of only the router file.
 * `./api/utilities/` - A catch all for helpers and services that don't fall entirely within a specific feature scope, such as the final output formatter.
 
+## API Documentation
+
+FastAPI will automatically generate Swagger docs at the server `/docs/` path. For example: `http://localhost:8000/docs`. These docs will provide an overview of all available endpoints and Pydantic models.
+
 ## General Application Stack Workflow
 
 **Phase 1: Initial Setup & Use Case Loading**
@@ -393,24 +397,27 @@ For iterative generation, such as repeating lab observations, in Clinical Data S
 
 #### Provider Entity Reference Chaining Explored
 
-TODO (Rewrite an dclarify)
-
-When dynamic references point to provider entities (Practitioner, PractitionerRole, Organization), the system automatically handles reference chaining to include all related resources.
+In FHIR, PractitionerRole resources often act as a strong link between clinical data, a performer, and an organization. In CohGenT, if dynamic references point to PractitionerRole entities, the system will attempt to automatically handle those common references, chaining to include any connected Organization and Practitioner entities.
 
 How it works:
 
 When a dynamic reference targets a provider entity, the system:
 
-Loads the specified provider entity from the provider cache
-Checks if the entity has staticReferences defined
-Automatically loads and includes any referenced entities
-Creates the appropriate resource links between all entities
-Example: PractitionerRole Reference Chain
+1. Loads the specified provider entity from the provider cache
+2. Checks if the entity has staticReferences defined
+3. Automatically loads and includes any other (chained) referenced entities
+4. Creates the appropriate resource links between all entities
 
-PractitionerRole entities typically reference both a Practitioner and an Organization. When you reference a PractitionerRole, all three resources are automatically included:
+Example of a PractitionerRole entity setup to chain below:
 
+```json
+// In the use case dynamic reference, pointing to the PractitionerRole
+{
+    "targetEntityId": "USCorePractitionerRole002",
+    "linkIdentifier": "performer"
+}
 
-// In the provider entity (practitioner_role_lab.json5)
+// In the PractitionerRole provider entity (practitioner_role_lab.json5)
 {
     "entityId": "USCorePractitionerRole002",
     "resourceType": "PractitionerRole",
@@ -425,24 +432,22 @@ PractitionerRole entities typically reference both a Practitioner and an Organiz
         }
     ]
 }
-
-// In the use case dynamic reference
-{
-    "targetEntityId": "USCorePractitionerRole002",
-    "linkIdentifier": "performer"
-}
+```
 Result: The system automatically includes:
 
 USCorePractitionerRole002 (Lab Technician Role)
 USCorePractitioner002 (Lab Technician)
 USCoreOrganization002 (Laboratory)
-This creates the complete provider context chain without requiring separate references for each entity.
 
-Best Practice: Use PractitionerRole for clinical references (performer, participant, etc.) rather than direct Practitioner references, as it provides richer context including the practitioner's role and organization.
+This creates the complete provider context chain without requiring separate references for each entity in the use case scenario.
+
+*Best Practice: Use PractitionerRole for clinical references (performer, participant, etc.) rather than direct Practitioner references, as it provides richer context including the practitioner's role and organization.*
 
 ### Masking PII
 
-TODO
+CohGenT supports providing limited masking of (simulated) Patient Identifying Information such as name, email, and address. This is done using a special `mask-pii` option in a `custom` step of the form. When enabled, the system will attempt to mask or omit all fields labeled with the `"pii": true` attribute in the entity models.
+
+*WARNING: This feature is largely experimental and may not properly handle primitives or specific fields. This is due to lack of FHIR Sheets handling of special FHIR JSON formatting of primitive type fields, which use the key preceeded by an underscore (`_gender`) to allow the insertion of objects such as the Data Absent Reason extension.*
 
 ## Other Features
 ### Lab Value Presets
@@ -473,11 +478,11 @@ The CSV contains the following columns:
 
 ### Sample Settings
 
-TODO
+Sample settings for the UI may be loaded to the database. Note that these are **not** the backend/API level CohortSettings, but the form state object saved from the UI itself. Users may create a cohort configuration, save it, and then upload it through the Sample Settings router endpoints (see Swagger Docs!).
 
 ### Provider Entities
 
-TODO*
+Provider entities are special entities stored in the main application database and loaded. They have their own router and CRUDS operations. For more information, please see the dynamic references section.
 
 ### Special Valuesets
 
@@ -497,6 +502,7 @@ The exception here would be for special handlers such as Tribal Affiliation in C
 
 This project started out as a way to complete spreadsheets in bulk for the FHIR Sheets CLI tool. This meant the original design focused heavily on the idea of
 literally filling out a giant table of dat with logical but mostly arbitrary data, without real field interdepencies or complex considerations. The simple "iterate and fill" approach is unsuited for continued evolution of the application as it has evolved, and has created significant tech debt.
+
 ### Incomplete Type Handing
 
 FHIR Types and support for various UI control types were implemented on an as needed basis by feature request for the default Condition Based Record use case scenario. While adding new type support is relatively simple in the API, new control types in the UI may take more dedicated effort.

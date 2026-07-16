@@ -1,5 +1,7 @@
-# convert_phinvads_to_csv.py
+'''
 # Unified script to convert PHINVADS JSON files to CSVs with automatic occupation→industry mapping
+# NOTE: This is for updating the occupation and industry tables only.
+'''
 
 import json
 import csv
