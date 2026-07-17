@@ -4,6 +4,8 @@
 
 > **DISCLAIMER:** Synthetic provider NPIs use by CohGenT are all valid (pass the LUHN algorithmic check) but inactive (not assigned to a real provider) as of the time of development. However, these NPIs should not be assumed to always be inactive, and may eventually overlap with real world NPIs. Please use caution when working with them.
 
+**API SWAGGER DOCS CAN BE FOUND AT THE DEPLOYED URL `{server_base}/docs`**
+
 ## Core CohGenT API Features
 
 - Provide an interface for generating Patient Health Records as FHIR Resources using the FHIR Sheets library.
@@ -383,3 +385,7 @@ To summarize, if you are deploying at a non-domain root path, fyou **must** matc
 1. The build command's base-href argument.
 2. The server's static HTML/JS folder path. (For NGINX, the `/usr/share/nginx/html/{your_path_here}` folder.)
 3. The server's configuration file's path. (For NGINX, `nginx.conf` location.)
+
+## Included Sample Settings
+
+The project repository includes several sample settings in the `./samples` folder. These may be loaded into the UI (**not** the generation endpoint of this backend service directly) in order to quickly generate example cohorts. They may also be loaded to the samples table of the database and served through the UI by performing a `POST {server_base}/samples` with the sample settings as the entire post body. Please consult the swagger docs for more information (`{server_base}/docs`).
