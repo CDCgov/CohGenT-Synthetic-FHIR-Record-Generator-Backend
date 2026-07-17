@@ -143,7 +143,7 @@
                     "ruleId": "patient-employment-status",
                     "label": "Employment Status",
                     "description": "Set the distribution of values for employement status in your cohort.",
-                    "tooltip": ".",
+                    "tooltip": "Unemployed refers to persons who do not currently have employment but are seeking employment. Not in labor force refers to persons who are not employed and not seeking employment.",
                     "tags": ["default"],
                     "control": "weighting",
                     "defaultValues": {
