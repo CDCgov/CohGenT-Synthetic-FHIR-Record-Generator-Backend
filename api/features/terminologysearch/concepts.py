@@ -3,6 +3,7 @@ from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 from sqlalchemy import ColumnElement, and_, case, func, not_, or_, asc, desc
 from api.database.db_omop_tables import Concept
+from api.models.requests.search_request import MAIN_DOMAINS, DomainFilter
 from api.models.terminology_search_results import ConceptResult
 from api.features.terminologysearch.system_map import lookup_system, reverse_lookup_system, fhir_to_omop_systems
 from api.features.presets.observation_values import get_preset_cache
@@ -10,6 +11,7 @@ from api.features.presets.observation_values import get_preset_cache
 def search_concepts(
     db: Session,
     term: str,
+    domain: Optional[DomainFilter] = None,
     system: Optional[str] = None,
     sort_by: Literal["name", "code", "system", "relevance"] = "relevance",
     sort_order: Literal["asc", "desc"] = "asc",
@@ -54,6 +56,13 @@ def search_concepts(
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=detail_string)
         filters.append(Concept.vocabulary_id == omop_vocabulary_id)
     
+    # 3. Add domain filter if present.
+    if domain and domain != DomainFilter.ALL:
+        if domain == DomainFilter.OTHER:
+            filters.append(~Concept.domain_id.in_(MAIN_DOMAINS))
+        else:
+            filters.append(Concept.domain_id == domain.value)
+
     # 3. Filter out non-main LOINC codes.
     filters.append(
         not_(

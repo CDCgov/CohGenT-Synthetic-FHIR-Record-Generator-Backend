@@ -21,15 +21,43 @@ optional and not always present nor fully loaded even if present. Valuesets are 
 router = APIRouter()
 
 class SimpleConcept(NoNullCamelModel):
-    system: Optional[str] = Field(None)
-    code: Optional[str] = Field(None)
-    display: Optional[str] = Field(None)
+    """
+    Minimal concept representation for valueset responses.
+    
+    Simplified version of a coded concept containing just the essential
+    fields (system, code, display) without additional metadata. Used for
+    returning lightweight valueset results like tribal affiliations.
+    """
+    system: Optional[str] = Field(
+        None,
+        description="The code system URI (e.g., 'http://terminology.hl7.org/CodeSystem/v3-TribalEntityUS')"
+    )
+    code: Optional[str] = Field(
+        None,
+        description="The code value from the system"
+    )
+    display: Optional[str] = Field(
+        None,
+        description="Human-readable display text for the code"
+    )
     
     model_config = {"from_attributes": True} 
 
 class SimpleConceptListResponse(NoNullCamelModel):
-    total: int
-    results: list[SimpleConcept] = Field([])
+    """
+    Response containing a list of simple concepts with count.
+    
+    Used for valueset endpoint responses that return collections of
+    concepts (tribal affiliations, units of measure, etc.).
+    """
+    total: int = Field(
+        ...,
+        description="Total number of concepts in the response"
+    )
+    results: list[SimpleConcept] = Field(
+        default=[],
+        description="List of concept results"
+    )
 
 
 @router.get("/valuesets/tribal-affiliation", response_class=PrettyJSONResponse)
@@ -47,3 +75,16 @@ def get_tribal_affiliations(db: Session = Depends(get_main_db)) -> SimpleConcept
     except Exception as e:
         logger.error(f"Error fetching tribal affiliations: {e}")
         raise HTTPException(status_code=500, detail="Error fetching tribal affiliations")
+    
+from api.database.db_other_tables import Occupation
+
+@router.get("/valuesets/occupation", response_class=PrettyJSONResponse)
+def get_occupations(db: Session = Depends(get_main_db)) -> SimpleConceptListResponse:
+    """Get list of available occupations for ODH profiles"""
+    try:
+        results = db.query(Occupation).order_by(Occupation.display).all()
+        concepts = [SimpleConcept.model_validate(occ) for occ in results]
+        return SimpleConceptListResponse(total=len(concepts), results=concepts)
+    except Exception as e:
+        logger.error(f"Error fetching occupations: {e}")
+        raise HTTPException(status_code=500, detail="Error fetching occupations")

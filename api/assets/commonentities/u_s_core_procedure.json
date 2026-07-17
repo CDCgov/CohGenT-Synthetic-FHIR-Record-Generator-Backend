@@ -8,6 +8,10 @@
         {
             "referencePath": "performer.[0].actor",
             "linkIdentifier": "performer"
+        },
+        {
+            "referencePath": "reasonReference",
+            "linkIdentifier": "reason"
         }
     ],
     "fields": [

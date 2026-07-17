@@ -1,0 +1,575 @@
+code,system,display,industry_code
+0010,urn:oid:2.16.840.1.114222.4.5.339,Chief Executives,9190
+0020,urn:oid:2.16.840.1.114222.4.5.339,General and Operations Managers,9190
+0030,urn:oid:2.16.840.1.114222.4.5.339,Legislators,9390
+0040,urn:oid:2.16.840.1.114222.4.5.339,Advertising and Promotions Managers,9190
+0051,urn:oid:2.16.840.1.114222.4.5.339,Marketing Managers,9190
+0052,urn:oid:2.16.840.1.114222.4.5.339,Sales Managers,5790
+0060,urn:oid:2.16.840.1.114222.4.5.339,Public Relations and Fundraising Managers,9190
+0101,urn:oid:2.16.840.1.114222.4.5.339,Administrative Services Managers,9190
+0102,urn:oid:2.16.840.1.114222.4.5.339,Facilities Managers,9190
+0110,urn:oid:2.16.840.1.114222.4.5.339,Computer and Information Systems Managers,9190
+0120,urn:oid:2.16.840.1.114222.4.5.339,Financial Managers,9380
+0135,urn:oid:2.16.840.1.114222.4.5.339,Compensation and Benefits Managers,9190
+0136,urn:oid:2.16.840.1.114222.4.5.339,Human Resources Managers,9190
+0137,urn:oid:2.16.840.1.114222.4.5.339,Training and Development Managers,9190
+0140,urn:oid:2.16.840.1.114222.4.5.339,Industrial Production Managers,3990
+0150,urn:oid:2.16.840.1.114222.4.5.339,Purchasing Managers,9190
+0160,urn:oid:2.16.840.1.114222.4.5.339,"Transportation, Storage, and Distribution Managers",6390
+0205,urn:oid:2.16.840.1.114222.4.5.339,"Farmers, Ranchers, and Other Agricultural Managers",0290
+0220,urn:oid:2.16.840.1.114222.4.5.339,Construction Managers,7690
+0230,urn:oid:2.16.840.1.114222.4.5.339,Education and Childcare Administrators,9190
+0300,urn:oid:2.16.840.1.114222.4.5.339,Architectural and Engineering Managers,9190
+0310,urn:oid:2.16.840.1.114222.4.5.339,Food Service Managers,8680
+0325,urn:oid:2.16.840.1.114222.4.5.339,Funeral Home Managers,9190
+0335,urn:oid:2.16.840.1.114222.4.5.339,Entertainment and Recreation Managers,8670
+0340,urn:oid:2.16.840.1.114222.4.5.339,Lodging Managers,9190
+0350,urn:oid:2.16.840.1.114222.4.5.339,Medical and Health Services Managers,8192
+0360,urn:oid:2.16.840.1.114222.4.5.339,Natural Sciences Managers,9190
+0400,urn:oid:2.16.840.1.114222.4.5.339,Postmasters and Mail Superintendents,9190
+0410,urn:oid:2.16.840.1.114222.4.5.339,"Property, Real Estate, and Community Association Managers",7072
+0420,urn:oid:2.16.840.1.114222.4.5.339,Social and Community Service Managers,9190
+0425,urn:oid:2.16.840.1.114222.4.5.339,Emergency Management Directors,9190
+0426,urn:oid:2.16.840.1.114222.4.5.339,"Personal Service Managers, All Other",9190
+0440,urn:oid:2.16.840.1.114222.4.5.339,"Managers, All Other",9190
+0500,urn:oid:2.16.840.1.114222.4.5.339,"Agents and Business Managers of Artists, Performers, and Athletes",8670
+0510,urn:oid:2.16.840.1.114222.4.5.339,"Buyers and Purchasing Agents, Farm Products",0290
+0520,urn:oid:2.16.840.1.114222.4.5.339,"Wholesale and Retail Buyers, Except Farm Products",5790
+0530,urn:oid:2.16.840.1.114222.4.5.339,"Purchasing Agents, Except Wholesale, Retail, and Farm Products",5790
+0540,urn:oid:2.16.840.1.114222.4.5.339,"Claims Adjusters, Appraisers, Examiners, and Investigators",9380
+0565,urn:oid:2.16.840.1.114222.4.5.339,Compliance Officers,9390
+0600,urn:oid:2.16.840.1.114222.4.5.339,Cost Estimators,9190
+0630,urn:oid:2.16.840.1.114222.4.5.339,Human Resources Workers,9190
+0640,urn:oid:2.16.840.1.114222.4.5.339,"Compensation, Benefits, and Job Analysis Specialists",9190
+0650,urn:oid:2.16.840.1.114222.4.5.339,Training and Development Specialists,9190
+0700,urn:oid:2.16.840.1.114222.4.5.339,Logisticians,9190
+0705,urn:oid:2.16.840.1.114222.4.5.339,Project Management Specialists,9190
+0710,urn:oid:2.16.840.1.114222.4.5.339,Management Analysts,9380
+0725,urn:oid:2.16.840.1.114222.4.5.339,"Meeting, Convention, and Event Planners",9190
+0726,urn:oid:2.16.840.1.114222.4.5.339,Fundraisers,9190
+0735,urn:oid:2.16.840.1.114222.4.5.339,Market Research Analysts and Marketing Specialists,9380
+0750,urn:oid:2.16.840.1.114222.4.5.339,"Business Operations Specialists, All Other",9190
+0800,urn:oid:2.16.840.1.114222.4.5.339,Accountants and Auditors,9380
+0810,urn:oid:2.16.840.1.114222.4.5.339,Property Appraisers and Assessors,9190
+0820,urn:oid:2.16.840.1.114222.4.5.339,Budget Analysts,9380
+0830,urn:oid:2.16.840.1.114222.4.5.339,Credit Analysts,9380
+0845,urn:oid:2.16.840.1.114222.4.5.339,Financial and Investment Analysts,9380
+0850,urn:oid:2.16.840.1.114222.4.5.339,Personal Financial Advisors,9380
+0860,urn:oid:2.16.840.1.114222.4.5.339,Insurance Underwriters,9380
+0900,urn:oid:2.16.840.1.114222.4.5.339,Financial Examiners,9380
+0910,urn:oid:2.16.840.1.114222.4.5.339,Credit Counselors and Loan Officers,7890
+0930,urn:oid:2.16.840.1.114222.4.5.339,"Tax Examiners and Collectors, and Revenue Agents",9190
+0940,urn:oid:2.16.840.1.114222.4.5.339,Tax Preparers,9190
+0960,urn:oid:2.16.840.1.114222.4.5.339,Other Financial Specialists,9380
+1005,urn:oid:2.16.840.1.114222.4.5.339,Computer and Information Research Scientists,9190
+1006,urn:oid:2.16.840.1.114222.4.5.339,Computer Systems Analysts,9380
+1007,urn:oid:2.16.840.1.114222.4.5.339,Information Security Analysts,9380
+1010,urn:oid:2.16.840.1.114222.4.5.339,Computer Programmers,9190
+1021,urn:oid:2.16.840.1.114222.4.5.339,Software Developers,9190
+1022,urn:oid:2.16.840.1.114222.4.5.339,Software Quality Assurance Analysts and Testers,9380
+1031,urn:oid:2.16.840.1.114222.4.5.339,Web Developers,9190
+1032,urn:oid:2.16.840.1.114222.4.5.339,Web and Digital Interface Designers,9190
+1050,urn:oid:2.16.840.1.114222.4.5.339,Computer Support Specialists,9190
+1065,urn:oid:2.16.840.1.114222.4.5.339,Database Administrators and Architects,9190
+1105,urn:oid:2.16.840.1.114222.4.5.339,Network and Computer Systems Administrators,9190
+1106,urn:oid:2.16.840.1.114222.4.5.339,Computer Network Architects,9190
+1108,urn:oid:2.16.840.1.114222.4.5.339,"Computer Occupations, All Other",9190
+1200,urn:oid:2.16.840.1.114222.4.5.339,Actuaries,9190
+1210,urn:oid:2.16.840.1.114222.4.5.339,Mathematicians,9190
+1220,urn:oid:2.16.840.1.114222.4.5.339,Operations Research Analysts,9380
+1230,urn:oid:2.16.840.1.114222.4.5.339,Statisticians,9190
+1240,urn:oid:2.16.840.1.114222.4.5.339,Other Mathematical Science Occupations,9190
+1305,urn:oid:2.16.840.1.114222.4.5.339,"Architects, Except Landscape and Naval",9190
+1306,urn:oid:2.16.840.1.114222.4.5.339,Landscape Architects,9190
+1310,urn:oid:2.16.840.1.114222.4.5.339,"Surveyors, Cartographers, and Photogrammetrists",9190
+1320,urn:oid:2.16.840.1.114222.4.5.339,Aerospace Engineers,9190
+1330,urn:oid:2.16.840.1.114222.4.5.339,Agricultural Engineers,0290
+1340,urn:oid:2.16.840.1.114222.4.5.339,Bioengineers and Biomedical Engineers,8192
+1350,urn:oid:2.16.840.1.114222.4.5.339,Chemical Engineers,9190
+1360,urn:oid:2.16.840.1.114222.4.5.339,Civil Engineers,9190
+1400,urn:oid:2.16.840.1.114222.4.5.339,Computer Hardware Engineers,9190
+1410,urn:oid:2.16.840.1.114222.4.5.339,Electrical and Electronics Engineers,9190
+1420,urn:oid:2.16.840.1.114222.4.5.339,Environmental Engineers,9190
+1430,urn:oid:2.16.840.1.114222.4.5.339,"Industrial Engineers, Including Health and Safety",8192
+1440,urn:oid:2.16.840.1.114222.4.5.339,Marine Engineers and Naval Architects,9190
+1450,urn:oid:2.16.840.1.114222.4.5.339,Materials Engineers,9190
+1460,urn:oid:2.16.840.1.114222.4.5.339,Mechanical Engineers,9190
+1500,urn:oid:2.16.840.1.114222.4.5.339,"Mining and Geological Engineers, Including Mining Safety Engineers",9190
+1510,urn:oid:2.16.840.1.114222.4.5.339,Nuclear Engineers,9190
+1520,urn:oid:2.16.840.1.114222.4.5.339,Petroleum Engineers,9190
+1530,urn:oid:2.16.840.1.114222.4.5.339,"Engineers, All Other",9190
+1541,urn:oid:2.16.840.1.114222.4.5.339,Architectural and Civil Drafters,9190
+1545,urn:oid:2.16.840.1.114222.4.5.339,Other Drafters,9190
+1551,urn:oid:2.16.840.1.114222.4.5.339,Electrical and Electronic Engineering Technologists and Technicians,9190
+1555,urn:oid:2.16.840.1.114222.4.5.339,"Other Engineering Technologists and Technicians, Except Drafters",9190
+1560,urn:oid:2.16.840.1.114222.4.5.339,Surveying and Mapping Technicians,9190
+1600,urn:oid:2.16.840.1.114222.4.5.339,Agricultural and Food Scientists,0290
+1610,urn:oid:2.16.840.1.114222.4.5.339,Biological Scientists,9190
+1640,urn:oid:2.16.840.1.114222.4.5.339,Conservation Scientists and Foresters,0290
+1650,urn:oid:2.16.840.1.114222.4.5.339,Medical Scientists,8192
+1660,urn:oid:2.16.840.1.114222.4.5.339,"Life Scientists, All Other",9190
+1700,urn:oid:2.16.840.1.114222.4.5.339,Astronomers and Physicists,9190
+1710,urn:oid:2.16.840.1.114222.4.5.339,Atmospheric and Space Scientists,9190
+1720,urn:oid:2.16.840.1.114222.4.5.339,Chemists and Materials Scientists,9190
+1745,urn:oid:2.16.840.1.114222.4.5.339,"Environmental Scientists and Specialists, Including Health",8192
+1750,urn:oid:2.16.840.1.114222.4.5.339,"Geoscientists and Hydrologists, Except Geographers",9190
+1760,urn:oid:2.16.840.1.114222.4.5.339,"Physical Scientists, All Other",9190
+1800,urn:oid:2.16.840.1.114222.4.5.339,Economists,9190
+1815,urn:oid:2.16.840.1.114222.4.5.339,Survey Researchers,9190
+1821,urn:oid:2.16.840.1.114222.4.5.339,Clinical and Counseling Psychologists,8192
+1822,urn:oid:2.16.840.1.114222.4.5.339,School Psychologists,8192
+1825,urn:oid:2.16.840.1.114222.4.5.339,Other Psychologists,8192
+1830,urn:oid:2.16.840.1.114222.4.5.339,Sociologists,9190
+1840,urn:oid:2.16.840.1.114222.4.5.339,Urban and Regional Planners,9190
+1860,urn:oid:2.16.840.1.114222.4.5.339,Miscellaneous Social Scientists and Related Workers,9190
+1900,urn:oid:2.16.840.1.114222.4.5.339,Agricultural and Food Science Technicians,0290
+1910,urn:oid:2.16.840.1.114222.4.5.339,Biological Technicians,9190
+1920,urn:oid:2.16.840.1.114222.4.5.339,Chemical Technicians,9190
+1935,urn:oid:2.16.840.1.114222.4.5.339,Environmental Science and Geoscience Technicians,9190
+1940,urn:oid:2.16.840.1.114222.4.5.339,Nuclear Technicians,9190
+1950,urn:oid:2.16.840.1.114222.4.5.339,Social Science Research Assistants,9190
+1970,urn:oid:2.16.840.1.114222.4.5.339,"Other Life, Physical, and Social Science Technicians",9190
+1980,urn:oid:2.16.840.1.114222.4.5.339,Occupational Health and Safety Specialists and Technicians,8192
+2001,urn:oid:2.16.840.1.114222.4.5.339,Substance Abuse and Behavioral Disorder Counselors,7890
+2002,urn:oid:2.16.840.1.114222.4.5.339,"Educational, Guidance, and Career Counselors and Advisors",7890
+2003,urn:oid:2.16.840.1.114222.4.5.339,Marriage and Family Therapists,8192
+2004,urn:oid:2.16.840.1.114222.4.5.339,Mental Health Counselors,8192
+2005,urn:oid:2.16.840.1.114222.4.5.339,Rehabilitation Counselors,7890
+2006,urn:oid:2.16.840.1.114222.4.5.339,"Counselors, All Other",7890
+2011,urn:oid:2.16.840.1.114222.4.5.339,"Child, Family, and School Social Workers",9190
+2012,urn:oid:2.16.840.1.114222.4.5.339,Healthcare Social Workers,8192
+2013,urn:oid:2.16.840.1.114222.4.5.339,Mental Health and Substance Abuse Social Workers,8192
+2014,urn:oid:2.16.840.1.114222.4.5.339,"Social Workers, All Other",9190
+2015,urn:oid:2.16.840.1.114222.4.5.339,Probation Officers and Correctional Treatment Specialists,9390
+2016,urn:oid:2.16.840.1.114222.4.5.339,Social and Human Service Assistants,9190
+2025,urn:oid:2.16.840.1.114222.4.5.339,Other Community and Social Service Specialists,9190
+2040,urn:oid:2.16.840.1.114222.4.5.339,Clergy,9190
+2050,urn:oid:2.16.840.1.114222.4.5.339,"Directors, Religious Activities and Education",9190
+2060,urn:oid:2.16.840.1.114222.4.5.339,"Religious Workers, All Other",9190
+2100,urn:oid:2.16.840.1.114222.4.5.339,Lawyers,9190
+2105,urn:oid:2.16.840.1.114222.4.5.339,Judicial Law Clerks,9190
+2110,urn:oid:2.16.840.1.114222.4.5.339,"Judges, Magistrates, and Other Judicial Workers",9390
+2145,urn:oid:2.16.840.1.114222.4.5.339,Paralegals and Legal Assistants,9190
+2170,urn:oid:2.16.840.1.114222.4.5.339,"Title Examiners, Abstractors, and Searchers",8670
+2180,urn:oid:2.16.840.1.114222.4.5.339,"Legal Support Workers, All Other",9190
+2205,urn:oid:2.16.840.1.114222.4.5.339,Postsecondary Teachers,7890
+2300,urn:oid:2.16.840.1.114222.4.5.339,Preschool and Kindergarten Teachers,7890
+2310,urn:oid:2.16.840.1.114222.4.5.339,Elementary and Middle School Teachers,7890
+2320,urn:oid:2.16.840.1.114222.4.5.339,Secondary School Teachers,7890
+2330,urn:oid:2.16.840.1.114222.4.5.339,Special Education Teachers,7890
+2350,urn:oid:2.16.840.1.114222.4.5.339,Tutors,7890
+2360,urn:oid:2.16.840.1.114222.4.5.339,Other Teachers and Instructors,7890
+2400,urn:oid:2.16.840.1.114222.4.5.339,"Archivists, Curators, and Museum Technicians",9190
+2435,urn:oid:2.16.840.1.114222.4.5.339,Librarians and Media Collections Specialists,7890
+2440,urn:oid:2.16.840.1.114222.4.5.339,Library Technicians,9190
+2545,urn:oid:2.16.840.1.114222.4.5.339,Teaching Assistants,9190
+2555,urn:oid:2.16.840.1.114222.4.5.339,Other Educational Instruction and Library Workers,9190
+2600,urn:oid:2.16.840.1.114222.4.5.339,Artists and Related Workers,8670
+2631,urn:oid:2.16.840.1.114222.4.5.339,Commercial and Industrial Designers,9190
+2632,urn:oid:2.16.840.1.114222.4.5.339,Fashion Designers,9190
+2633,urn:oid:2.16.840.1.114222.4.5.339,Floral Designers,9190
+2634,urn:oid:2.16.840.1.114222.4.5.339,Graphic Designers,9190
+2635,urn:oid:2.16.840.1.114222.4.5.339,Interior Designers,9190
+2636,urn:oid:2.16.840.1.114222.4.5.339,Merchandise Displayers and Window Trimmers,9190
+2640,urn:oid:2.16.840.1.114222.4.5.339,Other Designers,9190
+2700,urn:oid:2.16.840.1.114222.4.5.339,Actors,8670
+2710,urn:oid:2.16.840.1.114222.4.5.339,Producers and Directors,9190
+2721,urn:oid:2.16.840.1.114222.4.5.339,Athletes and Sports Competitors,8670
+2722,urn:oid:2.16.840.1.114222.4.5.339,Coaches and Scouts,9190
+2723,urn:oid:2.16.840.1.114222.4.5.339,"Umpires, Referees, and Other Sports Officials",9190
+2740,urn:oid:2.16.840.1.114222.4.5.339,Dancers and Choreographers,8670
+2751,urn:oid:2.16.840.1.114222.4.5.339,Music Directors and Composers,9190
+2752,urn:oid:2.16.840.1.114222.4.5.339,Musicians and Singers,8670
+2755,urn:oid:2.16.840.1.114222.4.5.339,"Disc Jockeys, Except Radio",9190
+2770,urn:oid:2.16.840.1.114222.4.5.339,"Entertainers and Performers, Sports and Related Workers, All Other",9190
+2805,urn:oid:2.16.840.1.114222.4.5.339,Broadcast Announcers and Radio Disc Jockeys,9990
+2810,urn:oid:2.16.840.1.114222.4.5.339,"News Analysts, Reporters, and Journalists",9380
+2825,urn:oid:2.16.840.1.114222.4.5.339,Public Relations Specialists,9190
+2830,urn:oid:2.16.840.1.114222.4.5.339,Editors,9190
+2840,urn:oid:2.16.840.1.114222.4.5.339,Technical Writers,9190
+2850,urn:oid:2.16.840.1.114222.4.5.339,Writers and Authors,9190
+2861,urn:oid:2.16.840.1.114222.4.5.339,Interpreters and Translators,9190
+2862,urn:oid:2.16.840.1.114222.4.5.339,Court Reporters and Simultaneous Captioners,9190
+2865,urn:oid:2.16.840.1.114222.4.5.339,"Media and Communication Workers, All Other",9190
+2905,urn:oid:2.16.840.1.114222.4.5.339,"Broadcast, Sound, and Lighting Technicians",9190
+2910,urn:oid:2.16.840.1.114222.4.5.339,Photographers,8670
+2920,urn:oid:2.16.840.1.114222.4.5.339,"Television, Video, and Film Camera Operators and Editors",9190
+2970,urn:oid:2.16.840.1.114222.4.5.339,"Media and Communication Equipment Workers, All Other",9190
+3000,urn:oid:2.16.840.1.114222.4.5.339,Chiropractors,8192
+3010,urn:oid:2.16.840.1.114222.4.5.339,Dentists,8192
+3030,urn:oid:2.16.840.1.114222.4.5.339,Dietitians and Nutritionists,8192
+3040,urn:oid:2.16.840.1.114222.4.5.339,Optometrists,8192
+3050,urn:oid:2.16.840.1.114222.4.5.339,Pharmacists,8192
+3065,urn:oid:2.16.840.1.114222.4.5.339,Emergency Medicine Physicians,8192
+3070,urn:oid:2.16.840.1.114222.4.5.339,Radiologists,9190
+3090,urn:oid:2.16.840.1.114222.4.5.339,Other Physicians,8192
+3100,urn:oid:2.16.840.1.114222.4.5.339,Surgeons,8192
+3110,urn:oid:2.16.840.1.114222.4.5.339,Physician Assistants,8192
+3120,urn:oid:2.16.840.1.114222.4.5.339,Podiatrists,9190
+3140,urn:oid:2.16.840.1.114222.4.5.339,Audiologists,9190
+3150,urn:oid:2.16.840.1.114222.4.5.339,Occupational Therapists,8192
+3160,urn:oid:2.16.840.1.114222.4.5.339,Physical Therapists,8192
+3200,urn:oid:2.16.840.1.114222.4.5.339,Radiation Therapists,8192
+3210,urn:oid:2.16.840.1.114222.4.5.339,Recreational Therapists,8192
+3220,urn:oid:2.16.840.1.114222.4.5.339,Respiratory Therapists,8192
+3230,urn:oid:2.16.840.1.114222.4.5.339,Speech-Language Pathologists,9190
+3235,urn:oid:2.16.840.1.114222.4.5.339,Exercise Physiologists,9190
+3245,urn:oid:2.16.840.1.114222.4.5.339,"Therapists, All Other",8192
+3250,urn:oid:2.16.840.1.114222.4.5.339,Veterinarians,8192
+3255,urn:oid:2.16.840.1.114222.4.5.339,Registered Nurses,8192
+3256,urn:oid:2.16.840.1.114222.4.5.339,Nurse Anesthetists,8192
+3257,urn:oid:2.16.840.1.114222.4.5.339,Nurse Midwives,8192
+3258,urn:oid:2.16.840.1.114222.4.5.339,Nurse Practitioners,8192
+3261,urn:oid:2.16.840.1.114222.4.5.339,Acupuncturists,9190
+3270,urn:oid:2.16.840.1.114222.4.5.339,"Healthcare Diagnosing or Treating Practitioners, All Other",8192
+3300,urn:oid:2.16.840.1.114222.4.5.339,Clinical Laboratory Technologists and Technicians,8192
+3310,urn:oid:2.16.840.1.114222.4.5.339,Dental Hygienists,8192
+3321,urn:oid:2.16.840.1.114222.4.5.339,Cardiovascular Technologists and Technicians,9190
+3322,urn:oid:2.16.840.1.114222.4.5.339,Diagnostic Medical Sonographers,8192
+3323,urn:oid:2.16.840.1.114222.4.5.339,Radiologic Technologists and Technicians,8192
+3324,urn:oid:2.16.840.1.114222.4.5.339,Magnetic Resonance Imaging Technologists,9190
+3330,urn:oid:2.16.840.1.114222.4.5.339,Nuclear Medicine Technologists and Medical Dosimetrists,8192
+3401,urn:oid:2.16.840.1.114222.4.5.339,Emergency Medical Technicians,8192
+3402,urn:oid:2.16.840.1.114222.4.5.339,Paramedics,8192
+3421,urn:oid:2.16.840.1.114222.4.5.339,Pharmacy Technicians,9190
+3422,urn:oid:2.16.840.1.114222.4.5.339,Psychiatric Technicians,9190
+3423,urn:oid:2.16.840.1.114222.4.5.339,Surgical Technologists,9190
+3424,urn:oid:2.16.840.1.114222.4.5.339,Veterinary Technologists and Technicians,9190
+3430,urn:oid:2.16.840.1.114222.4.5.339,Dietetic Technicians and Ophthalmic Medical Technicians,8192
+3500,urn:oid:2.16.840.1.114222.4.5.339,Licensed Practical and Licensed Vocational Nurses,8192
+3515,urn:oid:2.16.840.1.114222.4.5.339,Medical Records Specialists,8192
+3520,urn:oid:2.16.840.1.114222.4.5.339,"Opticians, Dispensing",9190
+3545,urn:oid:2.16.840.1.114222.4.5.339,Miscellaneous Health Technologists and Technicians,8192
+3550,urn:oid:2.16.840.1.114222.4.5.339,Other Healthcare Practitioners and Technical Occupations,8192
+3601,urn:oid:2.16.840.1.114222.4.5.339,Home Health Aides,8192
+3602,urn:oid:2.16.840.1.114222.4.5.339,Personal Care Aides,9190
+3603,urn:oid:2.16.840.1.114222.4.5.339,Nursing Assistants,9190
+3605,urn:oid:2.16.840.1.114222.4.5.339,Orderlies and Psychiatric Aides,9190
+3610,urn:oid:2.16.840.1.114222.4.5.339,Occupational Therapy Assistants and Aides,9190
+3620,urn:oid:2.16.840.1.114222.4.5.339,Physical Therapist Assistants and Aides,8192
+3630,urn:oid:2.16.840.1.114222.4.5.339,Massage Therapists,8192
+3640,urn:oid:2.16.840.1.114222.4.5.339,Dental Assistants,8192
+3645,urn:oid:2.16.840.1.114222.4.5.339,Medical Assistants,8192
+3646,urn:oid:2.16.840.1.114222.4.5.339,Medical Transcriptionists,8192
+3647,urn:oid:2.16.840.1.114222.4.5.339,Pharmacy Aides,9190
+3648,urn:oid:2.16.840.1.114222.4.5.339,Veterinary Assistants and Laboratory Animal Caretakers,9190
+3649,urn:oid:2.16.840.1.114222.4.5.339,Phlebotomists,9190
+3655,urn:oid:2.16.840.1.114222.4.5.339,Other Healthcare Support Workers,8192
+3700,urn:oid:2.16.840.1.114222.4.5.339,First-Line Supervisors of Correctional Officers,9390
+3710,urn:oid:2.16.840.1.114222.4.5.339,First-Line Supervisors of Police and Detectives,9390
+3720,urn:oid:2.16.840.1.114222.4.5.339,First-Line Supervisors of Firefighting and Prevention Workers,9190
+3725,urn:oid:2.16.840.1.114222.4.5.339,First-Line Supervisors of Security Workers,9190
+3735,urn:oid:2.16.840.1.114222.4.5.339,"First-Line Supervisors of Protective Service Workers, All Other",9190
+3740,urn:oid:2.16.840.1.114222.4.5.339,Firefighters,9390
+3750,urn:oid:2.16.840.1.114222.4.5.339,Fire Inspectors,9390
+3801,urn:oid:2.16.840.1.114222.4.5.339,Bailiffs,9190
+3802,urn:oid:2.16.840.1.114222.4.5.339,Correctional Officers and Jailers,9390
+3820,urn:oid:2.16.840.1.114222.4.5.339,Detectives and Criminal Investigators,9390
+3830,urn:oid:2.16.840.1.114222.4.5.339,Fish and Game Wardens,9190
+3840,urn:oid:2.16.840.1.114222.4.5.339,Parking Enforcement Workers,9190
+3870,urn:oid:2.16.840.1.114222.4.5.339,Police Officers,9390
+3900,urn:oid:2.16.840.1.114222.4.5.339,Animal Control Workers,9190
+3910,urn:oid:2.16.840.1.114222.4.5.339,Private Detectives and Investigators,9390
+3930,urn:oid:2.16.840.1.114222.4.5.339,Security Guards and Gambling Surveillance Officers,9390
+3940,urn:oid:2.16.840.1.114222.4.5.339,Crossing Guards and Flaggers,9190
+3945,urn:oid:2.16.840.1.114222.4.5.339,Transportation Security Screeners,6390
+3946,urn:oid:2.16.840.1.114222.4.5.339,School Bus Monitors,9190
+3960,urn:oid:2.16.840.1.114222.4.5.339,Other Protective Service Workers,9190
+4000,urn:oid:2.16.840.1.114222.4.5.339,Chefs and Head Cooks,8680
+4010,urn:oid:2.16.840.1.114222.4.5.339,First-Line Supervisors of Food Preparation and Serving Workers,9190
+4020,urn:oid:2.16.840.1.114222.4.5.339,Cooks,8680
+4030,urn:oid:2.16.840.1.114222.4.5.339,Food Preparation Workers,9190
+4040,urn:oid:2.16.840.1.114222.4.5.339,Bartenders,8680
+4055,urn:oid:2.16.840.1.114222.4.5.339,Fast Food and Counter Workers,9190
+4110,urn:oid:2.16.840.1.114222.4.5.339,Waiters and Waitresses,8680
+4120,urn:oid:2.16.840.1.114222.4.5.339,"Food Servers, Nonrestaurant",9190
+4130,urn:oid:2.16.840.1.114222.4.5.339,Dining Room and Cafeteria Attendants and Bartender Helpers,8680
+4140,urn:oid:2.16.840.1.114222.4.5.339,Dishwashers,8680
+4150,urn:oid:2.16.840.1.114222.4.5.339,"Hosts and Hostesses, Restaurant, Lounge, and Coffee Shop",8680
+4160,urn:oid:2.16.840.1.114222.4.5.339,"Food Preparation and Serving Related Workers, All Other",9190
+4200,urn:oid:2.16.840.1.114222.4.5.339,First-Line Supervisors of Housekeeping and Janitorial Workers,9190
+4210,urn:oid:2.16.840.1.114222.4.5.339,"First-Line Supervisors of Landscaping, Lawn Service, and Groundskeeping Workers",9190
+4220,urn:oid:2.16.840.1.114222.4.5.339,Janitors and Building Cleaners,9190
+4230,urn:oid:2.16.840.1.114222.4.5.339,Maids and Housekeeping Cleaners,9190
+4240,urn:oid:2.16.840.1.114222.4.5.339,Pest Control Workers,9190
+4251,urn:oid:2.16.840.1.114222.4.5.339,Landscaping and Groundskeeping Workers,9190
+4252,urn:oid:2.16.840.1.114222.4.5.339,Tree Trimmers and Pruners,9190
+4255,urn:oid:2.16.840.1.114222.4.5.339,Other Grounds Maintenance Workers,9190
+4330,urn:oid:2.16.840.1.114222.4.5.339,Supervisors of Personal Care and Service Workers,9190
+4340,urn:oid:2.16.840.1.114222.4.5.339,Animal Trainers,9190
+4350,urn:oid:2.16.840.1.114222.4.5.339,Animal Caretakers,9190
+4400,urn:oid:2.16.840.1.114222.4.5.339,Gambling Services Workers,9190
+4420,urn:oid:2.16.840.1.114222.4.5.339,"Ushers, Lobby Attendants, and Ticket Takers",9190
+4435,urn:oid:2.16.840.1.114222.4.5.339,Other Entertainment Attendants and Related Workers,8670
+4461,urn:oid:2.16.840.1.114222.4.5.339,"Embalmers, Crematory Operators and Funeral Attendants",9190
+4465,urn:oid:2.16.840.1.114222.4.5.339,"Morticians, Undertakers, and Funeral Arrangers",9190
+4500,urn:oid:2.16.840.1.114222.4.5.339,Barbers,9190
+4510,urn:oid:2.16.840.1.114222.4.5.339,"Hairdressers, Hairstylists, and Cosmetologists",9190
+4521,urn:oid:2.16.840.1.114222.4.5.339,Manicurists and Pedicurists,9190
+4522,urn:oid:2.16.840.1.114222.4.5.339,Skincare Specialists,9190
+4525,urn:oid:2.16.840.1.114222.4.5.339,Other Personal Appearance Workers,9190
+4530,urn:oid:2.16.840.1.114222.4.5.339,"Baggage Porters, Bellhops, and Concierges",9190
+4540,urn:oid:2.16.840.1.114222.4.5.339,Tour and Travel Guides,9190
+4600,urn:oid:2.16.840.1.114222.4.5.339,Childcare Workers,9190
+4621,urn:oid:2.16.840.1.114222.4.5.339,Exercise Trainers and Group Fitness Instructors,7890
+4622,urn:oid:2.16.840.1.114222.4.5.339,Recreation Workers,8670
+4640,urn:oid:2.16.840.1.114222.4.5.339,Residential Advisors,9190
+4655,urn:oid:2.16.840.1.114222.4.5.339,"Personal Care and Service Workers, All Other",9190
+4700,urn:oid:2.16.840.1.114222.4.5.339,First-Line Supervisors of Retail Sales Workers,5790
+4710,urn:oid:2.16.840.1.114222.4.5.339,First-Line Supervisors of Non-Retail Sales Workers,5790
+4720,urn:oid:2.16.840.1.114222.4.5.339,Cashiers,5790
+4740,urn:oid:2.16.840.1.114222.4.5.339,Counter and Rental Clerks,9190
+4750,urn:oid:2.16.840.1.114222.4.5.339,Parts Salespersons,5790
+4760,urn:oid:2.16.840.1.114222.4.5.339,Retail Salespersons,5790
+4800,urn:oid:2.16.840.1.114222.4.5.339,Advertising Sales Agents,5790
+4810,urn:oid:2.16.840.1.114222.4.5.339,Insurance Sales Agents,5790
+4820,urn:oid:2.16.840.1.114222.4.5.339,"Securities, Commodities, and Financial Services Sales Agents",5790
+4830,urn:oid:2.16.840.1.114222.4.5.339,Travel Agents,9190
+4840,urn:oid:2.16.840.1.114222.4.5.339,"Sales Representatives of Services, Except Advertising, Insurance, Financial Services, and Travel",4590
+4850,urn:oid:2.16.840.1.114222.4.5.339,"Sales Representatives, Wholesale and Manufacturing",4590
+4900,urn:oid:2.16.840.1.114222.4.5.339,"Models, Demonstrators, and Product Promoters",9190
+4920,urn:oid:2.16.840.1.114222.4.5.339,Real Estate Brokers and Sales Agents,5790
+4930,urn:oid:2.16.840.1.114222.4.5.339,Sales Engineers,5790
+4940,urn:oid:2.16.840.1.114222.4.5.339,Telemarketers,9190
+4950,urn:oid:2.16.840.1.114222.4.5.339,"Door-to-Door Sales Workers, News and Street Vendors, and Related Workers",5790
+4965,urn:oid:2.16.840.1.114222.4.5.339,"Sales and Related Workers, All Other",5790
+5000,urn:oid:2.16.840.1.114222.4.5.339,First-Line Supervisors of Office and Administrative Support Workers,9190
+5010,urn:oid:2.16.840.1.114222.4.5.339,"Switchboard Operators, Including Answering Service",9190
+5020,urn:oid:2.16.840.1.114222.4.5.339,Telephone Operators,9190
+5040,urn:oid:2.16.840.1.114222.4.5.339,"Communications Equipment Operators, All Other",9190
+5100,urn:oid:2.16.840.1.114222.4.5.339,Bill and Account Collectors,9190
+5110,urn:oid:2.16.840.1.114222.4.5.339,Billing and Posting Clerks,9190
+5120,urn:oid:2.16.840.1.114222.4.5.339,"Bookkeeping, Accounting, and Auditing Clerks",9190
+5130,urn:oid:2.16.840.1.114222.4.5.339,Gambling Cage Workers,9190
+5140,urn:oid:2.16.840.1.114222.4.5.339,Payroll and Timekeeping Clerks,9190
+5150,urn:oid:2.16.840.1.114222.4.5.339,Procurement Clerks,9190
+5160,urn:oid:2.16.840.1.114222.4.5.339,Tellers,9190
+5165,urn:oid:2.16.840.1.114222.4.5.339,"Financial Clerks, All Other",9380
+5200,urn:oid:2.16.840.1.114222.4.5.339,Brokerage Clerks,9190
+5210,urn:oid:2.16.840.1.114222.4.5.339,Correspondence Clerks,9190
+5220,urn:oid:2.16.840.1.114222.4.5.339,"Court, Municipal, and License Clerks",9190
+5230,urn:oid:2.16.840.1.114222.4.5.339,"Credit Authorizers, Checkers, and Clerks",9190
+5240,urn:oid:2.16.840.1.114222.4.5.339,Customer Service Representatives,9190
+5250,urn:oid:2.16.840.1.114222.4.5.339,"Eligibility Interviewers, Government Programs",9190
+5260,urn:oid:2.16.840.1.114222.4.5.339,File Clerks,9190
+5300,urn:oid:2.16.840.1.114222.4.5.339,"Hotel, Motel, and Resort Desk Clerks",9190
+5310,urn:oid:2.16.840.1.114222.4.5.339,"Interviewers, Except Eligibility and Loan",9190
+5320,urn:oid:2.16.840.1.114222.4.5.339,"Library Assistants, Clerical",9190
+5330,urn:oid:2.16.840.1.114222.4.5.339,Loan Interviewers and Clerks,9190
+5340,urn:oid:2.16.840.1.114222.4.5.339,New Accounts Clerks,9190
+5350,urn:oid:2.16.840.1.114222.4.5.339,Order Clerks,9190
+5360,urn:oid:2.16.840.1.114222.4.5.339,"Human Resources Assistants, Except Payroll and Timekeeping",9190
+5400,urn:oid:2.16.840.1.114222.4.5.339,Receptionists and Information Clerks,9190
+5410,urn:oid:2.16.840.1.114222.4.5.339,Reservation and Transportation Ticket Agents and Travel Clerks,6390
+5420,urn:oid:2.16.840.1.114222.4.5.339,"Information and Record Clerks, All Other",9190
+5500,urn:oid:2.16.840.1.114222.4.5.339,Cargo and Freight Agents,6390
+5510,urn:oid:2.16.840.1.114222.4.5.339,Couriers and Messengers,9190
+5521,urn:oid:2.16.840.1.114222.4.5.339,Public Safety Telecommunicators,9190
+5522,urn:oid:2.16.840.1.114222.4.5.339,"Dispatchers, Except Police, Fire, and Ambulance",9390
+5530,urn:oid:2.16.840.1.114222.4.5.339,"Meter Readers, Utilities",9190
+5540,urn:oid:2.16.840.1.114222.4.5.339,Postal Service Clerks,9190
+5550,urn:oid:2.16.840.1.114222.4.5.339,Postal Service Mail Carriers,9190
+5560,urn:oid:2.16.840.1.114222.4.5.339,"Postal Service Mail Sorters, Processors, and Processing Machine Operators",3990
+5600,urn:oid:2.16.840.1.114222.4.5.339,"Production, Planning, and Expediting Clerks",3990
+5610,urn:oid:2.16.840.1.114222.4.5.339,"Shipping, Receiving, and Inventory Clerks",9190
+5630,urn:oid:2.16.840.1.114222.4.5.339,"Weighers, Measurers, Checkers, and Samplers, Recordkeeping",9190
+5710,urn:oid:2.16.840.1.114222.4.5.339,Executive Secretaries and Executive Administrative Assistants,9190
+5720,urn:oid:2.16.840.1.114222.4.5.339,Legal Secretaries and Administrative Assistants,9190
+5730,urn:oid:2.16.840.1.114222.4.5.339,Medical Secretaries and Administrative Assistants,8192
+5740,urn:oid:2.16.840.1.114222.4.5.339,"Secretaries and Administrative Assistants, Except Legal, Medical, and Executive",8192
+5810,urn:oid:2.16.840.1.114222.4.5.339,Data Entry Keyers,9190
+5820,urn:oid:2.16.840.1.114222.4.5.339,Word Processors and Typists,9190
+5830,urn:oid:2.16.840.1.114222.4.5.339,Desktop Publishers,9190
+5840,urn:oid:2.16.840.1.114222.4.5.339,Insurance Claims and Policy Processing Clerks,9380
+5850,urn:oid:2.16.840.1.114222.4.5.339,"Mail Clerks and Mail Machine Operators, Except Postal Service",3990
+5860,urn:oid:2.16.840.1.114222.4.5.339,"Office Clerks, General",9190
+5900,urn:oid:2.16.840.1.114222.4.5.339,"Office Machine Operators, Except Computer",3990
+5910,urn:oid:2.16.840.1.114222.4.5.339,Proofreaders and Copy Markers,9190
+5920,urn:oid:2.16.840.1.114222.4.5.339,Statistical Assistants,9190
+5940,urn:oid:2.16.840.1.114222.4.5.339,"Office and Administrative Support Workers, All Other",9190
+6005,urn:oid:2.16.840.1.114222.4.5.339,"First-Line Supervisors of Farming, Fishing, and Forestry Workers",0290
+6010,urn:oid:2.16.840.1.114222.4.5.339,Agricultural Inspectors,9390
+6020,urn:oid:2.16.840.1.114222.4.5.339,Animal Breeders,9190
+6040,urn:oid:2.16.840.1.114222.4.5.339,"Graders and Sorters, Agricultural Products",0290
+6050,urn:oid:2.16.840.1.114222.4.5.339,Miscellaneous Agricultural Workers,0290
+6115,urn:oid:2.16.840.1.114222.4.5.339,Fishing and Hunting Workers,9190
+6120,urn:oid:2.16.840.1.114222.4.5.339,Forest and Conservation Workers,9190
+6130,urn:oid:2.16.840.1.114222.4.5.339,Logging Workers,9190
+6200,urn:oid:2.16.840.1.114222.4.5.339,First-Line Supervisors of Construction Trades and Extraction Workers,7690
+6210,urn:oid:2.16.840.1.114222.4.5.339,Boilermakers,7690
+6220,urn:oid:2.16.840.1.114222.4.5.339,"Brickmasons, Blockmasons, and Stonemasons",7690
+6230,urn:oid:2.16.840.1.114222.4.5.339,Carpenters,7690
+6240,urn:oid:2.16.840.1.114222.4.5.339,"Carpet, Floor, and Tile Installers and Finishers",7690
+6250,urn:oid:2.16.840.1.114222.4.5.339,"Cement Masons, Concrete Finishers, and Terrazzo Workers",7690
+6260,urn:oid:2.16.840.1.114222.4.5.339,Construction Laborers,7690
+6305,urn:oid:2.16.840.1.114222.4.5.339,Construction Equipment Operators,7690
+6330,urn:oid:2.16.840.1.114222.4.5.339,"Drywall Installers, Ceiling Tile Installers, and Tapers",7690
+6355,urn:oid:2.16.840.1.114222.4.5.339,Electricians,7690
+6360,urn:oid:2.16.840.1.114222.4.5.339,Glaziers,7690
+6400,urn:oid:2.16.840.1.114222.4.5.339,Insulation Workers,9190
+6410,urn:oid:2.16.840.1.114222.4.5.339,Painters and Paperhangers,7690
+6441,urn:oid:2.16.840.1.114222.4.5.339,Pipelayers,9190
+6442,urn:oid:2.16.840.1.114222.4.5.339,"Plumbers, Pipefitters, and Steamfitters",7690
+6460,urn:oid:2.16.840.1.114222.4.5.339,Plasterers and Stucco Masons,7690
+6500,urn:oid:2.16.840.1.114222.4.5.339,Reinforcing Iron and Rebar Workers,9190
+6515,urn:oid:2.16.840.1.114222.4.5.339,Roofers,7690
+6520,urn:oid:2.16.840.1.114222.4.5.339,Sheet Metal Workers,9190
+6530,urn:oid:2.16.840.1.114222.4.5.339,Structural Iron and Steel Workers,9190
+6540,urn:oid:2.16.840.1.114222.4.5.339,Solar Photovoltaic Installers,7690
+6600,urn:oid:2.16.840.1.114222.4.5.339,"Helpers, Construction Trades",7690
+6660,urn:oid:2.16.840.1.114222.4.5.339,Construction and Building Inspectors,9390
+6700,urn:oid:2.16.840.1.114222.4.5.339,Elevator and Escalator Installers and Repairers,7690
+6710,urn:oid:2.16.840.1.114222.4.5.339,Fence Erectors,9190
+6720,urn:oid:2.16.840.1.114222.4.5.339,Hazardous Materials Removal Workers,9190
+6730,urn:oid:2.16.840.1.114222.4.5.339,Highway Maintenance Workers,9190
+6740,urn:oid:2.16.840.1.114222.4.5.339,Rail-Track Laying and Maintenance Equipment Operators,9190
+6750,urn:oid:2.16.840.1.114222.4.5.339,Septic Tank Servicers and Sewer Pipe Cleaners,9190
+6765,urn:oid:2.16.840.1.114222.4.5.339,Miscellaneous Construction and Related Workers,7690
+6800,urn:oid:2.16.840.1.114222.4.5.339,"Derrick, Rotary Drill, and Service Unit Operators, Oil and Gas",9190
+6821,urn:oid:2.16.840.1.114222.4.5.339,"Excavating and Loading Machine and Dragline Operators, Surface Mining",9190
+6825,urn:oid:2.16.840.1.114222.4.5.339,"Earth Drillers, Except Oil and Gas",9190
+6835,urn:oid:2.16.840.1.114222.4.5.339,"Explosives Workers, Ordnance Handling Experts, and Blasters",9190
+6850,urn:oid:2.16.840.1.114222.4.5.339,Underground Mining Machine Operators,3990
+6920,urn:oid:2.16.840.1.114222.4.5.339,"Roustabouts, Oil and Gas",9190
+6950,urn:oid:2.16.840.1.114222.4.5.339,Other Extraction Workers,9190
+7000,urn:oid:2.16.840.1.114222.4.5.339,"First-Line Supervisors of Mechanics, Installers, and Repairers",7690
+7010,urn:oid:2.16.840.1.114222.4.5.339,"Computer, Automated Teller, and Office Machine Repairers",9190
+7020,urn:oid:2.16.840.1.114222.4.5.339,Radio and Telecommunications Equipment Installers and Repairers,7690
+7030,urn:oid:2.16.840.1.114222.4.5.339,Avionics Technicians,9190
+7040,urn:oid:2.16.840.1.114222.4.5.339,"Electric Motor, Power Tool, and Related Repairers",9190
+7050,urn:oid:2.16.840.1.114222.4.5.339,"Electrical and Electronics Installers and Repairers, Transportation Equipment",7690
+7100,urn:oid:2.16.840.1.114222.4.5.339,"Electrical and Electronics Repairers, Industrial and Utility",9190
+7110,urn:oid:2.16.840.1.114222.4.5.339,"Electronic Equipment Installers and Repairers, Motor Vehicles",7690
+7120,urn:oid:2.16.840.1.114222.4.5.339,Audiovisual Equipment Installers and Repairers,7690
+7130,urn:oid:2.16.840.1.114222.4.5.339,Security and Fire Alarm Systems Installers,7690
+7140,urn:oid:2.16.840.1.114222.4.5.339,Aircraft Mechanics and Service Technicians,9190
+7150,urn:oid:2.16.840.1.114222.4.5.339,Automotive Body and Related Repairers,9190
+7160,urn:oid:2.16.840.1.114222.4.5.339,Automotive Glass Installers and Repairers,7690
+7200,urn:oid:2.16.840.1.114222.4.5.339,Automotive Service Technicians and Mechanics,9190
+7210,urn:oid:2.16.840.1.114222.4.5.339,Bus and Truck Mechanics and Diesel Engine Specialists,6390
+7220,urn:oid:2.16.840.1.114222.4.5.339,Heavy Vehicle and Mobile Equipment Service Technicians and Mechanics,9190
+7240,urn:oid:2.16.840.1.114222.4.5.339,Small Engine Mechanics,9190
+7260,urn:oid:2.16.840.1.114222.4.5.339,"Miscellaneous Vehicle and Mobile Equipment Mechanics, Installers, and Repairers",7690
+7300,urn:oid:2.16.840.1.114222.4.5.339,Control and Valve Installers and Repairers,7690
+7315,urn:oid:2.16.840.1.114222.4.5.339,"Heating, Air Conditioning, and Refrigeration Mechanics and Installers",7690
+7320,urn:oid:2.16.840.1.114222.4.5.339,Home Appliance Repairers,9190
+7330,urn:oid:2.16.840.1.114222.4.5.339,Industrial and Refractory Machinery Mechanics,8670
+7340,urn:oid:2.16.840.1.114222.4.5.339,"Maintenance and Repair Workers, General",9190
+7350,urn:oid:2.16.840.1.114222.4.5.339,"Maintenance Workers, Machinery",9190
+7360,urn:oid:2.16.840.1.114222.4.5.339,Millwrights,9190
+7410,urn:oid:2.16.840.1.114222.4.5.339,Electrical Power-Line Installers and Repairers,7690
+7420,urn:oid:2.16.840.1.114222.4.5.339,Telecommunications Line Installers and Repairers,7690
+7430,urn:oid:2.16.840.1.114222.4.5.339,Precision Instrument and Equipment Repairers,9190
+7440,urn:oid:2.16.840.1.114222.4.5.339,Wind Turbine Service Technicians,9190
+7510,urn:oid:2.16.840.1.114222.4.5.339,"Coin, Vending, and Amusement Machine Servicers and Repairers",9190
+7520,urn:oid:2.16.840.1.114222.4.5.339,Commercial Divers,9190
+7540,urn:oid:2.16.840.1.114222.4.5.339,Locksmiths and Safe Repairers,9190
+7550,urn:oid:2.16.840.1.114222.4.5.339,Manufactured Building and Mobile Home Installers,7690
+7560,urn:oid:2.16.840.1.114222.4.5.339,Riggers,9190
+7610,urn:oid:2.16.840.1.114222.4.5.339,"Helpers--Installation, Maintenance, and Repair Workers",9190
+7640,urn:oid:2.16.840.1.114222.4.5.339,"Other Installation, Maintenance, and Repair Workers",9190
+7700,urn:oid:2.16.840.1.114222.4.5.339,First-Line Supervisors of Production and Operating Workers,3990
+7710,urn:oid:2.16.840.1.114222.4.5.339,"Aircraft Structure, Surfaces, Rigging, and Systems Assemblers",3990
+7720,urn:oid:2.16.840.1.114222.4.5.339,"Electrical, Electronics, and Electromechanical Assemblers",3990
+7730,urn:oid:2.16.840.1.114222.4.5.339,Engine and Other Machine Assemblers,3990
+7740,urn:oid:2.16.840.1.114222.4.5.339,Structural Metal Fabricators and Fitters,3990
+7750,urn:oid:2.16.840.1.114222.4.5.339,Other Assemblers and Fabricators,3990
+7800,urn:oid:2.16.840.1.114222.4.5.339,Bakers,9190
+7810,urn:oid:2.16.840.1.114222.4.5.339,"Butchers and Other Meat, Poultry, and Fish Processing Workers",9190
+7830,urn:oid:2.16.840.1.114222.4.5.339,"Food and Tobacco Roasting, Baking, and Drying Machine Operators and Tenders",3990
+7840,urn:oid:2.16.840.1.114222.4.5.339,Food Batchmakers,9190
+7850,urn:oid:2.16.840.1.114222.4.5.339,Food Cooking Machine Operators and Tenders,8680
+7855,urn:oid:2.16.840.1.114222.4.5.339,"Food Processing Workers, All Other",9190
+7905,urn:oid:2.16.840.1.114222.4.5.339,Computer Numerically Controlled Tool Operators and Programmers,9190
+7925,urn:oid:2.16.840.1.114222.4.5.339,"Forming Machine Setters, Operators, and Tenders, Metal and Plastic",9190
+7950,urn:oid:2.16.840.1.114222.4.5.339,"Cutting, Punching, and Press Machine Setters, Operators, and Tenders, Metal and Plastic",9190
+8000,urn:oid:2.16.840.1.114222.4.5.339,"Grinding, Lapping, Polishing, and Buffing Machine Tool Setters, Operators, and Tenders, Metal and Plastic",9190
+8025,urn:oid:2.16.840.1.114222.4.5.339,"Other Machine Tool Setters, Operators, and Tenders, Metal and Plastic",9190
+8030,urn:oid:2.16.840.1.114222.4.5.339,Machinists,3990
+8040,urn:oid:2.16.840.1.114222.4.5.339,"Metal Furnace Operators, Tenders, Pourers, and Casters",9190
+8060,urn:oid:2.16.840.1.114222.4.5.339,"Model Makers and Patternmakers, Metal and Plastic",9190
+8100,urn:oid:2.16.840.1.114222.4.5.339,"Molders and Molding Machine Setters, Operators, and Tenders, Metal and Plastic",9190
+8130,urn:oid:2.16.840.1.114222.4.5.339,Tool and Die Makers,9190
+8140,urn:oid:2.16.840.1.114222.4.5.339,"Welding, Soldering, and Brazing Workers",9190
+8225,urn:oid:2.16.840.1.114222.4.5.339,Other Metal Workers and Plastic Workers,9190
+8250,urn:oid:2.16.840.1.114222.4.5.339,Prepress Technicians and Workers,9190
+8255,urn:oid:2.16.840.1.114222.4.5.339,Printing Press Operators,9190
+8256,urn:oid:2.16.840.1.114222.4.5.339,Print Binding and Finishing Workers,9190
+8300,urn:oid:2.16.840.1.114222.4.5.339,Laundry and Dry-Cleaning Workers,9190
+8310,urn:oid:2.16.840.1.114222.4.5.339,"Pressers, Textile, Garment, and Related Materials",9190
+8320,urn:oid:2.16.840.1.114222.4.5.339,Sewing Machine Operators,3990
+8335,urn:oid:2.16.840.1.114222.4.5.339,Shoe and Leather Workers,9190
+8350,urn:oid:2.16.840.1.114222.4.5.339,"Tailors, Dressmakers, and Sewers",9190
+8365,urn:oid:2.16.840.1.114222.4.5.339,"Textile Machine Setters, Operators, and Tenders",9190
+8450,urn:oid:2.16.840.1.114222.4.5.339,Upholsterers,9190
+8465,urn:oid:2.16.840.1.114222.4.5.339,"Other Textile, Apparel, and Furnishings Workers",9190
+8500,urn:oid:2.16.840.1.114222.4.5.339,Cabinetmakers and Bench Carpenters,7690
+8510,urn:oid:2.16.840.1.114222.4.5.339,Furniture Finishers,9190
+8530,urn:oid:2.16.840.1.114222.4.5.339,"Sawing Machine Setters, Operators, and Tenders, Wood",9190
+8540,urn:oid:2.16.840.1.114222.4.5.339,"Woodworking Machine Setters, Operators, and Tenders, Except Sawing",9190
+8555,urn:oid:2.16.840.1.114222.4.5.339,Other Woodworkers,9190
+8600,urn:oid:2.16.840.1.114222.4.5.339,"Power Plant Operators, Distributors, and Dispatchers",6390
+8610,urn:oid:2.16.840.1.114222.4.5.339,Stationary Engineers and Boiler Operators,9190
+8620,urn:oid:2.16.840.1.114222.4.5.339,Water and Wastewater Treatment Plant and System Operators,9190
+8630,urn:oid:2.16.840.1.114222.4.5.339,Miscellaneous Plant and System Operators,9190
+8640,urn:oid:2.16.840.1.114222.4.5.339,"Chemical Processing Machine Setters, Operators, and Tenders",9190
+8650,urn:oid:2.16.840.1.114222.4.5.339,"Crushing, Grinding, Polishing, Mixing, and Blending Workers",9190
+8710,urn:oid:2.16.840.1.114222.4.5.339,Cutting Workers,9190
+8720,urn:oid:2.16.840.1.114222.4.5.339,"Extruding, Forming, Pressing, and Compacting Machine Setters, Operators, and Tenders",9190
+8730,urn:oid:2.16.840.1.114222.4.5.339,"Furnace, Kiln, Oven, Drier, and Kettle Operators and Tenders",9190
+8740,urn:oid:2.16.840.1.114222.4.5.339,"Inspectors, Testers, Sorters, Samplers, and Weighers",9390
+8750,urn:oid:2.16.840.1.114222.4.5.339,Jewelers and Precious Stone and Metal Workers,9190
+8760,urn:oid:2.16.840.1.114222.4.5.339,Dental and Ophthalmic Laboratory Technicians and Medical Appliance Technicians,8192
+8800,urn:oid:2.16.840.1.114222.4.5.339,Packaging and Filling Machine Operators and Tenders,3990
+8810,urn:oid:2.16.840.1.114222.4.5.339,Painting Workers,9190
+8830,urn:oid:2.16.840.1.114222.4.5.339,Photographic Process Workers and Processing Machine Operators,3990
+8850,urn:oid:2.16.840.1.114222.4.5.339,Adhesive Bonding Machine Operators and Tenders,3990
+8865,urn:oid:2.16.840.1.114222.4.5.339,Other Production Equipment Operators and Tenders,3990
+8910,urn:oid:2.16.840.1.114222.4.5.339,Etchers and Engravers,9190
+8920,urn:oid:2.16.840.1.114222.4.5.339,"Molders, Shapers, and Casters, Except Metal and Plastic",9190
+8930,urn:oid:2.16.840.1.114222.4.5.339,"Paper Goods Machine Setters, Operators, and Tenders",9190
+8940,urn:oid:2.16.840.1.114222.4.5.339,Tire Builders,9190
+8950,urn:oid:2.16.840.1.114222.4.5.339,Helpers--Production Workers,3990
+8990,urn:oid:2.16.840.1.114222.4.5.339,Other Production Workers,3990
+9005,urn:oid:2.16.840.1.114222.4.5.339,Supervisors of Transportation and Material Moving Workers,6390
+9010,urn:oid:2.16.840.1.114222.4.5.339,NIOSH-Homemaker,9190
+9020,urn:oid:2.16.840.1.114222.4.5.339,Volunteers,9190
+9030,urn:oid:2.16.840.1.114222.4.5.339,Aircraft Pilots and Flight Engineers,6390
+9040,urn:oid:2.16.840.1.114222.4.5.339,Air Traffic Controllers and Airfield Operations Specialists,9190
+9050,urn:oid:2.16.840.1.114222.4.5.339,Flight Attendants,6390
+9060,urn:oid:2.16.840.1.114222.4.5.339,Retired,9190
+9070,urn:oid:2.16.840.1.114222.4.5.339,Students,9190
+9100,urn:oid:2.16.840.1.114222.4.5.339,Did Not Work,9190
+9110,urn:oid:2.16.840.1.114222.4.5.339,"Ambulance Drivers and Attendants, Except Emergency Medical Technicians",8192
+9121,urn:oid:2.16.840.1.114222.4.5.339,"Bus Drivers, School",6390
+9122,urn:oid:2.16.840.1.114222.4.5.339,"Bus Drivers, Transit and Intercity",6390
+9130,urn:oid:2.16.840.1.114222.4.5.339,Driver/Sales Workers and Truck Drivers,5790
+9141,urn:oid:2.16.840.1.114222.4.5.339,Shuttle Drivers and Chauffeurs,6390
+9142,urn:oid:2.16.840.1.114222.4.5.339,Taxi Drivers,6390
+9150,urn:oid:2.16.840.1.114222.4.5.339,"Motor Vehicle Operators, All Other",9190
+9210,urn:oid:2.16.840.1.114222.4.5.339,Locomotive Engineers and Operators,6390
+9240,urn:oid:2.16.840.1.114222.4.5.339,Railroad Conductors and Yardmasters,9190
+9265,urn:oid:2.16.840.1.114222.4.5.339,Other Rail Transportation Workers,6390
+9300,urn:oid:2.16.840.1.114222.4.5.339,Sailors and Marine Oilers,9190
+9310,urn:oid:2.16.840.1.114222.4.5.339,Ship and Boat Captains and Operators,9190
+9330,urn:oid:2.16.840.1.114222.4.5.339,Ship Engineers,9190
+9350,urn:oid:2.16.840.1.114222.4.5.339,Parking Attendants,9190
+9365,urn:oid:2.16.840.1.114222.4.5.339,Transportation Service Attendants,6390
+9410,urn:oid:2.16.840.1.114222.4.5.339,Transportation Inspectors,9390
+9415,urn:oid:2.16.840.1.114222.4.5.339,Passenger Attendants,9190
+9430,urn:oid:2.16.840.1.114222.4.5.339,Other Transportation Workers,6390
+9510,urn:oid:2.16.840.1.114222.4.5.339,Crane and Tower Operators,9190
+9570,urn:oid:2.16.840.1.114222.4.5.339,"Conveyor, Dredge, and Hoist and Winch Operators",9190
+9600,urn:oid:2.16.840.1.114222.4.5.339,Industrial Truck and Tractor Operators,6390
+9610,urn:oid:2.16.840.1.114222.4.5.339,Cleaners of Vehicles and Equipment,9190
+9620,urn:oid:2.16.840.1.114222.4.5.339,"Laborers and Freight, Stock, and Material Movers, Hand",7690
+9630,urn:oid:2.16.840.1.114222.4.5.339,Machine Feeders and Offbearers,9190
+9640,urn:oid:2.16.840.1.114222.4.5.339,"Packers and Packagers, Hand",3990
+9645,urn:oid:2.16.840.1.114222.4.5.339,Stockers and Order Fillers,5790
+9650,urn:oid:2.16.840.1.114222.4.5.339,Pumping Station Operators,9190
+9720,urn:oid:2.16.840.1.114222.4.5.339,Refuse and Recyclable Material Collectors,9190
+9760,urn:oid:2.16.840.1.114222.4.5.339,Other Material Moving Workers,9190
+9830,urn:oid:2.16.840.1.114222.4.5.339,"Military, Rank Not Specified",9190
+9840,urn:oid:2.16.840.1.114222.4.5.339,"NIOSH-Armed Forces, Military, Commissioned Officers and Warrant Officers",9390
+9850,urn:oid:2.16.840.1.114222.4.5.339,"NIOSH-Armed Forces, Military, Non-Commissioned Officers and Other Enlisted Personnel",9390
+9900,urn:oid:2.16.840.1.114222.4.5.339,Insufficient Information,9190

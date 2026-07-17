@@ -8,7 +8,7 @@ from sqlalchemy import or_, asc, desc
 from typing import Optional, Literal
 from api.features.terminologysearch import concepts
 from api.models.terminology_search_results import TerminologySearchResults
-from api.models.requests.search_request import SearchConceptsRequest
+from api.models.requests.search_request import DomainFilter, SearchConceptsRequest
 
 router = APIRouter()
 
@@ -21,6 +21,7 @@ async def get_systems():
 def _search_concepts_logic(
         term: str,
         system: Optional[str],
+        domain: Optional[DomainFilter],
         sort_by: Literal["name", "code", "system", "relevance"],
         sort_order: Literal["asc", "desc"],
         page: int,
@@ -29,10 +30,11 @@ def _search_concepts_logic(
         omop_db: Session,
         main_db: Session
     ):
-    results, total_count = concepts.search_concepts(omop_db, term, system, sort_by, sort_order, page, count, check_for_presets, main_db=main_db)
+    results, total_count = concepts.search_concepts(omop_db, term, domain, system, sort_by, sort_order, page, count, check_for_presets, main_db=main_db)
     return TerminologySearchResults(
             term = term,
             system = system,
+            domain = domain,
             total = total_count,
             count = len(results),
             page = page,
@@ -46,6 +48,7 @@ def _search_concepts_logic(
 def search_concepts(
         term: str = Query(..., description="Search term (code or name)", min_length=1),
         system: Optional[str] = Query(None, description="Vocabulary/System ID (LOINC, SNOMED, etc.)"),
+        domain: Optional[DomainFilter] = Query(None, description="OMOP Domain ID"),
         sort_by: Literal["name", "code", "system", "relevance"] = Query("relevance", description="What field or condition to sort by"),
         sort_order: Literal["asc", "desc"] = Query("asc", description="Sort order"),
         page: int = Query(1, ge=1, description="Page number (starts at 1)"),
@@ -56,7 +59,7 @@ def search_concepts(
         main_db: Session = Depends(get_main_db)
     ):
     return _search_concepts_logic(
-        term, system, sort_by, sort_order, page, count, check_for_presets, omop_db, main_db)
+        term, system, domain, sort_by, sort_order, page, count, check_for_presets, omop_db, main_db)
 
 
 
@@ -69,6 +72,7 @@ def search_concepts_post(
     return _search_concepts_logic(
         request.term,
         request.system,
+        request.domain,
         request.sort_by,
         request.sort_order,
         request.page,

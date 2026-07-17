@@ -1,6 +1,7 @@
 from typing import Any, Optional
 from loguru import logger
 from fastapi import Depends, HTTPException, APIRouter
+from pydantic import Field
 from api.models.responses.jsonresponse import PrettyJSONResponse
 from api.database.database_client import get_main_db
 from sqlalchemy.orm import Session
@@ -11,22 +12,72 @@ router = APIRouter()
 
 # Arbitray JSON record with the metadata field. Cannot validate UI form settings
 class SampleSettingsMetaData(NoNullCamelModel):
-    start: str
-    end: str
-    until: Optional[str] = None
-    cohort_name: str
+    """
+    Metadata for saved cohort generation settings samples.
+    
+    Contains descriptive information about a saved settings configuration,
+    including temporal boundaries and a descriptive name. This metadata
+    is extracted from the full settings for display and organization.
+    """
+    start: str = Field(
+        ...,
+        description="Start date of the event period for this cohort sample"
+    )
+    end: str = Field(
+        ...,
+        description="End date of the event period for this cohort sample"
+    )
+    until: Optional[str] = Field(
+        default=None,
+        description="Optional extended generation boundary date"
+    )
+    cohort_name: str = Field(
+        ...,
+        description="Descriptive name for this saved cohort configuration"
+    )
     
 class SampleSettingsPostBody(NoNullCamelModel):
-    metadata: SampleSettingsMetaData
+    """
+    Request body for creating a new saved cohort settings sample.
+    
+    Contains the metadata and the full cohort settings JSON. The settings
+    are stored as arbitrary JSON since they conform to CohortSettings but
+    may contain UI-specific fields that evolve independently.
+    
+    Note: Uses Pydantic's extra="allow" to accept any additional fields
+    beyond metadata, enabling storage of complete CohortSettings objects.
+    """
+    metadata: SampleSettingsMetaData = Field(
+        ...,
+        description="Descriptive metadata for this settings sample"
+    )
 
     class Config:
-        extra = "allow"
+        extra = "allow"  # Allow additional fields for full settings storage
 
 class OperationOutcome(NoNullCamelModel):
-    id: int
-    message: str
-    name: Optional[str] = None
-    data: Optional[dict[str, Any]] = None
+    """
+    Standard response for create/update/delete operations on sample settings.
+    
+    Provides operation result information including status, messages, and
+    optional data about the affected resource.
+    """
+    id: int = Field(
+        ...,
+        description="Database ID of the affected sample settings record"
+    )
+    message: str = Field(
+        ...,
+        description="Human-readable message describing the operation result"
+    )
+    name: Optional[str] = Field(
+        default=None,
+        description="Name of the sample settings (for create/update operations)"
+    )
+    data: Optional[dict[str, Any]] = Field(
+        default=None,
+        description="Optional full settings data returned after operation"
+    )
 
 @router.get("/samples", response_class=PrettyJSONResponse)
 def read_samples(db: Session = Depends(get_main_db)):

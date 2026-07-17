@@ -1,7 +1,0 @@
-{
-    "useCaseId": "version-testing",
-    "useCaseVersion": "0.1.0",
-    "title": "Version Testing",
-    "fhirVersion": "R5",
-    "description": "This use case is empty and is only for testing version drop downs. Do not use."
-}

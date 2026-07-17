@@ -1,6 +1,9 @@
 from enum import Enum
+
+from sqlalchemy.orm import Session
+from api.features.generation.generators.occupation import generate_occupation
 from api.models.cohort_settings import Setting, ValueX
-from api.models.field import BooleanMap, Field
+from api.models.field import BooleanMap, ConceptMap, Field
 from api.models.patient_meta import PatientMeta
 from api.features.generation.constants import SpecialValues
 from api.features.generation.generators.dates import append_days
@@ -10,7 +13,7 @@ from api.features.generation.weighted_values import select_from_weighted_list
 from typing import Optional
 from api.features.generation.alias_types import Code
 import datetime # NOTE: Importing individual objects from datetime module breaks date type checking.
-from api.models.value_types import ValueCoding
+from api.models.value_types import ValueCoding, is_value_occupation
 from api.models.value_types import  is_value_coding, is_value_time_range_as_days, is_value_location, is_value_range_with_units, is_value_weights, is_bool
 from api.models.cohort_settings import EventSetEntry
 from loguru import logger
@@ -18,7 +21,7 @@ from fastapi import HTTPException
 
 
 '''
-TODO: Refactor to following pattern seen in boolean:
+TODO: Refactor to following pattern seen in boolean and Coding:
 # check if static value is none to see which method argument must be handled.
 if static value is None
     if type of field setting value is what is expected/supported for the type in question, e.g. weights for strings/range for quantities/etc.
@@ -33,13 +36,13 @@ if static value is not none
 '''
 
 #TODO The parameters are out of order compared to the individual handlers, needs refactoring.
-def handle_by_type(fhir_type: str, field: Field, patient_meta: PatientMeta, field_setting: Optional[Setting]) -> str | bool | datetime.datetime | None:
+def handle_by_type(fhir_type: str, field: Field, patient_meta: PatientMeta, field_setting: Optional[Setting], mask_pii_enabled: bool = False, main_db: Session | None = None) -> str | bool | datetime.datetime | None:
     if field.user_configured and field_setting is None:
         raise ValueError("Field setting required for all user configurable values.")
     if field.user_configured:
-        value = globals()[fhir_type](field_setting, patient_meta, None, boolean_maps = field.boolean_map)
+        value = globals()[fhir_type](field_setting, patient_meta, None, boolean_maps = field.boolean_maps, concept_maps = field.concept_maps, mask_pii_enabled = mask_pii_enabled, main_db = main_db)
     else:
-        value = globals()[fhir_type](field_setting, patient_meta, field.value, boolean_map = field.boolean_map)
+        value = globals()[fhir_type](field_setting, patient_meta, field.value, boolean_maps = field.boolean_maps, concept_maps = field.concept_maps, mask_pii_enabled = mask_pii_enabled, main_db = main_db)
     return value
 
 def boolean(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueX, boolean_maps: list[BooleanMap] | None, **kwargs) -> bool:
@@ -59,8 +62,6 @@ def boolean(field_setting: Setting, patient_meta: PatientMeta, static_value: Val
         return static_value
     else:
         raise TypeError(f"Static value type is not none and does not match the expected FHIR type of boolean.")
-
-
 
 def date(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueX, **kwargs): # -> date:
     raise NotImplementedError("date type handler not implemented. Patient birth date handled specially.")
@@ -94,10 +95,10 @@ def string(field_setting: Setting, patient_meta: PatientMeta, static_value: Valu
 def code(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueX, **kwargs) ->  Code:
     return string(field_setting, patient_meta, static_value)
 
-def Address(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueX, **kwargs):
+def Address(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueX, mask_pii_enabled: bool = False, **kwargs):
     # line^city^county^postalcode^state^country
     if is_value_location(field_setting.value):
-        address_string = generate_address(field_setting.value.city, field_setting.value.state)
+        address_string = generate_address(field_setting.value.city, field_setting.value.state, mask_pii_enabled)
         return address_string
     elif isinstance(field_setting.value, str) and field_setting.value.count("^") == 5:
         # if a string and looks like a valid complete address, just use it directly.
@@ -109,34 +110,48 @@ def Address(field_setting: Setting, patient_meta: PatientMeta, static_value: Val
 def Identifier(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueX, **kwargs):
     raise NotImplementedError("Identifier type handler not implemented. Randomized identifiers should be handled through the $uuid special value for now.")
 
-
 def HumanName(field_setting: Setting, meta: PatientMeta, static_value: ValueX, **kwargs):
     '''
     Processes generation behavior for the FHIR HumanName type. For patient generation where names are always randomized, the expected value is a bool to
     indicate whether or not masking should occur. For static, non-user configured data, this will accept any string in the form of "GivenName FamilyName"
     (e.g., "John Smith") which is bounced back as the value.
     '''
-    if is_bool(field_setting.value):
-        if field_setting.value:
-            return SpecialValues.MASKED
-        else:
-            return meta.name
-    elif isinstance(field_setting.value, str):
-        return field_setting.value
-    else:
-        raise ValueError(f"Expected bool for type HumanName to determine data masking - {field_setting}.")
-
+    return meta.name
+ 
 # In FHIR Sheets, CodeableConcept is only handled as a single Coding value. The FHIR typing is retained for entity building, so the handler just passes to Coding.
-def CodeableConcept(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueCoding, **kwargs):
-    return Coding(field_setting, patient_meta, static_value)
+def CodeableConcept(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueCoding | None, concept_maps: list[ConceptMap] | None, main_db: Session | None = None, **kwargs):
+    return Coding(field_setting, patient_meta, static_value, concept_maps, main_db=main_db)
 
-def Coding(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueCoding, **kwargs):
-    if is_value_coding(static_value):
+def Coding(field_setting: Setting, patient_meta: PatientMeta, static_value: ValueCoding | None, concept_maps: list[ConceptMap] | None, main_db: Session | None = None, **kwargs):
+    if static_value is None:
+        if is_value_weights(field_setting.value):
+            if concept_maps is None:
+                raise ValueError(f"Concept map not found. Weighted concepts require a concept map to be set in the entity field.")
+            else:
+                value = select_from_weighted_list(field_setting.value)
+                map_object = next((map_object for map_object in concept_maps if map_object.value == value), None)
+                if map_object is None:
+                    raise ValueError(f"Value of {value} not found in concept map: {concept_maps}")
+                return value_coding_to_string(map_object.map_to)
+        elif is_value_coding(field_setting.value):
+            return value_coding_to_string(field_setting.value)
+        elif is_value_occupation(field_setting.value):
+            if main_db is None:
+                raise TypeError(f"{type(field_setting.value)} cannot be used outside of a flow where database is not accessible. Please contact maintainers.")
+            else:
+                return generate_occupation(field_setting.value, main_db)
+
+        else:
+            raise TypeError(f"{type(field_setting.value)} not (yet?) supported for FHIR type of Coding/CodeableConcept, occurred when generating {field_setting.rule_id}.")
+    elif is_value_coding(static_value):
         return value_coding_to_string(static_value)
-    elif is_value_coding(field_setting.value):
-        return value_coding_to_string(field_setting.value)
+    elif is_value_occupation(static_value):
+        if main_db is None:
+            raise TypeError(f"{type(static_value)} cannot be used outside of a flow where database is not accessible. Please contact maintainers.")
+        else:
+            return generate_occupation(static_value, main_db)
     else:
-        raise TypeError(f"Expected ValueCodeableConcept for type Codeable Concept - {field_setting}")
+        raise TypeError(f"Expected ValueCoding for types Coding or CodeableConcept for static values - {field_setting}")
 
 def value_coding_to_string(value: ValueCoding) -> str:
     '''
@@ -146,7 +161,6 @@ def value_coding_to_string(value: ValueCoding) -> str:
 
 def Quantity(field_setting: Setting, patient_meta: PatientMeta, static_value: dict, **kwargs):
     raise NotImplementedError("Quantity type handler not implemented. Quantity is only supported through the choice of data type handler for observations for now.")
-
 
 # Currently Supported Choice of DataTypes
 class ChoiceOfDataTypes(Enum):

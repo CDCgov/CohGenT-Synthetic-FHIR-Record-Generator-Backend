@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import Any
 
 from sqlalchemy.orm import Session
@@ -15,7 +16,7 @@ from api.models.option import ControlType
 from api.models.use_case import AdditionalEntity, UseCase, FormRule
 from api.models.entity import Entity
 from api.models.patient_meta import PatientMeta
-from api.models.value_types import is_value_coding, is_value_range, is_value_time_range_as_days, is_value_tribal_affiliation, is_value_prevalence
+from api.models.value_types import ValueOccupation, ValueTribalAffiliation, is_bool, is_value_coding, is_value_occupation, is_value_range, is_value_time_range_as_days, is_value_tribal_affiliation, is_value_prevalence
 from api.features.generation.fhir_sheets_interfaces import generate_all
 from api.utilities.file_reader import get_use_case_by_id, read_common_entity
 from api.features.generation.type_handlers import handle_by_type, process_choice_of_data_type_value, fhir_type_match_check, value_coding_to_string
@@ -48,6 +49,9 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
     start = time.time() # Start run timer
     session_id = f"{datetime.fromtimestamp(start)} - {generate_uuid_identifier()}"
 
+    # Log to main logs (always)
+    logger.info(f"Starting cohort generation: {configuration.count} patients, use_case={configuration.use_case_id}, seed={configuration.seed}")
+
     entity_cache = ProviderCache(main_db)
     
     if settings.enable_run_logs:
@@ -77,6 +81,24 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
     else:
         default_settings = parse_default_settings(use_case.form_rules)
 
+    mask_pii_enabled = False
+    mask_pii_setting = next(
+        (setting for setting in configuration.user_responses or [] 
+        if setting.rule_id == "mask-pii"), 
+        None
+    )
+
+    if mask_pii_setting is None:
+        # Fall back to default if user didn't provide it
+        mask_pii_setting = next(
+            (setting for setting in default_settings 
+            if setting.rule_id == "mask-pii"),
+            None
+        )
+
+    if mask_pii_setting and is_bool(mask_pii_setting.value):
+        mask_pii_enabled = mask_pii_setting.value
+
     # Initialize major entities (non-repeatable)
     entities: list[Entity] = generate_entities(use_case)
     dynamic_entities: list[Entity] = []
@@ -95,6 +117,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
     # Pre-loop Initializers
     patients_as_dicts: list[PatientRow] = []
     distributions: Distributions = setup_patient_distributions(entities, configuration, default_settings)
+    added_provider_ids: set[str] = set()
 
     # Cache common entities before loops.
     # TODO: Add error handling on this.
@@ -110,13 +133,14 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
             return None
         if common_entity.entity_file not in entity_file_cache:
             entity_file_cache[common_entity.entity_file] = read_common_entity(common_entity.entity_file)
-        return entity_file_cache[common_entity.entity_file]
-    
+        return entity_file_cache[common_entity.entity_file]   
+
     # Generate Patient Rows
     '''
     Handle static entities and patient initialization.
     '''
     for patient_count in range(configuration.count):
+        logger.info(f"Generating patient {patient_count + 1}/{configuration.count}")
         '''
         Initialize Patient Row and Major Dependent Variables
         patient_row = The row of data for the patient. (Equivalent to spreadsheet row.)
@@ -148,9 +172,10 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                            use_case, distributions,
                            configuration,
                            default_settings,
-                           main_db)
+                           main_db,
+                           mask_pii_enabled)
         '''
-        Handle Additional Clinical Data (Event Sets)
+        Handle Clinical Data Sets (Event Sets)
         '''
         if configuration.event_sets:
             for event_set_count, event_set in enumerate(configuration.event_sets):
@@ -171,24 +196,32 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                 Repetitive generation for event sets.
                 "Date grouping" forward to support diagnostic reports.
                 '''
-                start_date = patient_meta.event_date
-                current_date = start_date + timedelta(days=event_set.timing.offset)
+                # "Start Date" is the patient's event date plus the offset
+                start_date = patient_meta.event_date + timedelta(days=event_set.timing.offset)
+                
+                # "Current Date" is the variable to be updated on each loop tracking increments
+                current_date = start_date
+
+                # "End Date" is when to stop generation. If the event set/clinical data set is set to generate "forever",
+                # this is equal to the patient level generate until date.
                 end_date = patient_meta.generate_until_date
+                if event_set.timing.until and event_set.timing.until > 0:
+                    event_set_until_date = start_date + timedelta(days=event_set.timing.until)
+                    end_date = min(event_set_until_date, end_date)
+                
+                # Tne amount to increment current date on each loop
                 increment = event_set.timing.repeat_timing
                 
-                '''
-                Iteration break to avoid users setting up endless looping. This is controlled by the iteration_limit
-                parameter on the generate function. iteration_limit determines the max number of iterations that may
-                occur.
-                '''
+                # Safety counter to prevent infinite loops (limit configurable via iteration_limit parameter)
                 current_iteration = 1
 
                 while current_date <= end_date:
                     
-                    # If include_diagnostc_report, set that up first
+                    # If include_diagnostc_report for lab panels, set that up first
                     # Setup reference to build link objects.
                     current_dr_entity_id: str | None = None
-
+                    
+                    # Build diagnostic report lab panel itself
                     if event_set.include_diagnostic_report:
                         assert(use_case.common_entities is not None)
                         cloned_dr_entity = copy(loaded_common_entities[LoadedCommonEntityKeys.DIAGNOSTIC_REPORT])
@@ -204,7 +237,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                                 if field.value is not None and field.value == C.SpecialValues.CURRENT.value:
                                     value = str(current_date)
                                 else:
-                                    value = handle_by_type(field.type, field, patient_meta, None)
+                                    value = handle_by_type(field.type, field, patient_meta, None, main_db=main_db)
                             else:
                                 if field.path == "DiagnosticReport.code":
                                     value = f"{event_set.diagnostic_report_concept.system}^{event_set.diagnostic_report_concept.code}^{event_set.diagnostic_report_concept.display}"
@@ -236,7 +269,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                                         if field.value is not None and field.value == C.SpecialValues.CURRENT.value:
                                             value = str(current_date)
                                         else:
-                                            value = handle_by_type(field.type, field, patient_meta, None)
+                                            value = handle_by_type(field.type, field, patient_meta, None, main_db)
                                     else:
                                         # TODO: make generic/move to handler, supporting all codeable concepts.
                                         # Currently only supports fields with "code" field label for now in alighment with support ofr Observation and Procedure.
@@ -247,38 +280,41 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                                             if fhir_type_match_check(entry.value, field.type):
                                                 value = str(process_choice_of_data_type_value(entry, field))
                                             else:
-                                                include_field = False # Toggle this is there is not a type match to avoid overwrites from Nones.
+                                                include_field = False # Toggle this if there is not a type match to avoid overwrites from Nones.
                                     if include_field:
                                         patient_row_as_dict[key] = value
                                 
                                 # Handle dynamic linked entities (e.g., Practitioners/Practitioner Roles) setup in the use case
                                 if cloned_entity.dynamic_references and common_entity.dynamic_references:
-                                    # process_dynamic_entities(
-                                    #     cloned_entity,
-                                    #     common_entity,
-                                    #     entity_cache,
-                                    #     patient_row_as_dict,
-                                    #     dynamic_entities,
-                                    #     dynamic_resource_links)
                                     for dynamic_reference in cloned_entity.dynamic_references or []:
                                         linked_target = next((link_dr for link_dr in common_entity.dynamic_references if link_dr.link_identifier == dynamic_reference.link_identifier), None)
                                         if linked_target:
-                                            linked_entity_model = entity_cache.get_provider_entity(linked_target.target_entity_identifier)
-                                            dynamic_entities.append(linked_entity_model)
-                                            dynamic_resource_links.append((cloned_entity.entity_id, dynamic_reference.reference_path, linked_entity_model.entity_id))
-                                            
-                                            process_static_entity(linked_entity_model, patient_row_as_dict)
+                                            # Check if local (in use case) reference
+                                            if linked_target.target_entity_identifier.startswith("@"):
+                                                dynamic_resource_links.append((cloned_entity.entity_id, dynamic_reference.reference_path, linked_target.target_entity_identifier[1:]))
+                                            # If not, then pull from db (providers only atm)
+                                            else:
+                                                linked_entity_model = entity_cache.get_provider_entity(linked_target.target_entity_identifier)
+                                                # Only add entity once
+                                                if linked_entity_model.entity_id not in added_provider_ids:
+                                                    dynamic_entities.append(linked_entity_model)
+                                                    added_provider_ids.add(linked_entity_model.entity_id)
+                                                    process_static_entity(linked_entity_model, patient_row_as_dict)
 
-                                            # Handled any linked static references (e.g., PractitionerRole -> Organization and Practitioner)
-                                            # NOTE: These must be fully self contained entities without any user configuration, the same as the initial dynamic entity.
-                                            for static_reference in linked_entity_model.static_references or []:
-                                                static_reference_entity = entity_cache.get_provider_entity(static_reference.target_entity)
-                                                dynamic_entities.append(static_reference_entity)
-                                                dynamic_resource_links.append((linked_entity_model.entity_id, static_reference.reference_path, static_reference_entity.entity_id))
-                                                process_static_entity(static_reference_entity, patient_row_as_dict)
-
+                                                    # Handle static references (PractitionerRole -> Org/Practitioner)
+                                                    for static_reference in linked_entity_model.static_references or []:
+                                                        static_reference_entity = entity_cache.get_provider_entity(static_reference.target_entity)
+                                                        
+                                                        if static_reference_entity.entity_id not in added_provider_ids:
+                                                            dynamic_entities.append(static_reference_entity)
+                                                            added_provider_ids.add(static_reference_entity.entity_id)
+                                                            process_static_entity(static_reference_entity, patient_row_as_dict)
+                                                        
+                                                        dynamic_resource_links.append((linked_entity_model.entity_id, static_reference.reference_path, static_reference_entity.entity_id))
+                                                
+                                                dynamic_resource_links.append((cloned_entity.entity_id, dynamic_reference.reference_path, linked_entity_model.entity_id))
                                         else:
-                                            logger.warning(f"Could not load entity with identifier: {dynamic_reference.link_identifier}. Skipped.")
+                                            logger.warning(f"Could not load entity with link identifier: {dynamic_reference.link_identifier} for {cloned_entity.entity_id}. Skipped.")
 
                         else:
                             raise HTTPException(status_code=422, detail=f"Issue parsing common entity. Unable to find entity file for type {entry.type}. Ensure use case/scenario refers to an existing file name and that the file name is parsable.")
@@ -302,6 +338,7 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
                     medication_base_entity,
                     configuration.medication_sets,
                     patient_count,
+                    patient_meta,
                     dynamic_entities,
                     dynamic_resource_links,
                     patient_row_as_dict,
@@ -312,17 +349,11 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
         patients_as_dicts.append(patient_row_as_dict)
     entities.extend(dynamic_entities)
 
-    end = time.time()
-    with logger.contextualize(run_id=session_id):
-        if settings.enable_run_logs:
-            logger.info(f"Cohort Generated Successfully! Beginning output processing.")
-            logger.info(f"Run Time: {end - start}")
-    
     '''
     Setting up and calling FHIR Sheets.
     '''
     # Build FHIR Sheets Objects
-    resource_definitions, resource_links, headers = generate_all(entities, dynamic_resource_links)
+    resource_definitions, resource_links, headers = generate_all(entities, dynamic_resource_links, mask_pii_enabled)
     patients: list[PatientEntry] = [PatientEntry(patient_as_dict) for patient_as_dict in patients_as_dicts]
     cohort = CohortData(headers, patients)
 
@@ -333,6 +364,15 @@ def start_generation(configuration: CohortSettings, main_db: Session, iteration_
             log_resource_links(session_id, resource_links)
             logger.info(headers)
             logger.info(patients)
+
+    end = time.time()
+    logger.info(f"Cohort Generated Successfully! Beginning output processing.")
+    logger.info(f"Run Time: {end - start}")    
+    # Write to the run log as well.
+    with logger.contextualize(run_id=session_id):
+        if settings.enable_run_logs:
+            logger.info(f"Cohort Generated Successfully! Beginning output processing.")
+            logger.info(f"Run Time: {end - start}")
     
     return resource_definitions, resource_links, cohort
 
@@ -406,6 +446,7 @@ def process_patient_medications(
     medication_base_entity: Entity,
     medication_sets: list[MedicationSet],
     patient_index: int,
+    patient_meta: PatientMeta,
     dynamic_entities: list[Entity],
     dynamic_resource_links: list[ResourceLink],
     patient_row_as_dict: PatientRow,
@@ -439,7 +480,10 @@ def process_patient_medications(
             value: str | None = None
             
             if not field.user_configured:
-                value = field.value if isinstance(field.value, str) else ""
+                if field.value == C.SpecialTypeFunctions.EVENT_DATE.value:
+                    value = str(patient_meta.event_date)
+                else:
+                    value = field.value if isinstance(field.value, str) else ""
             else:
                 if field.path == "MedicationRequest.medicationCodeableConcept":
                     value = f"{medication.codeable_concept.system}^{medication.codeable_concept.code}^{medication.codeable_concept.display}"
@@ -513,7 +557,17 @@ def parse_default_settings(form_rules: list[FormRule]) -> list[Setting]:
                     elif is_value_prevalence(option.default_values):
                         setting["value"] = option.default_values
                     else:
-                        pass
+                        # If no default provided...
+                        setting["value"] = {
+                            "prevalence": Decimal(0.05),
+                            "affiliationCode": None
+                            }
+                elif option.control == ControlType.OCCUPATION:
+                    if is_value_occupation(option.default_values):
+                        setting["value"] = option.default_values
+                    else:
+                        # If no default provided...
+                        setting["value"] = {"occupationCode": None}
                 elif option.control in ControlType:
                     # All other valid control types passed. Some do not allow default values.
                     pass

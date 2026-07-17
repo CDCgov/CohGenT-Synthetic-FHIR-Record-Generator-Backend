@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from api.models.responses.jsonresponse import PrettyJSONResponse
 from api.database.database_client import get_main_db
 from api.database.db_other_tables import ProviderEntity
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 router = APIRouter()
@@ -13,37 +13,112 @@ router = APIRouter()
 
 # Response Models
 class ProviderEntityResponse(BaseModel):
-    id: int
-    entity_id: str
-    resource_type: str
-    display_name: str
-    entity_json: str
+    """
+    Single provider entity record response.
+    
+    Represents a stored provider entity (Practitioner, Organization,
+    PractitionerRole) that can be dynamically referenced during cohort
+    generation for realistic provider attribution.
+    """
+    id: int = Field(
+        ...,
+        description="Database ID of this provider entity record"
+    )
+    entity_id: str = Field(
+        ...,
+        description="Unique identifier for this provider entity used in dynamic references"
+    )
+    resource_type: str = Field(
+        ...,
+        description="FHIR resource type (e.g., 'Practitioner', 'Organization', 'PractitionerRole')"
+    )
+    display_name: str = Field(
+        ...,
+        description="Human-readable display name for this provider"
+    )
+    entity_json: str = Field(
+        ...,
+        description="JSON string containing the complete Entity definition for this provider"
+    )
 
     class Config:
         from_attributes = True
 
 
 class ProviderEntityListResponse(BaseModel):
-    count: int
-    providers: list[ProviderEntityResponse]
-
+    """
+    Response containing a list of provider entities with count.
+    
+    Used for listing all available provider entities, optionally filtered
+    by resource type.
+    """
+    count: int = Field(
+        ...,
+        description="Number of provider entities in the response"
+    )
+    providers: list[ProviderEntityResponse] = Field(
+        ...,
+        description="List of provider entity records"
+    )
 
 class ProviderEntityCreateRequest(BaseModel):
-    entity_id: str
-    resource_type: str
-    display_name: str
-    entity_json: str
-
+    """
+    Request body for creating a new provider entity.
+    
+    Defines all required fields for adding a provider entity to the
+    database for use in dynamic references during generation.
+    """
+    entity_id: str = Field(
+        ...,
+        description="Unique identifier for this provider entity"
+    )
+    resource_type: str = Field(
+        ...,
+        description="FHIR resource type (e.g., 'Practitioner', 'Organization')"
+    )
+    display_name: str = Field(
+        ...,
+        description="Human-readable display name"
+    )
+    entity_json: str = Field(
+        ...,
+        description="JSON string containing the complete Entity definition"
+    )
 
 class ProviderEntityUpdateRequest(BaseModel):
-    resource_type: Optional[str] = None
-    display_name: Optional[str] = None
-    entity_json: Optional[str] = None
-
+    """
+    Request body for updating an existing provider entity.
+    
+    All fields are optional - only provided fields will be updated.
+    Enables partial updates to provider entity records.
+    """
+    resource_type: Optional[str] = Field(
+        default=None,
+        description="FHIR resource type to update"
+    )
+    display_name: Optional[str] = Field(
+        default=None,
+        description="Display name to update"
+    )
+    entity_json: Optional[str] = Field(
+        default=None,
+        description="Entity JSON definition to update"
+    )
 
 class DeleteResponse(BaseModel):
-    success: bool
-    message: str
+    """
+    Response for delete operations on provider entities.
+    
+    Indicates success/failure of deletion with explanatory message.
+    """
+    success: bool = Field(
+        ...,
+        description="Whether the deletion succeeded"
+    )
+    message: str = Field(
+        ...,
+        description="Human-readable message describing the deletion result"
+    )
 
 
 @router.get("/providers", response_class=PrettyJSONResponse)

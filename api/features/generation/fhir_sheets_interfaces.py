@@ -2,17 +2,17 @@ from fhir_sheets.core.model.cohort_data_entity import HeaderEntry
 from fhir_sheets.core.model.resource_definition_entity import ResourceDefinition
 from fhir_sheets.core.model.resource_link_entity import ResourceLink
 from api.models.entity import Entity
-from api.features.generation.constants import FhirType
+from api.features.generation.constants import FhirResourceTypes, FhirType
 '''
 FHIR Sheets Input Builders
 '''
-def generate_all(entities: list[Entity], dynamic_links: list[tuple[str, str, str]] = []) -> tuple[list[ResourceDefinition], list[ResourceLink], list[HeaderEntry]]:
+def generate_all(entities: list[Entity], dynamic_links: list[tuple[str, str, str]] = [], mask_pii_enabled: bool = False) -> tuple[list[ResourceDefinition], list[ResourceLink], list[HeaderEntry]]:
     '''
     Process Entities into FHIR Sheets Resource Definitions, Resource Links, and Header Entries
     '''
-    return (generate_resource_definitions(entities), generate_resource_links(entities, dynamic_links), generate_header_entries(entities))
+    return (generate_resource_definitions(entities), generate_resource_links(entities, dynamic_links), generate_header_entries(entities, mask_pii_enabled))
 
-def generate_header_entries(entities: list[Entity]) -> list[HeaderEntry]:
+def generate_header_entries(entities: list[Entity], mask_pii_enabled: bool = False) -> list[HeaderEntry]:
     '''
     Process Entities into FHIR Sheets Header Entries
     '''
