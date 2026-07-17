@@ -520,8 +520,6 @@ Add a Medication Set to specify medications. Add more than one set and assign we
 
 ## Example: Combining Multiple Cohorts for Mixed Population Testing
 
-> **TODO:** Add complete example showing how to create and combine two distinct cohorts into a single dataset.
-
 This advanced example demonstrates creating two separate cohorts with different characteristics and combining them to simulate a more realistic, heterogeneous patient population for testing.
 
 ### Why Combine Cohorts?
@@ -601,8 +599,6 @@ In this example, we will generate a mixed population of TB patients at different
    - Values: "Negative": 2%, "Positive - low count": 98%
 
 #### Medications
-**TODO:** Add medication comparison table
-
 **Medication 1: Isoniazid**
 - System: RxNorm
 - Code: 6038
@@ -718,8 +714,6 @@ In this example, we will generate a mixed population of TB patients at different
 
 ### Combining the Cohorts
 
-**TODO:** Add step-by-step instructions for combining cohorts
-
 #### Method 1: Generate Separately and Merge Files
 
 1. **Generate Cohort A:**
@@ -753,8 +747,6 @@ In this example, we will generate a mixed population of TB patients at different
 3. **Result:** Single set of NDJSON files containing all 50 patients organized by resource type
 
 ### Key Differences Between Cohorts
-
-**TODO:** Add comparison visualization/table
 
 | **Characteristic** | **Cohort A (Early-Stage)** | **Cohort B (Late-Stage)** |
 |---|---|---|
