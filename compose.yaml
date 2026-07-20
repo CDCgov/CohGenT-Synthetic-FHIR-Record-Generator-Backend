@@ -6,7 +6,7 @@ services:
   cohgent-ui:
     build:
       context: ./ui
-      dockerfile: ./Dockerfile.local
+      dockerfile: ./Dockerfile
       args:
         BASE_HREF: /
     container_name: cohgent-ui
