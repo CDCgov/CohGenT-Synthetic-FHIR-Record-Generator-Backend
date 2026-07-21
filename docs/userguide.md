@@ -392,17 +392,17 @@ All patient Demographics have preset default settings to mimic US census and OMB
   - **Required:** Yes, has defaults
   - **Default Behavior:** Prevalence of 5% across the cohort of a randomly selected tribal affiliation per patient.
 
- - **Employment Status**
-  - **Description:** Employment Status for the cohort. Unemployed refers to persons who do not currently have employment but are seeking employment. Not in labor force refers to persons who are not employed and not seeking employment.
+- **Employment Status**
+   - **Description:** Employment Status for the cohort. Unemployed refers to persons who do not currently have employment but are seeking employment. Not in labor force refers to persons who are not employed and not seeking employment.
   - **Type:** Distribution
-  - **FHIRPath:** Patient.extension
+  - **FHIRPath:** Observation.valueCodeableConcept
   - **Required:** Yes, has defaults
   - **Default Behavior:** Employed: 80%, Unemployed: 5%, Not in Labor Force: 15%
   
 - **Occupation**
   - **Description:** Occupation for patients in the cohort who are employed. Randomize an occupation per patient or specify a single occupation for the entire cohort.
   - **Type:** Radio button, drop-down
-  - **FHIRPath:** Patient.extension
+  - **FHIRPath:** Observation.valueCodeableConcept
   - **Required:** Yes, has defaults
   - **Default Behavior:** Randomly assign occupation
   
