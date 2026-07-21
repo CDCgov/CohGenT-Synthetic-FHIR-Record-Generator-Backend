@@ -331,12 +331,12 @@ This synthetic cohort can be used to test:
 
 All patient Demographics have preset default settings to mimic US census and OMB distributions. To make changes, select "Customize Patient Demographics". The Demographics Summary will automatically update based on any changes made. Once you are satisfied with patient demographics as shown in the Demographics Summary, select "Next" or navigate to the next step in the left-hand navigation pane.
 
-- **Mask Patient Names**
-  - **Description:** Option to mask patient names within the synthetic cohort. If masked, patients will be listed as "masked" in place of synthetic names.
+- **Mask Patient Identifiable Information**
+  - **Description:** Option to mask patient identifiable information within the synthetic cohort. If masked, patients will be listed as "masked" in place of synthetic names. Street address and telecom will be omitted entirely. 
   - **Type:** Checkbox
   - **FHIRPath:** Patient.name
   - **Required:** No
-  - **Default Behavior:** Names NOT Masked
+  - **Default Behavior:** Names NOT Masked, Street address and telecom present
 
 - **Age At Diagnosis**
   - **Description:** The age of the patient at the time of the primary diagnosis.
